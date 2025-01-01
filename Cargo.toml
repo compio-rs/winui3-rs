@@ -1,0 +1,9 @@
+[workspace]
+members = [
+    "bindgen",
+    "winui3"
+]
+default-members = [
+    "winui3"
+]
+resolver = "2"
