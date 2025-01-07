@@ -35,6 +35,14 @@ Media_Playback = ["windows/Media_Playback"]
 Storage_Streams = ["windows/Storage_Streams"]
 System = ["windows/System"]
 UI_Core = ["windows/UI_Core"]
+XamlApp = [
+    "Foundation_Collections",
+    "UI_Xaml",
+    "UI_Xaml_Controls_Primitives",
+    "UI_Xaml_Interop",
+    "UI_Xaml_Markup",
+    "UI_Xaml_XamlTypeInfo",
+]
 # generated features
 Graphics = ["Foundation"]
 Graphics_DirectX = ["Graphics"]

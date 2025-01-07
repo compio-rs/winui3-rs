@@ -6,6 +6,12 @@ pub mod Microsoft;
 #[rustfmt::skip]
 pub mod Windows;
 
+#[cfg(feature = "XamlApp")]
+mod xaml_app;
+
+#[cfg(feature = "XamlApp")]
+pub use xaml_app::{XamlApp, XamlAppOverrides};
+
 pub enum ApartmentType {
     MultiThreaded,
     SingleThreaded,
