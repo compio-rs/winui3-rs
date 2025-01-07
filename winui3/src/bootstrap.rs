@@ -37,7 +37,7 @@ impl PackageDependency {
                 };
                 let dependency_id = unsafe {
                     TryCreatePackageDependency(
-                        None,
+                        windows::Win32::Security::PSID::default(),
                         WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME,
                         min_version,
                         PackageDependencyProcessorArchitectures_None,
@@ -66,7 +66,7 @@ impl PackageDependency {
 
         Ok(Self {
             ctx,
-            package_full_name: unsafe { package_full_name.to_hstring() }?,
+            package_full_name: unsafe { package_full_name.to_hstring() },
         })
     }
 

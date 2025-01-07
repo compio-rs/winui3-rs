@@ -1,4 +1,4 @@
-use std::{env, fs, io::Write, str};
+use std::{env, fs, str};
 
 fn main() -> Result<(), &'static str> {
     env::var("CARGO")
@@ -9,20 +9,36 @@ fn main() -> Result<(), &'static str> {
     }
 
     println!("Generating Windows.UI.Xaml.Interop bindings...");
+    bindgen_xaml_interop();
+
+    println!("Generating WinUI 3 bindings...");
+    bindgen_winui3();
+
+    println!("Patching features...");
+    patch_winui3_features();
+
+    println!("Done.");
+    Ok(())
+}
+
+fn bindgen_xaml_interop() {
     let interop_args = [
+        "--in",
+        "default",
         "--out",
-        "winui3/src/bindings/Interop.rs",
-        "--config",
-        "flatten",
+        "winui3",
+        "--package",
         "--filter",
         "Windows.UI.Xaml.Interop.TypeKind",
         "Windows.UI.Xaml.Interop.TypeName",
     ];
-    windows_bindgen::bindgen(interop_args).expect("failed to write Interop.rs");
+    windows_bindgen::bindgen(interop_args);
+}
 
-    println!("Generating WinUI 3 bindings...");
+fn bindgen_winui3() {
     let winui_args = [
         "--in",
+        "default",
         "bindgen/winmd/Microsoft.Foundation.winmd",
         "bindgen/winmd/Microsoft.Graphics.winmd",
         "bindgen/winmd/Microsoft.UI.Text.winmd",
@@ -30,10 +46,16 @@ fn main() -> Result<(), &'static str> {
         "bindgen/winmd/Microsoft.UI.Xaml.winmd",
         "bindgen/winmd/Microsoft.Web.WebView2.Core.winmd",
         "bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd",
+        "--reference",
+        // NOTE: This is a workaround for a bug in `windows-bindgen` which might never be fixed
+        // NOTE: Due to the bug, we have to generate Windows.UI.Xaml.Interop separately
+        // NOTE: This relies on the fact that references are added in order of appearance
+        "crate,full,Windows.UI.Xaml.Interop",
+        "windows,skip-root,Windows",
         "--out",
-        "winui3/src/bindings/WinUI.rs",
-        "--config",
-        "implement",
+        "winui3",
+        "--implement",
+        "--package",
         "--filter",
         "Microsoft.Graphics",
         "Microsoft.UI",
@@ -49,36 +71,24 @@ fn main() -> Result<(), &'static str> {
         "!Microsoft.UI.Xaml.Controls.WebView2",
         "!Microsoft.Web.WebView2",
     ];
-    windows_bindgen::bindgen(winui_args).expect("failed to write WinUI.rs");
+    windows_bindgen::bindgen(winui_args);
+}
 
-    println!("Patching WinUI 3 bindings...");
-
-    let file = fs::File::options()
-        .read(true)
-        .write(true)
-        .open("winui3/src/bindings/WinUI.rs")
-        .expect("failed to open WinUI.rs");
-
-    let mut mmap = unsafe {
-        memmap2::MmapOptions::new()
-            .offset(2)
-            .map_mut(&file)
-            .expect("failed to memory map WinUI.rs")
-    };
-
-    loop {
-        let mstr = str::from_utf8(&mmap).expect("failed to get a string slice from WinUI.rs");
-        match mstr.find("windows::UI::Xaml::Interop::TypeName") {
-            Some(mmatch) => (&mut mmap[mmatch..mmatch + 36])
-                .write_all(b"    crate::WUX::Interop::TypeName   ")
-                .expect("failed to replace the string"),
-            None => break,
-        }
-    }
-
-    mmap.flush().expect("failed to flush the memory map");
-    file.sync_all().expect("failed to sync WinUI.rs");
-
-    println!("Done.");
-    Ok(())
+fn patch_winui3_features() {
+    let manifest =
+        fs::read_to_string("winui3/Cargo.toml").expect("failed to read winui3/Cargo.toml");
+    let manifest = manifest
+        .replace(
+            r#"UI = ["Foundation"]"#,
+            r#"UI = ["Foundation", "windows/UI"]"#,
+        )
+        .replace(
+            r#"UI_Composition = ["UI"]"#,
+            r#"UI_Composition = ["UI", "windows/UI_Composition"]"#,
+        )
+        .replace(
+            r#"UI_Text = ["UI"]"#,
+            r#"UI_Text = ["UI", "windows/UI_Text"]"#,
+        );
+    fs::write("winui3/Cargo.toml", &manifest).expect("failed to write winui3/Cargo.toml");
 }

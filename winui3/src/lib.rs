@@ -1,20 +1,10 @@
-#![allow(non_snake_case)]
-
-#[rustfmt::skip]
-mod bindings {
-    pub mod Interop;
-    pub mod WinUI;
-}
-
-pub mod WUX {
-    pub use crate::bindings::Interop;
-}
-
 pub mod bootstrap;
 
-pub use bindings::WinUI::Graphics;
-pub use bindings::WinUI::Windows;
-pub use bindings::WinUI::UI;
+#[rustfmt::skip]
+pub mod Microsoft;
+
+#[rustfmt::skip]
+pub mod Windows;
 
 pub enum ApartmentType {
     MultiThreaded,
