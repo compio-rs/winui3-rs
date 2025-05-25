@@ -7,3 +7,11 @@ default-members = [
     "winui3"
 ]
 resolver = "2"
+
+[workspace.dependencies]
+windows = "0.61.1"
+windows-bindgen = "0.61.1"
+windows-collections = "0.2.0"
+windows-core = "0.61.2"
+windows-future = "0.2.1"
+windows-numerics = "0.2.0"

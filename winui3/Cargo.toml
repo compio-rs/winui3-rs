@@ -1,19 +1,25 @@
 [package]
 name = "winui3"
-version = "0.106003.0"
+version = "0.106.0"
 edition = "2021"
 
 [dependencies]
-windows = { version = "0.59.0", features = [
+windows-collections.workspace = true
+windows-core.workspace = true
+windows-future.workspace = true
+windows-numerics.workspace = true
+
+[dependencies.windows]
+workspace = true
+features = [
     "Win32_Security",
     "Win32_Storage_Packaging_Appx",
     "Win32_System_WinRT",
-] }
-windows-core = "0.59.0"
-windows-targets = "0.53.0"
+]
 
 [features]
 default = []
+deprecated = []
 ApplicationModel = ["windows/ApplicationModel"]
 ApplicationModel_Activation = ["windows/ApplicationModel_Activation"]
 ApplicationModel_Background = ["windows/ApplicationModel_Background"]

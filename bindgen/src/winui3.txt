@@ -1,0 +1,54 @@
+--in
+    default
+    bindgen/winmd/Microsoft.Foundation.winmd
+    bindgen/winmd/Microsoft.Graphics.winmd
+    bindgen/winmd/Microsoft.UI.Text.winmd
+    bindgen/winmd/Microsoft.UI.winmd
+    bindgen/winmd/Microsoft.UI.Xaml.winmd
+    bindgen/winmd/Microsoft.Web.WebView2.Core.winmd
+    bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd
+
+--no-deps
+--reference
+// NOTE: This is a workaround for a bug in `windows-bindgen` which might never be fixed
+// NOTE: Due to the bug, we have to generate Windows.UI.Xaml.Interop separately
+// NOTE: This relies on the fact that references are added in order of appearance
+    crate,full,Windows.UI.Xaml.Interop
+
+// windows-collections
+    windows_collections,flat,Windows.Foundation.Collections.IIterable
+    windows_collections,flat,Windows.Foundation.Collections.IIterator
+    windows_collections,flat,Windows.Foundation.Collections.IKeyValuePair
+    windows_collections,flat,Windows.Foundation.Collections.IMap
+    windows_collections,flat,Windows.Foundation.Collections.IMapView
+    windows_collections,flat,Windows.Foundation.Collections.IVector
+    windows_collections,flat,Windows.Foundation.Collections.IVectorView
+
+// windows-numerics
+    windows_numerics,flat,Windows.Foundation.Numerics.Matrix3x2
+    windows_numerics,flat,Windows.Foundation.Numerics.Matrix4x4
+    windows_numerics,flat,Windows.Foundation.Numerics.Vector2
+    windows_numerics,flat,Windows.Foundation.Numerics.Vector3
+    windows_numerics,flat,Windows.Foundation.Numerics.Vector4
+
+// windows-future
+    windows_future,flat,Windows.Foundation.Async*
+    windows_future,flat,Windows.Foundation.IAsync*
+
+    windows,skip-root,Windows
+
+--out winui3
+--implement
+--package
+
+--filter
+    Microsoft.Graphics
+    Microsoft.UI
+    Microsoft.Windows.ApplicationModel.Resources
+    
+// WebView2 is a big part of the API surface
+    !Microsoft.UI.Xaml.Automation.Peers.IWebView2*
+    !Microsoft.UI.Xaml.Automation.Peers.WebView2*
+    !Microsoft.UI.Xaml.Controls.IWebView2*
+    !Microsoft.UI.Xaml.Controls.WebView2
+    !Microsoft.Web.WebView2

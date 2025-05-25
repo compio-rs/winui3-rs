@@ -1,0 +1,8 @@
+--in default
+--out winui3
+--no-deps
+--package
+
+--filter
+    Windows.UI.Xaml.Interop.TypeKind
+    Windows.UI.Xaml.Interop.TypeName

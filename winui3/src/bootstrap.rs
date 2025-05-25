@@ -7,7 +7,7 @@ use windows::Win32::Storage::Packaging::Appx::{
 };
 use windows_core::{h, Result, HSTRING, PWSTR};
 
-const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64: u64 = 0x1770013E09000000u64;
+const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64: u64 = 0x177000F200650000u64;
 const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME: &HSTRING =
     h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
 
