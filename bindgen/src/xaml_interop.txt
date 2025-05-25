@@ -1,6 +1,7 @@
 --in default
 --out winui3
 --no-deps
+--no-toml
 --package
 
 --filter

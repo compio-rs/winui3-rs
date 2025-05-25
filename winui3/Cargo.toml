@@ -20,29 +20,8 @@ features = [
 [features]
 default = []
 deprecated = []
-ApplicationModel = ["windows/ApplicationModel"]
-ApplicationModel_Activation = ["windows/ApplicationModel_Activation"]
-ApplicationModel_Background = ["windows/ApplicationModel_Background"]
-ApplicationModel_Contacts = ["windows/ApplicationModel_Contacts"]
-ApplicationModel_Core = ["windows/ApplicationModel_Core"]
-ApplicationModel_DataTransfer = ["windows/ApplicationModel_DataTransfer"]
-ApplicationModel_DataTransfer_DragDrop = ["windows/ApplicationModel_DataTransfer_DragDrop"]
-Devices_Geolocation = ["windows/Devices_Geolocation"]
 Foundation = ["windows/Foundation"]
-Foundation_Collections = ["windows/Foundation_Collections"]
-Foundation_Numerics = ["windows/Foundation_Numerics"]
-Globalization = ["windows/Globalization"]
-Globalization_NumberFormatting = ["windows/Globalization_NumberFormatting"]
-Graphics_Effects = ["windows/Graphics_Effects"]
-Graphics_Imaging = ["windows/Graphics_Imaging"]
-Graphics_Printing = ["windows/Graphics_Printing"]
-Media_Casting = ["windows/Media_Casting"]
-Media_Playback = ["windows/Media_Playback"]
-Storage_Streams = ["windows/Storage_Streams"]
-System = ["windows/System"]
-UI_Core = ["windows/UI_Core"]
 XamlApp = [
-    "Foundation_Collections",
     "UI_Xaml",
     "UI_Xaml_Controls_Primitives",
     "UI_Xaml_Interop",
@@ -52,42 +31,69 @@ XamlApp = [
 # generated features
 Graphics = ["Foundation"]
 Graphics_DirectX = ["Graphics"]
-Graphics_Display = ["Graphics"]
+Graphics_Display = ["Graphics", "windows/Storage_Streams"]
 UI = ["Foundation", "windows/UI"]
-UI_Composition = ["UI", "windows/UI_Composition"]
+UI_Composition = [
+    "UI",
+    "windows/Foundation_Numerics",
+    "windows/Graphics_Effects",
+    "windows/UI_Composition",
+]
 UI_Composition_Core = ["UI_Composition"]
 UI_Composition_Diagnostics = ["UI_Composition"]
 UI_Composition_Effects = ["UI_Composition"]
 UI_Composition_Interactions = ["UI_Composition"]
 UI_Composition_Scenes = ["UI_Composition"]
-UI_Composition_SystemBackdrops = ["UI_Composition"]
-UI_Content = ["UI"]
+UI_Composition_SystemBackdrops = ["UI_Composition", "windows/UI_Core"]
+UI_Content = ["UI", "windows/Graphics"]
 UI_Dispatching = ["UI"]
-UI_Input = ["UI"]
-UI_Input_DragDrop = ["UI_Input"]
+UI_Input = ["UI", "windows/Graphics", "windows/System", "windows/UI_Core"]
+UI_Input_DragDrop = [
+    "UI_Input",
+    "windows/ApplicationModel_DataTransfer",
+    "windows/Graphics_Imaging",
+]
 UI_System = ["UI"]
-UI_Text = ["UI", "windows/UI_Text"]
-UI_Windowing = ["UI"]
-UI_Xaml = ["UI"]
+UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]
+UI_Windowing = ["deprecated", "UI", "windows/Graphics"]
+UI_Xaml = [
+    "UI",
+    "UI_Xaml_Interop",
+    "windows/ApplicationModel_Activation",
+    "windows/ApplicationModel_Core",
+    "windows/ApplicationModel_DataTransfer_DragDrop",
+    "windows/Foundation_Collections",
+    "windows/Graphics_Imaging",
+    "windows/UI_Core",
+]
 UI_Xaml_Automation = ["UI_Xaml"]
-UI_Xaml_Automation_Peers = ["UI_Xaml_Automation"]
+UI_Xaml_Automation_Peers = ["deprecated", "UI_Xaml_Automation"]
 UI_Xaml_Automation_Provider = ["UI_Xaml_Automation"]
 UI_Xaml_Automation_Text = ["UI_Xaml_Automation"]
-UI_Xaml_Controls = ["UI_Xaml"]
+UI_Xaml_Controls = [
+    "deprecated",
+    "UI_Text",
+    "UI_Xaml",
+    "windows/ApplicationModel_Contacts",
+    "windows/Devices_Geolocation",
+    "windows/Globalization_NumberFormatting",
+    "windows/Media_Casting",
+    "windows/Media_Playback",
+]
 UI_Xaml_Controls_AnimatedVisuals = ["UI_Xaml_Controls"]
 UI_Xaml_Controls_Primitives = ["UI_Xaml_Controls"]
 UI_Xaml_Data = ["UI_Xaml"]
-UI_Xaml_Documents = ["UI_Xaml"]
+UI_Xaml_Documents = ["UI_Text", "UI_Xaml"]
 UI_Xaml_Hosting = ["UI_Xaml"]
-UI_Xaml_Input = ["UI_Xaml"]
-UI_Xaml_Interop = ["UI_Xaml"]
-UI_Xaml_Markup = ["UI_Xaml"]
-UI_Xaml_Media = ["UI_Xaml"]
+UI_Xaml_Input = ["UI_Input", "UI_Xaml"]
+UI_Xaml_Interop = []
+UI_Xaml_Markup = ["UI_Xaml", "windows/Storage_Streams"]
+UI_Xaml_Media = ["UI_Xaml", "windows/Storage_Streams"]
 UI_Xaml_Media_Animation = ["UI_Xaml_Media"]
-UI_Xaml_Media_Imaging = ["UI_Xaml_Media"]
+UI_Xaml_Media_Imaging = ["UI_Xaml_Media", "windows/ApplicationModel_Background"]
 UI_Xaml_Media_Media3D = ["UI_Xaml_Media"]
 UI_Xaml_Navigation = ["UI_Xaml"]
-UI_Xaml_Printing = ["UI_Xaml"]
+UI_Xaml_Printing = ["UI_Xaml", "windows/Graphics_Printing"]
 UI_Xaml_Resources = ["UI_Xaml"]
 UI_Xaml_Shapes = ["UI_Xaml"]
 UI_Xaml_XamlTypeInfo = ["UI_Xaml"]

@@ -29,16 +29,80 @@ fn patch_winui3_features() {
         fs::read_to_string("winui3/Cargo.toml").expect("failed to read winui3/Cargo.toml");
     let manifest = manifest
         .replace(
+            r#"Graphics_Display = ["Graphics"]"#,
+            r#"Graphics_Display = ["Graphics", "windows/Storage_Streams"]"#,
+        )
+        .replace(
             r#"UI = ["Foundation"]"#,
             r#"UI = ["Foundation", "windows/UI"]"#,
         )
         .replace(
             r#"UI_Composition = ["UI"]"#,
-            r#"UI_Composition = ["UI", "windows/UI_Composition"]"#,
+            r#"UI_Composition = ["UI", "windows/Foundation_Numerics", "windows/Graphics_Effects", "windows/UI_Composition"]"#,
+        )
+        .replace(
+            r#"UI_Composition_SystemBackdrops = ["UI_Composition"]"#,
+            r#"UI_Composition_SystemBackdrops = ["UI_Composition", "windows/UI_Core"]"#,
+        )
+        .replace(
+            r#"UI_Content = ["UI"]"#,
+            r#"UI_Content = ["UI", "windows/Graphics"]"#,
+        )
+        .replace(
+            r#"UI_Input = ["UI"]"#,
+            r#"UI_Input = ["UI", "windows/Graphics", "windows/System", "windows/UI_Core"]"#,
+        )
+        .replace(
+            r#"UI_Input_DragDrop = ["UI_Input"]"#,
+            r#"UI_Input_DragDrop = ["UI_Input", "windows/ApplicationModel_DataTransfer", "windows/Graphics_Imaging"]"#,
         )
         .replace(
             r#"UI_Text = ["UI"]"#,
-            r#"UI_Text = ["UI", "windows/UI_Text"]"#,
+            r#"UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]"#,
+        )
+        .replace(
+            r#"UI_Windowing = ["UI"]"#,
+            r#"UI_Windowing = ["deprecated", "UI", "windows/Graphics"]"#,
+        )
+        .replace(
+            r#"UI_Xaml = ["UI"]"#,
+            r#"UI_Xaml = ["UI", "UI_Xaml_Interop", "windows/ApplicationModel_Activation", "windows/ApplicationModel_Core", "windows/ApplicationModel_DataTransfer_DragDrop", "windows/Foundation_Collections", "windows/Graphics_Imaging", "windows/UI_Core"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Automation_Peers = ["UI_Xaml_Automation"]"#,
+            r#"UI_Xaml_Automation_Peers = ["deprecated", "UI_Xaml_Automation"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Controls = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Controls = ["deprecated", "UI_Text", "UI_Xaml", "windows/ApplicationModel_Contacts", "windows/Devices_Geolocation", "windows/Globalization_NumberFormatting", "windows/Media_Casting", "windows/Media_Playback"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Documents = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Documents = ["UI_Text", "UI_Xaml"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Input = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Input = ["UI_Input", "UI_Xaml"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Interop = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Interop = []"#,
+        )
+        .replace(
+            r#"UI_Xaml_Markup = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Markup = ["UI_Xaml", "windows/Storage_Streams"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Media = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Media = ["UI_Xaml", "windows/Storage_Streams"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Media_Imaging = ["UI_Xaml_Media"]"#,
+            r#"UI_Xaml_Media_Imaging = ["UI_Xaml_Media", "windows/ApplicationModel_Background"]"#,
+        )
+        .replace(
+            r#"UI_Xaml_Printing = ["UI_Xaml"]"#,
+            r#"UI_Xaml_Printing = ["UI_Xaml", "windows/Graphics_Printing"]"#,
         );
     fs::write("winui3/Cargo.toml", &manifest).expect("failed to write winui3/Cargo.toml");
 }
