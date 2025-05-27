@@ -5,7 +5,7 @@ use windows::{
     Win32::Foundation::{CO_E_NOTCONSTRUCTED, E_ILLEGAL_METHOD_CALL, E_POINTER},
 };
 use windows_core::{
-    implement, Array, ComObject, IInspectable, Interface, InterfaceRef, Ref, Result, HSTRING,
+    implement, Array, ComObject, IInspectable, Interface, InterfaceRef, Param, Ref, Result, HSTRING,
 };
 
 use crate::Microsoft::UI::Xaml::{
@@ -21,11 +21,8 @@ use crate::Windows::UI::Xaml as WUX;
 
 #[allow(non_snake_case)]
 pub trait XamlAppOverrides {
-    fn OnLaunched(
-        &self,
-        base: &'_ Application,
-        args: Ref<'_, LaunchActivatedEventArgs>,
-    ) -> Result<()>;
+    fn OnLaunched(&self, base: &Application, args: Option<&LaunchActivatedEventArgs>)
+        -> Result<()>;
 }
 
 #[implement(
@@ -39,14 +36,14 @@ pub struct XamlApp<'a, T>
 where
     T: XamlAppOverrides,
 {
-    base: RefCell<Option<InterfaceRef<'a, Application>>>,
+    base: RefCell<Option<InterfaceRef<'a, IInspectable>>>,
     provider: RefCell<Option<XamlControlsXamlMetaDataProvider>>,
     inner: T,
 }
 
 impl<'a, T: XamlAppOverrides> XamlApp<'a, T> {
     pub fn compose(inner: T) -> Result<Application> {
-        let app = ComObject::new(XamlApp {
+        let app = ComObject::new(Self {
             base: RefCell::new(None),
             provider: RefCell::new(None),
             inner,
@@ -70,9 +67,7 @@ impl<'a, T: XamlAppOverrides> XamlApp<'a, T> {
                         .map(|ref__| (app__, ref__))
                 })
             })?;
-        app.base
-            .borrow_mut()
-            .replace(InterfaceRef::from_interface(&base.cast::<Application>()?));
+        app.base.borrow_mut().replace(base);
         Ok(application)
     }
 
@@ -81,7 +76,20 @@ impl<'a, T: XamlAppOverrides> XamlApp<'a, T> {
             .borrow()
             .as_ref()
             .ok_or_else(|| CO_E_NOTCONSTRUCTED.into())
-            .and_then(|base| func(base))
+            .and_then(|base| base.cast::<Application>())
+            .and_then(|base| func(&base))
+    }
+
+    fn with_iface<I, R, F: FnOnce(&I) -> Result<R>>(&self, func: F) -> Result<R>
+    where
+        I: Interface,
+    {
+        self.base
+            .borrow()
+            .as_ref()
+            .ok_or_else(|| CO_E_NOTCONSTRUCTED.into())
+            .and_then(|base| base.cast::<I>())
+            .and_then(|base| func(&base))
     }
 
     fn with_provider<R, F: FnOnce(&XamlControlsXamlMetaDataProvider) -> Result<R>>(
@@ -151,21 +159,36 @@ impl<T: XamlAppOverrides> IApplication2_Impl for XamlApp_Impl<'_, T> {
         &self,
         handler: Ref<'_, TypedEventHandler<IInspectable, ResourceManagerRequestedEventArgs>>,
     ) -> Result<i64> {
-        self.with_base(|base| base.ResourceManagerRequested(handler.as_ref()))
+        self.with_iface(|this: &IApplication2| unsafe {
+            let mut result = Default::default();
+            (this.vtable().ResourceManagerRequested)(
+                this.as_raw(),
+                handler.as_ref().param().abi(),
+                &mut result,
+            )
+            .map(|| result)
+        })
     }
 
     fn RemoveResourceManagerRequested(&self, token: i64) -> Result<()> {
-        self.with_base(|base| base.RemoveResourceManagerRequested(token))
+        self.with_iface(|this: &IApplication2| unsafe {
+            (this.vtable().RemoveResourceManagerRequested)(this.as_raw(), token).ok()
+        })
     }
 }
 
 impl<T: XamlAppOverrides> IApplication3_Impl for XamlApp_Impl<'_, T> {
     fn DispatcherShutdownMode(&self) -> Result<DispatcherShutdownMode> {
-        self.with_base(|base| base.DispatcherShutdownMode())
+        self.with_iface(|this: &IApplication3| unsafe {
+            let mut result = Default::default();
+            (this.vtable().DispatcherShutdownMode)(this.as_raw(), &mut result).map(|| result)
+        })
     }
 
     fn SetDispatcherShutdownMode(&self, value: DispatcherShutdownMode) -> Result<()> {
-        self.with_base(|base| base.SetDispatcherShutdownMode(value))
+        self.with_iface(|this: &IApplication3| unsafe {
+            (this.vtable().SetDispatcherShutdownMode)(this.as_raw(), value).ok()
+        })
     }
 }
 
@@ -177,7 +200,7 @@ impl<T: XamlAppOverrides> IApplicationOverrides_Impl for XamlApp_Impl<'_, T> {
             .borrow_mut()
             .replace(XamlControlsXamlMetaDataProvider::new()?);
 
-        self.with_base(|base| self.inner.OnLaunched(base, args))
+        self.with_base(|base| self.inner.OnLaunched(base, args.as_ref()))
     }
 }
 
