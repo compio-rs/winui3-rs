@@ -23,6 +23,9 @@ use crate::Windows::UI::Xaml as WUX;
 pub trait XamlAppOverrides {
     fn OnLaunched(&self, base: &Application, args: Option<&LaunchActivatedEventArgs>)
         -> Result<()>;
+
+    #[cfg(feature = "XamlNavigation")]
+    fn TryResolveXamlType(&self, full_name: &HSTRING) -> Result<IXamlType>;
 }
 
 #[implement(
@@ -205,10 +208,28 @@ impl<T: XamlAppOverrides> IApplicationOverrides_Impl for XamlApp_Impl<'_, T> {
 }
 
 impl<T: XamlAppOverrides> IXamlMetadataProvider_Impl for XamlApp_Impl<'_, T> {
+    #[cfg(feature = "XamlNavigation")]
+    fn GetXamlType(&self, type_name: &WUX::Interop::TypeName) -> Result<IXamlType> {
+        let page_resolve = match type_name.Kind {
+            WUX::Interop::TypeKind::Custom => self.inner.TryResolveXamlType(&type_name.Name),
+            _ => Err(windows_core::Error::empty()),
+        };
+        page_resolve.or_else(|_| self.with_provider(|provider| provider.GetXamlType(type_name)))
+    }
+
+    #[cfg(not(feature = "XamlNavigation"))]
     fn GetXamlType(&self, type_name: &WUX::Interop::TypeName) -> Result<IXamlType> {
         self.with_provider(|provider| provider.GetXamlType(type_name))
     }
 
+    #[cfg(feature = "XamlNavigation")]
+    fn GetXamlTypeByFullName(&self, full_name: &HSTRING) -> Result<IXamlType> {
+        self.inner
+            .TryResolveXamlType(full_name)
+            .or_else(|_| self.with_provider(|provider| provider.GetXamlTypeByFullName(full_name)))
+    }
+
+    #[cfg(not(feature = "XamlNavigation"))]
     fn GetXamlTypeByFullName(&self, full_name: &HSTRING) -> Result<IXamlType> {
         self.with_provider(|provider| provider.GetXamlTypeByFullName(full_name))
     }

@@ -23,9 +23,26 @@ deprecated = []
 Foundation = ["windows/Foundation"]
 XamlApp = [
     "UI_Xaml",
-    "UI_Xaml_Controls_Primitives",
+    "UI_Xaml_Controls",
     "UI_Xaml_Interop",
     "UI_Xaml_Markup",
+    "UI_Xaml_XamlTypeInfo",
+]
+XamlNavigation = [
+    "UI_Composition",
+    "UI_Dispatching",
+    "UI_Input",
+    "UI_Xaml",
+    "UI_Xaml_Controls",
+    "UI_Xaml_Controls_Primitives",
+    "UI_Xaml_Data",
+    "UI_Xaml_Input",
+    "UI_Xaml_Interop",
+    "UI_Xaml_Markup",
+    "UI_Xaml_Media",
+    "UI_Xaml_Media_Animation",
+    "UI_Xaml_Media_Media3D",
+    "UI_Xaml_Navigation",
     "UI_Xaml_XamlTypeInfo",
 ]
 # generated features

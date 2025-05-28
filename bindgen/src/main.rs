@@ -20,6 +20,9 @@ fn main() -> Result<(), &'static str> {
     println!("Patching fn IApplicationFactory...");
     patch_application_factory();
 
+    println!("Patching fn IPageFactory...");
+    patch_page_factory();
+
     println!("Done.");
     Ok(())
 }
@@ -116,4 +119,13 @@ fn patch_application_factory() {
         r#"pub(crate) fn IApplicationFactory"#,
     );
     fs::write(MICROSOFT_UI_XAML_MOD, &contents).expect("failed to write mod.rs");
+}
+
+fn patch_page_factory() {
+    const MICROSOFT_UI_XAML_CONTROLS_MOD: &str = "winui3/src/Microsoft/UI/Xaml/Controls/mod.rs";
+
+    let contents =
+        fs::read_to_string(MICROSOFT_UI_XAML_CONTROLS_MOD).expect("failed to read mod.rs");
+    let contents = contents.replace(r#"fn IPageFactory"#, r#"pub(crate) fn IPageFactory"#);
+    fs::write(MICROSOFT_UI_XAML_CONTROLS_MOD, &contents).expect("failed to write mod.rs");
 }
