@@ -1,11 +1,11 @@
-use std::cell::RefCell;
+use std::{cell::RefCell, marker::PhantomData};
 
 use windows::{
     Foundation::TypedEventHandler,
-    Win32::Foundation::{CO_E_NOTCONSTRUCTED, E_ILLEGAL_METHOD_CALL, E_POINTER},
+    Win32::Foundation::{CO_E_NOTCONSTRUCTED, E_ILLEGAL_METHOD_CALL},
 };
 use windows_core::{
-    implement, Array, ComObject, IInspectable, Interface, InterfaceRef, Param, Ref, Result, HSTRING,
+    implement, Array, ComObject, IInspectable, Interface, Param, Ref, Result, HSTRING,
 };
 
 use crate::Microsoft::UI::Xaml::{
@@ -39,39 +39,32 @@ pub struct XamlApp<'a, T>
 where
     T: XamlAppOverrides,
 {
-    base: RefCell<Option<InterfaceRef<'a, IInspectable>>>,
+    base: RefCell<Option<IInspectable>>,
     provider: RefCell<Option<XamlControlsXamlMetaDataProvider>>,
     inner: T,
+    _phantom: PhantomData<&'a T>,
 }
 
 impl<'a, T: XamlAppOverrides> XamlApp<'a, T> {
     pub fn compose(inner: T) -> Result<Application> {
-        let app = ComObject::new(Self {
-            base: RefCell::new(None),
-            provider: RefCell::new(None),
-            inner,
-        });
-        let outer = app.as_interface::<IInspectable>();
-        let (application, base): (Application, InterfaceRef<'_, IInspectable>) =
-            Application::IApplicationFactory(|this| unsafe {
-                let mut base__ = core::ptr::null_mut();
-                let mut result__ = core::mem::zeroed();
-                (Interface::vtable(this).CreateInstance)(
-                    Interface::as_raw(this),
-                    Interface::as_raw(&*outer),
-                    &mut base__,
-                    &mut result__,
-                )
-                .and_then(|| windows_core::Type::from_abi(result__))
-                .and_then(move |app__| {
-                    core::ptr::NonNull::new(base__)
-                        .map(|ptr__| InterfaceRef::from_raw(ptr__))
-                        .ok_or_else(|| E_POINTER.into())
-                        .map(|ref__| (app__, ref__))
-                })
-            })?;
-        app.base.borrow_mut().replace(base);
-        Ok(application)
+        Application::IApplicationFactory(|this| unsafe {
+            let app = ComObject::new(Self {
+                base: RefCell::new(None),
+                provider: RefCell::new(None),
+                inner,
+                _phantom: PhantomData,
+            });
+            let inner__ = app.base.as_ptr();
+            let outer: IInspectable = app.into_interface();
+            let mut result__ = core::mem::zeroed();
+            (Interface::vtable(this).CreateInstance)(
+                Interface::as_raw(this),
+                Interface::as_raw(&outer),
+                inner__ as _,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
     }
 
     fn with_base<R, F: FnOnce(&Application) -> Result<R>>(&self, func: F) -> Result<R> {
