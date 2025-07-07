@@ -6,25 +6,17 @@ pub mod Microsoft;
 #[rustfmt::skip]
 pub mod Windows;
 
-pub mod interop;
+#[cfg(feature = "native")]
+mod native;
+
+#[cfg(feature = "native")]
+pub use native::*;
 
 #[cfg(feature = "XamlApp")]
 mod xaml_app;
 
-#[cfg(feature = "XamlApp_Navigation")]
-mod xaml_page;
-
-#[cfg(feature = "XamlApp_Navigation")]
-mod xaml_types;
-
 #[cfg(feature = "XamlApp")]
 pub use xaml_app::{XamlApp, XamlAppOverrides};
-
-#[cfg(feature = "XamlApp_Navigation")]
-pub use xaml_page::{XamlPage, XamlPageOverrides};
-
-#[cfg(feature = "XamlApp_Navigation")]
-pub use xaml_types::XamlCustomType;
 
 pub enum ApartmentType {
     MultiThreaded,

@@ -15,9 +15,6 @@ use crate::Windows::UI::Xaml as WUX;
 pub trait XamlAppOverrides {
     fn OnLaunched(&self, base: &Application, args: Option<&LaunchActivatedEventArgs>)
         -> Result<()>;
-
-    #[cfg(feature = "XamlApp_Navigation")]
-    fn TryResolveXamlType(&self, full_name: &HSTRING) -> Result<IXamlType>;
 }
 
 pub struct XamlApp<T>

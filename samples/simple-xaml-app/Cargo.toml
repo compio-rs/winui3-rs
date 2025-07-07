@@ -1,8 +1,0 @@
-[package]
-name = "simple-xaml-app"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-windows-core.workspace = true
-winui3 = { workspace = true, features = ["XamlApp"] }

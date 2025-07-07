@@ -12,16 +12,14 @@ fn main() -> Result<(), &'static str> {
     windows_bindgen::bindgen(["--etc", "bindgen/src/xaml_interop.txt"]).unwrap();
 
     println!("Generating WinUI 3 bindings...");
-    windows_bindgen::bindgen(["--etc", "bindgen/src/winui3.txt"]).unwrap();
+    let warns = windows_bindgen::bindgen(["--etc", "bindgen/src/winui3.txt"]);
+    println!("{warns}");
 
     println!("Patching features...");
     patch_winui3_features();
 
     println!("Patching fn IApplicationFactory...");
     patch_application_factory();
-
-    println!("Patching fn IPageFactory...");
-    patch_page_factory();
 
     println!("Done.");
     Ok(())
@@ -65,19 +63,15 @@ fn patch_winui3_features() {
         )
         .replace(
             r#"UI_Windowing = ["UI"]"#,
-            r#"UI_Windowing = ["deprecated", "UI", "windows/Graphics"]"#,
+            r#"UI_Windowing = ["UI", "windows/Graphics"]"#,
         )
         .replace(
             r#"UI_Xaml = ["UI"]"#,
             r#"UI_Xaml = ["UI", "UI_Xaml_Interop", "windows/ApplicationModel_Activation", "windows/ApplicationModel_Core", "windows/ApplicationModel_DataTransfer_DragDrop", "windows/Foundation_Collections", "windows/Graphics_Imaging", "windows/UI_Core"]"#,
         )
         .replace(
-            r#"UI_Xaml_Automation_Peers = ["UI_Xaml_Automation"]"#,
-            r#"UI_Xaml_Automation_Peers = ["deprecated", "UI_Xaml_Automation"]"#,
-        )
-        .replace(
             r#"UI_Xaml_Controls = ["UI_Xaml"]"#,
-            r#"UI_Xaml_Controls = ["deprecated", "UI_Text", "UI_Xaml", "windows/ApplicationModel_Contacts", "windows/Devices_Geolocation", "windows/Globalization_NumberFormatting", "windows/Media_Casting", "windows/Media_Playback"]"#,
+            r#"UI_Xaml_Controls = ["UI_Text", "UI_Xaml", "windows/ApplicationModel_Contacts", "windows/Devices_Geolocation", "windows/Globalization_NumberFormatting", "windows/Media_Casting", "windows/Media_Playback"]"#,
         )
         .replace(
             r#"UI_Xaml_Documents = ["UI_Xaml"]"#,
@@ -119,13 +113,4 @@ fn patch_application_factory() {
         r#"pub(crate) fn IApplicationFactory"#,
     );
     fs::write(MICROSOFT_UI_XAML_MOD, &contents).expect("failed to write mod.rs");
-}
-
-fn patch_page_factory() {
-    const MICROSOFT_UI_XAML_CONTROLS_MOD: &str = "winui3/src/Microsoft/UI/Xaml/Controls/mod.rs";
-
-    let contents =
-        fs::read_to_string(MICROSOFT_UI_XAML_CONTROLS_MOD).expect("failed to read mod.rs");
-    let contents = contents.replace(r#"fn IPageFactory"#, r#"pub(crate) fn IPageFactory"#);
-    fs::write(MICROSOFT_UI_XAML_CONTROLS_MOD, &contents).expect("failed to write mod.rs");
 }
