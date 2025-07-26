@@ -9,10 +9,10 @@ fn main() -> Result<(), &'static str> {
     }
 
     println!("Generating Windows.UI.Xaml.Interop bindings...");
-    windows_bindgen::bindgen(["--etc", "bindgen/src/xaml_interop.txt"]);
+    windows_bindgen::bindgen(["--etc", "bindgen/src/xaml_interop.txt"]).unwrap();
 
     println!("Generating WinUI 3 bindings...");
-    windows_bindgen::bindgen(["--etc", "bindgen/src/winui3.txt"]);
+    windows_bindgen::bindgen(["--etc", "bindgen/src/winui3.txt"]).unwrap();
 
     println!("Patching features...");
     patch_winui3_features();
