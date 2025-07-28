@@ -37148,6 +37148,242 @@ pub struct IWindowVisibilityChangedEventArgs_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
+    IXamlIsland,
+    IXamlIsland_Vtbl,
+    0x845a5c62_b0f3_5db8_b4ff_4142bbd8a044
+);
+impl windows_core::RuntimeType for IXamlIsland {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Content",
+    feature = "UI_Xaml_Media"
+))]
+impl windows_core::RuntimeName for IXamlIsland {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlIsland";
+}
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Content",
+    feature = "UI_Xaml_Media"
+))]
+pub trait IXamlIsland_Impl: windows_core::IUnknownImpl {
+    fn Content(&self) -> windows_core::Result<UIElement>;
+    fn SetContent(&self, value: windows_core::Ref<'_, UIElement>) -> windows_core::Result<()>;
+    fn ContentIsland(&self) -> windows_core::Result<super::Content::ContentIsland>;
+    fn SystemBackdrop(&self) -> windows_core::Result<Media::SystemBackdrop>;
+    fn SetSystemBackdrop(
+        &self,
+        value: windows_core::Ref<'_, Media::SystemBackdrop>,
+    ) -> windows_core::Result<()>;
+}
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Content",
+    feature = "UI_Xaml_Media"
+))]
+impl IXamlIsland_Vtbl {
+    pub const fn new<Identity: IXamlIsland_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Content<Identity: IXamlIsland_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlIsland_Impl::Content(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetContent<Identity: IXamlIsland_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IXamlIsland_Impl::SetContent(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ContentIsland<Identity: IXamlIsland_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlIsland_Impl::ContentIsland(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SystemBackdrop<
+            Identity: IXamlIsland_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlIsland_Impl::SystemBackdrop(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSystemBackdrop<
+            Identity: IXamlIsland_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IXamlIsland_Impl::SetSystemBackdrop(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlIsland, OFFSET>(),
+            Content: Content::<Identity, OFFSET>,
+            SetContent: SetContent::<Identity, OFFSET>,
+            ContentIsland: ContentIsland::<Identity, OFFSET>,
+            SystemBackdrop: SystemBackdrop::<Identity, OFFSET>,
+            SetSystemBackdrop: SetSystemBackdrop::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlIsland as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlIsland_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub Content: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    Content: usize,
+    #[cfg(feature = "UI_Composition")]
+    pub SetContent: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    SetContent: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+    pub ContentIsland: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Content")))]
+    ContentIsland: usize,
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub SystemBackdrop: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Media"))]
+    SystemBackdrop: usize,
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub SetSystemBackdrop: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Media"))]
+    SetSystemBackdrop: usize,
+}
+windows_core::imp::define_interface!(
+    IXamlIslandFactory,
+    IXamlIslandFactory_Vtbl,
+    0x267f707c_5e18_57b4_9ff7_d11da66e4a11
+);
+impl windows_core::RuntimeType for IXamlIslandFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IXamlIslandFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlIslandFactory";
+}
+pub trait IXamlIslandFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstance(
+        &self,
+        baseInterface: windows_core::Ref<'_, windows_core::IInspectable>,
+        innerInterface: windows_core::OutRef<'_, windows_core::IInspectable>,
+    ) -> windows_core::Result<XamlIsland>;
+}
+impl IXamlIslandFactory_Vtbl {
+    pub const fn new<Identity: IXamlIslandFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstance<
+            Identity: IXamlIslandFactory_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            baseinterface: *mut core::ffi::c_void,
+            innerinterface: *mut *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlIslandFactory_Impl::CreateInstance(
+                    this,
+                    core::mem::transmute_copy(&baseinterface),
+                    core::mem::transmute_copy(&innerinterface),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlIslandFactory, OFFSET>(),
+            CreateInstance: CreateInstance::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlIslandFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlIslandFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub CreateInstance: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
     IXamlResourceReferenceFailedEventArgs,
     IXamlResourceReferenceFailedEventArgs_Vtbl,
     0x1b175ee6_d08b_50ff_8f89_a1ff27edef66
@@ -37499,6 +37735,64 @@ pub struct IXamlRoot3_Vtbl {
     ) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Content"))]
     CoordinateConverter: usize,
+}
+windows_core::imp::define_interface!(
+    IXamlRoot4,
+    IXamlRoot4_Vtbl,
+    0x377bec22_632b_52be_b26f_5edf7838e5ca
+);
+impl windows_core::RuntimeType for IXamlRoot4 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+impl windows_core::RuntimeName for IXamlRoot4 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlRoot4";
+}
+#[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+pub trait IXamlRoot4_Impl: windows_core::IUnknownImpl {
+    fn ContentIsland(&self) -> windows_core::Result<super::Content::ContentIsland>;
+}
+#[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+impl IXamlRoot4_Vtbl {
+    pub const fn new<Identity: IXamlRoot4_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn ContentIsland<Identity: IXamlRoot4_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlRoot4_Impl::ContentIsland(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlRoot4, OFFSET>(),
+            ContentIsland: ContentIsland::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlRoot4 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlRoot4_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+    pub ContentIsland: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Content")))]
+    ContentIsland: usize,
 }
 windows_core::imp::define_interface!(
     IXamlRootChangedEventArgs,
@@ -48853,6 +49147,120 @@ unsafe impl Send for WindowVisibilityChangedEventArgs {}
 unsafe impl Sync for WindowVisibilityChangedEventArgs {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
+pub struct XamlIsland(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    XamlIsland,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+windows_core::imp::required_hierarchy!(XamlIsland, windows::Foundation::IClosable);
+impl XamlIsland {
+    pub fn Close(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<windows::Foundation::IClosable>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).Close)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn Content(&self) -> windows_core::Result<UIElement> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Content)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn SetContent<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<UIElement>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetContent)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+    pub fn ContentIsland(&self) -> windows_core::Result<super::Content::ContentIsland> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ContentIsland)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SystemBackdrop(&self) -> windows_core::Result<Media::SystemBackdrop> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).SystemBackdrop)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSystemBackdrop<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Media::SystemBackdrop>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetSystemBackdrop)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn new() -> windows_core::Result<XamlIsland> {
+        Self::IXamlIslandFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstance)(
+                windows_core::Interface::as_raw(this),
+                core::ptr::null_mut(),
+                &mut core::ptr::null_mut(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
+    fn IXamlIslandFactory<R, F: FnOnce(&IXamlIslandFactory) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<XamlIsland, IXamlIslandFactory> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for XamlIsland {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IXamlIsland>();
+}
+unsafe impl windows_core::Interface for XamlIsland {
+    type Vtable = <IXamlIsland as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IXamlIsland as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for XamlIsland {
+    const NAME: &'static str = "Microsoft.UI.Xaml.XamlIsland";
+}
+unsafe impl Send for XamlIsland {}
+unsafe impl Sync for XamlIsland {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct XamlResourceReferenceFailedEventArgs(windows_core::IUnknown);
 windows_core::imp::interface_hierarchy!(
     XamlResourceReferenceFailedEventArgs,
@@ -48989,6 +49397,18 @@ impl XamlRoot {
         unsafe {
             let mut result__ = core::mem::zeroed();
             (windows_core::Interface::vtable(this).CoordinateConverter)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Content"))]
+    pub fn ContentIsland(&self) -> windows_core::Result<super::Content::ContentIsland> {
+        let this = &windows_core::Interface::cast::<IXamlRoot4>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ContentIsland)(
                 windows_core::Interface::as_raw(this),
                 &mut result__,
             )

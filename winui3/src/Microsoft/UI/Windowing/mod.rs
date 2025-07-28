@@ -424,6 +424,46 @@ impl AppWindow {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    pub fn SetTaskbarIcon(&self, iconpath: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTaskbarIcon)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(iconpath),
+            )
+            .ok()
+        }
+    }
+    pub fn SetTaskbarIconWithIconId(&self, iconid: super::IconId) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTaskbarIconWithIconId)(
+                windows_core::Interface::as_raw(this),
+                iconid,
+            )
+            .ok()
+        }
+    }
+    pub fn SetTitleBarIcon(&self, iconpath: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTitleBarIcon)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(iconpath),
+            )
+            .ok()
+        }
+    }
+    pub fn SetTitleBarIconWithIconId(&self, iconid: super::IconId) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTitleBarIconWithIconId)(
+                windows_core::Interface::as_raw(this),
+                iconid,
+            )
+            .ok()
+        }
+    }
     pub fn Create() -> windows_core::Result<AppWindow> {
         Self::IAppWindowStatics(|this| unsafe {
             let mut result__ = core::mem::zeroed();
@@ -1171,6 +1211,27 @@ impl AppWindowTitleBar {
         let this = &windows_core::Interface::cast::<IAppWindowTitleBar2>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetPreferredHeightOption)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn PreferredTheme(&self) -> windows_core::Result<TitleBarTheme> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredTheme)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPreferredTheme(&self, value: TitleBarTheme) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar3>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPreferredTheme)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -2575,6 +2636,109 @@ pub struct IAppWindow3_Vtbl {
     ) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Dispatching"))]
     DispatcherQueue: usize,
+}
+windows_core::imp::define_interface!(
+    IAppWindow4,
+    IAppWindow4_Vtbl,
+    0x383bfb91_ea29_5414_80cd_6c76d981eb31
+);
+impl windows_core::RuntimeType for IAppWindow4 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IAppWindow4 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindow4";
+}
+pub trait IAppWindow4_Impl: windows_core::IUnknownImpl {
+    fn SetTaskbarIcon(&self, iconPath: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetTaskbarIconWithIconId(&self, iconId: &super::IconId) -> windows_core::Result<()>;
+    fn SetTitleBarIcon(&self, iconPath: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetTitleBarIconWithIconId(&self, iconId: &super::IconId) -> windows_core::Result<()>;
+}
+impl IAppWindow4_Vtbl {
+    pub const fn new<Identity: IAppWindow4_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn SetTaskbarIcon<
+            Identity: IAppWindow4_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            iconpath: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTaskbarIcon(this, core::mem::transmute(&iconpath)).into()
+            }
+        }
+        unsafe extern "system" fn SetTaskbarIconWithIconId<
+            Identity: IAppWindow4_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            iconid: super::IconId,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTaskbarIconWithIconId(this, core::mem::transmute(&iconid))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn SetTitleBarIcon<
+            Identity: IAppWindow4_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            iconpath: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTitleBarIcon(this, core::mem::transmute(&iconpath)).into()
+            }
+        }
+        unsafe extern "system" fn SetTitleBarIconWithIconId<
+            Identity: IAppWindow4_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            iconid: super::IconId,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTitleBarIconWithIconId(this, core::mem::transmute(&iconid))
+                    .into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindow4, OFFSET>(),
+            SetTaskbarIcon: SetTaskbarIcon::<Identity, OFFSET>,
+            SetTaskbarIconWithIconId: SetTaskbarIconWithIconId::<Identity, OFFSET>,
+            SetTitleBarIcon: SetTitleBarIcon::<Identity, OFFSET>,
+            SetTitleBarIconWithIconId: SetTitleBarIconWithIconId::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindow4 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindow4_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub SetTaskbarIcon: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetTaskbarIconWithIconId:
+        unsafe extern "system" fn(*mut core::ffi::c_void, super::IconId) -> windows_core::HRESULT,
+    pub SetTitleBarIcon: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetTitleBarIconWithIconId:
+        unsafe extern "system" fn(*mut core::ffi::c_void, super::IconId) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
     IAppWindowChangedEventArgs,
@@ -4153,6 +4317,77 @@ pub struct IAppWindowTitleBar2_Vtbl {
     ) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
+    IAppWindowTitleBar3,
+    IAppWindowTitleBar3_Vtbl,
+    0x07146e74_0410_5597_aba7_1af276d2ae07
+);
+impl windows_core::RuntimeType for IAppWindowTitleBar3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IAppWindowTitleBar3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowTitleBar3";
+}
+pub trait IAppWindowTitleBar3_Impl: windows_core::IUnknownImpl {
+    fn PreferredTheme(&self) -> windows_core::Result<TitleBarTheme>;
+    fn SetPreferredTheme(&self, value: TitleBarTheme) -> windows_core::Result<()>;
+}
+impl IAppWindowTitleBar3_Vtbl {
+    pub const fn new<Identity: IAppWindowTitleBar3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PreferredTheme<
+            Identity: IAppWindowTitleBar3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut TitleBarTheme,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar3_Impl::PreferredTheme(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredTheme<
+            Identity: IAppWindowTitleBar3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: TitleBarTheme,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar3_Impl::SetPreferredTheme(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowTitleBar3, OFFSET>(),
+            PreferredTheme: PreferredTheme::<Identity, OFFSET>,
+            SetPreferredTheme: SetPreferredTheme::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowTitleBar3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowTitleBar3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PreferredTheme: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut TitleBarTheme,
+    ) -> windows_core::HRESULT,
+    pub SetPreferredTheme:
+        unsafe extern "system" fn(*mut core::ffi::c_void, TitleBarTheme) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
     IAppWindowTitleBarStatics,
     IAppWindowTitleBarStatics_Vtbl,
     0x9e1da52e_8b15_54d6_a886_f7b9f9d930b2
@@ -5587,6 +5822,244 @@ pub struct IOverlappedPresenter2_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
+    IOverlappedPresenter3,
+    IOverlappedPresenter3_Vtbl,
+    0x55d26138_4c38_57e7_a0c1_d467b774db8c
+);
+impl windows_core::RuntimeType for IOverlappedPresenter3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IOverlappedPresenter3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenter3";
+}
+pub trait IOverlappedPresenter3_Impl: windows_core::IUnknownImpl {
+    fn PreferredMinimumHeight(&self) -> windows_core::Result<windows::Foundation::IReference<i32>>;
+    fn SetPreferredMinimumHeight(
+        &self,
+        value: windows_core::Ref<'_, windows::Foundation::IReference<i32>>,
+    ) -> windows_core::Result<()>;
+    fn PreferredMinimumWidth(&self) -> windows_core::Result<windows::Foundation::IReference<i32>>;
+    fn SetPreferredMinimumWidth(
+        &self,
+        value: windows_core::Ref<'_, windows::Foundation::IReference<i32>>,
+    ) -> windows_core::Result<()>;
+    fn PreferredMaximumWidth(&self) -> windows_core::Result<windows::Foundation::IReference<i32>>;
+    fn SetPreferredMaximumWidth(
+        &self,
+        value: windows_core::Ref<'_, windows::Foundation::IReference<i32>>,
+    ) -> windows_core::Result<()>;
+    fn PreferredMaximumHeight(&self) -> windows_core::Result<windows::Foundation::IReference<i32>>;
+    fn SetPreferredMaximumHeight(
+        &self,
+        value: windows_core::Ref<'_, windows::Foundation::IReference<i32>>,
+    ) -> windows_core::Result<()>;
+}
+impl IOverlappedPresenter3_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PreferredMinimumHeight<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMinimumHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMinimumHeight<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMinimumHeight(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PreferredMinimumWidth<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMinimumWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMinimumWidth<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMinimumWidth(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PreferredMaximumWidth<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMaximumWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMaximumWidth<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMaximumWidth(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn PreferredMaximumHeight<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMaximumHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMaximumHeight<
+            Identity: IOverlappedPresenter3_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMaximumHeight(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenter3, OFFSET>(
+            ),
+            PreferredMinimumHeight: PreferredMinimumHeight::<Identity, OFFSET>,
+            SetPreferredMinimumHeight: SetPreferredMinimumHeight::<Identity, OFFSET>,
+            PreferredMinimumWidth: PreferredMinimumWidth::<Identity, OFFSET>,
+            SetPreferredMinimumWidth: SetPreferredMinimumWidth::<Identity, OFFSET>,
+            PreferredMaximumWidth: PreferredMaximumWidth::<Identity, OFFSET>,
+            SetPreferredMaximumWidth: SetPreferredMaximumWidth::<Identity, OFFSET>,
+            PreferredMaximumHeight: PreferredMaximumHeight::<Identity, OFFSET>,
+            SetPreferredMaximumHeight: SetPreferredMaximumHeight::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenter3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenter3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PreferredMinimumHeight: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetPreferredMinimumHeight: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub PreferredMinimumWidth: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetPreferredMinimumWidth: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub PreferredMaximumWidth: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetPreferredMaximumWidth: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub PreferredMaximumHeight: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetPreferredMaximumHeight: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
     IOverlappedPresenterStatics,
     IOverlappedPresenterStatics_Vtbl,
     0x997225e4_7b00_5aee_a4be_d4068d1999e2
@@ -6011,6 +6484,110 @@ impl OverlappedPresenter {
             .ok()
         }
     }
+    pub fn PreferredMinimumHeight(
+        &self,
+    ) -> windows_core::Result<windows::Foundation::IReference<i32>> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMinimumHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetPreferredMinimumHeight<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::Foundation::IReference<i32>>,
+    {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPreferredMinimumHeight)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn PreferredMinimumWidth(
+        &self,
+    ) -> windows_core::Result<windows::Foundation::IReference<i32>> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMinimumWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetPreferredMinimumWidth<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::Foundation::IReference<i32>>,
+    {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPreferredMinimumWidth)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn PreferredMaximumWidth(
+        &self,
+    ) -> windows_core::Result<windows::Foundation::IReference<i32>> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMaximumWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetPreferredMaximumWidth<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::Foundation::IReference<i32>>,
+    {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPreferredMaximumWidth)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn PreferredMaximumHeight(
+        &self,
+    ) -> windows_core::Result<windows::Foundation::IReference<i32>> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMaximumHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetPreferredMaximumHeight<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::Foundation::IReference<i32>>,
+    {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPreferredMaximumHeight)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn Create() -> windows_core::Result<OverlappedPresenter> {
         Self::IOverlappedPresenterStatics(|this| unsafe {
             let mut result__ = core::mem::zeroed();
@@ -6129,5 +6706,22 @@ impl windows_core::TypeKind for TitleBarHeightOption {
 impl windows_core::RuntimeType for TitleBarHeightOption {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(
         b"enum(Microsoft.UI.Windowing.TitleBarHeightOption;i4)",
+    );
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct TitleBarTheme(pub i32);
+impl TitleBarTheme {
+    pub const Legacy: Self = Self(0i32);
+    pub const UseDefaultAppMode: Self = Self(1i32);
+    pub const Light: Self = Self(2i32);
+    pub const Dark: Self = Self(3i32);
+}
+impl windows_core::TypeKind for TitleBarTheme {
+    type TypeKind = windows_core::CopyType;
+}
+impl windows_core::RuntimeType for TitleBarTheme {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(
+        b"enum(Microsoft.UI.Windowing.TitleBarTheme;i4)",
     );
 }

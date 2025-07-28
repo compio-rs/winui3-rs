@@ -3128,6 +3128,111 @@ pub struct ITextDocument_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
+    ITextDocument2,
+    ITextDocument2_Vtbl,
+    0x21febcf1_2110_5879_b1da_b343097e71e1
+);
+impl windows_core::RuntimeType for ITextDocument2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for ITextDocument2 {
+    const NAME: &'static str = "Microsoft.UI.Text.ITextDocument2";
+}
+pub trait ITextDocument2_Impl: windows_core::IUnknownImpl {
+    fn GetMathMode(&self) -> windows_core::Result<RichEditMathMode>;
+    fn SetMathMode(&self, mode: RichEditMathMode) -> windows_core::Result<()>;
+    fn GetMathML(&self, value: &mut windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetMathML(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
+}
+impl ITextDocument2_Vtbl {
+    pub const fn new<Identity: ITextDocument2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetMathMode<
+            Identity: ITextDocument2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut RichEditMathMode,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ITextDocument2_Impl::GetMathMode(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMathMode<
+            Identity: ITextDocument2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            mode: RichEditMathMode,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ITextDocument2_Impl::SetMathMode(this, mode).into()
+            }
+        }
+        unsafe extern "system" fn GetMathML<Identity: ITextDocument2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ITextDocument2_Impl::GetMathML(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn SetMathML<Identity: ITextDocument2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ITextDocument2_Impl::SetMathML(this, core::mem::transmute(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ITextDocument2, OFFSET>(),
+            GetMathMode: GetMathMode::<Identity, OFFSET>,
+            SetMathMode: SetMathMode::<Identity, OFFSET>,
+            GetMathML: GetMathML::<Identity, OFFSET>,
+            SetMathML: SetMathML::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ITextDocument2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ITextDocument2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetMathMode: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut RichEditMathMode,
+    ) -> windows_core::HRESULT,
+    pub SetMathMode: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        RichEditMathMode,
+    ) -> windows_core::HRESULT,
+    pub GetMathML: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetMathML: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
     ITextParagraphFormat,
     ITextParagraphFormat_Vtbl,
     0x219b6cdf_0d0b_5701_b8a1_6c906b3ebbe1
@@ -8244,6 +8349,47 @@ impl RichEditTextDocument {
         unsafe {
             (windows_core::Interface::vtable(this).ClearUndoRedoHistory)(
                 windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn GetMathMode(&self) -> windows_core::Result<RichEditMathMode> {
+        let this = &windows_core::Interface::cast::<ITextDocument2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetMathMode)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMathMode(&self, mode: RichEditMathMode) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<ITextDocument2>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMathMode)(
+                windows_core::Interface::as_raw(this),
+                mode,
+            )
+            .ok()
+        }
+    }
+    pub fn GetMathML(&self, value: &mut windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<ITextDocument2>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).GetMathML)(
+                windows_core::Interface::as_raw(this),
+                value as *mut _ as _,
+            )
+            .ok()
+        }
+    }
+    pub fn SetMathML(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<ITextDocument2>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMathML)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(value),
             )
             .ok()
         }

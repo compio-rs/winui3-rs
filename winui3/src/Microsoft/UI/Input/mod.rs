@@ -5571,6 +5571,80 @@ pub struct IInputFocusNavigationHostStatics_Vtbl {
     GetForSiteBridge: usize,
 }
 windows_core::imp::define_interface!(
+    IInputFocusNavigationHostStatics2,
+    IInputFocusNavigationHostStatics2_Vtbl,
+    0x82505f60_ef7b_55d8_8362_8cc2840266a1
+);
+impl windows_core::RuntimeType for IInputFocusNavigationHostStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(feature = "UI_Content")]
+impl windows_core::RuntimeName for IInputFocusNavigationHostStatics2 {
+    const NAME: &'static str = "Microsoft.UI.Input.IInputFocusNavigationHostStatics2";
+}
+#[cfg(feature = "UI_Content")]
+pub trait IInputFocusNavigationHostStatics2_Impl: windows_core::IUnknownImpl {
+    fn GetForSiteLink(
+        &self,
+        contentSiteLink: windows_core::Ref<'_, super::Content::IContentSiteLink>,
+    ) -> windows_core::Result<InputFocusNavigationHost>;
+}
+#[cfg(feature = "UI_Content")]
+impl IInputFocusNavigationHostStatics2_Vtbl {
+    pub const fn new<Identity: IInputFocusNavigationHostStatics2_Impl, const OFFSET: isize>() -> Self
+    {
+        unsafe extern "system" fn GetForSiteLink<
+            Identity: IInputFocusNavigationHostStatics2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            contentsitelink: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IInputFocusNavigationHostStatics2_Impl::GetForSiteLink(
+                    this,
+                    core::mem::transmute_copy(&contentsitelink),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<
+                Identity,
+                IInputFocusNavigationHostStatics2,
+                OFFSET,
+            >(),
+            GetForSiteLink: GetForSiteLink::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IInputFocusNavigationHostStatics2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IInputFocusNavigationHostStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Content")]
+    pub GetForSiteLink: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Content"))]
+    GetForSiteLink: usize,
+}
+windows_core::imp::define_interface!(
     IInputKeyboardSource,
     IInputKeyboardSource_Vtbl,
     0xed61b906_16ad_5df7_a550_5e6f7d2229f7
@@ -11977,6 +12051,21 @@ impl InputFocusNavigationHost {
             .and_then(|| windows_core::Type::from_abi(result__))
         })
     }
+    #[cfg(feature = "UI_Content")]
+    pub fn GetForSiteLink<P0>(contentsitelink: P0) -> windows_core::Result<InputFocusNavigationHost>
+    where
+        P0: windows_core::Param<super::Content::IContentSiteLink>,
+    {
+        Self::IInputFocusNavigationHostStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetForSiteLink)(
+                windows_core::Interface::as_raw(this),
+                contentsitelink.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
     #[cfg(feature = "UI_Dispatching")]
     pub fn DispatcherQueue(&self) -> windows_core::Result<super::Dispatching::DispatcherQueue> {
         let this = &windows_core::Interface::cast::<IInputObject>(self)?;
@@ -11998,6 +12087,18 @@ impl InputFocusNavigationHost {
         static SHARED: windows_core::imp::FactoryCache<
             InputFocusNavigationHost,
             IInputFocusNavigationHostStatics,
+        > = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IInputFocusNavigationHostStatics2<
+        R,
+        F: FnOnce(&IInputFocusNavigationHostStatics2) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<
+            InputFocusNavigationHost,
+            IInputFocusNavigationHostStatics2,
         > = windows_core::imp::FactoryCache::new();
         SHARED.call(callback)
     }

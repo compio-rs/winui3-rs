@@ -7,9 +7,38 @@ use windows::Win32::Storage::Packaging::Appx::{
 };
 use windows_core::{h, Result, HSTRING, PWSTR};
 
-const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64: u64 = 0x177000F200650000u64;
-const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME: &HSTRING =
+const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6: u64 = 0x177000F200650000_u64;
+const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6: &HSTRING =
     h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
+
+const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_7: u64 = 0x1B5801B3009A0000_u64;
+const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_7: &HSTRING =
+    h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
+
+pub enum WindowsAppSDKVersion {
+    V1_6,
+    V1_7,
+}
+
+impl WindowsAppSDKVersion {
+    const fn get_runtime_version(&self) -> u64 {
+        match self {
+            WindowsAppSDKVersion::V1_6 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6,
+            WindowsAppSDKVersion::V1_7 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_7,
+        }
+    }
+
+    const fn get_package_family_name(&self) -> &'static HSTRING {
+        match self {
+            WindowsAppSDKVersion::V1_6 => {
+                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6
+            }
+            WindowsAppSDKVersion::V1_7 => {
+                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_7
+            }
+        }
+    }
+}
 
 #[derive(Debug)]
 struct PackageDependencyID(PWSTR);
@@ -24,6 +53,10 @@ pub struct PackageDependency {
 
 impl PackageDependency {
     pub fn initialize() -> Result<Self> {
+        Self::initialize_version(WindowsAppSDKVersion::V1_7)
+    }
+
+    pub fn initialize_version(version: WindowsAppSDKVersion) -> Result<Self> {
         static RUNTIME_PACKAGE_FRAMEWORK_DEPENDENCY_ID: OnceLock<PackageDependencyID> =
             OnceLock::new();
 
@@ -32,13 +65,13 @@ impl PackageDependency {
             None => {
                 let min_version = PACKAGE_VERSION {
                     Anonymous: PACKAGE_VERSION_0 {
-                        Version: WINDOWSAPPSDK_RUNTIME_VERSION_UINT64,
+                        Version: version.get_runtime_version(),
                     },
                 };
                 let dependency_id = unsafe {
                     TryCreatePackageDependency(
                         windows::Win32::Security::PSID::default(),
-                        WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME,
+                        version.get_package_family_name(),
                         min_version,
                         PackageDependencyProcessorArchitectures_None,
                         PackageDependencyLifetimeKind_Process,

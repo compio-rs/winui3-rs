@@ -45,7 +45,7 @@
     Microsoft.Graphics
     Microsoft.UI
     Microsoft.Windows.ApplicationModel.Resources
-    
+
 // WebView2 is a big part of the API surface
     !Microsoft.UI.Xaml.Automation.Peers.IWebView2*
     !Microsoft.UI.Xaml.Automation.Peers.WebView2*
