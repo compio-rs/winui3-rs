@@ -28,8 +28,8 @@ where
 
 impl<T: XamlPageOverrides> XamlPage<T> {
     pub fn compose(inner: T) -> Result<Page> {
+        let xaml_page = Self { inner };
         Page::IPageFactory(|this| unsafe {
-            let xaml_page = Self { inner };
             let outer: IInspectable = xaml_page.into();
             let outer__ = Interface::as_raw(&outer);
             // IInspectable Vtable is the identity, and it's the first field
@@ -69,6 +69,8 @@ impl<T: XamlPageOverrides> IPageOverrides_Impl for XamlPage_Impl<T> {
     }
 }
 
+// --- Generated implementation ---
+
 impl<T: XamlPageOverrides> XamlPage<T> {
     #[inline(always)]
     fn into_outer(self) -> XamlPage_Impl<T> {
@@ -88,12 +90,13 @@ pub struct XamlPage_Impl<T: XamlPageOverrides> {
     identity: &'static IInspectable_Vtbl,
     ipageoverrides: &'static <IPageOverrides as Interface>::Vtable,
     this: XamlPage<T>,
-    count: windows_core::imp::WeakRefCount,
     base: Option<IInspectable>,
+    count: windows_core::imp::WeakRefCount,
 }
 
 impl<T: XamlPageOverrides> core::ops::Deref for XamlPage_Impl<T> {
     type Target = XamlPage<T>;
+
     #[inline(always)]
     fn deref(&self) -> &Self::Target {
         &self.this
@@ -186,17 +189,15 @@ impl<T: XamlPageOverrides> IUnknownImpl for XamlPage_Impl<T> {
                     return windows_core::imp::marshaler(self.to_interface(), interface);
                 }
                 let tear_off_ptr = self.count.query(&iid, &self.identity as *const _ as *mut _);
-                return if !tear_off_ptr.is_null() {
+                if !tear_off_ptr.is_null() {
                     *interface = tear_off_ptr;
-                    HRESULT(0)
-                } else {
-                    if let Some(base) = &self.base {
-                        Interface::query(base, &iid, interface)
-                    } else {
-                        *interface = core::ptr::null_mut();
-                        E_NOINTERFACE
-                    }
-                };
+                    return HRESULT(0);
+                }
+                if let Some(base) = &self.base {
+                    return Interface::query(base, &iid, interface);
+                }
+                *interface = core::ptr::null_mut();
+                return E_NOINTERFACE;
             };
             debug_assert!(!interface_ptr.is_null());
             *interface = interface_ptr as *mut core::ffi::c_void;
@@ -208,6 +209,7 @@ impl<T: XamlPageOverrides> IUnknownImpl for XamlPage_Impl<T> {
 
 impl<T: XamlPageOverrides> ComObjectInner for XamlPage<T> {
     type Outer = XamlPage_Impl<T>;
+
     fn into_object(self) -> ComObject<Self> {
         let boxed = Box::<XamlPage_Impl<T>>::new(self.into_outer());
         unsafe {

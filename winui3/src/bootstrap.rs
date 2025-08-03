@@ -7,6 +7,10 @@ use windows::Win32::Storage::Packaging::Appx::{
 };
 use windows_core::{h, Result, HSTRING, PWSTR};
 
+const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_5: u64 = 0x1389003A01C00000_u64;
+const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_5: &HSTRING =
+    h!("Microsoft.WindowsAppRuntime.1.5_8wekyb3d8bbwe");
+
 const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6: u64 = 0x177000F200650000_u64;
 const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6: &HSTRING =
     h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
@@ -16,6 +20,7 @@ const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_7: &HSTRING =
     h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
 
 pub enum WindowsAppSDKVersion {
+    V1_5,
     V1_6,
     V1_7,
 }
@@ -23,6 +28,7 @@ pub enum WindowsAppSDKVersion {
 impl WindowsAppSDKVersion {
     const fn get_runtime_version(&self) -> u64 {
         match self {
+            WindowsAppSDKVersion::V1_5 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_5,
             WindowsAppSDKVersion::V1_6 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6,
             WindowsAppSDKVersion::V1_7 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_7,
         }
@@ -30,6 +36,9 @@ impl WindowsAppSDKVersion {
 
     const fn get_package_family_name(&self) -> &'static HSTRING {
         match self {
+            WindowsAppSDKVersion::V1_5 => {
+                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_5
+            }
             WindowsAppSDKVersion::V1_6 => {
                 WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6
             }
