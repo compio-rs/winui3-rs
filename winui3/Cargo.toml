@@ -15,6 +15,7 @@ workspace = true
 features = [
     "Win32_Security",
     "Win32_Storage_Packaging_Appx",
+    "Win32_System_LibraryLoader",
     "Win32_System_WinRT",
 ]
 
