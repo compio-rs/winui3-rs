@@ -123,7 +123,7 @@ where
 }
 
 impl<T: Activatable> XamlCustomType<'_, T> {
-    pub fn new(full_name: &HSTRING) -> Result<IXamlType> {
+    pub fn for_page(full_name: &HSTRING) -> Result<IXamlType> {
         let xaml_base_type = XamlSystemBaseType::new(
             "Microsoft.UI.Xaml.Controls.Page",
             WUX::Interop::TypeKind::Metadata,

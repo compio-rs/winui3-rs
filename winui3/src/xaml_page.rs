@@ -202,7 +202,7 @@ impl<T: XamlPageOverrides> IUnknownImpl for XamlPage_Impl<T> {
             debug_assert!(!interface_ptr.is_null());
             *interface = interface_ptr as *mut core::ffi::c_void;
             self.count.add_ref();
-            return HRESULT(0);
+            HRESULT(0)
         }
     }
 }
@@ -280,11 +280,8 @@ impl<T: XamlPageOverrides> AsImpl<XamlPage<T>> for IPageOverrides {
             let this = Interface::as_raw(self);
             // Subtract away the vtable offset plus 1, for the `identity` field, to get
             // to the impl struct which contains that original implementation type.
-            let this =
-                (this as *mut *mut core::ffi::c_void).sub(1 + 0usize) as *mut XamlPage_Impl<T>;
-            core::ptr::NonNull::new_unchecked(core::ptr::addr_of!((*this).this)
-                as *const XamlPage<T>
-                as *mut XamlPage<T>)
+            let this = (this as *mut *mut core::ffi::c_void).sub(1) as *mut XamlPage_Impl<T>;
+            core::ptr::NonNull::new_unchecked(&raw const (*this).this as *mut XamlPage<T>)
         }
     }
 }

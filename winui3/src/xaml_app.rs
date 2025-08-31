@@ -235,7 +235,7 @@ impl<T: XamlAppOverrides> IUnknownImpl for XamlApp_Impl<T> {
             debug_assert!(!interface_ptr.is_null());
             *interface = interface_ptr as *mut core::ffi::c_void;
             self.count.add_ref();
-            return HRESULT(0);
+            HRESULT(0)
         }
     }
 }
@@ -325,11 +325,8 @@ impl<T: XamlAppOverrides> AsImpl<XamlApp<T>> for IApplicationOverrides {
     unsafe fn as_impl_ptr(&self) -> core::ptr::NonNull<XamlApp<T>> {
         unsafe {
             let this = Interface::as_raw(self);
-            let this =
-                (this as *mut *mut core::ffi::c_void).sub(1 + 0usize) as *mut XamlApp_Impl<T>;
-            core::ptr::NonNull::new_unchecked(
-                core::ptr::addr_of!((*this).this) as *const XamlApp<T> as *mut XamlApp<T>,
-            )
+            let this = (this as *mut *mut core::ffi::c_void).sub(1) as *mut XamlApp_Impl<T>;
+            core::ptr::NonNull::new_unchecked(&raw const (*this).this as *mut XamlApp<T>)
         }
     }
 }
@@ -341,9 +338,7 @@ impl<T: XamlAppOverrides> AsImpl<XamlApp<T>> for IXamlMetadataProvider {
             let this = Interface::as_raw(self);
             let this =
                 (this as *mut *mut core::ffi::c_void).sub(1 + 1usize) as *mut XamlApp_Impl<T>;
-            core::ptr::NonNull::new_unchecked(
-                core::ptr::addr_of!((*this).this) as *const XamlApp<T> as *mut XamlApp<T>,
-            )
+            core::ptr::NonNull::new_unchecked(&raw const (*this).this as *mut XamlApp<T>)
         }
     }
 }
