@@ -1,12 +1,13 @@
 [workspace]
+resolver = "2"
 members = [
     "bindgen",
-    "winui3"
+    "samples/*",
+    "winui3",
 ]
 default-members = [
-    "winui3"
+    "winui3",
 ]
-resolver = "2"
 
 [workspace.dependencies]
 windows = "0.61.3"
@@ -15,3 +16,4 @@ windows-collections = "0.2.0"
 windows-core = "0.61.2"
 windows-future = "0.2.1"
 windows-numerics = "0.2.0"
+winui3 = { path = "winui3" }
