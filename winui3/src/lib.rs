@@ -9,19 +9,19 @@ pub mod Windows;
 #[cfg(feature = "XamlApp")]
 mod xaml_app;
 
-#[cfg(feature = "XamlNavigation")]
+#[cfg(feature = "XamlApp_Navigation")]
 mod xaml_page;
 
-#[cfg(feature = "XamlNavigation")]
+#[cfg(feature = "XamlApp_Navigation")]
 mod xaml_types;
 
 #[cfg(feature = "XamlApp")]
 pub use xaml_app::{XamlApp, XamlAppOverrides};
 
-#[cfg(feature = "XamlNavigation")]
+#[cfg(feature = "XamlApp_Navigation")]
 pub use xaml_page::{XamlPage, XamlPageOverrides};
 
-#[cfg(feature = "XamlNavigation")]
+#[cfg(feature = "XamlApp_Navigation")]
 pub use xaml_types::XamlCustomType;
 
 pub enum ApartmentType {
