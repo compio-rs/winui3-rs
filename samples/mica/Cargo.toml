@@ -1,0 +1,15 @@
+[package]
+name = "mica"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+windows = { workspace = true, features = [
+    "UI_Composition_Desktop",
+    "Win32_System_WinRT_Composition",
+] }
+winui3 = { workspace = true, features = [
+    "UI_Composition_SystemBackdrops",
+    "UI_Dispatching",
+    "UI_Windowing",
+] }
