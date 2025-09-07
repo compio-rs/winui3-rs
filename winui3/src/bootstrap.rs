@@ -37,7 +37,7 @@ pub enum WindowsAppSDKVersion {
     V1_5,
     V1_6,
     V1_7,
-    CBS,
+    Cbs,
     VNextCbs,
 }
 
@@ -51,7 +51,7 @@ impl WindowsAppSDKVersion {
             Self::V1_5 => PACKAGEFAMILYNAME_V1_5,
             Self::V1_6 => PACKAGEFAMILYNAME_V1_6,
             Self::V1_7 => PACKAGEFAMILYNAME_V1_7,
-            Self::CBS => PACKAGEFAMILYNAME_CBS,
+            Self::Cbs => PACKAGEFAMILYNAME_CBS,
             Self::VNextCbs => PACKAGEFAMILYNAME_VNEXT_CBS,
         }
     }
