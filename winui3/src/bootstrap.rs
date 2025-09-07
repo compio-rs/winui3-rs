@@ -1,50 +1,58 @@
-use std::{fmt, sync::OnceLock};
-use windows::Win32::Storage::Packaging::Appx::{
-    AddPackageDependency, AddPackageDependencyOptions_None, CreatePackageDependencyOptions_None,
-    PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
-    RemovePackageDependency, TryCreatePackageDependency, PACKAGEDEPENDENCY_CONTEXT,
-    PACKAGE_VERSION, PACKAGE_VERSION_0,
+use std::fmt;
+use windows::Win32::{
+    Storage::Packaging::Appx::{
+        AddPackageDependency, AddPackageDependencyOptions_None,
+        CreatePackageDependencyOptions_None, PackageDependencyLifetimeKind_Process,
+        PackageDependencyProcessorArchitectures_None, RemovePackageDependency,
+        TryCreatePackageDependency, PACKAGEDEPENDENCY_CONTEXT, PACKAGE_VERSION, PACKAGE_VERSION_0,
+    },
+    System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
 };
 use windows_core::{h, Result, HSTRING, PWSTR};
 
-const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_5: u64 = 0x1389003A01C00000_u64;
-const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_5: &HSTRING =
-    h!("Microsoft.WindowsAppRuntime.1.5_8wekyb3d8bbwe");
+const PACKAGEFAMILYNAME_V1_1: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.1_8wekyb3d8bbwe");
 
-const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6: u64 = 0x177000F200650000_u64;
-const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6: &HSTRING =
-    h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
+const PACKAGEFAMILYNAME_V1_2: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.2_8wekyb3d8bbwe");
 
-const WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_7: u64 = 0x1B5801B3009A0000_u64;
-const WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_7: &HSTRING =
-    h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
+const PACKAGEFAMILYNAME_V1_3: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.3_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_V1_4: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.4_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_V1_5: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.5_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_CBS: &HSTRING = h!("Microsoft.WindowsAppRuntime.CBS_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_V1_6: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_VNEXT_CBS: &HSTRING =
+    h!("Microsoft.WindowsAppRuntime.vNext.CBS_8wekyb3d8bbwe");
+
+const PACKAGEFAMILYNAME_V1_7: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
 
 pub enum WindowsAppSDKVersion {
+    V1_1,
+    V1_2,
+    V1_3,
+    V1_4,
     V1_5,
     V1_6,
     V1_7,
+    CBS,
+    VNextCbs,
 }
 
 impl WindowsAppSDKVersion {
-    const fn get_runtime_version(&self) -> u64 {
-        match self {
-            WindowsAppSDKVersion::V1_5 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_5,
-            WindowsAppSDKVersion::V1_6 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_6,
-            WindowsAppSDKVersion::V1_7 => WINDOWSAPPSDK_RUNTIME_VERSION_UINT64_V1_7,
-        }
-    }
-
     const fn get_package_family_name(&self) -> &'static HSTRING {
         match self {
-            WindowsAppSDKVersion::V1_5 => {
-                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_5
-            }
-            WindowsAppSDKVersion::V1_6 => {
-                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_6
-            }
-            WindowsAppSDKVersion::V1_7 => {
-                WINDOWSAPPSDK_RUNTIME_PACKAGE_FRAMEWORK_PACKAGEFAMILYNAME_V1_7
-            }
+            Self::V1_1 => PACKAGEFAMILYNAME_V1_1,
+            Self::V1_2 => PACKAGEFAMILYNAME_V1_2,
+            Self::V1_3 => PACKAGEFAMILYNAME_V1_3,
+            Self::V1_4 => PACKAGEFAMILYNAME_V1_4,
+            Self::V1_5 => PACKAGEFAMILYNAME_V1_5,
+            Self::V1_6 => PACKAGEFAMILYNAME_V1_6,
+            Self::V1_7 => PACKAGEFAMILYNAME_V1_7,
+            Self::CBS => PACKAGEFAMILYNAME_CBS,
+            Self::VNextCbs => PACKAGEFAMILYNAME_VNEXT_CBS,
         }
     }
 }
@@ -54,6 +62,16 @@ struct PackageDependencyID(PWSTR);
 
 unsafe impl Sync for PackageDependencyID {}
 unsafe impl Send for PackageDependencyID {}
+
+impl Drop for PackageDependencyID {
+    fn drop(&mut self) {
+        unsafe {
+            if let Ok(heap) = GetProcessHeap() {
+                HeapFree(heap, HEAP_FLAGS(0), Some(self.0 .0.cast())).ok();
+            }
+        }
+    }
+}
 
 pub struct PackageDependency {
     ctx: PACKAGEDEPENDENCY_CONTEXT,
@@ -66,32 +84,21 @@ impl PackageDependency {
     }
 
     pub fn initialize_version(version: WindowsAppSDKVersion) -> Result<Self> {
-        static RUNTIME_PACKAGE_FRAMEWORK_DEPENDENCY_ID: OnceLock<PackageDependencyID> =
-            OnceLock::new();
-
-        let dependency_id = match RUNTIME_PACKAGE_FRAMEWORK_DEPENDENCY_ID.get() {
-            Some(dependency_id) => dependency_id,
-            None => {
-                let min_version = PACKAGE_VERSION {
-                    Anonymous: PACKAGE_VERSION_0 {
-                        Version: version.get_runtime_version(),
-                    },
-                };
-                let dependency_id = unsafe {
-                    TryCreatePackageDependency(
-                        windows::Win32::Security::PSID::default(),
-                        version.get_package_family_name(),
-                        min_version,
-                        PackageDependencyProcessorArchitectures_None,
-                        PackageDependencyLifetimeKind_Process,
-                        None,
-                        CreatePackageDependencyOptions_None,
-                    )
-                }?;
-                RUNTIME_PACKAGE_FRAMEWORK_DEPENDENCY_ID
-                    .get_or_init(|| PackageDependencyID(dependency_id))
-            }
+        let min_version = PACKAGE_VERSION {
+            Anonymous: PACKAGE_VERSION_0 { Version: 0 },
         };
+        let dependency_id = unsafe {
+            TryCreatePackageDependency(
+                windows::Win32::Security::PSID::default(),
+                version.get_package_family_name(),
+                min_version,
+                PackageDependencyProcessorArchitectures_None,
+                PackageDependencyLifetimeKind_Process,
+                None,
+                CreatePackageDependencyOptions_None,
+            )
+        }?;
+        let dependency_id = PackageDependencyID(dependency_id);
 
         let mut ctx = PACKAGEDEPENDENCY_CONTEXT::default();
         let mut package_full_name = PWSTR::null();
