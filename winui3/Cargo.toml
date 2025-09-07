@@ -37,7 +37,6 @@ XamlApp = [
     "UI_Xaml_Markup",
     "UI_Xaml_XamlTypeInfo",
 ]
-XamlApp_Navigation = ["UI_Composition", "UI_Xaml_Controls", "XamlApp"]
 # generated features
 UI = ["Foundation", "windows/UI"]
 UI_Composition = [
