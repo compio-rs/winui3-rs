@@ -1,6 +1,6 @@
 [package]
 name = "winio-winui3"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -75,3 +75,11 @@ UI_Xaml_Interop = []
 UI_Xaml_Markup = ["UI_Xaml", "windows/Storage_Streams"]
 UI_Xaml_Media = ["UI_Xaml", "windows/Storage_Streams"]
 UI_Xaml_XamlTypeInfo = ["UI_Xaml"]
+Web = ["Foundation"]
+Web_WebView2 = ["Web"]
+Web_WebView2_Core = [
+    "Web_WebView2",
+    "windows/ApplicationModel_DataTransfer_DragDrop_Core",
+    "windows/Security_Cryptography_Certificates",
+    "windows/Storage_Streams",
+]

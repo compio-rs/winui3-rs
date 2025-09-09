@@ -8,7 +8,5 @@
     clippy::all
 )]
 
-#[cfg(feature = "UI")]
-pub mod UI;
-#[cfg(feature = "Web")]
-pub mod Web;
+#[cfg(feature = "Web_WebView2_Core")]
+pub mod Core;

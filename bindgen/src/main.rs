@@ -100,6 +100,10 @@ fn patch_winui3_features() {
         .replace(
             r#"UI_Xaml_Printing = ["UI_Xaml"]"#,
             r#"UI_Xaml_Printing = ["UI_Xaml", "windows/Graphics_Printing"]"#,
+        )
+        .replace(
+            r#"Web_WebView2_Core = ["Web_WebView2"]"#, 
+            r#"Web_WebView2_Core = ["Web_WebView2", "windows/ApplicationModel_DataTransfer_DragDrop_Core", "windows/Security_Cryptography_Certificates", "windows/Storage_Streams"]"#
         );
     fs::write("winui3/Cargo.toml", &manifest).expect("failed to write winui3/Cargo.toml");
 }

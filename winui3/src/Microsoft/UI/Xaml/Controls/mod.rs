@@ -35473,6 +35473,820 @@ pub struct IUIElementCollection_Vtbl {
     pub Move: unsafe extern "system" fn(*mut core::ffi::c_void, u32, u32) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(
+    IWebView2,
+    IWebView2_Vtbl,
+    0x2b2c76c2_997c_5069_a8f0_9b84cd7e624b
+);
+impl windows_core::RuntimeType for IWebView2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+impl windows_core::RuntimeName for IWebView2 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IWebView2";
+}
+#[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+pub trait IWebView2_Impl: windows_core::IUnknownImpl {
+    fn CoreWebView2(
+        &self,
+    ) -> windows_core::Result<super::super::super::Web::WebView2::Core::CoreWebView2>;
+    fn EnsureCoreWebView2Async(&self) -> windows_core::Result<windows_future::IAsyncAction>;
+    fn ExecuteScriptAsync(
+        &self,
+        javascriptCode: &windows_core::HSTRING,
+    ) -> windows_core::Result<windows_future::IAsyncOperation<windows_core::HSTRING>>;
+    fn Source(&self) -> windows_core::Result<windows::Foundation::Uri>;
+    fn SetSource(
+        &self,
+        value: windows_core::Ref<windows::Foundation::Uri>,
+    ) -> windows_core::Result<()>;
+    fn CanGoForward(&self) -> windows_core::Result<bool>;
+    fn SetCanGoForward(&self, value: bool) -> windows_core::Result<()>;
+    fn CanGoBack(&self) -> windows_core::Result<bool>;
+    fn SetCanGoBack(&self, value: bool) -> windows_core::Result<()>;
+    fn DefaultBackgroundColor(&self) -> windows_core::Result<windows::UI::Color>;
+    fn SetDefaultBackgroundColor(&self, value: &windows::UI::Color) -> windows_core::Result<()>;
+    fn Reload(&self) -> windows_core::Result<()>;
+    fn GoForward(&self) -> windows_core::Result<()>;
+    fn GoBack(&self) -> windows_core::Result<()>;
+    fn NavigateToString(&self, htmlContent: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn Close(&self) -> windows_core::Result<()>;
+    fn NavigationCompleted(
+        &self,
+        handler: windows_core::Ref<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs,
+            >,
+        >,
+    ) -> windows_core::Result<i64>;
+    fn RemoveNavigationCompleted(&self, token: i64) -> windows_core::Result<()>;
+    fn WebMessageReceived(
+        &self,
+        handler: windows_core::Ref<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2WebMessageReceivedEventArgs,
+            >,
+        >,
+    ) -> windows_core::Result<i64>;
+    fn RemoveWebMessageReceived(&self, token: i64) -> windows_core::Result<()>;
+    fn NavigationStarting(
+        &self,
+        handler: windows_core::Ref<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs,
+            >,
+        >,
+    ) -> windows_core::Result<i64>;
+    fn RemoveNavigationStarting(&self, token: i64) -> windows_core::Result<()>;
+    fn CoreProcessFailed(
+        &self,
+        handler: windows_core::Ref<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2ProcessFailedEventArgs,
+            >,
+        >,
+    ) -> windows_core::Result<i64>;
+    fn RemoveCoreProcessFailed(&self, token: i64) -> windows_core::Result<()>;
+    fn RemoveCoreWebView2Initialized(&self, token: i64) -> windows_core::Result<()>;
+}
+#[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+impl IWebView2_Vtbl {
+    pub const fn new<Identity: IWebView2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CoreWebView2<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::CoreWebView2(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn EnsureCoreWebView2Async<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::EnsureCoreWebView2Async(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ExecuteScriptAsync<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            javascriptcode: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::ExecuteScriptAsync(
+                    this,
+                    core::mem::transmute(&javascriptcode),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Source<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::Source(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSource<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::SetSource(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn CanGoForward<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::CanGoForward(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCanGoForward<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::SetCanGoForward(this, value).into()
+            }
+        }
+        unsafe extern "system" fn CanGoBack<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::CanGoBack(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCanGoBack<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::SetCanGoBack(this, value).into()
+            }
+        }
+        unsafe extern "system" fn DefaultBackgroundColor<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut windows::UI::Color,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::DefaultBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetDefaultBackgroundColor<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: windows::UI::Color,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::SetDefaultBackgroundColor(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn Reload<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::Reload(this).into()
+            }
+        }
+        unsafe extern "system" fn GoForward<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::GoForward(this).into()
+            }
+        }
+        unsafe extern "system" fn GoBack<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::GoBack(this).into()
+            }
+        }
+        unsafe extern "system" fn NavigateToString<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            htmlcontent: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::NavigateToString(this, core::mem::transmute(&htmlcontent)).into()
+            }
+        }
+        unsafe extern "system" fn Close<Identity: IWebView2_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::Close(this).into()
+            }
+        }
+        unsafe extern "system" fn NavigationCompleted<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::NavigationCompleted(this, core::mem::transmute_copy(&handler))
+                {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveNavigationCompleted<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::RemoveNavigationCompleted(this, token).into()
+            }
+        }
+        unsafe extern "system" fn WebMessageReceived<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::WebMessageReceived(this, core::mem::transmute_copy(&handler))
+                {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveWebMessageReceived<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::RemoveWebMessageReceived(this, token).into()
+            }
+        }
+        unsafe extern "system" fn NavigationStarting<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::NavigationStarting(this, core::mem::transmute_copy(&handler))
+                {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveNavigationStarting<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::RemoveNavigationStarting(this, token).into()
+            }
+        }
+        unsafe extern "system" fn CoreProcessFailed<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2_Impl::CoreProcessFailed(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveCoreProcessFailed<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::RemoveCoreProcessFailed(this, token).into()
+            }
+        }
+        unsafe extern "system" fn RemoveCoreWebView2Initialized<
+            Identity: IWebView2_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IWebView2_Impl::RemoveCoreWebView2Initialized(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IWebView2, OFFSET>(),
+            CoreWebView2: CoreWebView2::<Identity, OFFSET>,
+            EnsureCoreWebView2Async: EnsureCoreWebView2Async::<Identity, OFFSET>,
+            ExecuteScriptAsync: ExecuteScriptAsync::<Identity, OFFSET>,
+            Source: Source::<Identity, OFFSET>,
+            SetSource: SetSource::<Identity, OFFSET>,
+            CanGoForward: CanGoForward::<Identity, OFFSET>,
+            SetCanGoForward: SetCanGoForward::<Identity, OFFSET>,
+            CanGoBack: CanGoBack::<Identity, OFFSET>,
+            SetCanGoBack: SetCanGoBack::<Identity, OFFSET>,
+            DefaultBackgroundColor: DefaultBackgroundColor::<Identity, OFFSET>,
+            SetDefaultBackgroundColor: SetDefaultBackgroundColor::<Identity, OFFSET>,
+            Reload: Reload::<Identity, OFFSET>,
+            GoForward: GoForward::<Identity, OFFSET>,
+            GoBack: GoBack::<Identity, OFFSET>,
+            NavigateToString: NavigateToString::<Identity, OFFSET>,
+            Close: Close::<Identity, OFFSET>,
+            NavigationCompleted: NavigationCompleted::<Identity, OFFSET>,
+            RemoveNavigationCompleted: RemoveNavigationCompleted::<Identity, OFFSET>,
+            WebMessageReceived: WebMessageReceived::<Identity, OFFSET>,
+            RemoveWebMessageReceived: RemoveWebMessageReceived::<Identity, OFFSET>,
+            NavigationStarting: NavigationStarting::<Identity, OFFSET>,
+            RemoveNavigationStarting: RemoveNavigationStarting::<Identity, OFFSET>,
+            CoreProcessFailed: CoreProcessFailed::<Identity, OFFSET>,
+            RemoveCoreProcessFailed: RemoveCoreProcessFailed::<Identity, OFFSET>,
+            CoreWebView2Initialized: 0,
+            RemoveCoreWebView2Initialized: RemoveCoreWebView2Initialized::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IWebView2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IWebView2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub CoreWebView2: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Web_WebView2_Core"))]
+    CoreWebView2: usize,
+    pub EnsureCoreWebView2Async: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub ExecuteScriptAsync: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Source: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetSource: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub CanGoForward:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetCanGoForward:
+        unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub CanGoBack:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetCanGoBack:
+        unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub DefaultBackgroundColor: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows::UI::Color,
+    ) -> windows_core::HRESULT,
+    pub SetDefaultBackgroundColor: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        windows::UI::Color,
+    ) -> windows_core::HRESULT,
+    pub Reload: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GoForward: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GoBack: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub NavigateToString: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Close: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+    pub NavigationCompleted: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "Web_WebView2_Core")))]
+    NavigationCompleted: usize,
+    pub RemoveNavigationCompleted:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+    pub WebMessageReceived: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "Web_WebView2_Core")))]
+    WebMessageReceived: usize,
+    pub RemoveWebMessageReceived:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+    pub NavigationStarting: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "Web_WebView2_Core")))]
+    NavigationStarting: usize,
+    pub RemoveNavigationStarting:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "Web_WebView2_Core"))]
+    pub CoreProcessFailed: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "Web_WebView2_Core")))]
+    CoreProcessFailed: usize,
+    pub RemoveCoreProcessFailed:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    CoreWebView2Initialized: usize,
+    pub RemoveCoreWebView2Initialized:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
+    IWebView22,
+    IWebView22_Vtbl,
+    0x560c5eed_3e7a_51e4_b14f_107ba02b89be
+);
+impl windows_core::RuntimeType for IWebView22 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(feature = "Web_WebView2_Core")]
+impl windows_core::RuntimeName for IWebView22 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IWebView22";
+}
+#[cfg(feature = "Web_WebView2_Core")]
+pub trait IWebView22_Impl: windows_core::IUnknownImpl {
+    fn EnsureCoreWebView2WithEnvironmentAsync(
+        &self,
+        environment: windows_core::Ref<
+            super::super::super::Web::WebView2::Core::CoreWebView2Environment,
+        >,
+    ) -> windows_core::Result<windows_future::IAsyncAction>;
+    fn EnsureCoreWebView2WithEnvironmentAndOptionsAsync(
+        &self,
+        environment: windows_core::Ref<
+            super::super::super::Web::WebView2::Core::CoreWebView2Environment,
+        >,
+        controllerOptions: windows_core::Ref<
+            super::super::super::Web::WebView2::Core::CoreWebView2ControllerOptions,
+        >,
+    ) -> windows_core::Result<windows_future::IAsyncAction>;
+}
+#[cfg(feature = "Web_WebView2_Core")]
+impl IWebView22_Vtbl {
+    pub const fn new<Identity: IWebView22_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn EnsureCoreWebView2WithEnvironmentAsync<
+            Identity: IWebView22_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            environment: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView22_Impl::EnsureCoreWebView2WithEnvironmentAsync(
+                    this,
+                    core::mem::transmute_copy(&environment),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn EnsureCoreWebView2WithEnvironmentAndOptionsAsync<
+            Identity: IWebView22_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            environment: *mut core::ffi::c_void,
+            controlleroptions: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView22_Impl::EnsureCoreWebView2WithEnvironmentAndOptionsAsync(
+                    this,
+                    core::mem::transmute_copy(&environment),
+                    core::mem::transmute_copy(&controlleroptions),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IWebView22, OFFSET>(),
+            EnsureCoreWebView2WithEnvironmentAsync: EnsureCoreWebView2WithEnvironmentAsync::<
+                Identity,
+                OFFSET,
+            >,
+            EnsureCoreWebView2WithEnvironmentAndOptionsAsync:
+                EnsureCoreWebView2WithEnvironmentAndOptionsAsync::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IWebView22 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IWebView22_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub EnsureCoreWebView2WithEnvironmentAsync: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    )
+        -> windows_core::HRESULT,
+    #[cfg(not(feature = "Web_WebView2_Core"))]
+    EnsureCoreWebView2WithEnvironmentAsync: usize,
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub EnsureCoreWebView2WithEnvironmentAndOptionsAsync:
+        unsafe extern "system" fn(
+            *mut core::ffi::c_void,
+            *mut core::ffi::c_void,
+            *mut core::ffi::c_void,
+            *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Web_WebView2_Core"))]
+    EnsureCoreWebView2WithEnvironmentAndOptionsAsync: usize,
+}
+windows_core::imp::define_interface!(
+    IWebView2Factory,
+    IWebView2Factory_Vtbl,
+    0xfb4ec2ce_3074_5c42_b655_64fb81fbd040
+);
+impl windows_core::RuntimeType for IWebView2Factory {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for IWebView2Factory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IWebView2Factory";
+}
+#[cfg(feature = "UI_Composition")]
+pub trait IWebView2Factory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstance(
+        &self,
+        baseInterface: windows_core::Ref<windows_core::IInspectable>,
+        innerInterface: windows_core::OutRef<windows_core::IInspectable>,
+    ) -> windows_core::Result<WebView2>;
+}
+#[cfg(feature = "UI_Composition")]
+impl IWebView2Factory_Vtbl {
+    pub const fn new<Identity: IWebView2Factory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstance<
+            Identity: IWebView2Factory_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            baseinterface: *mut core::ffi::c_void,
+            innerinterface: *mut *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWebView2Factory_Impl::CreateInstance(
+                    this,
+                    core::mem::transmute_copy(&baseinterface),
+                    core::mem::transmute_copy(&innerinterface),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IWebView2Factory, OFFSET>(),
+            CreateInstance: CreateInstance::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IWebView2Factory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IWebView2Factory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub CreateInstance: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    CreateInstance: usize,
+}
+windows_core::imp::define_interface!(
+    IWebView2Statics,
+    IWebView2Statics_Vtbl,
+    0x7f3226d0_f6d5_5aa7_b175_645451ca3c85
+);
+impl windows_core::RuntimeType for IWebView2Statics {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IWebView2Statics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IWebView2Statics";
+}
+pub trait IWebView2Statics_Impl: windows_core::IUnknownImpl {}
+impl IWebView2Statics_Vtbl {
+    pub const fn new<Identity: IWebView2Statics_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IWebView2Statics, OFFSET>(),
+            SourceProperty: 0,
+            CanGoForwardProperty: 0,
+            CanGoBackProperty: 0,
+            DefaultBackgroundColorProperty: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IWebView2Statics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IWebView2Statics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    SourceProperty: usize,
+    CanGoForwardProperty: usize,
+    CanGoBackProperty: usize,
+    DefaultBackgroundColorProperty: usize,
+}
+windows_core::imp::define_interface!(
     IXamlControlsResources,
     IXamlControlsResources_Vtbl,
     0x918ca043_f42c_5805_861b_62d6d1d0c162
@@ -78457,6 +79271,2613 @@ impl IntoIterator for &UIElementCollection {
         self.First().unwrap()
     }
 }
+#[cfg(feature = "UI_Composition")]
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct WebView2(windows_core::IUnknown);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::interface_hierarchy!(
+    WebView2,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::required_hierarchy!(
+    WebView2,
+    super::super::Composition::IAnimationObject,
+    super::super::Composition::IVisualElement,
+    super::super::Composition::IVisualElement2,
+    super::FrameworkElement,
+    super::UIElement,
+    super::DependencyObject
+);
+#[cfg(feature = "UI_Composition")]
+impl WebView2 {
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(
+        &self,
+    ) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Resources(&self) -> windows_core::Result<super::ResourceDictionary> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Resources)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetResources<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::ResourceDictionary>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetResources)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn Tag(&self) -> windows_core::Result<windows_core::IInspectable> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Tag)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetTag<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTag)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn Language(&self) -> windows_core::Result<windows_core::HSTRING> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Language)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn SetLanguage(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetLanguage)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(value),
+            )
+            .ok()
+        }
+    }
+    pub fn ActualWidth(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn ActualHeight(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn Width(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Width)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetWidth(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Height(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Height)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetHeight(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MinWidth(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MinWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMinWidth(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMinWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MaxWidth(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MaxWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMaxWidth(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMaxWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MinHeight(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MinHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMinHeight(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMinHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MaxHeight(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MaxHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMaxHeight(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMaxHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn HorizontalAlignment(&self) -> windows_core::Result<super::HorizontalAlignment> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).HorizontalAlignment)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetHorizontalAlignment(
+        &self,
+        value: super::HorizontalAlignment,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetHorizontalAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn VerticalAlignment(&self) -> windows_core::Result<super::VerticalAlignment> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).VerticalAlignment)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetVerticalAlignment(
+        &self,
+        value: super::VerticalAlignment,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetVerticalAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Name)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn SetName(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetName)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(value),
+            )
+            .ok()
+        }
+    }
+    pub fn BaseUri(&self) -> windows_core::Result<windows::Foundation::Uri> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BaseUri)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn DataContext(&self) -> windows_core::Result<windows_core::IInspectable> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DataContext)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetDataContext<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetDataContext)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn AllowFocusOnInteraction(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetAllowFocusOnInteraction(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AllowFocusWhenDisabled)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetAllowFocusWhenDisabled(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Parent(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Parent)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn IsLoaded(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsLoaded)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn Loaded<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::RoutedEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Loaded)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveLoaded(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveLoaded)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn Unloaded<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::RoutedEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Unloaded)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveUnloaded(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveUnloaded)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDataContextChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDataContextChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveSizeChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveSizeChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn LayoutUpdated<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<windows::Foundation::EventHandler<windows_core::IInspectable>>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).LayoutUpdated)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveLayoutUpdated(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveLayoutUpdated)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn Loading<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                super::FrameworkElement,
+                windows_core::IInspectable,
+            >,
+        >,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Loading)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveLoading(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveLoading)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn ActualThemeChanged<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                super::FrameworkElement,
+                windows_core::IInspectable,
+            >,
+        >,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualThemeChanged)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveActualThemeChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveActualThemeChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveEffectiveViewportChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveEffectiveViewportChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn FindName(
+        &self,
+        name: &windows_core::HSTRING,
+    ) -> windows_core::Result<windows_core::IInspectable> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FindName)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(name),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn MeasureOverride(
+        &self,
+        availablesize: windows::Foundation::Size,
+    ) -> windows_core::Result<windows::Foundation::Size> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElementOverrides>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MeasureOverride)(
+                windows_core::Interface::as_raw(this),
+                availablesize,
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn ArrangeOverride(
+        &self,
+        finalsize: windows::Foundation::Size,
+    ) -> windows_core::Result<windows::Foundation::Size> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElementOverrides>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ArrangeOverride)(
+                windows_core::Interface::as_raw(this),
+                finalsize,
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn OnApplyTemplate(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElementOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnApplyTemplate)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn GoToElementStateCore(
+        &self,
+        statename: &windows_core::HSTRING,
+        usetransitions: bool,
+    ) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElementOverrides>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GoToElementStateCore)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(statename),
+                usetransitions,
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn InvalidateViewport(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElementProtected>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).InvalidateViewport)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn DesiredSize(&self) -> windows_core::Result<windows::Foundation::Size> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DesiredSize)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn AllowDrop(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AllowDrop)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetAllowDrop(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAllowDrop)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Opacity(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Opacity)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetOpacity)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RenderTransformOrigin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetRenderTransformOrigin(
+        &self,
+        value: windows::Foundation::Point,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetRenderTransformOrigin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsHitTestVisible(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsHitTestVisible)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsHitTestVisible(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsHitTestVisible)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Visibility(&self) -> windows_core::Result<super::Visibility> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Visibility)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetVisibility(&self, value: super::Visibility) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetVisibility)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn RenderSize(&self) -> windows_core::Result<windows::Foundation::Size> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RenderSize)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn UseLayoutRounding(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).UseLayoutRounding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetUseLayoutRounding(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetUseLayoutRounding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsTapEnabled(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsTapEnabled(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsDoubleTapEnabled(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsDoubleTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsDoubleTapEnabled(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsDoubleTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn CanDrag(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CanDrag)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetCanDrag(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCanDrag)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsRightTapEnabled(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsRightTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsRightTapEnabled(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsRightTapEnabled)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsHoldingEnabled(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsHoldingEnabled)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsHoldingEnabled(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsHoldingEnabled)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerCaptures(
+        &self,
+    ) -> windows_core::Result<windows_collections::IVectorView<super::Input::Pointer>> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerCaptures)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn CanBeScrollAnchor(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CanBeScrollAnchor)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetCanBeScrollAnchor(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCanBeScrollAnchor)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn ExitDisplayModeOnAccessKeyInvoked(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ExitDisplayModeOnAccessKeyInvoked)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetExitDisplayModeOnAccessKeyInvoked(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetExitDisplayModeOnAccessKeyInvoked)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn IsAccessKeyScope(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsAccessKeyScope)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsAccessKeyScope(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsAccessKeyScope)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn AccessKeyScopeOwner(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AccessKeyScopeOwner)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetAccessKeyScopeOwner<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAccessKeyScopeOwner)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn AccessKey(&self) -> windows_core::Result<windows_core::HSTRING> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AccessKey)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn SetAccessKey(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAccessKey)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(value),
+            )
+            .ok()
+        }
+    }
+    pub fn KeyTipHorizontalOffset(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).KeyTipHorizontalOffset)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetKeyTipHorizontalOffset(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetKeyTipHorizontalOffset)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn KeyTipVerticalOffset(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).KeyTipVerticalOffset)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetKeyTipVerticalOffset(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetKeyTipVerticalOffset)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn KeyTipTarget(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).KeyTipTarget)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetKeyTipTarget<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetKeyTipTarget)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn KeyboardAcceleratorPlacementTarget(
+        &self,
+    ) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).KeyboardAcceleratorPlacementTarget)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetKeyboardAcceleratorPlacementTarget<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetKeyboardAcceleratorPlacementTarget)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn Translation(&self) -> windows_core::Result<windows_numerics::Vector3> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Translation)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetTranslation(&self, value: windows_numerics::Vector3) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTranslation)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Rotation(&self) -> windows_core::Result<f32> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Rotation)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetRotation(&self, value: f32) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetRotation)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Scale(&self) -> windows_core::Result<windows_numerics::Vector3> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Scale)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetScale(&self, value: windows_numerics::Vector3) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetScale)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn TransformMatrix(&self) -> windows_core::Result<windows_numerics::Matrix4x4> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).TransformMatrix)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetTransformMatrix(
+        &self,
+        value: windows_numerics::Matrix4x4,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTransformMatrix)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn CenterPoint(&self) -> windows_core::Result<windows_numerics::Vector3> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CenterPoint)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetCenterPoint(&self, value: windows_numerics::Vector3) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCenterPoint)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn RotationAxis(&self) -> windows_core::Result<windows_numerics::Vector3> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RotationAxis)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetRotationAxis(&self, value: windows_numerics::Vector3) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetRotationAxis)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn ActualOffset(&self) -> windows_core::Result<windows_numerics::Vector3> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualOffset)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn ActualSize(&self) -> windows_core::Result<windows_numerics::Vector2> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualSize)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RasterizationScale)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetRasterizationScale(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetRasterizationScale)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).UseSystemFocusVisuals)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetUseSystemFocusVisuals(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetUseSystemFocusVisuals)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn XYFocusLeft(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XYFocusLeft)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXYFocusLeft<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXYFocusLeft)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn XYFocusRight(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XYFocusRight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXYFocusRight<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXYFocusRight)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn XYFocusUp(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XYFocusUp)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXYFocusUp<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXYFocusUp)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn XYFocusDown(&self) -> windows_core::Result<super::DependencyObject> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XYFocusDown)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXYFocusDown<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXYFocusDown)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn IsTabStop(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsTabStop)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetIsTabStop(&self, value: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetIsTabStop)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn TabIndex(&self) -> windows_core::Result<i32> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).TabIndex)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetTabIndex(&self, value: i32) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTabIndex)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveKeyUp(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveKeyUp)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveKeyDown(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveKeyDown)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn GotFocus<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::RoutedEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GotFocus)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveGotFocus(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveGotFocus)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn LostFocus<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::RoutedEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).LostFocus)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveLostFocus(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveLostFocus)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDragStarting(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDragStarting)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDropCompleted(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDropCompleted)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveCharacterReceived(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveCharacterReceived)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDragEnter(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDragEnter)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDragLeave(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDragLeave)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDragOver(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDragOver)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDrop(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDrop)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerPressed<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerPressed)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerPressed(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerPressed)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerMoved<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerMoved)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerMoved(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerMoved)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerReleased<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerReleased)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerReleased(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerReleased)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerEntered<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerEntered)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerEntered(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerEntered)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerExited<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerExited)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerExited(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerExited)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerCaptureLost<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerCaptureLost)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerCaptureLost(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerCaptureLost)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerCanceled<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerCanceled)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerCanceled(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerCanceled)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn PointerWheelChanged<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<super::Input::PointerEventHandler>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PointerWheelChanged)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemovePointerWheelChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePointerWheelChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveTapped(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveTapped)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveDoubleTapped(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveDoubleTapped)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveHolding(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveHolding)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveContextRequested(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveContextRequested)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn ContextCanceled<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<super::UIElement, super::RoutedEventArgs>,
+        >,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ContextCanceled)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveContextCanceled(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveContextCanceled)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveRightTapped(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveRightTapped)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveManipulationStarting(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveManipulationStarting)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveManipulationInertiaStarting(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveManipulationInertiaStarting)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveManipulationStarted(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveManipulationStarted)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveManipulationDelta(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveManipulationDelta)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveManipulationCompleted(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveManipulationCompleted)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAccessKeyDisplayRequested(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAccessKeyDisplayRequested)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAccessKeyDisplayDismissed(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAccessKeyDisplayDismissed)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAccessKeyInvoked(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAccessKeyInvoked)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveProcessKeyboardAccelerators(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveProcessKeyboardAccelerators)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveGettingFocus(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveGettingFocus)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveLosingFocus(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveLosingFocus)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveNoFocusCandidateFound(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveNoFocusCandidateFound)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemovePreviewKeyDown(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePreviewKeyDown)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemovePreviewKeyUp(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemovePreviewKeyUp)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveBringIntoViewRequested(&self, token: i64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveBringIntoViewRequested)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn Measure(&self, availablesize: windows::Foundation::Size) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).Measure)(
+                windows_core::Interface::as_raw(this),
+                availablesize,
+            )
+            .ok()
+        }
+    }
+    pub fn Arrange(&self, finalrect: windows::Foundation::Rect) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).Arrange)(
+                windows_core::Interface::as_raw(this),
+                finalrect,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn CapturePointer<P0>(&self, value: P0) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<super::Input::Pointer>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CapturePointer)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn ReleasePointerCapture<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::Pointer>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).ReleasePointerCapture)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn ReleasePointerCaptures(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).ReleasePointerCaptures)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn InvalidateMeasure(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).InvalidateMeasure)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn InvalidateArrange(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).InvalidateArrange)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn UpdateLayout(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).UpdateLayout)(windows_core::Interface::as_raw(
+                this,
+            ))
+            .ok()
+        }
+    }
+    pub fn CancelDirectManipulations(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CancelDirectManipulations)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    #[cfg(feature = "UI_Input")]
+    pub fn StartDragAsync<P0>(
+        &self,
+        pointerpoint: P0,
+    ) -> windows_core::Result<
+        windows_future::IAsyncOperation<
+            windows::ApplicationModel::DataTransfer::DataPackageOperation,
+        >,
+    >
+    where
+        P0: windows_core::Param<super::super::Input::PointerPoint>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).StartDragAsync)(
+                windows_core::Interface::as_raw(this),
+                pointerpoint.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn StartBringIntoView(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).StartBringIntoView)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IUIElementOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnDisconnectVisualChildren)(
+                windows_core::Interface::as_raw(this),
+            )
+            .ok()
+        }
+    }
+    pub fn FindSubElementsForTouchTargeting(
+        &self,
+        point: windows::Foundation::Point,
+        boundingrect: windows::Foundation::Rect,
+    ) -> windows_core::Result<
+        windows_collections::IIterable<windows_collections::IIterable<windows::Foundation::Point>>,
+    > {
+        let this = &windows_core::Interface::cast::<super::IUIElementOverrides>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FindSubElementsForTouchTargeting)(
+                windows_core::Interface::as_raw(this),
+                point,
+                boundingrect,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn GetChildrenInTabFocusOrder(
+        &self,
+    ) -> windows_core::Result<windows_collections::IIterable<super::DependencyObject>> {
+        let this = &windows_core::Interface::cast::<super::IUIElementOverrides>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetChildrenInTabFocusOrder)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn CoreWebView2(
+        &self,
+    ) -> windows_core::Result<super::super::super::Web::WebView2::Core::CoreWebView2> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CoreWebView2)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn EnsureCoreWebView2Async(&self) -> windows_core::Result<windows_future::IAsyncAction> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).EnsureCoreWebView2Async)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn ExecuteScriptAsync(
+        &self,
+        javascriptcode: &windows_core::HSTRING,
+    ) -> windows_core::Result<windows_future::IAsyncOperation<windows_core::HSTRING>> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ExecuteScriptAsync)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(javascriptcode),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Source(&self) -> windows_core::Result<windows::Foundation::Uri> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Source)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetSource<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::Foundation::Uri>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetSource)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn CanGoForward(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CanGoForward)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetCanGoForward(&self, value: bool) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCanGoForward)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn CanGoBack(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CanGoBack)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetCanGoBack(&self, value: bool) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCanGoBack)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn DefaultBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DefaultBackgroundColor)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetDefaultBackgroundColor(&self, value: windows::UI::Color) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetDefaultBackgroundColor)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn Reload(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Reload)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    pub fn GoForward(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).GoForward)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    pub fn GoBack(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).GoBack)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    pub fn NavigateToString(
+        &self,
+        htmlcontent: &windows_core::HSTRING,
+    ) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).NavigateToString)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(htmlcontent),
+            )
+            .ok()
+        }
+    }
+    pub fn Close(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Close)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn NavigationCompleted<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2NavigationCompletedEventArgs,
+            >,
+        >,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).NavigationCompleted)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveNavigationCompleted(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveNavigationCompleted)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn WebMessageReceived<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2WebMessageReceivedEventArgs,
+            >,
+        >,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).WebMessageReceived)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveWebMessageReceived(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveWebMessageReceived)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn NavigationStarting<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2NavigationStartingEventArgs,
+            >,
+        >,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).NavigationStarting)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveNavigationStarting(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveNavigationStarting)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn CoreProcessFailed<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<
+            windows::Foundation::TypedEventHandler<
+                WebView2,
+                super::super::super::Web::WebView2::Core::CoreWebView2ProcessFailedEventArgs,
+            >,
+        >,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CoreProcessFailed)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveCoreProcessFailed(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveCoreProcessFailed)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveCoreWebView2Initialized(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveCoreWebView2Initialized)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn EnsureCoreWebView2WithEnvironmentAsync<P0>(
+        &self,
+        environment: P0,
+    ) -> windows_core::Result<windows_future::IAsyncAction>
+    where
+        P0: windows_core::Param<super::super::super::Web::WebView2::Core::CoreWebView2Environment>,
+    {
+        let this = &windows_core::Interface::cast::<IWebView22>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).EnsureCoreWebView2WithEnvironmentAsync)(
+                windows_core::Interface::as_raw(this),
+                environment.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "Web_WebView2_Core")]
+    pub fn EnsureCoreWebView2WithEnvironmentAndOptionsAsync<P0, P1>(
+        &self,
+        environment: P0,
+        controlleroptions: P1,
+    ) -> windows_core::Result<windows_future::IAsyncAction>
+    where
+        P0: windows_core::Param<super::super::super::Web::WebView2::Core::CoreWebView2Environment>,
+        P1: windows_core::Param<
+            super::super::super::Web::WebView2::Core::CoreWebView2ControllerOptions,
+        >,
+    {
+        let this = &windows_core::Interface::cast::<IWebView22>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            ( windows_core::Interface::vtable ( this ) . EnsureCoreWebView2WithEnvironmentAndOptionsAsync ) ( windows_core::Interface::as_raw ( this ) , environment . param ( ) . abi ( ) , controlleroptions . param ( ) . abi ( ) , & mut result__ ) . and_then ( || windows_core::Type::from_abi ( result__ ) )
+        }
+    }
+    pub fn new() -> windows_core::Result<WebView2> {
+        Self::IWebView2Factory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstance)(
+                windows_core::Interface::as_raw(this),
+                core::ptr::null_mut(),
+                &mut core::ptr::null_mut(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
+    fn IWebView2Factory<R, F: FnOnce(&IWebView2Factory) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<WebView2, IWebView2Factory> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IWebView2Statics<R, F: FnOnce(&IWebView2Statics) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<WebView2, IWebView2Statics> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeType for WebView2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IWebView2>();
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl windows_core::Interface for WebView2 {
+    type Vtable = <IWebView2 as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IWebView2 as windows_core::Interface>::IID;
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for WebView2 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.WebView2";
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Send for WebView2 {}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Sync for WebView2 {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct XamlControlsResources(windows_core::IUnknown);

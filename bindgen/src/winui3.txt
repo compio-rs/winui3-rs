@@ -5,6 +5,7 @@
     bindgen/winmd/Microsoft.UI.Text.winmd
     bindgen/winmd/Microsoft.UI.winmd
     bindgen/winmd/Microsoft.UI.Xaml.winmd
+    bindgen/winmd/Microsoft.Web.WebView2.Core.winmd
     bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd
 
 --no-deps
@@ -110,7 +111,8 @@
     Microsoft.UI.Xaml.Controls.TextChangedEventHandler
     Microsoft.UI.Xaml.Controls.ToolTip
     Microsoft.UI.Xaml.Controls.ToolTipService
-    Microsoft.UI.Xaml.Controls.UIElementCollection 
+    Microsoft.UI.Xaml.Controls.UIElementCollection
+    Microsoft.UI.Xaml.Controls.WebView2
     Microsoft.UI.Xaml.Controls.XamlControlsResources
 
     Microsoft.UI.Xaml.Controls.Primitives.ButtonBase
@@ -131,3 +133,5 @@
     Microsoft.UI.Xaml.Input.PointerRoutedEventArgs
 
     Microsoft.UI.Xaml.Media.Stretch
+
+    Microsoft.Web.WebView2.Core
