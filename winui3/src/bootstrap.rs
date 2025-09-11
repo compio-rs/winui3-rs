@@ -29,6 +29,10 @@ const PACKAGEFAMILYNAME_VNEXT_CBS: &HSTRING =
 
 const PACKAGEFAMILYNAME_V1_7: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
 
+const PACKAGEFAMILYNAME_V1_8: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.8_8wekyb3d8bbwe");
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub enum WindowsAppSDKVersion {
     V1_1,
     V1_2,
@@ -37,6 +41,7 @@ pub enum WindowsAppSDKVersion {
     V1_5,
     V1_6,
     V1_7,
+    V1_8,
     Cbs,
     VNextCbs,
 }
@@ -51,6 +56,7 @@ impl WindowsAppSDKVersion {
             Self::V1_5 => PACKAGEFAMILYNAME_V1_5,
             Self::V1_6 => PACKAGEFAMILYNAME_V1_6,
             Self::V1_7 => PACKAGEFAMILYNAME_V1_7,
+            Self::V1_8 => PACKAGEFAMILYNAME_V1_8,
             Self::Cbs => PACKAGEFAMILYNAME_CBS,
             Self::VNextCbs => PACKAGEFAMILYNAME_VNEXT_CBS,
         }
