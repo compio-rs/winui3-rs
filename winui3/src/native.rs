@@ -84,12 +84,10 @@ windows_core::imp::define_interface!(
 windows_core::imp::interface_hierarchy!(IWindowNative, windows_core::IUnknown);
 
 impl IWindowNative {
-    pub unsafe fn get_WindowHandle(
-        &self,
-    ) -> windows_core::Result<windows::Win32::Foundation::HWND> {
+    pub unsafe fn WindowHandle(&self) -> windows_core::Result<windows::Win32::Foundation::HWND> {
         unsafe {
             let mut result__ = core::mem::zeroed();
-            (windows_core::Interface::vtable(self).get_WindowHandle)(
+            (windows_core::Interface::vtable(self).WindowHandle)(
                 windows_core::Interface::as_raw(self),
                 &mut result__,
             )
@@ -102,17 +100,17 @@ impl IWindowNative {
 #[doc(hidden)]
 pub struct IWindowNative_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
-    pub get_WindowHandle: unsafe extern "system" fn(
+    pub WindowHandle: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut windows::Win32::Foundation::HWND,
     ) -> windows_core::HRESULT,
 }
 pub trait IWindowNative_Impl: windows_core::IUnknownImpl {
-    fn get_WindowHandle(&self) -> windows_core::Result<windows::Win32::Foundation::HWND>;
+    fn WindowHandle(&self) -> windows_core::Result<windows::Win32::Foundation::HWND>;
 }
 impl IWindowNative_Vtbl {
     pub const fn new<Identity: IWindowNative_Impl, const OFFSET: isize>() -> Self {
-        unsafe extern "system" fn get_WindowHandle<
+        unsafe extern "system" fn WindowHandle<
             Identity: IWindowNative_Impl,
             const OFFSET: isize,
         >(
@@ -122,7 +120,7 @@ impl IWindowNative_Vtbl {
             unsafe {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
-                match IWindowNative_Impl::get_WindowHandle(this) {
+                match IWindowNative_Impl::WindowHandle(this) {
                     Ok(result) => {
                         *hWnd = result;
                         windows_core::HRESULT(0)
@@ -133,7 +131,7 @@ impl IWindowNative_Vtbl {
         }
         Self {
             base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(),
-            get_WindowHandle: get_WindowHandle::<Identity, OFFSET>,
+            WindowHandle: WindowHandle::<Identity, OFFSET>,
         }
     }
     pub fn matches(iid: &windows_core::GUID) -> bool {

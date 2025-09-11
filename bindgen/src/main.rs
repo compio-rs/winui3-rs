@@ -58,6 +58,10 @@ fn patch_winui3_features() {
             r#"UI_Input_DragDrop = ["UI_Input", "windows/ApplicationModel_DataTransfer", "windows/Graphics_Imaging"]"#,
         )
         .replace(
+            r#"UI_Input_Interop = ["UI_Input"]"#,
+            r#"UI_Input_Interop = ["UI_Input", "windows/Devices_Input"]"#,
+        )
+        .replace(
             r#"UI_Text = ["UI"]"#,
             r#"UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]"#,
         )
