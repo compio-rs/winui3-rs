@@ -8,32 +8,12 @@ use windows::Win32::{
     },
     System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
 };
-use windows_core::{h, Result, HSTRING, PWSTR};
-
-const PACKAGEFAMILYNAME_V1_1: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.1_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_2: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.2_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_3: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.3_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_4: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.4_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_5: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.5_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_CBS: &HSTRING = h!("Microsoft.WindowsAppRuntime.CBS_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_6: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.6_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_VNEXT_CBS: &HSTRING =
-    h!("Microsoft.WindowsAppRuntime.vNext.CBS_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_7: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.7_8wekyb3d8bbwe");
-
-const PACKAGEFAMILYNAME_V1_8: &HSTRING = h!("Microsoft.WindowsAppRuntime.1.8_8wekyb3d8bbwe");
+use windows_core::{Result, HSTRING, PCWSTR, PWSTR};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
 pub enum WindowsAppSDKVersion {
+    V1_0,
     V1_1,
     V1_2,
     V1_3,
@@ -47,18 +27,19 @@ pub enum WindowsAppSDKVersion {
 }
 
 impl WindowsAppSDKVersion {
-    const fn get_package_family_name(&self) -> &'static HSTRING {
+    const fn get_version(&self) -> &'static str {
         match self {
-            Self::V1_1 => PACKAGEFAMILYNAME_V1_1,
-            Self::V1_2 => PACKAGEFAMILYNAME_V1_2,
-            Self::V1_3 => PACKAGEFAMILYNAME_V1_3,
-            Self::V1_4 => PACKAGEFAMILYNAME_V1_4,
-            Self::V1_5 => PACKAGEFAMILYNAME_V1_5,
-            Self::V1_6 => PACKAGEFAMILYNAME_V1_6,
-            Self::V1_7 => PACKAGEFAMILYNAME_V1_7,
-            Self::V1_8 => PACKAGEFAMILYNAME_V1_8,
-            Self::Cbs => PACKAGEFAMILYNAME_CBS,
-            Self::VNextCbs => PACKAGEFAMILYNAME_VNEXT_CBS,
+            Self::V1_0 => "1.0",
+            Self::V1_1 => "1.1",
+            Self::V1_2 => "1.2",
+            Self::V1_3 => "1.3",
+            Self::V1_4 => "1.4",
+            Self::V1_5 => "1.5",
+            Self::V1_6 => "1.6",
+            Self::V1_7 => "1.7",
+            Self::V1_8 => "1.8",
+            Self::Cbs => "CBS",
+            Self::VNextCbs => "vNext.CBS",
         }
     }
 }
@@ -93,10 +74,14 @@ impl PackageDependency {
         let min_version = PACKAGE_VERSION {
             Anonymous: PACKAGE_VERSION_0 { Version: 0 },
         };
+        let package_family_name = HSTRING::from(format!(
+            "Microsoft.WindowsAppRuntime.{}_8wekyb3d8bbwe",
+            version.get_version()
+        ));
         let dependency_id = unsafe {
             TryCreatePackageDependency(
                 windows::Win32::Security::PSID::default(),
-                version.get_package_family_name(),
+                PCWSTR(package_family_name.as_ptr()),
                 min_version,
                 PackageDependencyProcessorArchitectures_None,
                 PackageDependencyLifetimeKind_Process,
@@ -118,10 +103,11 @@ impl PackageDependency {
                 Some(&mut package_full_name),
             )
         }?;
+        let package_full_name = PackageDependencyID(package_full_name);
 
         Ok(Self {
             ctx,
-            package_full_name: unsafe { package_full_name.to_hstring() },
+            package_full_name: unsafe { package_full_name.0.to_hstring() },
         })
     }
 
