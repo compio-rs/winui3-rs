@@ -23,10 +23,13 @@ pub enum WindowsAppSDKVersion {
     V1_7,
     V1_8,
     Cbs,
+    Cbs1_6,
+    #[deprecated = "use Cbs_1_6 instead"]
     VNextCbs,
 }
 
 impl WindowsAppSDKVersion {
+    #[allow(deprecated)]
     const fn get_version(&self) -> &'static str {
         match self {
             Self::V1_0 => "1.0",
@@ -39,7 +42,7 @@ impl WindowsAppSDKVersion {
             Self::V1_7 => "1.7",
             Self::V1_8 => "1.8",
             Self::Cbs => "CBS",
-            Self::VNextCbs => "vNext.CBS",
+            Self::VNextCbs | Self::Cbs1_6 => "CBS.1.6",
         }
     }
 }
