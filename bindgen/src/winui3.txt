@@ -85,6 +85,7 @@
     Microsoft.UI.Xaml.Controls.CheckBox
     Microsoft.UI.Xaml.Controls.ComboBox
     Microsoft.UI.Xaml.Controls.ComboBoxItem
+    Microsoft.UI.Xaml.Controls.ComboBoxTextSubmittedEventArgs
     Microsoft.UI.Xaml.Controls.ContentControl
     Microsoft.UI.Xaml.Controls.Control
     Microsoft.UI.Xaml.Controls.Grid
