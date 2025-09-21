@@ -93,6 +93,7 @@
     Microsoft.UI.Xaml.Controls.ItemsControl
     Microsoft.UI.Xaml.Controls.ListBox
     Microsoft.UI.Xaml.Controls.ListBoxItem
+    Microsoft.UI.Xaml.Controls.ListViewItem
     Microsoft.UI.Xaml.Controls.MediaPlayerElement
     Microsoft.UI.Xaml.Controls.Orientation
     Microsoft.UI.Xaml.Controls.Panel
@@ -106,6 +107,8 @@
     Microsoft.UI.Xaml.Controls.ScrollViewer
     Microsoft.UI.Xaml.Controls.Slider
     Microsoft.UI.Xaml.Controls.SwapChainPanel
+    Microsoft.UI.Xaml.Controls.TabView
+    Microsoft.UI.Xaml.Controls.TabViewItem
     Microsoft.UI.Xaml.Controls.TextBlock
     Microsoft.UI.Xaml.Controls.TextBox
     Microsoft.UI.Xaml.Controls.TextChangedEventArgs
