@@ -2,9 +2,10 @@ use std::fmt;
 use windows::Win32::{
     Storage::Packaging::Appx::{
         AddPackageDependency, AddPackageDependencyOptions_None,
-        CreatePackageDependencyOptions_None, PackageDependencyLifetimeKind_Process,
-        PackageDependencyProcessorArchitectures_None, RemovePackageDependency,
-        TryCreatePackageDependency, PACKAGEDEPENDENCY_CONTEXT, PACKAGE_VERSION, PACKAGE_VERSION_0,
+        CreatePackageDependencyOptions_None, DeletePackageDependency,
+        PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
+        RemovePackageDependency, TryCreatePackageDependency, PACKAGEDEPENDENCY_CONTEXT,
+        PACKAGE_VERSION, PACKAGE_VERSION_0,
     },
     System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
 };
@@ -65,6 +66,7 @@ impl Drop for PackageDependencyID {
 
 pub struct PackageDependency {
     ctx: PACKAGEDEPENDENCY_CONTEXT,
+    dependency_id: PackageDependencyID,
     package_full_name: HSTRING,
 }
 
@@ -110,12 +112,16 @@ impl PackageDependency {
 
         Ok(Self {
             ctx,
+            dependency_id,
             package_full_name: unsafe { package_full_name.0.to_hstring() },
         })
     }
 
     fn uninitialize(&self) -> Result<()> {
-        unsafe { RemovePackageDependency(self.ctx) }
+        unsafe {
+            RemovePackageDependency(self.ctx)?;
+            DeletePackageDependency(self.dependency_id.0)
+        }
     }
 }
 
