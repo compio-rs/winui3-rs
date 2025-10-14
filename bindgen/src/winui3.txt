@@ -42,6 +42,8 @@
 --package
 
 --filter
+    Microsoft.UI.Composition.SystemBackdrops.MicaKind
+
     Microsoft.UI.Dispatching
     Microsoft.UI.Text
     Microsoft.UI.Windowing
@@ -136,6 +138,9 @@
     Microsoft.UI.Xaml.Input.PointerEventHandler
     Microsoft.UI.Xaml.Input.PointerRoutedEventArgs
 
+    Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop
+    Microsoft.UI.Xaml.Media.MicaBackdrop
     Microsoft.UI.Xaml.Media.Stretch
+    Microsoft.UI.Xaml.Media.SystemBackdrop
 
     Microsoft.Web.WebView2.Core

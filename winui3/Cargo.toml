@@ -1,6 +1,6 @@
 [package]
 name = "winio-winui3"
-version = "0.3.3"
+version = "0.3.4"
 edition = "2021"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -46,6 +46,7 @@ UI_Composition = [
     "windows/Graphics_Effects",
     "windows/UI_Composition",
 ]
+UI_Composition_SystemBackdrops = ["UI_Composition", "windows/UI_Core"]
 UI_Dispatching = ["UI"]
 UI_Input = ["UI", "windows/Graphics", "windows/System", "windows/UI_Core"]
 UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]
