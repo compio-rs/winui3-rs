@@ -81,6 +81,7 @@
     Microsoft.UI.Xaml.VerticalAlignment
     Microsoft.UI.Xaml.Visibility
     Microsoft.UI.Xaml.Window
+    Microsoft.UI.Xaml.XamlRoot
 
     Microsoft.UI.Xaml.Controls.Button
     Microsoft.UI.Xaml.Controls.Canvas

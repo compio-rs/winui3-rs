@@ -2084,6 +2084,30 @@ impl FrameworkElement {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<XamlRoot> {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
         unsafe {
@@ -6359,6 +6383,8 @@ pub trait IUIElement_Impl: windows_core::IUnknownImpl {
     fn SetRotationAxis(&self, value: &windows_numerics::Vector3) -> windows_core::Result<()>;
     fn ActualOffset(&self) -> windows_core::Result<windows_numerics::Vector3>;
     fn ActualSize(&self) -> windows_core::Result<windows_numerics::Vector2>;
+    fn XamlRoot(&self) -> windows_core::Result<XamlRoot>;
+    fn SetXamlRoot(&self, value: windows_core::Ref<XamlRoot>) -> windows_core::Result<()>;
     fn RasterizationScale(&self) -> windows_core::Result<f64>;
     fn SetRasterizationScale(&self, value: f64) -> windows_core::Result<()>;
     fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool>;
@@ -7360,6 +7386,33 @@ impl IUIElement_Vtbl {
                     }
                     Err(err) => err.into(),
                 }
+            }
+        }
+        unsafe extern "system" fn XamlRoot<Identity: IUIElement_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IUIElement_Impl::XamlRoot(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetXamlRoot<Identity: IUIElement_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IUIElement_Impl::SetXamlRoot(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn RasterizationScale<
@@ -8556,8 +8609,8 @@ impl IUIElement_Vtbl {
             SetRotationAxis: SetRotationAxis::<Identity, OFFSET>,
             ActualOffset: ActualOffset::<Identity, OFFSET>,
             ActualSize: ActualSize::<Identity, OFFSET>,
-            XamlRoot: 0,
-            SetXamlRoot: 0,
+            XamlRoot: XamlRoot::<Identity, OFFSET>,
+            SetXamlRoot: SetXamlRoot::<Identity, OFFSET>,
             Shadow: 0,
             SetShadow: 0,
             RasterizationScale: RasterizationScale::<Identity, OFFSET>,
@@ -8899,8 +8952,14 @@ pub struct IUIElement_Vtbl {
         *mut core::ffi::c_void,
         *mut windows_numerics::Vector2,
     ) -> windows_core::HRESULT,
-    XamlRoot: usize,
-    SetXamlRoot: usize,
+    pub XamlRoot: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetXamlRoot: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     Shadow: usize,
     SetShadow: usize,
     pub RasterizationScale:
@@ -10367,6 +10426,235 @@ pub struct IWindowStatics_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+windows_core::imp::define_interface!(
+    IXamlRoot,
+    IXamlRoot_Vtbl,
+    0x60cb215a_ad15_520a_8b01_4416824f0441
+);
+impl windows_core::RuntimeType for IXamlRoot {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for IXamlRoot {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlRoot";
+}
+#[cfg(feature = "UI_Composition")]
+pub trait IXamlRoot_Impl: windows_core::IUnknownImpl {
+    fn Content(&self) -> windows_core::Result<UIElement>;
+    fn Size(&self) -> windows_core::Result<windows::Foundation::Size>;
+    fn RasterizationScale(&self) -> windows_core::Result<f64>;
+    fn IsHostVisible(&self) -> windows_core::Result<bool>;
+    fn RemoveChanged(&self, token: i64) -> windows_core::Result<()>;
+}
+#[cfg(feature = "UI_Composition")]
+impl IXamlRoot_Vtbl {
+    pub const fn new<Identity: IXamlRoot_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Content<Identity: IXamlRoot_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlRoot_Impl::Content(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Size<Identity: IXamlRoot_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut windows::Foundation::Size,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlRoot_Impl::Size(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RasterizationScale<
+            Identity: IXamlRoot_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlRoot_Impl::RasterizationScale(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IsHostVisible<Identity: IXamlRoot_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IXamlRoot_Impl::IsHostVisible(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveChanged<Identity: IXamlRoot_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IXamlRoot_Impl::RemoveChanged(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlRoot, OFFSET>(),
+            Content: Content::<Identity, OFFSET>,
+            Size: Size::<Identity, OFFSET>,
+            RasterizationScale: RasterizationScale::<Identity, OFFSET>,
+            IsHostVisible: IsHostVisible::<Identity, OFFSET>,
+            Changed: 0,
+            RemoveChanged: RemoveChanged::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlRoot as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlRoot_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub Content: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    Content: usize,
+    pub Size: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut windows::Foundation::Size,
+    ) -> windows_core::HRESULT,
+    pub RasterizationScale:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub IsHostVisible:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    Changed: usize,
+    pub RemoveChanged:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
+    IXamlRoot2,
+    IXamlRoot2_Vtbl,
+    0xbdee0f42_71cb_50c5_829b_4614d98c5794
+);
+impl windows_core::RuntimeType for IXamlRoot2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IXamlRoot2 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlRoot2";
+}
+pub trait IXamlRoot2_Impl: windows_core::IUnknownImpl {}
+impl IXamlRoot2_Vtbl {
+    pub const fn new<Identity: IXamlRoot2_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlRoot2, OFFSET>(),
+            ContentIslandEnvironment: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlRoot2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlRoot2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    ContentIslandEnvironment: usize,
+}
+windows_core::imp::define_interface!(
+    IXamlRoot3,
+    IXamlRoot3_Vtbl,
+    0xb71dbf3b_2e0f_5de0_ac68_f0c1f65114c8
+);
+impl windows_core::RuntimeType for IXamlRoot3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IXamlRoot3 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlRoot3";
+}
+pub trait IXamlRoot3_Impl: windows_core::IUnknownImpl {}
+impl IXamlRoot3_Vtbl {
+    pub const fn new<Identity: IXamlRoot3_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlRoot3, OFFSET>(),
+            CoordinateConverter: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlRoot3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlRoot3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    CoordinateConverter: usize,
+}
+windows_core::imp::define_interface!(
+    IXamlRoot4,
+    IXamlRoot4_Vtbl,
+    0x377bec22_632b_52be_b26f_5edf7838e5ca
+);
+impl windows_core::RuntimeType for IXamlRoot4 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IXamlRoot4 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IXamlRoot4";
+}
+pub trait IXamlRoot4_Impl: windows_core::IUnknownImpl {}
+impl IXamlRoot4_Vtbl {
+    pub const fn new<Identity: IXamlRoot4_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IXamlRoot4, OFFSET>(),
+            ContentIsland: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlRoot4 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlRoot4_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    ContentIsland: usize,
+}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct LaunchActivatedEventArgs(windows_core::IUnknown);
@@ -11606,6 +11894,30 @@ impl UIElement {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<XamlRoot> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<XamlRoot>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -13111,3 +13423,81 @@ impl windows_core::RuntimeName for Window {
 }
 unsafe impl Send for Window {}
 unsafe impl Sync for Window {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct XamlRoot(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    XamlRoot,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+impl XamlRoot {
+    #[cfg(feature = "UI_Composition")]
+    pub fn Content(&self) -> windows_core::Result<UIElement> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Content)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<windows::Foundation::Size> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Size)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RasterizationScale)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn IsHostVisible(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsHostVisible)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeType for XamlRoot {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IXamlRoot>();
+}
+unsafe impl windows_core::Interface for XamlRoot {
+    type Vtable = <IXamlRoot as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IXamlRoot as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for XamlRoot {
+    const NAME: &'static str = "Microsoft.UI.Xaml.XamlRoot";
+}
+unsafe impl Send for XamlRoot {}
+unsafe impl Sync for XamlRoot {}

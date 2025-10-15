@@ -1935,6 +1935,30 @@ impl Button {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -4301,6 +4325,30 @@ impl Canvas {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -7316,6 +7364,30 @@ impl CheckBox {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -10747,6 +10819,30 @@ impl ComboBox {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -13582,6 +13678,30 @@ impl ComboBoxItem {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -16447,6 +16567,30 @@ impl ContentControl {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -19260,6 +19404,30 @@ impl Control {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -21695,6 +21863,30 @@ impl Grid {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -40432,6 +40624,30 @@ impl ItemsControl {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -43644,6 +43860,30 @@ impl ListBox {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -46481,6 +46721,30 @@ impl ListBoxItem {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -49309,6 +49573,30 @@ impl ListViewItem {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -52198,6 +52486,30 @@ impl MediaPlayerElement {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -54507,6 +54819,30 @@ impl Panel {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -57531,6 +57867,30 @@ impl PasswordBox {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -60509,6 +60869,30 @@ impl ProgressBar {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -63545,6 +63929,30 @@ impl RadioButton {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -67523,6 +67931,30 @@ impl ScrollViewer {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -70863,6 +71295,30 @@ impl Slider {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -73244,6 +73700,30 @@ impl SwapChainPanel {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -76474,6 +76954,30 @@ impl TabView {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -79374,6 +79878,30 @@ impl TabViewItem {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -82061,6 +82589,30 @@ impl TextBlock {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
@@ -85476,6 +86028,30 @@ impl TextBox {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -88635,6 +89211,30 @@ impl ToolTip {
             .map(|| result__)
         }
     }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
         let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
         unsafe {
@@ -91206,6 +91806,30 @@ impl WebView2 {
                 &mut result__,
             )
             .map(|| result__)
+        }
+    }
+    pub fn XamlRoot(&self) -> windows_core::Result<super::XamlRoot> {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).XamlRoot)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetXamlRoot<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetXamlRoot)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn RasterizationScale(&self) -> windows_core::Result<f64> {
