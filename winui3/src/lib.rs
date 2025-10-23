@@ -18,6 +18,9 @@ mod xaml_app;
 #[cfg(feature = "XamlApp")]
 pub use xaml_app::{XamlApp, XamlAppOverrides};
 
+mod compose;
+pub use compose::*;
+
 pub enum ApartmentType {
     MultiThreaded,
     SingleThreaded,
