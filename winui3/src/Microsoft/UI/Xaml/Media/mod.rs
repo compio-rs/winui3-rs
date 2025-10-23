@@ -59,6 +59,82 @@ impl DesktopAcrylicBackdrop {
             .and_then(|| windows_core::Type::from_abi(result__))
         })
     }
+    #[cfg(feature = "UI_Composition_SystemBackdrops")]
+    pub fn GetDefaultSystemBackdropConfiguration<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<super::super::Composition::SystemBackdrops::SystemBackdropConfiguration>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdrop>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetDefaultSystemBackdropConfiguration)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetConnected<P0, P1>(
+        &self,
+        connectedtarget: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetConnected)(
+                windows_core::Interface::as_raw(this),
+                connectedtarget.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetDisconnected<P0>(&self, disconnectedtarget: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetDisconnected)(
+                windows_core::Interface::as_raw(this),
+                disconnectedtarget.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDefaultSystemBackdropConfigurationChanged<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnDefaultSystemBackdropConfigurationChanged)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
     fn IDesktopAcrylicBackdropFactory<
         R,
         F: FnOnce(&IDesktopAcrylicBackdropFactory) -> windows_core::Result<R>,
@@ -372,15 +448,53 @@ impl windows_core::RuntimeType for ISystemBackdrop {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(feature = "UI_Composition_SystemBackdrops")]
 impl windows_core::RuntimeName for ISystemBackdrop {
     const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISystemBackdrop";
 }
-pub trait ISystemBackdrop_Impl: windows_core::IUnknownImpl {}
+#[cfg(feature = "UI_Composition_SystemBackdrops")]
+pub trait ISystemBackdrop_Impl: windows_core::IUnknownImpl {
+    fn GetDefaultSystemBackdropConfiguration(
+        &self,
+        target: windows_core::Ref<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        xamlRoot: windows_core::Ref<super::XamlRoot>,
+    ) -> windows_core::Result<super::super::Composition::SystemBackdrops::SystemBackdropConfiguration>;
+}
+#[cfg(feature = "UI_Composition_SystemBackdrops")]
 impl ISystemBackdrop_Vtbl {
     pub const fn new<Identity: ISystemBackdrop_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetDefaultSystemBackdropConfiguration<
+            Identity: ISystemBackdrop_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            target: *mut core::ffi::c_void,
+            xamlroot: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ISystemBackdrop_Impl::GetDefaultSystemBackdropConfiguration(
+                    this,
+                    core::mem::transmute_copy(&target),
+                    core::mem::transmute_copy(&xamlroot),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
         Self {
             base__: windows_core::IInspectable_Vtbl::new::<Identity, ISystemBackdrop, OFFSET>(),
-            GetDefaultSystemBackdropConfiguration: 0,
+            GetDefaultSystemBackdropConfiguration: GetDefaultSystemBackdropConfiguration::<
+                Identity,
+                OFFSET,
+            >,
         }
     }
     pub fn matches(iid: &windows_core::GUID) -> bool {
@@ -391,6 +505,15 @@ impl ISystemBackdrop_Vtbl {
 #[doc(hidden)]
 pub struct ISystemBackdrop_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition_SystemBackdrops")]
+    pub GetDefaultSystemBackdropConfiguration: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    )
+        -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition_SystemBackdrops"))]
     GetDefaultSystemBackdropConfiguration: usize,
 }
 windows_core::imp::define_interface!(
@@ -470,21 +593,99 @@ impl windows_core::RuntimeType for ISystemBackdropOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(feature = "UI_Composition")]
 impl windows_core::RuntimeName for ISystemBackdropOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISystemBackdropOverrides";
 }
-pub trait ISystemBackdropOverrides_Impl: windows_core::IUnknownImpl {}
+#[cfg(feature = "UI_Composition")]
+pub trait ISystemBackdropOverrides_Impl: windows_core::IUnknownImpl {
+    fn OnTargetConnected(
+        &self,
+        connectedTarget: windows_core::Ref<
+            super::super::Composition::ICompositionSupportsSystemBackdrop,
+        >,
+        xamlRoot: windows_core::Ref<super::XamlRoot>,
+    ) -> windows_core::Result<()>;
+    fn OnTargetDisconnected(
+        &self,
+        disconnectedTarget: windows_core::Ref<
+            super::super::Composition::ICompositionSupportsSystemBackdrop,
+        >,
+    ) -> windows_core::Result<()>;
+    fn OnDefaultSystemBackdropConfigurationChanged(
+        &self,
+        target: windows_core::Ref<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        xamlRoot: windows_core::Ref<super::XamlRoot>,
+    ) -> windows_core::Result<()>;
+}
+#[cfg(feature = "UI_Composition")]
 impl ISystemBackdropOverrides_Vtbl {
     pub const fn new<Identity: ISystemBackdropOverrides_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn OnTargetConnected<
+            Identity: ISystemBackdropOverrides_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            connectedtarget: *mut core::ffi::c_void,
+            xamlroot: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ISystemBackdropOverrides_Impl::OnTargetConnected(
+                    this,
+                    core::mem::transmute_copy(&connectedtarget),
+                    core::mem::transmute_copy(&xamlroot),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn OnTargetDisconnected<
+            Identity: ISystemBackdropOverrides_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            disconnectedtarget: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ISystemBackdropOverrides_Impl::OnTargetDisconnected(
+                    this,
+                    core::mem::transmute_copy(&disconnectedtarget),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn OnDefaultSystemBackdropConfigurationChanged<
+            Identity: ISystemBackdropOverrides_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            target: *mut core::ffi::c_void,
+            xamlroot: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ISystemBackdropOverrides_Impl::OnDefaultSystemBackdropConfigurationChanged(
+                    this,
+                    core::mem::transmute_copy(&target),
+                    core::mem::transmute_copy(&xamlroot),
+                )
+                .into()
+            }
+        }
         Self {
             base__: windows_core::IInspectable_Vtbl::new::<
                 Identity,
                 ISystemBackdropOverrides,
                 OFFSET,
             >(),
-            OnTargetConnected: 0,
-            OnTargetDisconnected: 0,
-            OnDefaultSystemBackdropConfigurationChanged: 0,
+            OnTargetConnected: OnTargetConnected::<Identity, OFFSET>,
+            OnTargetDisconnected: OnTargetDisconnected::<Identity, OFFSET>,
+            OnDefaultSystemBackdropConfigurationChanged:
+                OnDefaultSystemBackdropConfigurationChanged::<Identity, OFFSET>,
         }
     }
     pub fn matches(iid: &windows_core::GUID) -> bool {
@@ -495,8 +696,29 @@ impl ISystemBackdropOverrides_Vtbl {
 #[doc(hidden)]
 pub struct ISystemBackdropOverrides_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub OnTargetConnected: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
     OnTargetConnected: usize,
+    #[cfg(feature = "UI_Composition")]
+    pub OnTargetDisconnected: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
     OnTargetDisconnected: usize,
+    #[cfg(feature = "UI_Composition")]
+    pub OnDefaultSystemBackdropConfigurationChanged:
+        unsafe extern "system" fn(
+            *mut core::ffi::c_void,
+            *mut core::ffi::c_void,
+            *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
     OnDefaultSystemBackdropConfigurationChanged: usize,
 }
 #[repr(transparent)]
@@ -573,6 +795,82 @@ impl MicaBackdrop {
             )
             .and_then(|| windows_core::Type::from_abi(result__))
         })
+    }
+    #[cfg(feature = "UI_Composition_SystemBackdrops")]
+    pub fn GetDefaultSystemBackdropConfiguration<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<super::super::Composition::SystemBackdrops::SystemBackdropConfiguration>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdrop>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetDefaultSystemBackdropConfiguration)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetConnected<P0, P1>(
+        &self,
+        connectedtarget: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetConnected)(
+                windows_core::Interface::as_raw(this),
+                connectedtarget.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetDisconnected<P0>(&self, disconnectedtarget: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetDisconnected)(
+                windows_core::Interface::as_raw(this),
+                disconnectedtarget.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDefaultSystemBackdropConfigurationChanged<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnDefaultSystemBackdropConfigurationChanged)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
     }
     fn IMicaBackdropFactory<R, F: FnOnce(&IMicaBackdropFactory) -> windows_core::Result<R>>(
         callback: F,
@@ -653,6 +951,28 @@ impl SystemBackdrop {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    #[cfg(feature = "UI_Composition_SystemBackdrops")]
+    pub fn GetDefaultSystemBackdropConfiguration<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<super::super::Composition::SystemBackdrops::SystemBackdropConfiguration>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetDefaultSystemBackdropConfiguration)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
     pub fn new() -> windows_core::Result<SystemBackdrop> {
         Self::ISystemBackdropFactory(|this| unsafe {
             let mut result__ = core::mem::zeroed();
@@ -664,6 +984,60 @@ impl SystemBackdrop {
             )
             .and_then(|| windows_core::Type::from_abi(result__))
         })
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetConnected<P0, P1>(
+        &self,
+        connectedtarget: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetConnected)(
+                windows_core::Interface::as_raw(this),
+                connectedtarget.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetDisconnected<P0>(&self, disconnectedtarget: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetDisconnected)(
+                windows_core::Interface::as_raw(this),
+                disconnectedtarget.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDefaultSystemBackdropConfigurationChanged<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = &windows_core::Interface::cast::<ISystemBackdropOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnDefaultSystemBackdropConfigurationChanged)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
     }
     fn ISystemBackdropFactory<R, F: FnOnce(&ISystemBackdropFactory) -> windows_core::Result<R>>(
         callback: F,

@@ -42,7 +42,12 @@
 --package
 
 --filter
+    Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController
+    Microsoft.UI.Composition.SystemBackdrops.MicaController
     Microsoft.UI.Composition.SystemBackdrops.MicaKind
+    Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration
+    Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme
+    Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop
 
     Microsoft.UI.Dispatching
     Microsoft.UI.Text

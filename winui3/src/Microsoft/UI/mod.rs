@@ -20,6 +20,134 @@ pub mod Text;
 pub mod Windowing;
 #[cfg(feature = "UI_Xaml")]
 pub mod Xaml;
+windows_core::imp::define_interface!(
+    IClosableNotifier,
+    IClosableNotifier_Vtbl,
+    0x2989e93b_ed0f_5e79_90f2_eac592fc6e6a
+);
+impl windows_core::RuntimeType for IClosableNotifier {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+windows_core::imp::interface_hierarchy!(
+    IClosableNotifier,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+impl IClosableNotifier {
+    pub fn IsClosed(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsClosed)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveClosed(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveClosed)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveFrameworkClosed(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveFrameworkClosed)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeName for IClosableNotifier {
+    const NAME: &'static str = "Microsoft.UI.IClosableNotifier";
+}
+pub trait IClosableNotifier_Impl: windows_core::IUnknownImpl {
+    fn IsClosed(&self) -> windows_core::Result<bool>;
+    fn RemoveClosed(&self, token: i64) -> windows_core::Result<()>;
+    fn RemoveFrameworkClosed(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IClosableNotifier_Vtbl {
+    pub const fn new<Identity: IClosableNotifier_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn IsClosed<
+            Identity: IClosableNotifier_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClosableNotifier_Impl::IsClosed(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveClosed<
+            Identity: IClosableNotifier_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClosableNotifier_Impl::RemoveClosed(this, token).into()
+            }
+        }
+        unsafe extern "system" fn RemoveFrameworkClosed<
+            Identity: IClosableNotifier_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClosableNotifier_Impl::RemoveFrameworkClosed(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IClosableNotifier, OFFSET>(),
+            IsClosed: IsClosed::<Identity, OFFSET>,
+            Closed: 0,
+            RemoveClosed: RemoveClosed::<Identity, OFFSET>,
+            FrameworkClosed: 0,
+            RemoveFrameworkClosed: RemoveFrameworkClosed::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IClosableNotifier as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClosableNotifier_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub IsClosed:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    Closed: usize,
+    pub RemoveClosed:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    FrameworkClosed: usize,
+    pub RemoveFrameworkClosed:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, PartialEq)]
 pub struct IconId {

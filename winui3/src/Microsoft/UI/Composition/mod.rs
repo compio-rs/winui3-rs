@@ -46,6 +46,125 @@ pub struct IAnimationObject_Vtbl {
     PopulatePropertyInfo: usize,
 }
 windows_core::imp::define_interface!(
+    ICompositionSupportsSystemBackdrop,
+    ICompositionSupportsSystemBackdrop_Vtbl,
+    0x397dafe4_b6c2_5bb9_951d_f5707de8b7bc
+);
+impl windows_core::RuntimeType for ICompositionSupportsSystemBackdrop {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+windows_core::imp::interface_hierarchy!(
+    ICompositionSupportsSystemBackdrop,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+impl ICompositionSupportsSystemBackdrop {
+    pub fn SystemBackdrop(
+        &self,
+    ) -> windows_core::Result<windows::UI::Composition::CompositionBrush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).SystemBackdrop)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetSystemBackdrop<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows::UI::Composition::CompositionBrush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetSystemBackdrop)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeName for ICompositionSupportsSystemBackdrop {
+    const NAME: &'static str = "Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop";
+}
+pub trait ICompositionSupportsSystemBackdrop_Impl: windows_core::IUnknownImpl {
+    fn SystemBackdrop(&self) -> windows_core::Result<windows::UI::Composition::CompositionBrush>;
+    fn SetSystemBackdrop(
+        &self,
+        value: windows_core::Ref<windows::UI::Composition::CompositionBrush>,
+    ) -> windows_core::Result<()>;
+}
+impl ICompositionSupportsSystemBackdrop_Vtbl {
+    pub const fn new<Identity: ICompositionSupportsSystemBackdrop_Impl, const OFFSET: isize>(
+    ) -> Self {
+        unsafe extern "system" fn SystemBackdrop<
+            Identity: ICompositionSupportsSystemBackdrop_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICompositionSupportsSystemBackdrop_Impl::SystemBackdrop(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSystemBackdrop<
+            Identity: ICompositionSupportsSystemBackdrop_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICompositionSupportsSystemBackdrop_Impl::SetSystemBackdrop(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<
+                Identity,
+                ICompositionSupportsSystemBackdrop,
+                OFFSET,
+            >(),
+            SystemBackdrop: SystemBackdrop::<Identity, OFFSET>,
+            SetSystemBackdrop: SetSystemBackdrop::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICompositionSupportsSystemBackdrop as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICompositionSupportsSystemBackdrop_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub SystemBackdrop: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetSystemBackdrop: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
     IVisualElement,
     IVisualElement_Vtbl,
     0x2180f1f5_b5d8_4bf6_920a_12006e63efef
