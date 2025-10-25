@@ -370,6 +370,19 @@ impl windows_core::RuntimeType for IMarkupExtensionOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+impl IMarkupExtensionOverrides {
+    pub fn ProvideValue(&self) -> windows_core::Result<windows_core::IInspectable> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ProvideValue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+}
 impl windows_core::RuntimeName for IMarkupExtensionOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Markup.IMarkupExtensionOverrides";
 }

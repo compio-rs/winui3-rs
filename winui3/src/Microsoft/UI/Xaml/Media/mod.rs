@@ -593,6 +593,62 @@ impl windows_core::RuntimeType for ISystemBackdropOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+impl ISystemBackdropOverrides {
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetConnected<P0, P1>(
+        &self,
+        connectedtarget: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetConnected)(
+                windows_core::Interface::as_raw(this),
+                connectedtarget.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetDisconnected<P0>(&self, disconnectedtarget: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnTargetDisconnected)(
+                windows_core::Interface::as_raw(this),
+                disconnectedtarget.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDefaultSystemBackdropConfigurationChanged<P0, P1>(
+        &self,
+        target: P0,
+        xamlroot: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnDefaultSystemBackdropConfigurationChanged)(
+                windows_core::Interface::as_raw(this),
+                target.param().abi(),
+                xamlroot.param().abi(),
+            )
+            .ok()
+        }
+    }
+}
 #[cfg(feature = "UI_Composition")]
 impl windows_core::RuntimeName for ISystemBackdropOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISystemBackdropOverrides";

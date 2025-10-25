@@ -3529,6 +3529,41 @@ impl windows_core::RuntimeType for IRangeBaseOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+impl IRangeBaseOverrides {
+    pub fn OnMinimumChanged(&self, oldminimum: f64, newminimum: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnMinimumChanged)(
+                windows_core::Interface::as_raw(this),
+                oldminimum,
+                newminimum,
+            )
+            .ok()
+        }
+    }
+    pub fn OnMaximumChanged(&self, oldmaximum: f64, newmaximum: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnMaximumChanged)(
+                windows_core::Interface::as_raw(this),
+                oldmaximum,
+                newmaximum,
+            )
+            .ok()
+        }
+    }
+    pub fn OnValueChanged(&self, oldvalue: f64, newvalue: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnValueChanged)(
+                windows_core::Interface::as_raw(this),
+                oldvalue,
+                newvalue,
+            )
+            .ok()
+        }
+    }
+}
 impl windows_core::RuntimeName for IRangeBaseOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.Primitives.IRangeBaseOverrides";
 }
@@ -4891,6 +4926,15 @@ windows_core::imp::define_interface!(
 impl windows_core::RuntimeType for IToggleButtonOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl IToggleButtonOverrides {
+    pub fn OnToggle(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnToggle)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
 }
 impl windows_core::RuntimeName for IToggleButtonOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.Primitives.IToggleButtonOverrides";
