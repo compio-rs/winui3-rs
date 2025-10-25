@@ -1,22 +1,26 @@
+#![allow(deprecated)]
+
 use windows_core::{
-    imp::WeakRefCount, implement, Array, ComObjectInterface, IInspectable, IInspectable_Vtbl,
-    Interface, InterfaceRef, Ref, Result, HSTRING,
+    imp::WeakRefCount, implement, Array, IInspectable_Vtbl, Interface, Ref, Result, HSTRING,
 };
 
 use crate::Microsoft::UI::Xaml::{
-    Application, IApplicationFactory, IApplicationOverrides, IApplicationOverrides_Impl,
-    LaunchActivatedEventArgs,
+    Application, IApplicationFactory, IApplicationFactory_Vtbl, IApplicationOverrides,
+    IApplicationOverrides_Impl, LaunchActivatedEventArgs,
     Markup::{IXamlMetadataProvider, IXamlMetadataProvider_Impl, IXamlType, XmlnsDefinition},
     XamlTypeInfo::XamlControlsXamlMetaDataProvider,
 };
 use crate::Windows::UI::Xaml as WUX;
+use crate::{ChildClass, ChildClassImpl, Compose, CreateInstanceFn};
 
+#[deprecated]
 #[allow(non_snake_case)]
 pub trait XamlAppOverrides {
     fn OnLaunched(&self, base: &Application, args: Option<&LaunchActivatedEventArgs>)
         -> Result<()>;
 }
 
+#[deprecated]
 #[implement(IApplicationOverrides, IXamlMetadataProvider)]
 pub struct XamlApp<T>
 where
@@ -26,16 +30,14 @@ where
     provider: XamlControlsXamlMetaDataProvider,
 }
 
-impl<T> crate::ChildClass for XamlApp<T>
+impl<T> ChildClass for XamlApp<T>
 where
     T: XamlAppOverrides + 'static,
 {
     type BaseType = Application;
     type FactoryInterface = IApplicationFactory;
 
-    fn create_interface_fn(
-        vtable: &<Self::FactoryInterface as Interface>::Vtable,
-    ) -> crate::CreateInstanceFn {
+    fn create_interface_fn(vtable: &IApplicationFactory_Vtbl) -> CreateInstanceFn {
         vtable.CreateInstance
     }
 
@@ -58,14 +60,15 @@ impl<T: XamlAppOverrides> XamlApp<T> {
             inner,
             provider: XamlControlsXamlMetaDataProvider::new()?,
         };
-        Application::IApplicationFactory(|factory| crate::Compose::compose_with(app, factory))
+        Application::IApplicationFactory(|factory| Compose::compose_with(app, factory))
     }
 }
 
+impl<T: XamlAppOverrides> ChildClassImpl for XamlApp_Impl<T> {}
+
 impl<T: XamlAppOverrides> IApplicationOverrides_Impl for XamlApp_Impl<T> {
     fn OnLaunched(&self, args: Ref<'_, LaunchActivatedEventArgs>) -> Result<()> {
-        let inspectable: InterfaceRef<'_, IInspectable> = self.as_interface_ref();
-        let base = inspectable.cast()?;
+        let base = self.base()?.cast::<Application>()?;
         self.inner.OnLaunched(&base, args.as_ref())
     }
 }

@@ -16,6 +16,7 @@ pub use native::*;
 mod xaml_app;
 
 #[cfg(feature = "XamlApp")]
+#[allow(deprecated)]
 pub use xaml_app::{XamlApp, XamlAppOverrides};
 
 mod compose;

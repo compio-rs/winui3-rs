@@ -1,6 +1,6 @@
 use std::{ffi::c_void, ops::Deref, ptr::NonNull};
 
-use windows::Win32::Foundation::E_NOINTERFACE;
+use windows::Win32::Foundation::{E_NOINTERFACE, E_NOTIMPL, E_POINTER, S_OK};
 use windows_core::{
     factory, imp::WeakRefCount, ComObject, ComObjectInner, ComObjectInterface, IInspectable,
     IInspectable_Vtbl, IUnknownImpl, Interface, InterfaceRef, Result, RuntimeName, Type, TypeKind,
@@ -34,6 +34,24 @@ pub trait ChildClass: ComObjectInner {
     fn into_outer(self) -> Self::Outer;
 }
 
+pub trait ChildClassImpl: ComObjectInterface<IInspectable> + IUnknownImpl
+where
+    Self::Impl: ChildClass<Outer = Self>,
+{
+    /// Get the base object. Query the *Overrides interface to call the base methods.
+    fn base(&self) -> Result<&IInspectable> {
+        if let Some(compose) = Compose_Impl::<Self::Impl>::from_ref(self) {
+            if let Some(base) = compose.base() {
+                Ok(base)
+            } else {
+                Err(E_POINTER.into())
+            }
+        } else {
+            Err(E_NOTIMPL.into())
+        }
+    }
+}
+
 impl<T: ChildClass> Compose<T>
 where
     T::Outer: ComObjectInterface<IInspectable>,
@@ -60,9 +78,10 @@ where
         }
     }
 
-    /// Get the base object. You should query the *Overrides interface.
+    /// Get the base object. Query the *Overrides interface to call the base methods.
     /// # Safety
-    /// The vtable should be created by `Compose::compose*`.
+    /// The object should be created by `Compose::compose*`.
+    #[deprecated = "This method is unsafe. Use `ChildClassImpl::base` instead"]
     pub unsafe fn base(vtable: &T::Outer) -> &IInspectable {
         (*(vtable as *const T::Outer as *const Compose_Impl<T>))
             .base
@@ -85,6 +104,45 @@ impl<T: ChildClass> Compose<T> {
 pub struct Compose_Impl<T: ComObjectInner> {
     vtable: T::Outer,
     base: Option<IInspectable>,
+}
+
+impl<T: ComObjectInner> Compose_Impl<T> {
+    /// # Safety
+    /// The object should be created by `Compose::compose*`.
+    pub unsafe fn from_ref_unchecked(this: &T::Outer) -> &Self {
+        &*(this as *const T::Outer as *const Self)
+    }
+
+    /// # Safety
+    /// The object should be created by `Compose::compose*`.
+    pub unsafe fn from_mut_unchecked(this: &mut T::Outer) -> &mut Self {
+        &mut *(this as *mut T::Outer as *mut Self)
+    }
+
+    pub fn base(&self) -> Option<&IInspectable> {
+        self.base.as_ref()
+    }
+}
+
+impl<T: ComObjectInner> Compose_Impl<T>
+where
+    T::Outer: ComObjectInterface<IInspectable>,
+{
+    pub fn from_ref(this: &T::Outer) -> Option<&Self> {
+        if is_composed(this) {
+            Some(unsafe { Self::from_ref_unchecked(this) })
+        } else {
+            None
+        }
+    }
+
+    pub fn from_mut(this: &mut T::Outer) -> Option<&mut Self> {
+        if is_composed(this) {
+            Some(unsafe { Self::from_mut_unchecked(this) })
+        } else {
+            None
+        }
+    }
 }
 
 impl<T: ComObjectInner> Deref for Compose_Impl<T>
@@ -128,6 +186,10 @@ impl<T: ChildClass> IUnknownImpl for Compose_Impl<T> {
     unsafe fn QueryInterface(&self, iid: *const GUID, interface: *mut *mut c_void) -> HRESULT {
         let res = self.vtable.QueryInterface(iid, interface);
         if res == E_NOINTERFACE {
+            if *iid == IS_COMPOSED_IID {
+                interface.write(std::ptr::dangling_mut());
+                return S_OK;
+            }
             if let Some(base) = &self.base {
                 return base.query(iid, interface);
             }
@@ -197,4 +259,15 @@ where
     fn as_interface_ref(&self) -> InterfaceRef<'_, IInspectable> {
         self.vtable.as_interface_ref()
     }
+}
+
+const IS_COMPOSED_IID: GUID = GUID::from_u128(0xb2ea198c_d3e0_4999_b821_e99271d67cce);
+
+/// Just like [`windows_core::DYNAMIC_CAST_IID`], [`IS_COMPOSED_IID`] is not a standard IID.
+/// The implemented `QueryInterface` doesn't increase the reference count but returns a non-null pointer.
+fn is_composed<I: ComObjectInterface<IInspectable>>(interface: &I) -> bool {
+    let mut is_composed = std::ptr::null_mut();
+    let interface = interface.as_interface_ref();
+    let res = unsafe { interface.query(&IS_COMPOSED_IID, &mut is_composed) };
+    res.is_ok() && (!is_composed.is_null())
 }
