@@ -97,6 +97,7 @@
     Microsoft.UI.Xaml.Controls.ContentControl
     Microsoft.UI.Xaml.Controls.Control
     Microsoft.UI.Xaml.Controls.Grid
+    Microsoft.UI.Xaml.Controls.HyperlinkButton
     Microsoft.UI.Xaml.Controls.ItemCollection
     Microsoft.UI.Xaml.Controls.ItemsControl
     Microsoft.UI.Xaml.Controls.ListBox
