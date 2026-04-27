@@ -27,6 +27,7 @@ pub enum WindowsAppSDKVersion {
     Cbs1_6,
     #[deprecated = "use Cbs_1_6 instead"]
     VNextCbs,
+    Cbs1_8,
 }
 
 impl WindowsAppSDKVersion {
@@ -44,6 +45,7 @@ impl WindowsAppSDKVersion {
             Self::V1_8 => "1.8",
             Self::Cbs => "CBS",
             Self::VNextCbs | Self::Cbs1_6 => "CBS.1.6",
+            Self::Cbs1_8 => "CBS.1.8",
         }
     }
 }
