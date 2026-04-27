@@ -53,9 +53,6 @@ impl WindowsAppSDKVersion {
 #[derive(Debug)]
 struct PackageDependencyID(PWSTR);
 
-unsafe impl Sync for PackageDependencyID {}
-unsafe impl Send for PackageDependencyID {}
-
 impl Drop for PackageDependencyID {
     fn drop(&mut self) {
         unsafe {
