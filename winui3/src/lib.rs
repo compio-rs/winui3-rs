@@ -36,10 +36,12 @@ pub fn init_apartment(apartment_type: ApartmentType) -> windows_core::Result<()>
     unsafe { windows::Win32::System::WinRT::RoInitialize(roinit) }
 }
 
+#[deprecated]
 pub trait Activatable {
     fn activate() -> windows_core::Result<windows_core::IInspectable>;
 }
 
+#[deprecated]
 #[cfg(feature = "UI_Xaml_Interop")]
 pub fn xaml_typename<T: AsRef<str>>(type_name: T) -> Windows::UI::Xaml::Interop::TypeName {
     Windows::UI::Xaml::Interop::TypeName {
