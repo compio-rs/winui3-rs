@@ -680,6 +680,64 @@ pub struct IPointerPointProperties_Vtbl {
     pub XTilt: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f32) -> windows_core::HRESULT,
     pub YTilt: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f32) -> windows_core::HRESULT,
 }
+windows_core::imp::define_interface!(
+    IPointerPointStatics,
+    IPointerPointStatics_Vtbl,
+    0x880d34c2_acfd_51d9_b60a_b408ce17590c
+);
+impl windows_core::RuntimeType for IPointerPointStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IPointerPointStatics {
+    const NAME: &'static str = "Microsoft.UI.Input.IPointerPointStatics";
+}
+pub trait IPointerPointStatics_Impl: windows_core::IUnknownImpl {
+    fn GetCurrentPoint(&self, pointerId: u32) -> windows_core::Result<PointerPoint>;
+}
+impl IPointerPointStatics_Vtbl {
+    pub const fn new<Identity: IPointerPointStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetCurrentPoint<
+            Identity: IPointerPointStatics_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            pointerid: u32,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPointerPointStatics_Impl::GetCurrentPoint(this, pointerid) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IPointerPointStatics, OFFSET>(
+            ),
+            GetCurrentPoint: GetCurrentPoint::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IPointerPointStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPointerPointStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetCurrentPoint: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        u32,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct PointerDeviceType(pub i32);
@@ -782,6 +840,24 @@ impl PointerPoint {
             )
             .map(|| result__)
         }
+    }
+    pub fn GetCurrentPoint(pointerid: u32) -> windows_core::Result<PointerPoint> {
+        Self::IPointerPointStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetCurrentPoint)(
+                windows_core::Interface::as_raw(this),
+                pointerid,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
+    fn IPointerPointStatics<R, F: FnOnce(&IPointerPointStatics) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PointerPoint, IPointerPointStatics> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
     }
 }
 impl windows_core::RuntimeType for PointerPoint {
