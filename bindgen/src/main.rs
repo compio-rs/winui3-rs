@@ -18,9 +18,6 @@ fn main() -> Result<(), &'static str> {
     println!("Patching features...");
     patch_winui3_features();
 
-    println!("Patching fn IApplicationFactory...");
-    patch_application_factory();
-
     println!("Done.");
     Ok(())
 }
@@ -110,15 +107,4 @@ fn patch_winui3_features() {
             r#"Web_WebView2_Core = ["Web_WebView2", "windows/ApplicationModel_DataTransfer_DragDrop_Core", "windows/Security_Cryptography_Certificates", "windows/Storage_Streams"]"#
         );
     fs::write("winui3/Cargo.toml", &manifest).expect("failed to write winui3/Cargo.toml");
-}
-
-fn patch_application_factory() {
-    const MICROSOFT_UI_XAML_MOD: &str = "winui3/src/Microsoft/UI/Xaml/mod.rs";
-
-    let contents = fs::read_to_string(MICROSOFT_UI_XAML_MOD).expect("failed to read mod.rs");
-    let contents = contents.replace(
-        r#"fn IApplicationFactory"#,
-        r#"pub(crate) fn IApplicationFactory"#,
-    );
-    fs::write(MICROSOFT_UI_XAML_MOD, &contents).expect("failed to write mod.rs");
 }

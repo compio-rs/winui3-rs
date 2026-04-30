@@ -77,17 +77,6 @@ where
             .and_then(|| Type::from_abi(result__))
         }
     }
-
-    /// Get the base object. Query the *Overrides interface to call the base methods.
-    /// # Safety
-    /// The object should be created by `Compose::compose*`.
-    #[deprecated = "This method is unsafe. Use `ChildClassImpl::base` instead"]
-    pub unsafe fn base(vtable: &T::Outer) -> &IInspectable {
-        (*(vtable as *const T::Outer as *const Compose_Impl<T>))
-            .base
-            .as_ref()
-            .unwrap_unchecked()
-    }
 }
 
 impl<T: ChildClass> Compose<T> {

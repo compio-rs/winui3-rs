@@ -1,6 +1,6 @@
 [package]
 name = "winio-winui3"
-version = "0.3.9"
+version = "0.4.0"
 edition = "2021"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -32,12 +32,6 @@ features = [
 default = []
 native = ["windows/Win32_Graphics_Dxgi"]
 Foundation = ["windows/Foundation"]
-XamlApp = [
-    "UI_Xaml",
-    "UI_Xaml_Interop",
-    "UI_Xaml_Markup",
-    "UI_Xaml_XamlTypeInfo",
-]
 # generated features
 UI = ["Foundation", "windows/UI"]
 UI_Composition = [
