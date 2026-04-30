@@ -4,6 +4,7 @@ members = ["bindgen", "winui3"]
 default-members = ["winui3"]
 
 [workspace.dependencies]
+toml_edit = "0.25"
 windows = "0.62.0"
 windows-bindgen = { version = "0.66.0", package = "overrides-windows-bindgen" }
 windows-collections = "0.3.0"
