@@ -361,6 +361,27 @@ impl ButtonBase {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -407,6 +428,27 @@ impl ButtonBase {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -954,6 +996,27 @@ impl ButtonBase {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -1025,6 +1088,75 @@ impl ButtonBase {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -4026,6 +4158,265 @@ pub struct IScrollEventArgs_Vtbl {
     ScrollEventType: usize,
 }
 windows_core::imp::define_interface!(
+    IScrollSnapPointsInfo,
+    IScrollSnapPointsInfo_Vtbl,
+    0xd3ea6e09_ecf7_51a8_bd54_fc84b9653766
+);
+impl windows_core::RuntimeType for IScrollSnapPointsInfo {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+windows_core::imp::interface_hierarchy!(
+    IScrollSnapPointsInfo,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+impl IScrollSnapPointsInfo {
+    pub fn AreHorizontalSnapPointsRegular(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AreHorizontalSnapPointsRegular)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn AreVerticalSnapPointsRegular(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).AreVerticalSnapPointsRegular)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn HorizontalSnapPointsChanged<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<windows::Foundation::EventHandler<windows_core::IInspectable>>,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).HorizontalSnapPointsChanged)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveHorizontalSnapPointsChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveHorizontalSnapPointsChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+    pub fn VerticalSnapPointsChanged<P0>(&self, handler: P0) -> windows_core::Result<i64>
+    where
+        P0: windows_core::Param<windows::Foundation::EventHandler<windows_core::IInspectable>>,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).VerticalSnapPointsChanged)(
+                windows_core::Interface::as_raw(this),
+                handler.param().abi(),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn RemoveVerticalSnapPointsChanged(&self, token: i64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveVerticalSnapPointsChanged)(
+                windows_core::Interface::as_raw(this),
+                token,
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeName for IScrollSnapPointsInfo {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.Primitives.IScrollSnapPointsInfo";
+}
+pub trait IScrollSnapPointsInfo_Impl: windows_core::IUnknownImpl {
+    fn AreHorizontalSnapPointsRegular(&self) -> windows_core::Result<bool>;
+    fn AreVerticalSnapPointsRegular(&self) -> windows_core::Result<bool>;
+    fn HorizontalSnapPointsChanged(
+        &self,
+        handler: windows_core::Ref<windows::Foundation::EventHandler<windows_core::IInspectable>>,
+    ) -> windows_core::Result<i64>;
+    fn RemoveHorizontalSnapPointsChanged(&self, token: i64) -> windows_core::Result<()>;
+    fn VerticalSnapPointsChanged(
+        &self,
+        handler: windows_core::Ref<windows::Foundation::EventHandler<windows_core::IInspectable>>,
+    ) -> windows_core::Result<i64>;
+    fn RemoveVerticalSnapPointsChanged(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IScrollSnapPointsInfo_Vtbl {
+    pub const fn new<Identity: IScrollSnapPointsInfo_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn AreHorizontalSnapPointsRegular<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IScrollSnapPointsInfo_Impl::AreHorizontalSnapPointsRegular(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn AreVerticalSnapPointsRegular<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IScrollSnapPointsInfo_Impl::AreVerticalSnapPointsRegular(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn HorizontalSnapPointsChanged<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IScrollSnapPointsInfo_Impl::HorizontalSnapPointsChanged(
+                    this,
+                    core::mem::transmute_copy(&handler),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveHorizontalSnapPointsChanged<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IScrollSnapPointsInfo_Impl::RemoveHorizontalSnapPointsChanged(this, token).into()
+            }
+        }
+        unsafe extern "system" fn VerticalSnapPointsChanged<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            handler: *mut core::ffi::c_void,
+            result__: *mut i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IScrollSnapPointsInfo_Impl::VerticalSnapPointsChanged(
+                    this,
+                    core::mem::transmute_copy(&handler),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveVerticalSnapPointsChanged<
+            Identity: IScrollSnapPointsInfo_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            token: i64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IScrollSnapPointsInfo_Impl::RemoveVerticalSnapPointsChanged(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IScrollSnapPointsInfo, OFFSET>(
+            ),
+            AreHorizontalSnapPointsRegular: AreHorizontalSnapPointsRegular::<Identity, OFFSET>,
+            AreVerticalSnapPointsRegular: AreVerticalSnapPointsRegular::<Identity, OFFSET>,
+            HorizontalSnapPointsChanged: HorizontalSnapPointsChanged::<Identity, OFFSET>,
+            RemoveHorizontalSnapPointsChanged: RemoveHorizontalSnapPointsChanged::<Identity, OFFSET>,
+            VerticalSnapPointsChanged: VerticalSnapPointsChanged::<Identity, OFFSET>,
+            RemoveVerticalSnapPointsChanged: RemoveVerticalSnapPointsChanged::<Identity, OFFSET>,
+            GetIrregularSnapPoints: 0,
+            GetRegularSnapPoints: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IScrollSnapPointsInfo as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IScrollSnapPointsInfo_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub AreHorizontalSnapPointsRegular:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub AreVerticalSnapPointsRegular:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub HorizontalSnapPointsChanged: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub RemoveHorizontalSnapPointsChanged:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub VerticalSnapPointsChanged: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut i64,
+    ) -> windows_core::HRESULT,
+    pub RemoveVerticalSnapPointsChanged:
+        unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    GetIrregularSnapPoints: usize,
+    GetRegularSnapPoints: usize,
+}
+windows_core::imp::define_interface!(
     ISelector,
     ISelector_Vtbl,
     0x8f7e2159_e61d_576f_8476_f83fde3d689e
@@ -5220,6 +5611,27 @@ impl RangeBase {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -5266,6 +5678,27 @@ impl RangeBase {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -5813,6 +6246,27 @@ impl RangeBase {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -5884,6 +6338,75 @@ impl RangeBase {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -8404,6 +8927,27 @@ impl ScrollBar {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -8450,6 +8994,27 @@ impl ScrollBar {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -8997,6 +9562,27 @@ impl ScrollBar {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -9068,6 +9654,75 @@ impl ScrollBar {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -11657,6 +12312,27 @@ impl Selector {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -11703,6 +12379,27 @@ impl Selector {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -12250,6 +12947,27 @@ impl Selector {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -12321,6 +13039,75 @@ impl Selector {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -14885,6 +15672,27 @@ impl SelectorItem {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -14931,6 +15739,27 @@ impl SelectorItem {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -15478,6 +16307,27 @@ impl SelectorItem {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -15549,6 +16399,75 @@ impl SelectorItem {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -17847,6 +18766,27 @@ impl ToggleButton {
             .ok()
         }
     }
+    pub fn Padding(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Padding)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetPadding(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPadding)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn HorizontalContentAlignment(
         &self,
     ) -> windows_core::Result<super::super::HorizontalAlignment> {
@@ -17893,6 +18833,27 @@ impl ToggleButton {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetVerticalContentAlignment)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn BorderThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBorderThickness(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -18440,6 +19401,27 @@ impl ToggleButton {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
@@ -18511,6 +19493,75 @@ impl ToggleButton {
         let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: super::super::Thickness) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<super::super::Thickness> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(
+        &self,
+        value: super::super::Thickness,
+    ) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<super::super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )

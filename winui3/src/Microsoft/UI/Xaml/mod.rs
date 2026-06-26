@@ -1082,6 +1082,27 @@ impl FrameworkElement {
             .ok()
         }
     }
+    pub fn Margin(&self) -> windows_core::Result<Thickness> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Margin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMargin(&self, value: Thickness) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn Name(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = self;
         unsafe {
@@ -1153,6 +1174,69 @@ impl FrameworkElement {
         let this = self;
         unsafe {
             (windows_core::Interface::vtable(this).SetAllowFocusOnInteraction)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualMargin(&self) -> windows_core::Result<Thickness> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualMargin(&self, value: Thickness) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualMargin)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<Thickness> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualSecondaryThickness(&self, value: Thickness) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryThickness)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<Thickness> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryThickness)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetFocusVisualPrimaryThickness(&self, value: Thickness) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
             )
@@ -4373,6 +4457,8 @@ pub trait IFrameworkElement_Impl: windows_core::IUnknownImpl {
     fn SetHorizontalAlignment(&self, value: HorizontalAlignment) -> windows_core::Result<()>;
     fn VerticalAlignment(&self) -> windows_core::Result<VerticalAlignment>;
     fn SetVerticalAlignment(&self, value: VerticalAlignment) -> windows_core::Result<()>;
+    fn Margin(&self) -> windows_core::Result<Thickness>;
+    fn SetMargin(&self, value: &Thickness) -> windows_core::Result<()>;
     fn Name(&self) -> windows_core::Result<windows_core::HSTRING>;
     fn SetName(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
     fn BaseUri(&self) -> windows_core::Result<windows::Foundation::Uri>;
@@ -4383,6 +4469,12 @@ pub trait IFrameworkElement_Impl: windows_core::IUnknownImpl {
     ) -> windows_core::Result<()>;
     fn AllowFocusOnInteraction(&self) -> windows_core::Result<bool>;
     fn SetAllowFocusOnInteraction(&self, value: bool) -> windows_core::Result<()>;
+    fn FocusVisualMargin(&self) -> windows_core::Result<Thickness>;
+    fn SetFocusVisualMargin(&self, value: &Thickness) -> windows_core::Result<()>;
+    fn FocusVisualSecondaryThickness(&self) -> windows_core::Result<Thickness>;
+    fn SetFocusVisualSecondaryThickness(&self, value: &Thickness) -> windows_core::Result<()>;
+    fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<Thickness>;
+    fn SetFocusVisualPrimaryThickness(&self, value: &Thickness) -> windows_core::Result<()>;
     fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool>;
     fn SetAllowFocusWhenDisabled(&self, value: bool) -> windows_core::Result<()>;
     fn Parent(&self) -> windows_core::Result<DependencyObject>;
@@ -4803,6 +4895,35 @@ impl IFrameworkElement_Vtbl {
                 IFrameworkElement_Impl::SetVerticalAlignment(this, value).into()
             }
         }
+        unsafe extern "system" fn Margin<Identity: IFrameworkElement_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::Margin(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMargin<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetMargin(this, core::mem::transmute(&value)).into()
+            }
+        }
         unsafe extern "system" fn Name<Identity: IFrameworkElement_Impl, const OFFSET: isize>(
             this: *mut core::ffi::c_void,
             result__: *mut *mut core::ffi::c_void,
@@ -4911,6 +5032,111 @@ impl IFrameworkElement_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 IFrameworkElement_Impl::SetAllowFocusOnInteraction(this, value).into()
+            }
+        }
+        unsafe extern "system" fn FocusVisualMargin<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::FocusVisualMargin(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetFocusVisualMargin<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetFocusVisualMargin(this, core::mem::transmute(&value))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn FocusVisualSecondaryThickness<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::FocusVisualSecondaryThickness(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetFocusVisualSecondaryThickness<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetFocusVisualSecondaryThickness(
+                    this,
+                    core::mem::transmute(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn FocusVisualPrimaryThickness<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::FocusVisualPrimaryThickness(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetFocusVisualPrimaryThickness<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: Thickness,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetFocusVisualPrimaryThickness(
+                    this,
+                    core::mem::transmute(&value),
+                )
+                .into()
             }
         }
         unsafe extern "system" fn AllowFocusWhenDisabled<
@@ -5233,8 +5459,8 @@ impl IFrameworkElement_Vtbl {
             SetHorizontalAlignment: SetHorizontalAlignment::<Identity, OFFSET>,
             VerticalAlignment: VerticalAlignment::<Identity, OFFSET>,
             SetVerticalAlignment: SetVerticalAlignment::<Identity, OFFSET>,
-            Margin: 0,
-            SetMargin: 0,
+            Margin: Margin::<Identity, OFFSET>,
+            SetMargin: SetMargin::<Identity, OFFSET>,
             Name: Name::<Identity, OFFSET>,
             SetName: SetName::<Identity, OFFSET>,
             BaseUri: BaseUri::<Identity, OFFSET>,
@@ -5242,12 +5468,12 @@ impl IFrameworkElement_Vtbl {
             SetDataContext: SetDataContext::<Identity, OFFSET>,
             AllowFocusOnInteraction: AllowFocusOnInteraction::<Identity, OFFSET>,
             SetAllowFocusOnInteraction: SetAllowFocusOnInteraction::<Identity, OFFSET>,
-            FocusVisualMargin: 0,
-            SetFocusVisualMargin: 0,
-            FocusVisualSecondaryThickness: 0,
-            SetFocusVisualSecondaryThickness: 0,
-            FocusVisualPrimaryThickness: 0,
-            SetFocusVisualPrimaryThickness: 0,
+            FocusVisualMargin: FocusVisualMargin::<Identity, OFFSET>,
+            SetFocusVisualMargin: SetFocusVisualMargin::<Identity, OFFSET>,
+            FocusVisualSecondaryThickness: FocusVisualSecondaryThickness::<Identity, OFFSET>,
+            SetFocusVisualSecondaryThickness: SetFocusVisualSecondaryThickness::<Identity, OFFSET>,
+            FocusVisualPrimaryThickness: FocusVisualPrimaryThickness::<Identity, OFFSET>,
+            SetFocusVisualPrimaryThickness: SetFocusVisualPrimaryThickness::<Identity, OFFSET>,
             FocusVisualSecondaryBrush: 0,
             SetFocusVisualSecondaryBrush: 0,
             FocusVisualPrimaryBrush: 0,
@@ -5358,8 +5584,10 @@ pub struct IFrameworkElement_Vtbl {
         *mut core::ffi::c_void,
         VerticalAlignment,
     ) -> windows_core::HRESULT,
-    Margin: usize,
-    SetMargin: usize,
+    pub Margin:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut Thickness) -> windows_core::HRESULT,
+    pub SetMargin:
+        unsafe extern "system" fn(*mut core::ffi::c_void, Thickness) -> windows_core::HRESULT,
     pub Name: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut *mut core::ffi::c_void,
@@ -5384,12 +5612,18 @@ pub struct IFrameworkElement_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetAllowFocusOnInteraction:
         unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
-    FocusVisualMargin: usize,
-    SetFocusVisualMargin: usize,
-    FocusVisualSecondaryThickness: usize,
-    SetFocusVisualSecondaryThickness: usize,
-    FocusVisualPrimaryThickness: usize,
-    SetFocusVisualPrimaryThickness: usize,
+    pub FocusVisualMargin:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut Thickness) -> windows_core::HRESULT,
+    pub SetFocusVisualMargin:
+        unsafe extern "system" fn(*mut core::ffi::c_void, Thickness) -> windows_core::HRESULT,
+    pub FocusVisualSecondaryThickness:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut Thickness) -> windows_core::HRESULT,
+    pub SetFocusVisualSecondaryThickness:
+        unsafe extern "system" fn(*mut core::ffi::c_void, Thickness) -> windows_core::HRESULT,
+    pub FocusVisualPrimaryThickness:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut Thickness) -> windows_core::HRESULT,
+    pub SetFocusVisualPrimaryThickness:
+        unsafe extern "system" fn(*mut core::ffi::c_void, Thickness) -> windows_core::HRESULT,
     FocusVisualSecondaryBrush: usize,
     SetFocusVisualSecondaryBrush: usize,
     FocusVisualPrimaryBrush: usize,
@@ -11349,6 +11583,22 @@ impl windows_core::TypeKind for TextWrapping {
 impl windows_core::RuntimeType for TextWrapping {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.TextWrapping;i4)");
+}
+#[repr(C)]
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+pub struct Thickness {
+    pub Left: f64,
+    pub Top: f64,
+    pub Right: f64,
+    pub Bottom: f64,
+}
+impl windows_core::TypeKind for Thickness {
+    type TypeKind = windows_core::CopyType;
+}
+impl windows_core::RuntimeType for Thickness {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(
+        b"struct(Microsoft.UI.Xaml.Thickness;f8;f8;f8;f8)",
+    );
 }
 #[cfg(feature = "UI_Composition")]
 #[repr(transparent)]
