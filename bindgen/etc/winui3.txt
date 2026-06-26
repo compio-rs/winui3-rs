@@ -74,12 +74,15 @@
     Microsoft.UI.Xaml.DispatcherShutdownMode
     Microsoft.UI.Xaml.FrameworkElement
     Microsoft.UI.Xaml.FocusVisualKind
+    Microsoft.UI.Xaml.GridLength
+    Microsoft.UI.Xaml.GridUnitType
     Microsoft.UI.Xaml.HorizontalAlignment
     Microsoft.UI.Xaml.LaunchActivatedEventArgs
     Microsoft.UI.Xaml.ResourceDictionary
     Microsoft.UI.Xaml.ResourceManagerRequestedEventArgs
     Microsoft.UI.Xaml.RoutedEventArgs
     Microsoft.UI.Xaml.RoutedEventHandler
+    Microsoft.UI.Xaml.Style
     Microsoft.UI.Xaml.TextAlignment
     Microsoft.UI.Xaml.TextWrapping
     Microsoft.UI.Xaml.Thickness
@@ -90,12 +93,15 @@
     Microsoft.UI.Xaml.Window
     Microsoft.UI.Xaml.XamlRoot
 
+    Microsoft.UI.Xaml.Controls.BackgroundSizing
     Microsoft.UI.Xaml.Controls.Button
     Microsoft.UI.Xaml.Controls.Canvas
     Microsoft.UI.Xaml.Controls.CheckBox
     Microsoft.UI.Xaml.Controls.ComboBox
     Microsoft.UI.Xaml.Controls.ComboBoxItem
     Microsoft.UI.Xaml.Controls.ComboBoxTextSubmittedEventArgs
+    Microsoft.UI.Xaml.Controls.ColumnDefinition
+    Microsoft.UI.Xaml.Controls.ColumnDefinitionCollection
     Microsoft.UI.Xaml.Controls.ContentControl
     Microsoft.UI.Xaml.Controls.ContentDialog
     Microsoft.UI.Xaml.Controls.ContentDialogButton
@@ -119,6 +125,8 @@
     Microsoft.UI.Xaml.Controls.PasswordBox
     Microsoft.UI.Xaml.Controls.ProgressBar
     Microsoft.UI.Xaml.Controls.RadioButton
+    Microsoft.UI.Xaml.Controls.RowDefinition
+    Microsoft.UI.Xaml.Controls.RowDefinitionCollection
     Microsoft.UI.Xaml.Controls.ScrollBarVisibility
     Microsoft.UI.Xaml.Controls.ScrollViewer
     Microsoft.UI.Xaml.Controls.SelectionChangedEventArgs
@@ -156,6 +164,7 @@
     Microsoft.UI.Xaml.Input.PointerEventHandler
     Microsoft.UI.Xaml.Input.PointerRoutedEventArgs
 
+    Microsoft.UI.Xaml.Media.Brush
     Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop
     Microsoft.UI.Xaml.Media.MicaBackdrop
     Microsoft.UI.Xaml.Media.Stretch
