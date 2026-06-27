@@ -1235,6 +1235,44 @@ pub struct IXamlBindingHelperStatics_Vtbl {
     SetPropertyFromObject: usize,
 }
 windows_core::imp::define_interface!(
+    IXamlBindingHelperStatics2,
+    IXamlBindingHelperStatics2_Vtbl,
+    0xc02650dc_4da5_5ddf_aae2_8445e987f4c4
+);
+impl windows_core::RuntimeType for IXamlBindingHelperStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IXamlBindingHelperStatics2 {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Markup.IXamlBindingHelperStatics2";
+}
+pub trait IXamlBindingHelperStatics2_Impl: windows_core::IUnknownImpl {}
+impl IXamlBindingHelperStatics2_Vtbl {
+    pub const fn new<Identity: IXamlBindingHelperStatics2_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<
+                Identity,
+                IXamlBindingHelperStatics2,
+                OFFSET,
+            >(),
+            SetPropertyFromThickness: 0,
+            SetPropertyFromCornerRadius: 0,
+            SetPropertyFromColor: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IXamlBindingHelperStatics2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IXamlBindingHelperStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    SetPropertyFromThickness: usize,
+    SetPropertyFromCornerRadius: usize,
+    SetPropertyFromColor: usize,
+}
+windows_core::imp::define_interface!(
     IXamlCondition,
     IXamlCondition_Vtbl,
     0x9124118d_cdfa_545f_8c12_4cf7bcc5fffa
@@ -3079,6 +3117,18 @@ impl XamlBindingHelper {
         static SHARED: windows_core::imp::FactoryCache<
             XamlBindingHelper,
             IXamlBindingHelperStatics,
+        > = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IXamlBindingHelperStatics2<
+        R,
+        F: FnOnce(&IXamlBindingHelperStatics2) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<
+            XamlBindingHelper,
+            IXamlBindingHelperStatics2,
         > = windows_core::imp::FactoryCache::new();
         SHARED.call(callback)
     }

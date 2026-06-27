@@ -1243,6 +1243,58 @@ impl FrameworkElement {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = self;
         unsafe {
@@ -1260,6 +1312,30 @@ impl FrameworkElement {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -3154,6 +3230,35 @@ impl windows_core::RuntimeName for FrameworkElement {
 unsafe impl Send for FrameworkElement {}
 #[cfg(feature = "UI_Composition")]
 unsafe impl Sync for FrameworkElement {}
+#[repr(C)]
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
+pub struct GridLength {
+    pub Value: f64,
+    pub GridUnitType: GridUnitType,
+}
+impl windows_core::TypeKind for GridLength {
+    type TypeKind = windows_core::CopyType;
+}
+impl windows_core::RuntimeType for GridLength {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(
+        b"struct(Microsoft.UI.Xaml.GridLength;f8;enum(Microsoft.UI.Xaml.GridUnitType;i4))",
+    );
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct GridUnitType(pub i32);
+impl GridUnitType {
+    pub const Auto: Self = Self(0i32);
+    pub const Pixel: Self = Self(1i32);
+    pub const Star: Self = Self(2i32);
+}
+impl windows_core::TypeKind for GridUnitType {
+    type TypeKind = windows_core::CopyType;
+}
+impl windows_core::RuntimeType for GridUnitType {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.GridUnitType;i4)");
+}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct HorizontalAlignment(pub i32);
@@ -4421,11 +4526,11 @@ impl windows_core::RuntimeType for IFrameworkElement {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IFrameworkElement {
     const NAME: &'static str = "Microsoft.UI.Xaml.IFrameworkElement";
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait IFrameworkElement_Impl: windows_core::IUnknownImpl {
     fn Resources(&self) -> windows_core::Result<ResourceDictionary>;
     fn SetResources(
@@ -4475,8 +4580,20 @@ pub trait IFrameworkElement_Impl: windows_core::IUnknownImpl {
     fn SetFocusVisualSecondaryThickness(&self, value: &Thickness) -> windows_core::Result<()>;
     fn FocusVisualPrimaryThickness(&self) -> windows_core::Result<Thickness>;
     fn SetFocusVisualPrimaryThickness(&self, value: &Thickness) -> windows_core::Result<()>;
+    fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<Media::Brush>;
+    fn SetFocusVisualSecondaryBrush(
+        &self,
+        value: windows_core::Ref<Media::Brush>,
+    ) -> windows_core::Result<()>;
+    fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<Media::Brush>;
+    fn SetFocusVisualPrimaryBrush(
+        &self,
+        value: windows_core::Ref<Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool>;
     fn SetAllowFocusWhenDisabled(&self, value: bool) -> windows_core::Result<()>;
+    fn Style(&self) -> windows_core::Result<Style>;
+    fn SetStyle(&self, value: windows_core::Ref<Style>) -> windows_core::Result<()>;
     fn Parent(&self) -> windows_core::Result<DependencyObject>;
     fn IsLoaded(&self) -> windows_core::Result<bool>;
     fn Loaded(&self, handler: windows_core::Ref<RoutedEventHandler>) -> windows_core::Result<i64>;
@@ -4511,7 +4628,7 @@ pub trait IFrameworkElement_Impl: windows_core::IUnknownImpl {
         name: &windows_core::HSTRING,
     ) -> windows_core::Result<windows_core::IInspectable>;
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl IFrameworkElement_Vtbl {
     pub const fn new<Identity: IFrameworkElement_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn Resources<
@@ -5139,6 +5256,80 @@ impl IFrameworkElement_Vtbl {
                 .into()
             }
         }
+        unsafe extern "system" fn FocusVisualSecondaryBrush<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::FocusVisualSecondaryBrush(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetFocusVisualSecondaryBrush<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetFocusVisualSecondaryBrush(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn FocusVisualPrimaryBrush<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::FocusVisualPrimaryBrush(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetFocusVisualPrimaryBrush<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetFocusVisualPrimaryBrush(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
         unsafe extern "system" fn AllowFocusWhenDisabled<
             Identity: IFrameworkElement_Impl,
             const OFFSET: isize,
@@ -5169,6 +5360,36 @@ impl IFrameworkElement_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 IFrameworkElement_Impl::SetAllowFocusWhenDisabled(this, value).into()
+            }
+        }
+        unsafe extern "system" fn Style<Identity: IFrameworkElement_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFrameworkElement_Impl::Style(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetStyle<
+            Identity: IFrameworkElement_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFrameworkElement_Impl::SetStyle(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn Parent<Identity: IFrameworkElement_Impl, const OFFSET: isize>(
@@ -5474,14 +5695,14 @@ impl IFrameworkElement_Vtbl {
             SetFocusVisualSecondaryThickness: SetFocusVisualSecondaryThickness::<Identity, OFFSET>,
             FocusVisualPrimaryThickness: FocusVisualPrimaryThickness::<Identity, OFFSET>,
             SetFocusVisualPrimaryThickness: SetFocusVisualPrimaryThickness::<Identity, OFFSET>,
-            FocusVisualSecondaryBrush: 0,
-            SetFocusVisualSecondaryBrush: 0,
-            FocusVisualPrimaryBrush: 0,
-            SetFocusVisualPrimaryBrush: 0,
+            FocusVisualSecondaryBrush: FocusVisualSecondaryBrush::<Identity, OFFSET>,
+            SetFocusVisualSecondaryBrush: SetFocusVisualSecondaryBrush::<Identity, OFFSET>,
+            FocusVisualPrimaryBrush: FocusVisualPrimaryBrush::<Identity, OFFSET>,
+            SetFocusVisualPrimaryBrush: SetFocusVisualPrimaryBrush::<Identity, OFFSET>,
             AllowFocusWhenDisabled: AllowFocusWhenDisabled::<Identity, OFFSET>,
             SetAllowFocusWhenDisabled: SetAllowFocusWhenDisabled::<Identity, OFFSET>,
-            Style: 0,
-            SetStyle: 0,
+            Style: Style::<Identity, OFFSET>,
+            SetStyle: SetStyle::<Identity, OFFSET>,
             Parent: Parent::<Identity, OFFSET>,
             FlowDirection: 0,
             SetFlowDirection: 0,
@@ -5624,16 +5845,46 @@ pub struct IFrameworkElement_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut Thickness) -> windows_core::HRESULT,
     pub SetFocusVisualPrimaryThickness:
         unsafe extern "system" fn(*mut core::ffi::c_void, Thickness) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub FocusVisualSecondaryBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     FocusVisualSecondaryBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetFocusVisualSecondaryBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetFocusVisualSecondaryBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub FocusVisualPrimaryBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     FocusVisualPrimaryBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetFocusVisualPrimaryBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetFocusVisualPrimaryBrush: usize,
     pub AllowFocusWhenDisabled:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetAllowFocusWhenDisabled:
         unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
-    Style: usize,
-    SetStyle: usize,
+    pub Style: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     pub Parent: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut *mut core::ffi::c_void,
@@ -6593,6 +6844,206 @@ pub struct IRoutedEventArgsFactory_Vtbl {
         *mut core::ffi::c_void,
         *mut core::ffi::c_void,
         *mut *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IStyle, IStyle_Vtbl, 0x65e1d164_572f_5b0e_a80f_9c02441fac49);
+impl windows_core::RuntimeType for IStyle {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IStyle {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IStyle";
+}
+pub trait IStyle_Impl: windows_core::IUnknownImpl {
+    fn IsSealed(&self) -> windows_core::Result<bool>;
+    fn TargetType(&self) -> windows_core::Result<crate::Windows::UI::Xaml::Interop::TypeName>;
+    fn SetTargetType(
+        &self,
+        value: &crate::Windows::UI::Xaml::Interop::TypeName,
+    ) -> windows_core::Result<()>;
+    fn BasedOn(&self) -> windows_core::Result<Style>;
+    fn SetBasedOn(&self, value: windows_core::Ref<Style>) -> windows_core::Result<()>;
+    fn Seal(&self) -> windows_core::Result<()>;
+}
+impl IStyle_Vtbl {
+    pub const fn new<Identity: IStyle_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn IsSealed<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut bool,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStyle_Impl::IsSealed(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TargetType<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStyle_Impl::TargetType(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetTargetType<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IStyle_Impl::SetTargetType(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn BasedOn<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStyle_Impl::BasedOn(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBasedOn<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IStyle_Impl::SetBasedOn(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn Seal<Identity: IStyle_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IStyle_Impl::Seal(this).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IStyle, OFFSET>(),
+            IsSealed: IsSealed::<Identity, OFFSET>,
+            Setters: 0,
+            TargetType: TargetType::<Identity, OFFSET>,
+            SetTargetType: SetTargetType::<Identity, OFFSET>,
+            BasedOn: BasedOn::<Identity, OFFSET>,
+            SetBasedOn: SetBasedOn::<Identity, OFFSET>,
+            Seal: Seal::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IStyle as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IStyle_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub IsSealed:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    Setters: usize,
+    pub TargetType: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
+    ) -> windows_core::HRESULT,
+    pub SetTargetType: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
+    ) -> windows_core::HRESULT,
+    pub BasedOn: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetBasedOn: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub Seal: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
+    IStyleFactory,
+    IStyleFactory_Vtbl,
+    0xc2d924a2_3862_517c_b083_9a9120d7302d
+);
+impl windows_core::RuntimeType for IStyleFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IStyleFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.IStyleFactory";
+}
+pub trait IStyleFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstance(
+        &self,
+        targetType: &crate::Windows::UI::Xaml::Interop::TypeName,
+    ) -> windows_core::Result<Style>;
+}
+impl IStyleFactory_Vtbl {
+    pub const fn new<Identity: IStyleFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstance<
+            Identity: IStyleFactory_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            targettype: core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStyleFactory_Impl::CreateInstance(this, core::mem::transmute(&targettype)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IStyleFactory, OFFSET>(),
+            CreateInstance: CreateInstance::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IStyleFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IStyleFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub CreateInstance: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        core::mem::MaybeUninit<crate::Windows::UI::Xaml::Interop::TypeName>,
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
@@ -11550,6 +12001,147 @@ impl<
         }
     }
 }
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Style(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(Style, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(Style, DependencyObject);
+impl Style {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<
+        R,
+        F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Style, windows_core::imp::IGenericFactory> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn IsSealed(&self) -> windows_core::Result<bool> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsSealed)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn TargetType(&self) -> windows_core::Result<crate::Windows::UI::Xaml::Interop::TypeName> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).TargetType)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn SetTargetType(
+        &self,
+        value: &crate::Windows::UI::Xaml::Interop::TypeName,
+    ) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTargetType)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(value),
+            )
+            .ok()
+        }
+    }
+    pub fn BasedOn(&self) -> windows_core::Result<Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BasedOn)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetBasedOn<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBasedOn)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn Seal(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Seal)(windows_core::Interface::as_raw(this)).ok()
+        }
+    }
+    pub fn CreateInstance(
+        targettype: &crate::Windows::UI::Xaml::Interop::TypeName,
+    ) -> windows_core::Result<Style> {
+        Self::IStyleFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstance)(
+                windows_core::Interface::as_raw(this),
+                core::mem::transmute_copy(targettype),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
+    fn IStyleFactory<R, F: FnOnce(&IStyleFactory) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Style, IStyleFactory> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for Style {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IStyle>();
+}
+unsafe impl windows_core::Interface for Style {
+    type Vtable = <IStyle as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IStyle as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for Style {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Style";
+}
+unsafe impl Send for Style {}
+unsafe impl Sync for Style {}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct TextAlignment(pub i32);

@@ -10,6 +10,21 @@
 
 #[cfg(feature = "UI_Xaml_Controls_Primitives")]
 pub mod Primitives;
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct BackgroundSizing(pub i32);
+impl BackgroundSizing {
+    pub const InnerBorderEdge: Self = Self(0i32);
+    pub const OuterBorderEdge: Self = Self(1i32);
+}
+impl windows_core::TypeKind for BackgroundSizing {
+    type TypeKind = windows_core::CopyType;
+}
+impl windows_core::RuntimeType for BackgroundSizing {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(
+        b"enum(Microsoft.UI.Xaml.Controls.BackgroundSizing;i4)",
+    );
+}
 #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -318,6 +333,32 @@ impl Button {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -429,6 +470,53 @@ impl Button {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -446,6 +534,32 @@ impl Button {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -1158,6 +1272,58 @@ impl Button {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -1175,6 +1341,30 @@ impl Button {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -3618,6 +3808,58 @@ impl Canvas {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -3635,6 +3877,30 @@ impl Canvas {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -3915,6 +4181,32 @@ impl Canvas {
                 &mut result__,
             )
             .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn IsItemsHost(&self) -> windows_core::Result<bool> {
@@ -5844,6 +6136,32 @@ impl CheckBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -5955,6 +6273,53 @@ impl CheckBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -5972,6 +6337,32 @@ impl CheckBox {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -6684,6 +7075,58 @@ impl CheckBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -6701,6 +7144,30 @@ impl CheckBox {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -8695,6 +9162,361 @@ impl windows_core::RuntimeName for CheckBox {
 unsafe impl Send for CheckBox {}
 #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
 unsafe impl Sync for CheckBox {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ColumnDefinition(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    ColumnDefinition,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+windows_core::imp::required_hierarchy!(ColumnDefinition, super::DependencyObject);
+impl ColumnDefinition {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<
+        R,
+        F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<
+            ColumnDefinition,
+            windows_core::imp::IGenericFactory,
+        > = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Width(&self) -> windows_core::Result<super::GridLength> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Width)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetWidth(&self, value: super::GridLength) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MaxWidth(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MaxWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMaxWidth(&self, value: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMaxWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MinWidth(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MinWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMinWidth(&self, value: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMinWidth)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn ActualWidth(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualWidth)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(
+        &self,
+    ) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    fn IColumnDefinitionStatics<
+        R,
+        F: FnOnce(&IColumnDefinitionStatics) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<ColumnDefinition, IColumnDefinitionStatics> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for ColumnDefinition {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IColumnDefinition>();
+}
+unsafe impl windows_core::Interface for ColumnDefinition {
+    type Vtable = <IColumnDefinition as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IColumnDefinition as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ColumnDefinition {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.ColumnDefinition";
+}
+unsafe impl Send for ColumnDefinition {}
+unsafe impl Sync for ColumnDefinition {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ColumnDefinitionCollection(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    ColumnDefinitionCollection,
+    windows_core::IUnknown,
+    windows_core::IInspectable,
+    windows_collections::IVector<ColumnDefinition>
+);
+windows_core::imp::required_hierarchy!(
+    ColumnDefinitionCollection,
+    windows_collections::IIterable<ColumnDefinition>
+);
+impl ColumnDefinitionCollection {
+    pub fn First(&self) -> windows_core::Result<windows_collections::IIterator<ColumnDefinition>> {
+        let this = &windows_core::Interface::cast::<
+            windows_collections::IIterable<ColumnDefinition>,
+        >(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<ColumnDefinition> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Size)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn GetView(
+        &self,
+    ) -> windows_core::Result<windows_collections::IVectorView<ColumnDefinition>> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetView)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<ColumnDefinition>,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IndexOf)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+                index,
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<ColumnDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<ColumnDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).InsertAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+            )
+            .ok()
+        }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<ColumnDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Append)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAtEnd)(windows_core::Interface::as_raw(
+                this,
+            ))
+            .ok()
+        }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Clear)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    pub fn GetMany(
+        &self,
+        startindex: u32,
+        items: &mut [Option<ColumnDefinition>],
+    ) -> windows_core::Result<u32> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetMany)(
+                windows_core::Interface::as_raw(this),
+                startindex,
+                items.len().try_into().unwrap(),
+                core::mem::transmute_copy(&items),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn ReplaceAll(&self, items: &[Option<ColumnDefinition>]) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).ReplaceAll)(
+                windows_core::Interface::as_raw(this),
+                items.len().try_into().unwrap(),
+                core::mem::transmute(items.as_ptr()),
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeType for ColumnDefinitionCollection {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<
+        Self,
+        windows_collections::IVector<ColumnDefinition>,
+    >();
+}
+unsafe impl windows_core::Interface for ColumnDefinitionCollection {
+    type Vtable =
+        <windows_collections::IVector<ColumnDefinition> as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID =
+        <windows_collections::IVector<ColumnDefinition> as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ColumnDefinitionCollection {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.ColumnDefinitionCollection";
+}
+unsafe impl Send for ColumnDefinitionCollection {}
+unsafe impl Sync for ColumnDefinitionCollection {}
+impl IntoIterator for ColumnDefinitionCollection {
+    type Item = ColumnDefinition;
+    type IntoIter = windows_collections::IIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIterator::into_iter(&self)
+    }
+}
+impl IntoIterator for &ColumnDefinitionCollection {
+    type Item = ColumnDefinition;
+    type IntoIter = windows_collections::IIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        self.First().unwrap()
+    }
+}
 #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -8872,6 +9694,32 @@ impl ComboBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn PlaceholderForeground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PlaceholderForeground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetPlaceholderForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPlaceholderForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn Text(&self) -> windows_core::Result<windows_core::HSTRING> {
         let this = self;
         unsafe {
@@ -8889,6 +9737,30 @@ impl ComboBox {
             (windows_core::Interface::vtable(this).SetText)(
                 windows_core::Interface::as_raw(this),
                 core::mem::transmute_copy(value),
+            )
+            .ok()
+        }
+    }
+    pub fn TextBoxStyle(&self) -> windows_core::Result<super::Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).TextBoxStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetTextBoxStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetTextBoxStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -9182,6 +10054,32 @@ impl ComboBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -9293,6 +10191,53 @@ impl ComboBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -9310,6 +10255,32 @@ impl ComboBox {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -10022,6 +10993,58 @@ impl ComboBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -10039,6 +11062,30 @@ impl ComboBox {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -10437,6 +11484,30 @@ impl ComboBox {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    pub fn ItemContainerStyle(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetItemContainerStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsGrouping(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
         unsafe {
@@ -10539,6 +11610,25 @@ impl ComboBox {
             (windows_core::Interface::vtable(this).OnItemsChanged)(
                 windows_core::Interface::as_raw(this),
                 e.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn OnItemContainerStyleChanged<P0, P1>(
+        &self,
+        olditemcontainerstyle: P0,
+        newitemcontainerstyle: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+        P1: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<IItemsControlOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnItemContainerStyleChanged)(
+                windows_core::Interface::as_raw(this),
+                olditemcontainerstyle.param().abi(),
+                newitemcontainerstyle.param().abi(),
             )
             .ok()
         }
@@ -12528,6 +13618,32 @@ impl ComboBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -12639,6 +13755,53 @@ impl ComboBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -12656,6 +13819,32 @@ impl ComboBoxItem {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -13368,6 +14557,58 @@ impl ComboBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -13385,6 +14626,30 @@ impl ComboBoxItem {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -15568,6 +16833,32 @@ impl ContentControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -15679,6 +16970,53 @@ impl ContentControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -15696,6 +17034,32 @@ impl ContentControl {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -16408,6 +17772,58 @@ impl ContentControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -16425,6 +17841,30 @@ impl ContentControl {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -18606,6 +20046,78 @@ impl ContentDialog {
             .ok()
         }
     }
+    pub fn PrimaryButtonStyle(&self) -> windows_core::Result<super::Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PrimaryButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetPrimaryButtonStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPrimaryButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn SecondaryButtonStyle(&self) -> windows_core::Result<super::Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).SecondaryButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetSecondaryButtonStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetSecondaryButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn CloseButtonStyle(&self) -> windows_core::Result<super::Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CloseButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetCloseButtonStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetCloseButtonStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn DefaultButton(&self) -> windows_core::Result<ContentDialogButton> {
         let this = self;
         unsafe {
@@ -18962,6 +20474,32 @@ impl ContentDialog {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -19073,6 +20611,53 @@ impl ContentDialog {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -19090,6 +20675,32 @@ impl ContentDialog {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -19802,6 +21413,58 @@ impl ContentDialog {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -19819,6 +21482,30 @@ impl ContentDialog {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -22104,6 +23791,32 @@ impl Control {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = self;
         unsafe {
@@ -22215,6 +23928,53 @@ impl Control {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = self;
         unsafe {
@@ -22232,6 +23992,32 @@ impl Control {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -23010,6 +24796,58 @@ impl Control {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -23027,6 +24865,30 @@ impl Control {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -25377,6 +27239,58 @@ impl Grid {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -25394,6 +27308,30 @@ impl Grid {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -25665,6 +27603,75 @@ impl Grid {
             .ok()
         }
     }
+    pub fn RowDefinitions(&self) -> windows_core::Result<RowDefinitionCollection> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RowDefinitions)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn ColumnDefinitions(&self) -> windows_core::Result<ColumnDefinitionCollection> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ColumnDefinitions)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = self;
         unsafe {
@@ -25878,6 +27885,32 @@ impl Grid {
                 &mut result__,
             )
             .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn IsItemsHost(&self) -> windows_core::Result<bool> {
@@ -27794,6 +29827,32 @@ impl HyperlinkButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -27905,6 +29964,53 @@ impl HyperlinkButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -27922,6 +30028,32 @@ impl HyperlinkButton {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -28634,6 +30766,58 @@ impl HyperlinkButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -28651,6 +30835,30 @@ impl HyperlinkButton {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -31102,6 +33310,217 @@ pub struct ICheckBoxFactory_Vtbl {
     CreateInstance: usize,
 }
 windows_core::imp::define_interface!(
+    IColumnDefinition,
+    IColumnDefinition_Vtbl,
+    0x454cea14_87ec_5890_bb62_f1d82a94758e
+);
+impl windows_core::RuntimeType for IColumnDefinition {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IColumnDefinition {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IColumnDefinition";
+}
+pub trait IColumnDefinition_Impl: windows_core::IUnknownImpl {
+    fn Width(&self) -> windows_core::Result<super::GridLength>;
+    fn SetWidth(&self, value: &super::GridLength) -> windows_core::Result<()>;
+    fn MaxWidth(&self) -> windows_core::Result<f64>;
+    fn SetMaxWidth(&self, value: f64) -> windows_core::Result<()>;
+    fn MinWidth(&self) -> windows_core::Result<f64>;
+    fn SetMinWidth(&self, value: f64) -> windows_core::Result<()>;
+    fn ActualWidth(&self) -> windows_core::Result<f64>;
+}
+impl IColumnDefinition_Vtbl {
+    pub const fn new<Identity: IColumnDefinition_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Width<Identity: IColumnDefinition_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut super::GridLength,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IColumnDefinition_Impl::Width(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: super::GridLength,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IColumnDefinition_Impl::SetWidth(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn MaxWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IColumnDefinition_Impl::MaxWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMaxWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IColumnDefinition_Impl::SetMaxWidth(this, value).into()
+            }
+        }
+        unsafe extern "system" fn MinWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IColumnDefinition_Impl::MinWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMinWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IColumnDefinition_Impl::SetMinWidth(this, value).into()
+            }
+        }
+        unsafe extern "system" fn ActualWidth<
+            Identity: IColumnDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IColumnDefinition_Impl::ActualWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IColumnDefinition, OFFSET>(),
+            Width: Width::<Identity, OFFSET>,
+            SetWidth: SetWidth::<Identity, OFFSET>,
+            MaxWidth: MaxWidth::<Identity, OFFSET>,
+            SetMaxWidth: SetMaxWidth::<Identity, OFFSET>,
+            MinWidth: MinWidth::<Identity, OFFSET>,
+            SetMinWidth: SetMinWidth::<Identity, OFFSET>,
+            ActualWidth: ActualWidth::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IColumnDefinition as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IColumnDefinition_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Width: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut super::GridLength,
+    ) -> windows_core::HRESULT,
+    pub SetWidth: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        super::GridLength,
+    ) -> windows_core::HRESULT,
+    pub MaxWidth:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetMaxWidth:
+        unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    pub MinWidth:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetMinWidth:
+        unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    pub ActualWidth:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
+    IColumnDefinitionStatics,
+    IColumnDefinitionStatics_Vtbl,
+    0xaba4b755_ca63_5ed7_ae31_45f9f91920b0
+);
+impl windows_core::RuntimeType for IColumnDefinitionStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IColumnDefinitionStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IColumnDefinitionStatics";
+}
+pub trait IColumnDefinitionStatics_Impl: windows_core::IUnknownImpl {}
+impl IColumnDefinitionStatics_Vtbl {
+    pub const fn new<Identity: IColumnDefinitionStatics_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<
+                Identity,
+                IColumnDefinitionStatics,
+                OFFSET,
+            >(),
+            WidthProperty: 0,
+            MaxWidthProperty: 0,
+            MinWidthProperty: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IColumnDefinitionStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IColumnDefinitionStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    WidthProperty: usize,
+    MaxWidthProperty: usize,
+    MinWidthProperty: usize,
+}
+windows_core::imp::define_interface!(
     IComboBox,
     IComboBox_Vtbl,
     0xc77da58b_4fd7_51e0_a431_f84658a83e9e
@@ -31110,11 +33529,19 @@ impl windows_core::RuntimeType for IComboBox {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Xaml_Controls_Primitives",
+    feature = "UI_Xaml_Media"
+))]
 impl windows_core::RuntimeName for IComboBox {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IComboBox";
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Xaml_Controls_Primitives",
+    feature = "UI_Xaml_Media"
+))]
 pub trait IComboBox_Impl: windows_core::IUnknownImpl {
     fn IsDropDownOpen(&self) -> windows_core::Result<bool>;
     fn SetIsDropDownOpen(&self, value: bool) -> windows_core::Result<()>;
@@ -31133,8 +33560,15 @@ pub trait IComboBox_Impl: windows_core::IUnknownImpl {
     fn SetPlaceholderText(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
     fn IsTextSearchEnabled(&self) -> windows_core::Result<bool>;
     fn SetIsTextSearchEnabled(&self, value: bool) -> windows_core::Result<()>;
+    fn PlaceholderForeground(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetPlaceholderForeground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn Text(&self) -> windows_core::Result<windows_core::HSTRING>;
     fn SetText(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn TextBoxStyle(&self) -> windows_core::Result<super::Style>;
+    fn SetTextBoxStyle(&self, value: windows_core::Ref<super::Style>) -> windows_core::Result<()>;
     fn Description(&self) -> windows_core::Result<windows_core::IInspectable>;
     fn SetDescription(
         &self,
@@ -31158,7 +33592,11 @@ pub trait IComboBox_Impl: windows_core::IUnknownImpl {
     ) -> windows_core::Result<i64>;
     fn RemoveTextSubmitted(&self, token: i64) -> windows_core::Result<()>;
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
+#[cfg(all(
+    feature = "UI_Composition",
+    feature = "UI_Xaml_Controls_Primitives",
+    feature = "UI_Xaml_Media"
+))]
 impl IComboBox_Vtbl {
     pub const fn new<Identity: IComboBox_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn IsDropDownOpen<Identity: IComboBox_Impl, const OFFSET: isize>(
@@ -31376,6 +33814,40 @@ impl IComboBox_Vtbl {
                 IComboBox_Impl::SetIsTextSearchEnabled(this, value).into()
             }
         }
+        unsafe extern "system" fn PlaceholderForeground<
+            Identity: IComboBox_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IComboBox_Impl::PlaceholderForeground(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPlaceholderForeground<
+            Identity: IComboBox_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IComboBox_Impl::SetPlaceholderForeground(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
         unsafe extern "system" fn Text<Identity: IComboBox_Impl, const OFFSET: isize>(
             this: *mut core::ffi::c_void,
             result__: *mut *mut core::ffi::c_void,
@@ -31401,6 +33873,33 @@ impl IComboBox_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 IComboBox_Impl::SetText(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn TextBoxStyle<Identity: IComboBox_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IComboBox_Impl::TextBoxStyle(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetTextBoxStyle<Identity: IComboBox_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IComboBox_Impl::SetTextBoxStyle(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn Description<Identity: IComboBox_Impl, const OFFSET: isize>(
@@ -31544,12 +34043,12 @@ impl IComboBox_Vtbl {
             SetIsTextSearchEnabled: SetIsTextSearchEnabled::<Identity, OFFSET>,
             SelectionChangedTrigger: 0,
             SetSelectionChangedTrigger: 0,
-            PlaceholderForeground: 0,
-            SetPlaceholderForeground: 0,
+            PlaceholderForeground: PlaceholderForeground::<Identity, OFFSET>,
+            SetPlaceholderForeground: SetPlaceholderForeground::<Identity, OFFSET>,
             Text: Text::<Identity, OFFSET>,
             SetText: SetText::<Identity, OFFSET>,
-            TextBoxStyle: 0,
-            SetTextBoxStyle: 0,
+            TextBoxStyle: TextBoxStyle::<Identity, OFFSET>,
+            SetTextBoxStyle: SetTextBoxStyle::<Identity, OFFSET>,
             Description: Description::<Identity, OFFSET>,
             SetDescription: SetDescription::<Identity, OFFSET>,
             DropDownClosed: DropDownClosed::<Identity, OFFSET>,
@@ -31614,7 +34113,19 @@ pub struct IComboBox_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
     SelectionChangedTrigger: usize,
     SetSelectionChangedTrigger: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub PlaceholderForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     PlaceholderForeground: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetPlaceholderForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetPlaceholderForeground: usize,
     pub Text: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -31624,8 +34135,14 @@ pub struct IComboBox_Vtbl {
         *mut core::ffi::c_void,
         *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
-    TextBoxStyle: usize,
-    SetTextBoxStyle: usize,
+    pub TextBoxStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetTextBoxStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     pub Description: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut *mut core::ffi::c_void,
@@ -32455,6 +34972,21 @@ pub trait IContentDialog_Impl: windows_core::IUnknownImpl {
     fn SetIsPrimaryButtonEnabled(&self, value: bool) -> windows_core::Result<()>;
     fn IsSecondaryButtonEnabled(&self) -> windows_core::Result<bool>;
     fn SetIsSecondaryButtonEnabled(&self, value: bool) -> windows_core::Result<()>;
+    fn PrimaryButtonStyle(&self) -> windows_core::Result<super::Style>;
+    fn SetPrimaryButtonStyle(
+        &self,
+        value: windows_core::Ref<super::Style>,
+    ) -> windows_core::Result<()>;
+    fn SecondaryButtonStyle(&self) -> windows_core::Result<super::Style>;
+    fn SetSecondaryButtonStyle(
+        &self,
+        value: windows_core::Ref<super::Style>,
+    ) -> windows_core::Result<()>;
+    fn CloseButtonStyle(&self) -> windows_core::Result<super::Style>;
+    fn SetCloseButtonStyle(
+        &self,
+        value: windows_core::Ref<super::Style>,
+    ) -> windows_core::Result<()>;
     fn DefaultButton(&self) -> windows_core::Result<ContentDialogButton>;
     fn SetDefaultButton(&self, value: ContentDialogButton) -> windows_core::Result<()>;
     fn Closing(
@@ -32844,6 +35376,111 @@ impl IContentDialog_Vtbl {
                 IContentDialog_Impl::SetIsSecondaryButtonEnabled(this, value).into()
             }
         }
+        unsafe extern "system" fn PrimaryButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IContentDialog_Impl::PrimaryButtonStyle(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPrimaryButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IContentDialog_Impl::SetPrimaryButtonStyle(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
+        unsafe extern "system" fn SecondaryButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IContentDialog_Impl::SecondaryButtonStyle(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSecondaryButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IContentDialog_Impl::SetSecondaryButtonStyle(
+                    this,
+                    core::mem::transmute_copy(&value),
+                )
+                .into()
+            }
+        }
+        unsafe extern "system" fn CloseButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IContentDialog_Impl::CloseButtonStyle(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCloseButtonStyle<
+            Identity: IContentDialog_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IContentDialog_Impl::SetCloseButtonStyle(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
         unsafe extern "system" fn DefaultButton<
             Identity: IContentDialog_Impl,
             const OFFSET: isize,
@@ -33116,12 +35753,12 @@ impl IContentDialog_Vtbl {
             SetIsPrimaryButtonEnabled: SetIsPrimaryButtonEnabled::<Identity, OFFSET>,
             IsSecondaryButtonEnabled: IsSecondaryButtonEnabled::<Identity, OFFSET>,
             SetIsSecondaryButtonEnabled: SetIsSecondaryButtonEnabled::<Identity, OFFSET>,
-            PrimaryButtonStyle: 0,
-            SetPrimaryButtonStyle: 0,
-            SecondaryButtonStyle: 0,
-            SetSecondaryButtonStyle: 0,
-            CloseButtonStyle: 0,
-            SetCloseButtonStyle: 0,
+            PrimaryButtonStyle: PrimaryButtonStyle::<Identity, OFFSET>,
+            SetPrimaryButtonStyle: SetPrimaryButtonStyle::<Identity, OFFSET>,
+            SecondaryButtonStyle: SecondaryButtonStyle::<Identity, OFFSET>,
+            SetSecondaryButtonStyle: SetSecondaryButtonStyle::<Identity, OFFSET>,
+            CloseButtonStyle: CloseButtonStyle::<Identity, OFFSET>,
+            SetCloseButtonStyle: SetCloseButtonStyle::<Identity, OFFSET>,
             DefaultButton: DefaultButton::<Identity, OFFSET>,
             SetDefaultButton: SetDefaultButton::<Identity, OFFSET>,
             Closing: Closing::<Identity, OFFSET>,
@@ -33225,12 +35862,30 @@ pub struct IContentDialog_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetIsSecondaryButtonEnabled:
         unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
-    PrimaryButtonStyle: usize,
-    SetPrimaryButtonStyle: usize,
-    SecondaryButtonStyle: usize,
-    SetSecondaryButtonStyle: usize,
-    CloseButtonStyle: usize,
-    SetCloseButtonStyle: usize,
+    pub PrimaryButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetPrimaryButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SecondaryButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetSecondaryButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub CloseButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetCloseButtonStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     pub DefaultButton: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut ContentDialogButton,
@@ -33798,9 +36453,11 @@ impl windows_core::RuntimeType for IControl {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IControl {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IControl";
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait IControl_Impl: windows_core::IUnknownImpl {
     fn IsFocusEngagementEnabled(&self) -> windows_core::Result<bool>;
     fn SetIsFocusEngagementEnabled(&self, value: bool) -> windows_core::Result<()>;
@@ -33816,6 +36473,11 @@ pub trait IControl_Impl: windows_core::IUnknownImpl {
     fn SetFontStretch(&self, value: windows::UI::Text::FontStretch) -> windows_core::Result<()>;
     fn CharacterSpacing(&self) -> windows_core::Result<i32>;
     fn SetCharacterSpacing(&self, value: i32) -> windows_core::Result<()>;
+    fn Foreground(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetForeground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool>;
     fn SetIsTextScaleFactorEnabled(&self, value: bool) -> windows_core::Result<()>;
     fn IsEnabled(&self) -> windows_core::Result<bool>;
@@ -33832,8 +36494,20 @@ pub trait IControl_Impl: windows_core::IUnknownImpl {
         &self,
         value: super::VerticalAlignment,
     ) -> windows_core::Result<()>;
+    fn Background(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetBackground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
+    fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing>;
+    fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()>;
     fn BorderThickness(&self) -> windows_core::Result<super::Thickness>;
     fn SetBorderThickness(&self, value: &super::Thickness) -> windows_core::Result<()>;
+    fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetBorderBrush(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn DefaultStyleResourceUri(&self) -> windows_core::Result<windows::Foundation::Uri>;
     fn SetDefaultStyleResourceUri(
         &self,
@@ -33845,6 +36519,7 @@ pub trait IControl_Impl: windows_core::IUnknownImpl {
     fn RemoveFocusEngagement(&self) -> windows_core::Result<()>;
     fn ApplyTemplate(&self) -> windows_core::Result<bool>;
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl IControl_Vtbl {
     pub const fn new<Identity: IControl_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn IsFocusEngagementEnabled<
@@ -34041,6 +36716,33 @@ impl IControl_Vtbl {
                 IControl_Impl::SetCharacterSpacing(this, value).into()
             }
         }
+        unsafe extern "system" fn Foreground<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IControl_Impl::Foreground(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetForeground<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControl_Impl::SetForeground(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
         unsafe extern "system" fn IsTextScaleFactorEnabled<
             Identity: IControl_Impl,
             const OFFSET: isize,
@@ -34189,6 +36891,62 @@ impl IControl_Vtbl {
                 IControl_Impl::SetVerticalContentAlignment(this, value).into()
             }
         }
+        unsafe extern "system" fn Background<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IControl_Impl::Background(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackground<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControl_Impl::SetBackground(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn BackgroundSizing<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IControl_Impl::BackgroundSizing(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackgroundSizing<
+            Identity: IControl_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControl_Impl::SetBackgroundSizing(this, value).into()
+            }
+        }
         unsafe extern "system" fn BorderThickness<Identity: IControl_Impl, const OFFSET: isize>(
             this: *mut core::ffi::c_void,
             result__: *mut super::Thickness,
@@ -34216,6 +36974,33 @@ impl IControl_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 IControl_Impl::SetBorderThickness(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn BorderBrush<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IControl_Impl::BorderBrush(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBorderBrush<Identity: IControl_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControl_Impl::SetBorderBrush(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn DefaultStyleResourceUri<
@@ -34339,8 +37124,8 @@ impl IControl_Vtbl {
             SetFontStretch: SetFontStretch::<Identity, OFFSET>,
             CharacterSpacing: CharacterSpacing::<Identity, OFFSET>,
             SetCharacterSpacing: SetCharacterSpacing::<Identity, OFFSET>,
-            Foreground: 0,
-            SetForeground: 0,
+            Foreground: Foreground::<Identity, OFFSET>,
+            SetForeground: SetForeground::<Identity, OFFSET>,
             IsTextScaleFactorEnabled: IsTextScaleFactorEnabled::<Identity, OFFSET>,
             SetIsTextScaleFactorEnabled: SetIsTextScaleFactorEnabled::<Identity, OFFSET>,
             IsEnabled: IsEnabled::<Identity, OFFSET>,
@@ -34355,14 +37140,14 @@ impl IControl_Vtbl {
             SetHorizontalContentAlignment: SetHorizontalContentAlignment::<Identity, OFFSET>,
             VerticalContentAlignment: VerticalContentAlignment::<Identity, OFFSET>,
             SetVerticalContentAlignment: SetVerticalContentAlignment::<Identity, OFFSET>,
-            Background: 0,
-            SetBackground: 0,
-            BackgroundSizing: 0,
-            SetBackgroundSizing: 0,
+            Background: Background::<Identity, OFFSET>,
+            SetBackground: SetBackground::<Identity, OFFSET>,
+            BackgroundSizing: BackgroundSizing::<Identity, OFFSET>,
+            SetBackgroundSizing: SetBackgroundSizing::<Identity, OFFSET>,
             BorderThickness: BorderThickness::<Identity, OFFSET>,
             SetBorderThickness: SetBorderThickness::<Identity, OFFSET>,
-            BorderBrush: 0,
-            SetBorderBrush: 0,
+            BorderBrush: BorderBrush::<Identity, OFFSET>,
+            SetBorderBrush: SetBorderBrush::<Identity, OFFSET>,
             DefaultStyleResourceUri: DefaultStyleResourceUri::<Identity, OFFSET>,
             SetDefaultStyleResourceUri: SetDefaultStyleResourceUri::<Identity, OFFSET>,
             ElementSoundMode: 0,
@@ -34431,7 +37216,19 @@ pub struct IControl_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
     pub SetCharacterSpacing:
         unsafe extern "system" fn(*mut core::ffi::c_void, i32) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub Foreground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     Foreground: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetForeground: usize,
     pub IsTextScaleFactorEnabled:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
@@ -34469,10 +37266,28 @@ pub struct IControl_Vtbl {
         *mut core::ffi::c_void,
         super::VerticalAlignment,
     ) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub Background: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     Background: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetBackground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetBackground: usize,
-    BackgroundSizing: usize,
-    SetBackgroundSizing: usize,
+    pub BackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut BackgroundSizing,
+    ) -> windows_core::HRESULT,
+    pub SetBackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        BackgroundSizing,
+    ) -> windows_core::HRESULT,
     pub BorderThickness: unsafe extern "system" fn(
         *mut core::ffi::c_void,
         *mut super::Thickness,
@@ -34481,7 +37296,19 @@ pub struct IControl_Vtbl {
         *mut core::ffi::c_void,
         super::Thickness,
     ) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub BorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     BorderBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetBorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetBorderBrush: usize,
     pub DefaultStyleResourceUri: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -35368,10 +38195,21 @@ impl windows_core::RuntimeType for IGrid {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IGrid {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IGrid";
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait IGrid_Impl: windows_core::IUnknownImpl {
+    fn RowDefinitions(&self) -> windows_core::Result<RowDefinitionCollection>;
+    fn ColumnDefinitions(&self) -> windows_core::Result<ColumnDefinitionCollection>;
+    fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing>;
+    fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()>;
+    fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetBorderBrush(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn BorderThickness(&self) -> windows_core::Result<super::Thickness>;
     fn SetBorderThickness(&self, value: &super::Thickness) -> windows_core::Result<()>;
     fn Padding(&self) -> windows_core::Result<super::Thickness>;
@@ -35381,8 +38219,96 @@ pub trait IGrid_Impl: windows_core::IUnknownImpl {
     fn ColumnSpacing(&self) -> windows_core::Result<f64>;
     fn SetColumnSpacing(&self, value: f64) -> windows_core::Result<()>;
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl IGrid_Vtbl {
     pub const fn new<Identity: IGrid_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn RowDefinitions<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGrid_Impl::RowDefinitions(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ColumnDefinitions<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGrid_Impl::ColumnDefinitions(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn BackgroundSizing<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGrid_Impl::BackgroundSizing(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackgroundSizing<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IGrid_Impl::SetBackgroundSizing(this, value).into()
+            }
+        }
+        unsafe extern "system" fn BorderBrush<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGrid_Impl::BorderBrush(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBorderBrush<Identity: IGrid_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IGrid_Impl::SetBorderBrush(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
         unsafe extern "system" fn BorderThickness<Identity: IGrid_Impl, const OFFSET: isize>(
             this: *mut core::ffi::c_void,
             result__: *mut super::Thickness,
@@ -35489,12 +38415,12 @@ impl IGrid_Vtbl {
         }
         Self {
             base__: windows_core::IInspectable_Vtbl::new::<Identity, IGrid, OFFSET>(),
-            RowDefinitions: 0,
-            ColumnDefinitions: 0,
-            BackgroundSizing: 0,
-            SetBackgroundSizing: 0,
-            BorderBrush: 0,
-            SetBorderBrush: 0,
+            RowDefinitions: RowDefinitions::<Identity, OFFSET>,
+            ColumnDefinitions: ColumnDefinitions::<Identity, OFFSET>,
+            BackgroundSizing: BackgroundSizing::<Identity, OFFSET>,
+            SetBackgroundSizing: SetBackgroundSizing::<Identity, OFFSET>,
+            BorderBrush: BorderBrush::<Identity, OFFSET>,
+            SetBorderBrush: SetBorderBrush::<Identity, OFFSET>,
             BorderThickness: BorderThickness::<Identity, OFFSET>,
             SetBorderThickness: SetBorderThickness::<Identity, OFFSET>,
             CornerRadius: 0,
@@ -35515,11 +38441,35 @@ impl IGrid_Vtbl {
 #[doc(hidden)]
 pub struct IGrid_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
-    RowDefinitions: usize,
-    ColumnDefinitions: usize,
-    BackgroundSizing: usize,
-    SetBackgroundSizing: usize,
+    pub RowDefinitions: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub ColumnDefinitions: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub BackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut BackgroundSizing,
+    ) -> windows_core::HRESULT,
+    pub SetBackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        BackgroundSizing,
+    ) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub BorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     BorderBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetBorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetBorderBrush: usize,
     pub BorderThickness: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -36424,6 +39374,11 @@ pub trait IItemsControl_Impl: windows_core::IUnknownImpl {
     fn DisplayMemberPath(&self) -> windows_core::Result<windows_core::HSTRING>;
     fn SetDisplayMemberPath(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
     fn ItemsPanelRoot(&self) -> windows_core::Result<Panel>;
+    fn ItemContainerStyle(&self) -> windows_core::Result<super::Style>;
+    fn SetItemContainerStyle(
+        &self,
+        value: windows_core::Ref<super::Style>,
+    ) -> windows_core::Result<()>;
     fn IsGrouping(&self) -> windows_core::Result<bool>;
     fn GroupHeaderContainerFromItemContainer(
         &self,
@@ -36533,6 +39488,40 @@ impl IItemsControl_Vtbl {
                 }
             }
         }
+        unsafe extern "system" fn ItemContainerStyle<
+            Identity: IItemsControl_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IItemsControl_Impl::ItemContainerStyle(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetItemContainerStyle<
+            Identity: IItemsControl_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IItemsControl_Impl::SetItemContainerStyle(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
         unsafe extern "system" fn IsGrouping<Identity: IItemsControl_Impl, const OFFSET: isize>(
             this: *mut core::ffi::c_void,
             result__: *mut bool,
@@ -36587,8 +39576,8 @@ impl IItemsControl_Vtbl {
             DisplayMemberPath: DisplayMemberPath::<Identity, OFFSET>,
             SetDisplayMemberPath: SetDisplayMemberPath::<Identity, OFFSET>,
             ItemsPanelRoot: ItemsPanelRoot::<Identity, OFFSET>,
-            ItemContainerStyle: 0,
-            SetItemContainerStyle: 0,
+            ItemContainerStyle: ItemContainerStyle::<Identity, OFFSET>,
+            SetItemContainerStyle: SetItemContainerStyle::<Identity, OFFSET>,
             ItemContainerStyleSelector: 0,
             SetItemContainerStyleSelector: 0,
             ItemContainerGenerator: 0,
@@ -36645,8 +39634,14 @@ pub struct IItemsControl_Vtbl {
     ) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Composition"))]
     ItemsPanelRoot: usize,
-    ItemContainerStyle: usize,
-    SetItemContainerStyle: usize,
+    pub ItemContainerStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    pub SetItemContainerStyle: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     ItemContainerStyleSelector: usize,
     SetItemContainerStyleSelector: usize,
     ItemContainerGenerator: usize,
@@ -36825,6 +39820,25 @@ impl IItemsControlOverrides {
             .ok()
         }
     }
+    pub fn OnItemContainerStyleChanged<P0, P1>(
+        &self,
+        olditemcontainerstyle: P0,
+        newitemcontainerstyle: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+        P1: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnItemContainerStyleChanged)(
+                windows_core::Interface::as_raw(this),
+                olditemcontainerstyle.param().abi(),
+                newitemcontainerstyle.param().abi(),
+            )
+            .ok()
+        }
+    }
 }
 impl windows_core::RuntimeName for IItemsControlOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IItemsControlOverrides";
@@ -36848,6 +39862,11 @@ pub trait IItemsControlOverrides_Impl: windows_core::IUnknownImpl {
     fn OnItemsChanged(
         &self,
         e: windows_core::Ref<windows_core::IInspectable>,
+    ) -> windows_core::Result<()>;
+    fn OnItemContainerStyleChanged(
+        &self,
+        oldItemContainerStyle: windows_core::Ref<super::Style>,
+        newItemContainerStyle: windows_core::Ref<super::Style>,
     ) -> windows_core::Result<()>;
 }
 impl IItemsControlOverrides_Vtbl {
@@ -36947,6 +39966,25 @@ impl IItemsControlOverrides_Vtbl {
                     .into()
             }
         }
+        unsafe extern "system" fn OnItemContainerStyleChanged<
+            Identity: IItemsControlOverrides_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            olditemcontainerstyle: *mut core::ffi::c_void,
+            newitemcontainerstyle: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IItemsControlOverrides_Impl::OnItemContainerStyleChanged(
+                    this,
+                    core::mem::transmute_copy(&olditemcontainerstyle),
+                    core::mem::transmute_copy(&newitemcontainerstyle),
+                )
+                .into()
+            }
+        }
         Self {
             base__: windows_core::IInspectable_Vtbl::new::<Identity, IItemsControlOverrides, OFFSET>(
             ),
@@ -36955,7 +39993,7 @@ impl IItemsControlOverrides_Vtbl {
             ClearContainerForItemOverride: ClearContainerForItemOverride::<Identity, OFFSET>,
             PrepareContainerForItemOverride: PrepareContainerForItemOverride::<Identity, OFFSET>,
             OnItemsChanged: OnItemsChanged::<Identity, OFFSET>,
-            OnItemContainerStyleChanged: 0,
+            OnItemContainerStyleChanged: OnItemContainerStyleChanged::<Identity, OFFSET>,
             OnItemContainerStyleSelectorChanged: 0,
             OnItemTemplateChanged: 0,
             OnItemTemplateSelectorChanged: 0,
@@ -36993,7 +40031,11 @@ pub struct IItemsControlOverrides_Vtbl {
         *mut core::ffi::c_void,
         *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
-    OnItemContainerStyleChanged: usize,
+    pub OnItemContainerStyleChanged: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
     OnItemContainerStyleSelectorChanged: usize,
     OnItemTemplateChanged: usize,
     OnItemTemplateSelectorChanged: usize,
@@ -38035,16 +41077,21 @@ impl windows_core::RuntimeType for IPanel {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IPanel {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IPanel";
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait IPanel_Impl: windows_core::IUnknownImpl {
     fn Children(&self) -> windows_core::Result<UIElementCollection>;
+    fn Background(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetBackground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn IsItemsHost(&self) -> windows_core::Result<bool>;
 }
-#[cfg(feature = "UI_Composition")]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl IPanel_Vtbl {
     pub const fn new<Identity: IPanel_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn Children<Identity: IPanel_Impl, const OFFSET: isize>(
@@ -38062,6 +41109,33 @@ impl IPanel_Vtbl {
                     }
                     Err(err) => err.into(),
                 }
+            }
+        }
+        unsafe extern "system" fn Background<Identity: IPanel_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPanel_Impl::Background(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackground<Identity: IPanel_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IPanel_Impl::SetBackground(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn IsItemsHost<Identity: IPanel_Impl, const OFFSET: isize>(
@@ -38083,8 +41157,8 @@ impl IPanel_Vtbl {
         Self {
             base__: windows_core::IInspectable_Vtbl::new::<Identity, IPanel, OFFSET>(),
             Children: Children::<Identity, OFFSET>,
-            Background: 0,
-            SetBackground: 0,
+            Background: Background::<Identity, OFFSET>,
+            SetBackground: SetBackground::<Identity, OFFSET>,
             IsItemsHost: IsItemsHost::<Identity, OFFSET>,
             ChildrenTransitions: 0,
             SetChildrenTransitions: 0,
@@ -38107,7 +41181,19 @@ pub struct IPanel_Vtbl {
     ) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Composition"))]
     Children: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub Background: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     Background: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetBackground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetBackground: usize,
     pub IsItemsHost:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
@@ -39238,6 +42324,205 @@ impl IRadioButtonStatics_Vtbl {
 pub struct IRadioButtonStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     GroupNameProperty: usize,
+}
+windows_core::imp::define_interface!(
+    IRowDefinition,
+    IRowDefinition_Vtbl,
+    0xfe870f2f_89ef_5dac_9f33_968d0dc577c3
+);
+impl windows_core::RuntimeType for IRowDefinition {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IRowDefinition {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IRowDefinition";
+}
+pub trait IRowDefinition_Impl: windows_core::IUnknownImpl {
+    fn Height(&self) -> windows_core::Result<super::GridLength>;
+    fn SetHeight(&self, value: &super::GridLength) -> windows_core::Result<()>;
+    fn MaxHeight(&self) -> windows_core::Result<f64>;
+    fn SetMaxHeight(&self, value: f64) -> windows_core::Result<()>;
+    fn MinHeight(&self) -> windows_core::Result<f64>;
+    fn SetMinHeight(&self, value: f64) -> windows_core::Result<()>;
+    fn ActualHeight(&self) -> windows_core::Result<f64>;
+}
+impl IRowDefinition_Vtbl {
+    pub const fn new<Identity: IRowDefinition_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Height<Identity: IRowDefinition_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut super::GridLength,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IRowDefinition_Impl::Height(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetHeight<Identity: IRowDefinition_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: super::GridLength,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IRowDefinition_Impl::SetHeight(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn MaxHeight<Identity: IRowDefinition_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IRowDefinition_Impl::MaxHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMaxHeight<
+            Identity: IRowDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IRowDefinition_Impl::SetMaxHeight(this, value).into()
+            }
+        }
+        unsafe extern "system" fn MinHeight<Identity: IRowDefinition_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IRowDefinition_Impl::MinHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetMinHeight<
+            Identity: IRowDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IRowDefinition_Impl::SetMinHeight(this, value).into()
+            }
+        }
+        unsafe extern "system" fn ActualHeight<
+            Identity: IRowDefinition_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IRowDefinition_Impl::ActualHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IRowDefinition, OFFSET>(),
+            Height: Height::<Identity, OFFSET>,
+            SetHeight: SetHeight::<Identity, OFFSET>,
+            MaxHeight: MaxHeight::<Identity, OFFSET>,
+            SetMaxHeight: SetMaxHeight::<Identity, OFFSET>,
+            MinHeight: MinHeight::<Identity, OFFSET>,
+            SetMinHeight: SetMinHeight::<Identity, OFFSET>,
+            ActualHeight: ActualHeight::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IRowDefinition as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IRowDefinition_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Height: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut super::GridLength,
+    ) -> windows_core::HRESULT,
+    pub SetHeight: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        super::GridLength,
+    ) -> windows_core::HRESULT,
+    pub MaxHeight:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetMaxHeight:
+        unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    pub MinHeight:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetMinHeight:
+        unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    pub ActualHeight:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(
+    IRowDefinitionStatics,
+    IRowDefinitionStatics_Vtbl,
+    0x7317c7c5_fd6f_58d9_9b53_4978dbacde23
+);
+impl windows_core::RuntimeType for IRowDefinitionStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IRowDefinitionStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IRowDefinitionStatics";
+}
+pub trait IRowDefinitionStatics_Impl: windows_core::IUnknownImpl {}
+impl IRowDefinitionStatics_Vtbl {
+    pub const fn new<Identity: IRowDefinitionStatics_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IRowDefinitionStatics, OFFSET>(
+            ),
+            HeightProperty: 0,
+            MaxHeightProperty: 0,
+            MinHeightProperty: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IRowDefinitionStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IRowDefinitionStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    HeightProperty: usize,
+    MaxHeightProperty: usize,
+    MinHeightProperty: usize,
 }
 windows_core::imp::define_interface!(
     IScrollAnchorProvider,
@@ -42450,14 +45735,23 @@ impl windows_core::RuntimeType for IStackPanel {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IStackPanel {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IStackPanel";
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait IStackPanel_Impl: windows_core::IUnknownImpl {
     fn AreScrollSnapPointsRegular(&self) -> windows_core::Result<bool>;
     fn SetAreScrollSnapPointsRegular(&self, value: bool) -> windows_core::Result<()>;
     fn Orientation(&self) -> windows_core::Result<Orientation>;
     fn SetOrientation(&self, value: Orientation) -> windows_core::Result<()>;
+    fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing>;
+    fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()>;
+    fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetBorderBrush(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn BorderThickness(&self) -> windows_core::Result<super::Thickness>;
     fn SetBorderThickness(&self, value: &super::Thickness) -> windows_core::Result<()>;
     fn Padding(&self) -> windows_core::Result<super::Thickness>;
@@ -42465,6 +45759,7 @@ pub trait IStackPanel_Impl: windows_core::IUnknownImpl {
     fn Spacing(&self) -> windows_core::Result<f64>;
     fn SetSpacing(&self, value: f64) -> windows_core::Result<()>;
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl IStackPanel_Vtbl {
     pub const fn new<Identity: IStackPanel_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn AreScrollSnapPointsRegular<
@@ -42526,6 +45821,68 @@ impl IStackPanel_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 IStackPanel_Impl::SetOrientation(this, value).into()
+            }
+        }
+        unsafe extern "system" fn BackgroundSizing<
+            Identity: IStackPanel_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStackPanel_Impl::BackgroundSizing(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackgroundSizing<
+            Identity: IStackPanel_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: BackgroundSizing,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IStackPanel_Impl::SetBackgroundSizing(this, value).into()
+            }
+        }
+        unsafe extern "system" fn BorderBrush<Identity: IStackPanel_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IStackPanel_Impl::BorderBrush(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBorderBrush<
+            Identity: IStackPanel_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IStackPanel_Impl::SetBorderBrush(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn BorderThickness<
@@ -42618,10 +45975,10 @@ impl IStackPanel_Vtbl {
             SetAreScrollSnapPointsRegular: SetAreScrollSnapPointsRegular::<Identity, OFFSET>,
             Orientation: Orientation::<Identity, OFFSET>,
             SetOrientation: SetOrientation::<Identity, OFFSET>,
-            BackgroundSizing: 0,
-            SetBackgroundSizing: 0,
-            BorderBrush: 0,
-            SetBorderBrush: 0,
+            BackgroundSizing: BackgroundSizing::<Identity, OFFSET>,
+            SetBackgroundSizing: SetBackgroundSizing::<Identity, OFFSET>,
+            BorderBrush: BorderBrush::<Identity, OFFSET>,
+            SetBorderBrush: SetBorderBrush::<Identity, OFFSET>,
             BorderThickness: BorderThickness::<Identity, OFFSET>,
             SetBorderThickness: SetBorderThickness::<Identity, OFFSET>,
             CornerRadius: 0,
@@ -42650,9 +46007,27 @@ pub struct IStackPanel_Vtbl {
     ) -> windows_core::HRESULT,
     pub SetOrientation:
         unsafe extern "system" fn(*mut core::ffi::c_void, Orientation) -> windows_core::HRESULT,
-    BackgroundSizing: usize,
-    SetBackgroundSizing: usize,
+    pub BackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut BackgroundSizing,
+    ) -> windows_core::HRESULT,
+    pub SetBackgroundSizing: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        BackgroundSizing,
+    ) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub BorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     BorderBrush: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetBorderBrush: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetBorderBrush: usize,
     pub BorderThickness: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -44415,9 +47790,11 @@ impl windows_core::RuntimeType for ITextBlock {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for ITextBlock {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.ITextBlock";
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait ITextBlock_Impl: windows_core::IUnknownImpl {
     fn FontSize(&self) -> windows_core::Result<f64>;
     fn SetFontSize(&self, value: f64) -> windows_core::Result<()>;
@@ -44429,6 +47806,11 @@ pub trait ITextBlock_Impl: windows_core::IUnknownImpl {
     fn SetFontStretch(&self, value: windows::UI::Text::FontStretch) -> windows_core::Result<()>;
     fn CharacterSpacing(&self) -> windows_core::Result<i32>;
     fn SetCharacterSpacing(&self, value: i32) -> windows_core::Result<()>;
+    fn Foreground(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetForeground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn TextWrapping(&self) -> windows_core::Result<super::TextWrapping>;
     fn SetTextWrapping(&self, value: super::TextWrapping) -> windows_core::Result<()>;
     fn TextAlignment(&self) -> windows_core::Result<super::TextAlignment>;
@@ -44467,6 +47849,7 @@ pub trait ITextBlock_Impl: windows_core::IUnknownImpl {
     fn SelectAll(&self) -> windows_core::Result<()>;
     fn CopySelectionToClipboard(&self) -> windows_core::Result<()>;
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl ITextBlock_Vtbl {
     pub const fn new<Identity: ITextBlock_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn FontSize<Identity: ITextBlock_Impl, const OFFSET: isize>(
@@ -44603,6 +47986,33 @@ impl ITextBlock_Vtbl {
                 let this: &Identity =
                     &*((this as *const *const ()).offset(OFFSET) as *const Identity);
                 ITextBlock_Impl::SetCharacterSpacing(this, value).into()
+            }
+        }
+        unsafe extern "system" fn Foreground<Identity: ITextBlock_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ITextBlock_Impl::Foreground(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetForeground<Identity: ITextBlock_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ITextBlock_Impl::SetForeground(this, core::mem::transmute_copy(&value)).into()
             }
         }
         unsafe extern "system" fn TextWrapping<Identity: ITextBlock_Impl, const OFFSET: isize>(
@@ -45071,8 +48481,8 @@ impl ITextBlock_Vtbl {
             SetFontStretch: SetFontStretch::<Identity, OFFSET>,
             CharacterSpacing: CharacterSpacing::<Identity, OFFSET>,
             SetCharacterSpacing: SetCharacterSpacing::<Identity, OFFSET>,
-            Foreground: 0,
-            SetForeground: 0,
+            Foreground: Foreground::<Identity, OFFSET>,
+            SetForeground: SetForeground::<Identity, OFFSET>,
             TextWrapping: TextWrapping::<Identity, OFFSET>,
             SetTextWrapping: SetTextWrapping::<Identity, OFFSET>,
             TextTrimming: 0,
@@ -45172,7 +48582,19 @@ pub struct ITextBlock_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
     pub SetCharacterSpacing:
         unsafe extern "system" fn(*mut core::ffi::c_void, i32) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub Foreground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     Foreground: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetForeground: usize,
     pub TextWrapping: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -45380,9 +48802,11 @@ impl windows_core::RuntimeType for ITextBox {
     const SIGNATURE: windows_core::imp::ConstBuffer =
         windows_core::imp::ConstBuffer::for_interface::<Self>();
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for ITextBox {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.ITextBox";
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 pub trait ITextBox_Impl: windows_core::IUnknownImpl {
     fn Text(&self) -> windows_core::Result<windows_core::HSTRING>;
     fn SetText(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
@@ -45420,6 +48844,11 @@ pub trait ITextBox_Impl: windows_core::IUnknownImpl {
     fn SetIsColorFontEnabled(&self, value: bool) -> windows_core::Result<()>;
     fn HorizontalTextAlignment(&self) -> windows_core::Result<super::TextAlignment>;
     fn SetHorizontalTextAlignment(&self, value: super::TextAlignment) -> windows_core::Result<()>;
+    fn PlaceholderForeground(&self) -> windows_core::Result<super::Media::Brush>;
+    fn SetPlaceholderForeground(
+        &self,
+        value: windows_core::Ref<super::Media::Brush>,
+    ) -> windows_core::Result<()>;
     fn CanPasteClipboardContent(&self) -> windows_core::Result<bool>;
     fn CanUndo(&self) -> windows_core::Result<bool>;
     fn CanRedo(&self) -> windows_core::Result<bool>;
@@ -45468,6 +48897,7 @@ pub trait ITextBox_Impl: windows_core::IUnknownImpl {
     fn RemoveCandidateWindowBoundsChanged(&self, token: i64) -> windows_core::Result<()>;
     fn RemoveTextChanging(&self, token: i64) -> windows_core::Result<()>;
 }
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
 impl ITextBox_Vtbl {
     pub const fn new<Identity: ITextBox_Impl, const OFFSET: isize>() -> Self {
         unsafe extern "system" fn Text<Identity: ITextBox_Impl, const OFFSET: isize>(
@@ -45929,6 +49359,40 @@ impl ITextBox_Vtbl {
                 ITextBox_Impl::SetHorizontalTextAlignment(this, value).into()
             }
         }
+        unsafe extern "system" fn PlaceholderForeground<
+            Identity: ITextBox_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ITextBox_Impl::PlaceholderForeground(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPlaceholderForeground<
+            Identity: ITextBox_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            value: *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ITextBox_Impl::SetPlaceholderForeground(this, core::mem::transmute_copy(&value))
+                    .into()
+            }
+        }
         unsafe extern "system" fn CanPasteClipboardContent<
             Identity: ITextBox_Impl,
             const OFFSET: isize,
@@ -46382,8 +49846,8 @@ impl ITextBox_Vtbl {
             SetHorizontalTextAlignment: SetHorizontalTextAlignment::<Identity, OFFSET>,
             CharacterCasing: 0,
             SetCharacterCasing: 0,
-            PlaceholderForeground: 0,
-            SetPlaceholderForeground: 0,
+            PlaceholderForeground: PlaceholderForeground::<Identity, OFFSET>,
+            SetPlaceholderForeground: SetPlaceholderForeground::<Identity, OFFSET>,
             CanPasteClipboardContent: CanPasteClipboardContent::<Identity, OFFSET>,
             CanUndo: CanUndo::<Identity, OFFSET>,
             CanRedo: CanRedo::<Identity, OFFSET>,
@@ -46547,7 +50011,19 @@ pub struct ITextBox_Vtbl {
     ) -> windows_core::HRESULT,
     CharacterCasing: usize,
     SetCharacterCasing: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub PlaceholderForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     PlaceholderForeground: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetPlaceholderForeground: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetPlaceholderForeground: usize,
     pub CanPasteClipboardContent:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
@@ -48898,6 +52374,32 @@ impl ItemsControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -49009,6 +52511,53 @@ impl ItemsControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -49026,6 +52575,32 @@ impl ItemsControl {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -49738,6 +53313,58 @@ impl ItemsControl {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -49755,6 +53382,30 @@ impl ItemsControl {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -50153,6 +53804,30 @@ impl ItemsControl {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    pub fn ItemContainerStyle(&self) -> windows_core::Result<super::Style> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetItemContainerStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsGrouping(&self) -> windows_core::Result<bool> {
         let this = self;
         unsafe {
@@ -50267,6 +53942,25 @@ impl ItemsControl {
             (windows_core::Interface::vtable(this).OnItemsChanged)(
                 windows_core::Interface::as_raw(this),
                 e.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn OnItemContainerStyleChanged<P0, P1>(
+        &self,
+        olditemcontainerstyle: P0,
+        newitemcontainerstyle: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+        P1: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<IItemsControlOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnItemContainerStyleChanged)(
+                windows_core::Interface::as_raw(this),
+                olditemcontainerstyle.param().abi(),
+                newitemcontainerstyle.param().abi(),
             )
             .ok()
         }
@@ -52078,6 +55772,32 @@ impl ListBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -52189,6 +55909,53 @@ impl ListBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -52206,6 +55973,32 @@ impl ListBox {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -52918,6 +56711,58 @@ impl ListBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -52935,6 +56780,30 @@ impl ListBox {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -53333,6 +57202,30 @@ impl ListBox {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    pub fn ItemContainerStyle(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetItemContainerStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetItemContainerStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsGrouping(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IItemsControl>(self)?;
         unsafe {
@@ -53435,6 +57328,25 @@ impl ListBox {
             (windows_core::Interface::vtable(this).OnItemsChanged)(
                 windows_core::Interface::as_raw(this),
                 e.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn OnItemContainerStyleChanged<P0, P1>(
+        &self,
+        olditemcontainerstyle: P0,
+        newitemcontainerstyle: P1,
+    ) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+        P1: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<IItemsControlOverrides>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).OnItemContainerStyleChanged)(
+                windows_core::Interface::as_raw(this),
+                olditemcontainerstyle.param().abi(),
+                newitemcontainerstyle.param().abi(),
             )
             .ok()
         }
@@ -55499,6 +59411,32 @@ impl ListBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -55610,6 +59548,53 @@ impl ListBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -55627,6 +59612,32 @@ impl ListBoxItem {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -56339,6 +60350,58 @@ impl ListBoxItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -56356,6 +60419,30 @@ impl ListBoxItem {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -58485,6 +62572,32 @@ impl ListViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -58596,6 +62709,53 @@ impl ListViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -58613,6 +62773,32 @@ impl ListViewItem {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -59325,6 +63511,58 @@ impl ListViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -59342,6 +63580,30 @@ impl ListViewItem {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -61415,6 +65677,32 @@ impl MediaPlayerElement {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -61526,6 +65814,53 @@ impl MediaPlayerElement {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -61543,6 +65878,32 @@ impl MediaPlayerElement {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -62255,6 +66616,58 @@ impl MediaPlayerElement {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -62272,6 +66685,30 @@ impl MediaPlayerElement {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -64792,6 +69229,58 @@ impl Panel {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -64809,6 +69298,30 @@ impl Panel {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -65089,6 +69602,32 @@ impl Panel {
                 &mut result__,
             )
             .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn IsItemsHost(&self) -> windows_core::Result<bool> {
@@ -66905,6 +71444,32 @@ impl PasswordBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -67016,6 +71581,53 @@ impl PasswordBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -67033,6 +71645,32 @@ impl PasswordBox {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -67745,6 +72383,58 @@ impl PasswordBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -67762,6 +72452,30 @@ impl PasswordBox {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -70062,6 +74776,32 @@ impl ProgressBar {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -70173,6 +74913,53 @@ impl ProgressBar {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -70190,6 +74977,32 @@ impl ProgressBar {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -70902,6 +75715,58 @@ impl ProgressBar {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -70919,6 +75784,30 @@ impl ProgressBar {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -73332,6 +78221,32 @@ impl RadioButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -73443,6 +78358,53 @@ impl RadioButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -73460,6 +78422,32 @@ impl RadioButton {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -74172,6 +79160,58 @@ impl RadioButton {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -74189,6 +79229,30 @@ impl RadioButton {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -76224,6 +81288,354 @@ unsafe impl Send for RadioButton {}
 #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
 unsafe impl Sync for RadioButton {}
 #[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RowDefinition(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    RowDefinition,
+    windows_core::IUnknown,
+    windows_core::IInspectable
+);
+windows_core::imp::required_hierarchy!(RowDefinition, super::DependencyObject);
+impl RowDefinition {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<
+        R,
+        F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>,
+    >(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<
+            RowDefinition,
+            windows_core::imp::IGenericFactory,
+        > = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(
+        &self,
+    ) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Height(&self) -> windows_core::Result<super::GridLength> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Height)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetHeight(&self, value: super::GridLength) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MaxHeight(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MaxHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMaxHeight(&self, value: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMaxHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn MinHeight(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).MinHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetMinHeight(&self, value: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetMinHeight)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn ActualHeight(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ActualHeight)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    fn IRowDefinitionStatics<R, F: FnOnce(&IRowDefinitionStatics) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<RowDefinition, IRowDefinitionStatics> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for RowDefinition {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IRowDefinition>();
+}
+unsafe impl windows_core::Interface for RowDefinition {
+    type Vtable = <IRowDefinition as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IRowDefinition as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for RowDefinition {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.RowDefinition";
+}
+unsafe impl Send for RowDefinition {}
+unsafe impl Sync for RowDefinition {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RowDefinitionCollection(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(
+    RowDefinitionCollection,
+    windows_core::IUnknown,
+    windows_core::IInspectable,
+    windows_collections::IVector<RowDefinition>
+);
+windows_core::imp::required_hierarchy!(
+    RowDefinitionCollection,
+    windows_collections::IIterable<RowDefinition>
+);
+impl RowDefinitionCollection {
+    pub fn First(&self) -> windows_core::Result<windows_collections::IIterator<RowDefinition>> {
+        let this =
+            &windows_core::Interface::cast::<windows_collections::IIterable<RowDefinition>>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<RowDefinition> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Size)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn GetView(&self) -> windows_core::Result<windows_collections::IVectorView<RowDefinition>> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetView)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<RowDefinition>,
+    {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IndexOf)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+                index,
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<RowDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<RowDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).InsertAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAt)(
+                windows_core::Interface::as_raw(this),
+                index,
+            )
+            .ok()
+        }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<RowDefinition>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Append)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).RemoveAtEnd)(windows_core::Interface::as_raw(
+                this,
+            ))
+            .ok()
+        }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).Clear)(windows_core::Interface::as_raw(this))
+                .ok()
+        }
+    }
+    pub fn GetMany(
+        &self,
+        startindex: u32,
+        items: &mut [Option<RowDefinition>],
+    ) -> windows_core::Result<u32> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetMany)(
+                windows_core::Interface::as_raw(this),
+                startindex,
+                items.len().try_into().unwrap(),
+                core::mem::transmute_copy(&items),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn ReplaceAll(&self, items: &[Option<RowDefinition>]) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).ReplaceAll)(
+                windows_core::Interface::as_raw(this),
+                items.len().try_into().unwrap(),
+                core::mem::transmute(items.as_ptr()),
+            )
+            .ok()
+        }
+    }
+}
+impl windows_core::RuntimeType for RowDefinitionCollection {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<
+        Self,
+        windows_collections::IVector<RowDefinition>,
+    >();
+}
+unsafe impl windows_core::Interface for RowDefinitionCollection {
+    type Vtable = <windows_collections::IVector<RowDefinition> as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID =
+        <windows_collections::IVector<RowDefinition> as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for RowDefinitionCollection {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Controls.RowDefinitionCollection";
+}
+unsafe impl Send for RowDefinitionCollection {}
+unsafe impl Sync for RowDefinitionCollection {}
+impl IntoIterator for RowDefinitionCollection {
+    type Item = RowDefinition;
+    type IntoIter = windows_collections::IIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIterator::into_iter(&self)
+    }
+}
+impl IntoIterator for &RowDefinitionCollection {
+    type Item = RowDefinition;
+    type IntoIter = windows_collections::IIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        self.First().unwrap()
+    }
+}
+#[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct ScrollBarVisibility(pub i32);
 impl ScrollBarVisibility {
@@ -76484,6 +81896,32 @@ impl ScrollViewer {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -76595,6 +82033,53 @@ impl ScrollViewer {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -76612,6 +82097,32 @@ impl ScrollViewer {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -77324,6 +82835,58 @@ impl ScrollViewer {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -77341,6 +82904,30 @@ impl ScrollViewer {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -80774,6 +86361,32 @@ impl Slider {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -80885,6 +86498,53 @@ impl Slider {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -80902,6 +86562,32 @@ impl Slider {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -81614,6 +87300,58 @@ impl Slider {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -81631,6 +87369,30 @@ impl Slider {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -84333,6 +90095,58 @@ impl StackPanel {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -84350,6 +90164,30 @@ impl StackPanel {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -84649,6 +90487,32 @@ impl StackPanel {
             .and_then(|| windows_core::Type::from_abi(result__))
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsItemsHost(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IPanel>(self)?;
         unsafe {
@@ -84770,6 +90634,53 @@ impl StackPanel {
             (windows_core::Interface::vtable(this).SetOrientation)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -86933,6 +92844,58 @@ impl SwapChainPanel {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -86950,6 +92913,30 @@ impl SwapChainPanel {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -87221,6 +93208,75 @@ impl SwapChainPanel {
             .ok()
         }
     }
+    pub fn RowDefinitions(&self) -> windows_core::Result<RowDefinitionCollection> {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RowDefinitions)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn ColumnDefinitions(&self) -> windows_core::Result<ColumnDefinitionCollection> {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ColumnDefinitions)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IGrid>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IGrid>(self)?;
         unsafe {
@@ -87314,6 +93370,32 @@ impl SwapChainPanel {
                 &mut result__,
             )
             .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IPanel>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
         }
     }
     pub fn IsItemsHost(&self) -> windows_core::Result<bool> {
@@ -89164,6 +95246,32 @@ impl TabView {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -89275,6 +95383,53 @@ impl TabView {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -89292,6 +95447,32 @@ impl TabView {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -90004,6 +96185,58 @@ impl TabView {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -90021,6 +96254,30 @@ impl TabView {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -92612,6 +98869,32 @@ impl TabViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -92723,6 +99006,53 @@ impl TabViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -92740,6 +99070,32 @@ impl TabViewItem {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -93452,6 +99808,58 @@ impl TabViewItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -93469,6 +99877,30 @@ impl TabViewItem {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -95925,6 +102357,58 @@ impl TextBlock {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -95942,6 +102426,30 @@ impl TextBlock {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -96317,6 +102825,32 @@ impl TextBlock {
             (windows_core::Interface::vtable(this).SetCharacterSpacing)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -98421,6 +104955,32 @@ impl TextBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -98532,6 +105092,53 @@ impl TextBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -98549,6 +105156,32 @@ impl TextBox {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -99261,6 +105894,58 @@ impl TextBox {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -99278,6 +105963,30 @@ impl TextBox {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -99890,6 +106599,32 @@ impl TextBox {
             (windows_core::Interface::vtable(this).SetHorizontalTextAlignment)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn PlaceholderForeground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PlaceholderForeground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetPlaceholderForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetPlaceholderForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -102233,6 +108968,32 @@ impl ToolTip {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Foreground(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Foreground)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetForeground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetForeground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn IsTextScaleFactorEnabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -102344,6 +109105,53 @@ impl ToolTip {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Background(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Background)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBackground<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackground)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    pub fn BackgroundSizing(&self) -> windows_core::Result<BackgroundSizing> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetBackgroundSizing(&self, value: BackgroundSizing) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBackgroundSizing)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
     pub fn BorderThickness(&self) -> windows_core::Result<super::Thickness> {
         let this = &windows_core::Interface::cast::<IControl>(self)?;
         unsafe {
@@ -102361,6 +109169,32 @@ impl ToolTip {
             (windows_core::Interface::vtable(this).SetBorderThickness)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn BorderBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).BorderBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetBorderBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetBorderBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -103073,6 +109907,58 @@ impl ToolTip {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -103090,6 +109976,30 @@ impl ToolTip {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -105935,6 +112845,58 @@ impl WebView2 {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualSecondaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualSecondaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualSecondaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FocusVisualPrimaryBrush(&self) -> windows_core::Result<super::Media::Brush> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFocusVisualPrimaryBrush<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::Brush>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFocusVisualPrimaryBrush)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn AllowFocusWhenDisabled(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
         unsafe {
@@ -105952,6 +112914,30 @@ impl WebView2 {
             (windows_core::Interface::vtable(this).SetAllowFocusWhenDisabled)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    pub fn Style(&self) -> windows_core::Result<super::Style> {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Style)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    pub fn SetStyle<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+    {
+        let this = &windows_core::Interface::cast::<super::IFrameworkElement>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetStyle)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }

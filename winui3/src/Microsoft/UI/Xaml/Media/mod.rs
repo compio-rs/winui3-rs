@@ -8,6 +8,111 @@
     clippy::all
 )]
 
+#[cfg(feature = "UI_Composition")]
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Brush(windows_core::IUnknown);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::interface_hierarchy!(Brush, windows_core::IUnknown, windows_core::IInspectable);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::required_hierarchy!(
+    Brush,
+    super::super::Composition::IAnimationObject,
+    super::DependencyObject
+);
+#[cfg(feature = "UI_Composition")]
+impl Brush {
+    pub fn Opacity(&self) -> windows_core::Result<f64> {
+        let this = self;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Opacity)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .map(|| result__)
+        }
+    }
+    pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
+        let this = self;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetOpacity)(
+                windows_core::Interface::as_raw(this),
+                value,
+            )
+            .ok()
+        }
+    }
+    pub fn new() -> windows_core::Result<Brush> {
+        Self::IBrushFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstance)(
+                windows_core::Interface::as_raw(this),
+                core::ptr::null_mut(),
+                &mut core::ptr::null_mut(),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        })
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(
+        &self,
+    ) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    fn IBrushFactory<R, F: FnOnce(&IBrushFactory) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Brush, IBrushFactory> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IBrushStatics<R, F: FnOnce(&IBrushStatics) -> windows_core::Result<R>>(
+        callback: F,
+    ) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Brush, IBrushStatics> =
+            windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeType for Brush {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_class::<Self, IBrush>();
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl windows_core::Interface for Brush {
+    type Vtable = <IBrush as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IBrush as windows_core::Interface>::IID;
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for Brush {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.Brush";
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Send for Brush {}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Sync for Brush {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DesktopAcrylicBackdrop(windows_core::IUnknown);
@@ -161,6 +266,209 @@ impl windows_core::RuntimeName for DesktopAcrylicBackdrop {
 }
 unsafe impl Send for DesktopAcrylicBackdrop {}
 unsafe impl Sync for DesktopAcrylicBackdrop {}
+windows_core::imp::define_interface!(IBrush, IBrush_Vtbl, 0x2de3cb83_1329_5679_88f8_c822bc5442cb);
+impl windows_core::RuntimeType for IBrush {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IBrush {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IBrush";
+}
+pub trait IBrush_Impl: windows_core::IUnknownImpl {
+    fn Opacity(&self) -> windows_core::Result<f64>;
+    fn SetOpacity(&self, value: f64) -> windows_core::Result<()>;
+}
+impl IBrush_Vtbl {
+    pub const fn new<Identity: IBrush_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Opacity<Identity: IBrush_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            result__: *mut f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBrush_Impl::Opacity(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetOpacity<Identity: IBrush_Impl, const OFFSET: isize>(
+            this: *mut core::ffi::c_void,
+            value: f64,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBrush_Impl::SetOpacity(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBrush, OFFSET>(),
+            Opacity: Opacity::<Identity, OFFSET>,
+            SetOpacity: SetOpacity::<Identity, OFFSET>,
+            Transform: 0,
+            SetTransform: 0,
+            RelativeTransform: 0,
+            SetRelativeTransform: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBrush as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBrush_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Opacity:
+        unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetOpacity: unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    Transform: usize,
+    SetTransform: usize,
+    RelativeTransform: usize,
+    SetRelativeTransform: usize,
+}
+windows_core::imp::define_interface!(
+    IBrushFactory,
+    IBrushFactory_Vtbl,
+    0xb5258717_6c49_5ba5_87fd_35df382647a5
+);
+impl windows_core::RuntimeType for IBrushFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for IBrushFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IBrushFactory";
+}
+#[cfg(feature = "UI_Composition")]
+pub trait IBrushFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstance(
+        &self,
+        baseInterface: windows_core::Ref<windows_core::IInspectable>,
+        innerInterface: windows_core::OutRef<windows_core::IInspectable>,
+    ) -> windows_core::Result<Brush>;
+}
+#[cfg(feature = "UI_Composition")]
+impl IBrushFactory_Vtbl {
+    pub const fn new<Identity: IBrushFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstance<
+            Identity: IBrushFactory_Impl,
+            const OFFSET: isize,
+        >(
+            this: *mut core::ffi::c_void,
+            baseinterface: *mut core::ffi::c_void,
+            innerinterface: *mut *mut core::ffi::c_void,
+            result__: *mut *mut core::ffi::c_void,
+        ) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity =
+                    &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBrushFactory_Impl::CreateInstance(
+                    this,
+                    core::mem::transmute_copy(&baseinterface),
+                    core::mem::transmute_copy(&innerinterface),
+                ) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBrushFactory, OFFSET>(),
+            CreateInstance: CreateInstance::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBrushFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBrushFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub CreateInstance: unsafe extern "system" fn(
+        *mut core::ffi::c_void,
+        *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+        *mut *mut core::ffi::c_void,
+    ) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    CreateInstance: usize,
+}
+windows_core::imp::define_interface!(
+    IBrushOverrides,
+    IBrushOverrides_Vtbl,
+    0xb6b08394_bacf_53db_9ac7_be1c693e3513
+);
+impl windows_core::RuntimeType for IBrushOverrides {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IBrushOverrides {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IBrushOverrides";
+}
+pub trait IBrushOverrides_Impl: windows_core::IUnknownImpl {}
+impl IBrushOverrides_Vtbl {
+    pub const fn new<Identity: IBrushOverrides_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBrushOverrides, OFFSET>(),
+            PopulatePropertyInfoOverride: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBrushOverrides as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBrushOverrides_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    PopulatePropertyInfoOverride: usize,
+}
+windows_core::imp::define_interface!(
+    IBrushStatics,
+    IBrushStatics_Vtbl,
+    0x5b854f50_f818_5f01_91b0_28132d3f5957
+);
+impl windows_core::RuntimeType for IBrushStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer =
+        windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl windows_core::RuntimeName for IBrushStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IBrushStatics";
+}
+pub trait IBrushStatics_Impl: windows_core::IUnknownImpl {}
+impl IBrushStatics_Vtbl {
+    pub const fn new<Identity: IBrushStatics_Impl, const OFFSET: isize>() -> Self {
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBrushStatics, OFFSET>(),
+            OpacityProperty: 0,
+            TransformProperty: 0,
+            RelativeTransformProperty: 0,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBrushStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBrushStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    OpacityProperty: usize,
+    TransformProperty: usize,
+    RelativeTransformProperty: usize,
+}
 windows_core::imp::define_interface!(
     IDesktopAcrylicBackdrop,
     IDesktopAcrylicBackdrop_Vtbl,
