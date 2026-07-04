@@ -75,8 +75,9 @@ pub struct PackageDependency {
 }
 
 impl PackageDependency {
+    #[deprecated(note = "Use `initialize_version` instead")]
     pub fn initialize() -> Result<Self> {
-        Self::initialize_version(WindowsAppSDKVersion::V1_7)
+        Self::initialize_version(WindowsAppSDKVersion::V2)
     }
 
     pub fn initialize_version(version: WindowsAppSDKVersion) -> Result<Self> {
