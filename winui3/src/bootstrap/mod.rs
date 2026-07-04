@@ -1,15 +1,21 @@
 use std::fmt;
-use windows::Win32::{
-    Storage::Packaging::Appx::{
-        AddPackageDependency, AddPackageDependencyOptions_None,
-        CreatePackageDependencyOptions_None, DeletePackageDependency,
-        PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
-        RemovePackageDependency, TryCreatePackageDependency, PACKAGEDEPENDENCY_CONTEXT,
-        PACKAGE_VERSION, PACKAGE_VERSION_0,
+use windows::{
+    core::{Result, HSTRING, PCWSTR, PWSTR},
+    Win32::{
+        Storage::Packaging::Appx::{
+            AddPackageDependencyOptions_None, CreatePackageDependencyOptions_None,
+            PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
+            PACKAGEDEPENDENCY_CONTEXT, PACKAGE_VERSION, PACKAGE_VERSION_0,
+        },
+        System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
     },
-    System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
 };
-use windows_core::{Result, HSTRING, PCWSTR, PWSTR};
+
+mod dynamic_dependency;
+use dynamic_dependency::{
+    AddPackageDependency, DeletePackageDependency, RemovePackageDependency,
+    TryCreatePackageDependency,
+};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[non_exhaustive]
