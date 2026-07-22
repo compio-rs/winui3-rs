@@ -33,6 +33,7 @@ pub enum WindowsAppSDKVersion {
     Cbs,
     Cbs1_6,
     Cbs1_8,
+    Cbs2,
 }
 
 impl WindowsAppSDKVersion {
@@ -51,6 +52,7 @@ impl WindowsAppSDKVersion {
             Self::Cbs => "CBS",
             Self::Cbs1_6 => "CBS.1.6",
             Self::Cbs1_8 => "CBS.1.8",
+            Self::Cbs2 => "CBS.2",
         }
     }
 }
