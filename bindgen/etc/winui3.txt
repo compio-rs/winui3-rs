@@ -166,6 +166,7 @@
 
     Microsoft.UI.Xaml.Media.Brush
     Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop
+    Microsoft.UI.Xaml.Media.FontFamily
     Microsoft.UI.Xaml.Media.MicaBackdrop
     Microsoft.UI.Xaml.Media.Stretch
     Microsoft.UI.Xaml.Media.SystemBackdrop

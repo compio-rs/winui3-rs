@@ -232,6 +232,32 @@ impl ButtonBase {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn FontWeight(&self) -> windows_core::Result<windows::UI::Text::FontWeight> {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
@@ -5657,6 +5683,32 @@ impl RangeBase {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn FontWeight(&self) -> windows_core::Result<windows::UI::Text::FontWeight> {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
@@ -9144,6 +9196,32 @@ impl ScrollBar {
             (windows_core::Interface::vtable(this).SetFontSize)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -12704,6 +12782,32 @@ impl Selector {
             (windows_core::Interface::vtable(this).SetFontSize)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
@@ -16286,6 +16390,32 @@ impl SelectorItem {
             .ok()
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
+            )
+            .ok()
+        }
+    }
     pub fn FontWeight(&self) -> windows_core::Result<windows::UI::Text::FontWeight> {
         let this = &windows_core::Interface::cast::<super::IControl>(self)?;
         unsafe {
@@ -19551,6 +19681,32 @@ impl ToggleButton {
             (windows_core::Interface::vtable(this).SetFontSize)(
                 windows_core::Interface::as_raw(this),
                 value,
+            )
+            .ok()
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn FontFamily(&self) -> windows_core::Result<super::super::Media::FontFamily> {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FontFamily)(
+                windows_core::Interface::as_raw(this),
+                &mut result__,
+            )
+            .and_then(|| windows_core::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetFontFamily<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::FontFamily>,
+    {
+        let this = &windows_core::Interface::cast::<super::IControl>(self)?;
+        unsafe {
+            (windows_core::Interface::vtable(this).SetFontFamily)(
+                windows_core::Interface::as_raw(this),
+                value.param().abi(),
             )
             .ok()
         }
