@@ -4,11 +4,11 @@ members = ["bindgen", "winui3"]
 default-members = ["winui3"]
 
 [workspace.dependencies]
-toml_edit = "0.25"
-windows = "0.62.0"
-windows-bindgen = { version = "0.66.0", package = "overrides-windows-bindgen" }
-windows-collections = "0.3.0"
-windows-core = "0.62.0"
-windows-future = "0.3.0"
-windows-numerics = "0.3.0"
+windows-bindgen = "0.100"
+windows-collections = "0.100"
+windows-core = "0.100"
+windows-future = "0.100"
+windows-numerics = "0.100"
+windows-reference = "0.100"
+windows-time = "0.100"
 winui3 = { path = "winui3", package = "winio-winui3" }

@@ -1,15 +1,10 @@
-use std::fmt;
-use windows::{
-    core::{Result, HSTRING, PCWSTR, PWSTR},
-    Win32::{
-        Storage::Packaging::Appx::{
-            AddPackageDependencyOptions_None, CreatePackageDependencyOptions_None,
-            PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
-            PACKAGEDEPENDENCY_CONTEXT, PACKAGE_VERSION, PACKAGE_VERSION_0,
-        },
-        System::Memory::{GetProcessHeap, HeapFree, HEAP_FLAGS},
-    },
+use crate::internal::{
+    AddPackageDependencyOptions_None, CreatePackageDependencyOptions_None, GetProcessHeap,
+    HeapFree, PACKAGE_VERSION, PACKAGE_VERSION_0, PACKAGEDEPENDENCY_CONTEXT,
+    PackageDependencyLifetimeKind_Process, PackageDependencyProcessorArchitectures_None,
 };
+use std::fmt;
+use windows_core::{HSTRING, PCWSTR, PWSTR, Result};
 
 mod dynamic_dependency;
 use dynamic_dependency::{
@@ -63,9 +58,7 @@ struct PackageDependencyID(PWSTR);
 impl Drop for PackageDependencyID {
     fn drop(&mut self) {
         unsafe {
-            if let Ok(heap) = GetProcessHeap() {
-                HeapFree(heap, HEAP_FLAGS(0), Some(self.0 .0.cast())).ok();
-            }
+            let _ = HeapFree(GetProcessHeap(), 0, Some(self.0.0.cast()));
         }
     }
 }
@@ -92,7 +85,7 @@ impl PackageDependency {
         ));
         let dependency_id = unsafe {
             TryCreatePackageDependency(
-                windows::Win32::Security::PSID::default(),
+                crate::internal::PSID::default(),
                 PCWSTR(package_family_name.as_ptr()),
                 min_version,
                 PackageDependencyProcessorArchitectures_None,

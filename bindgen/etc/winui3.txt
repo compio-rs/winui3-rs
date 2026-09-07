@@ -1,5 +1,6 @@
 --in
     default
+    bindgen/winmd/Windows.Win32.winmd
     bindgen/winmd/Microsoft.Foundation.winmd
     bindgen/winmd/Microsoft.Graphics.winmd
     bindgen/winmd/Microsoft.UI.Text.winmd
@@ -8,41 +9,25 @@
     bindgen/winmd/Microsoft.Web.WebView2.Core.winmd
     bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd
 
---no-deps
---reference
-// NOTE: This is a workaround for a bug in `windows-bindgen` which might never be fixed
-// NOTE: Due to the bug, we have to generate Windows.UI.Xaml.Interop separately
-// NOTE: This relies on the fact that references are added in order of appearance
-    crate,full,Windows.UI.Xaml.Interop
-
-// windows-collections
-    windows_collections,flat,Windows.Foundation.Collections.IIterable
-    windows_collections,flat,Windows.Foundation.Collections.IIterator
-    windows_collections,flat,Windows.Foundation.Collections.IKeyValuePair
-    windows_collections,flat,Windows.Foundation.Collections.IMap
-    windows_collections,flat,Windows.Foundation.Collections.IMapView
-    windows_collections,flat,Windows.Foundation.Collections.IVector
-    windows_collections,flat,Windows.Foundation.Collections.IVectorView
-
-// windows-numerics
-    windows_numerics,flat,Windows.Foundation.Numerics.Matrix3x2
-    windows_numerics,flat,Windows.Foundation.Numerics.Matrix4x4
-    windows_numerics,flat,Windows.Foundation.Numerics.Vector2
-    windows_numerics,flat,Windows.Foundation.Numerics.Vector3
-    windows_numerics,flat,Windows.Foundation.Numerics.Vector4
-
-// windows-future
-    windows_future,flat,Windows.Foundation.Async*
-    windows_future,flat,Windows.Foundation.IAsync*
-
-    windows,skip-root,Windows
-
---out winui3
+--out winui3/src/bindings.rs
 --implement
---overrides
---package
 
 --filter
+    Windows.Win32.Foundation.HWND
+    Windows.Win32.Graphics.Dxgi.IDXGISwapChain
+
+    Windows.ApplicationModel.DataTransfer.DataPackageOperation
+
+    Windows.Foundation.Rect
+    Windows.Foundation.Point
+    Windows.Foundation.Uri
+
+    Windows.Storage.Streams.IRandomAccessStream
+
+    Windows.UI.Color
+    Windows.UI.Xaml.Interop.TypeKind
+    Windows.UI.Xaml.Interop.TypeName
+
     Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController
     Microsoft.UI.Composition.SystemBackdrops.MicaController
     Microsoft.UI.Composition.SystemBackdrops.MicaKind
@@ -113,6 +98,7 @@
     Microsoft.UI.Xaml.Controls.ContentDialogResult
     Microsoft.UI.Xaml.Controls.Control
     Microsoft.UI.Xaml.Controls.Grid
+    Microsoft.UI.Xaml.Controls.GroupStyle
     Microsoft.UI.Xaml.Controls.HyperlinkButton
     Microsoft.UI.Xaml.Controls.ItemCollection
     Microsoft.UI.Xaml.Controls.ItemsControl
@@ -160,6 +146,10 @@
     Microsoft.UI.Xaml.Controls.Primitives.TickPlacement
     Microsoft.UI.Xaml.Controls.Primitives.ToggleButton
 
+    Microsoft.UI.Xaml.Documents.TextHighlighter
+    Microsoft.UI.Xaml.Documents.TextRange
+
+    Microsoft.UI.Xaml.Input.KeyboardAccelerator
     Microsoft.UI.Xaml.Input.Pointer
     Microsoft.UI.Xaml.Input.PointerEventHandler
     Microsoft.UI.Xaml.Input.PointerRoutedEventArgs
@@ -170,5 +160,6 @@
     Microsoft.UI.Xaml.Media.MicaBackdrop
     Microsoft.UI.Xaml.Media.Stretch
     Microsoft.UI.Xaml.Media.SystemBackdrop
+    Microsoft.UI.Xaml.Media.XamlLight
 
     Microsoft.Web.WebView2.Core

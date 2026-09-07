@@ -1,7 +1,7 @@
 [package]
 name = "winio-winui3"
-version = "0.4.5"
-edition = "2021"
+version = "0.5.0"
+edition = "2024"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
 keywords = ["winui", "gui"]
@@ -17,64 +17,5 @@ windows-collections.workspace = true
 windows-core.workspace = true
 windows-future.workspace = true
 windows-numerics.workspace = true
-
-[dependencies.windows]
-workspace = true
-features = [
-    "Win32_Security",
-    "Win32_Storage_Packaging_Appx",
-    "Win32_System_LibraryLoader",
-    "Win32_System_Memory",
-    "Win32_System_WinRT",
-]
-
-[features]
-default = []
-native = ["windows/Win32_Graphics_Dxgi"]
-Foundation = ["windows/Foundation"]
-# generated features
-UI = ["Foundation", "windows/UI"]
-UI_Composition = [
-    "UI",
-    "windows/Foundation_Numerics",
-    "windows/Graphics_Effects",
-    "windows/UI_Composition",
-]
-UI_Composition_SystemBackdrops = ["UI_Composition", "windows/UI_Core"]
-UI_Dispatching = ["UI"]
-UI_Input = ["UI", "windows/Graphics", "windows/System", "windows/UI_Core"]
-UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]
-UI_Windowing = ["UI", "windows/Graphics"]
-UI_Xaml = [
-    "UI",
-    "UI_Xaml_Interop",
-    "windows/ApplicationModel_Activation",
-    "windows/ApplicationModel_Core",
-    "windows/ApplicationModel_DataTransfer_DragDrop",
-    "windows/Foundation_Collections",
-    "windows/Graphics_Imaging",
-    "windows/UI_Core",
-]
-UI_Xaml_Controls = [
-    "UI_Text",
-    "UI_Xaml",
-    "windows/ApplicationModel_Contacts",
-    "windows/Devices_Geolocation",
-    "windows/Globalization_NumberFormatting",
-    "windows/Media_Casting",
-    "windows/Media_Playback",
-]
-UI_Xaml_Controls_Primitives = ["UI_Xaml_Controls"]
-UI_Xaml_Input = ["UI_Input", "UI_Xaml"]
-UI_Xaml_Interop = []
-UI_Xaml_Markup = ["UI_Xaml", "windows/Storage_Streams"]
-UI_Xaml_Media = ["UI_Xaml", "windows/Storage_Streams"]
-UI_Xaml_XamlTypeInfo = ["UI_Xaml"]
-Web = ["Foundation"]
-Web_WebView2 = ["Web"]
-Web_WebView2_Core = [
-    "Web_WebView2",
-    "windows/ApplicationModel_DataTransfer_DragDrop_Core",
-    "windows/Security_Cryptography_Certificates",
-    "windows/Storage_Streams",
-]
+windows-reference.workspace = true
+windows-time.workspace = true

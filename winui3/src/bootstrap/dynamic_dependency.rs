@@ -2,19 +2,13 @@
 
 use std::sync::OnceLock;
 
-use windows::{
-    core::{s, w, Error, Param, Result, HRESULT, PCWSTR, PWSTR},
-    Win32::{
-        Foundation::{FreeLibrary, ERROR_MOD_NOT_FOUND, FARPROC, HMODULE},
-        Security::PSID,
-        Storage::Packaging::Appx::{
-            AddPackageDependencyOptions, CreatePackageDependencyOptions,
-            PackageDependencyLifetimeKind, PackageDependencyProcessorArchitectures,
-            PACKAGEDEPENDENCY_CONTEXT, PACKAGE_VERSION,
-        },
-        System::LibraryLoader::{GetModuleHandleExW, GetProcAddress, LoadLibraryW},
-    },
+use crate::internal::{
+    AddPackageDependencyOptions, CreatePackageDependencyOptions, ERROR_MOD_NOT_FOUND, FARPROC,
+    FreeLibrary, GetModuleHandleExW, GetProcAddress, HMODULE, LoadLibraryW, PACKAGE_VERSION,
+    PACKAGEDEPENDENCY_CONTEXT, PSID, PackageDependencyLifetimeKind,
+    PackageDependencyProcessorArchitectures,
 };
+use windows_core::{HRESULT, PCWSTR, PWSTR, Param, Result, WIN32_ERROR, s, w};
 
 type TryCreatePackageDependencyFn = unsafe extern "system" fn(
     user: PSID,
@@ -54,7 +48,7 @@ unsafe impl Sync for MddLib {}
 impl Drop for MddLib {
     fn drop(&mut self) {
         unsafe {
-            FreeLibrary(self.lib).ok();
+            let _ = FreeLibrary(self.lib);
         }
     }
 }
@@ -115,18 +109,21 @@ fn get_mdd_lib() -> Result<&'static MddLib> {
     MDD_LIB
         .get_or_init(|| unsafe {
             let mut lib = HMODULE::default();
-            if GetModuleHandleExW(0, w!("kernelbase.dll"), &mut lib).is_ok() {
-                if let Some(mdd_lib) = load_kernelbase(lib) {
-                    return Some(mdd_lib);
-                }
+            if GetModuleHandleExW(0, w!("kernelbase.dll"), &mut lib)
+                .ok()
+                .is_ok()
+                && let Some(mdd_lib) = load_kernelbase(lib)
+            {
+                return Some(mdd_lib);
             }
-            if let Ok(lib) = LoadLibraryW(w!("Microsoft.WindowsAppRuntime.dll")) {
+            let lib = LoadLibraryW(w!("Microsoft.WindowsAppRuntime.dll"));
+            if !lib.0.is_null() {
                 return load_app_runtime(lib);
             }
             None
         })
         .as_ref()
-        .ok_or_else(|| Error::from_hresult(HRESULT::from_win32(ERROR_MOD_NOT_FOUND.0)))
+        .ok_or_else(|| WIN32_ERROR(ERROR_MOD_NOT_FOUND).to_hresult().into())
 }
 
 #[inline]
