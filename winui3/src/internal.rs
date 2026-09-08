@@ -52,9 +52,9 @@ where
     unsafe { LoadLibraryW(lplibfilename.param().abi()) }
 }
 #[inline]
-pub unsafe fn RoInitialize(inittype: RO_INIT_TYPE) -> windows_core::HRESULT {
+pub unsafe fn RoInitialize(inittype: RO_INIT_TYPE) -> windows_core::Result<()> {
     windows_core::link!("api-ms-win-core-winrt-l1-1-0.dll" "system" fn RoInitialize(inittype : RO_INIT_TYPE) -> windows_core::HRESULT);
-    unsafe { RoInitialize(inittype) }
+    unsafe { RoInitialize(inittype).ok() }
 }
 pub type AddPackageDependencyOptions = i32;
 pub const AddPackageDependencyOptions_None: AddPackageDependencyOptions = 0;

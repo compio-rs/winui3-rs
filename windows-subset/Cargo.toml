@@ -1,0 +1,16 @@
+[package]
+name = "winio-windows-subset"
+version = "0.1.0"
+edition = "2024"
+description = "Windows API bindings (subset) for Rust"
+categories = ["os::windows-apis", "gui"]
+keywords = ["windows", "gui"]
+authors = ["Berrysoft <Strawberry_Str@hotmail.com>"]
+license = "MIT"
+repository = "https://github.com/compio-rs/winui3-rs"
+
+[lib]
+name = "windows_subset"
+
+[dependencies]
+windows-core.workspace = true

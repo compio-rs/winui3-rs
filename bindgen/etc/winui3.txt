@@ -13,18 +13,37 @@
 --implement
 
 --filter
-    Windows.Win32.Foundation.HWND
-    Windows.Win32.Graphics.Dxgi.IDXGISwapChain
-
     Windows.ApplicationModel.DataTransfer.DataPackageOperation
 
-    Windows.Foundation.Rect
     Windows.Foundation.Point
+    Windows.Foundation.Rect
+    Windows.Foundation.Size
+    Windows.Foundation.TypedEventHandler
     Windows.Foundation.Uri
+
+    Windows.Graphics.PointInt32
+    Windows.Graphics.SizeInt32
+
+    Windows.Media.Core.IMediaCue
+    Windows.Media.Core.MediaCueEventArgs
+    Windows.Media.Core.MediaSource
+    Windows.Media.Core.MediaSourceOpenOperationCompletedEventArgs
+    Windows.Media.Core.MediaSourceStateChangedEventArgs
+    Windows.Media.Core.TimedMetadataTrack
+    Windows.Media.Core.TimedMetadataTrackFailedEventArgs
+    Windows.Media.Core.TimedTextSource
+    Windows.Media.Core.TimedTextSourceResolveResultEventArgs
+
+    Windows.Media.Playback.MediaPlayer
+    Windows.Media.Playback.MediaPlayerFailedEventArgs
+    Windows.Media.Playback.MediaPlayerRateChangedEventArgs
+    Windows.Media.Playback.PlaybackMediaMarkerReachedEventArgs
 
     Windows.Storage.Streams.IRandomAccessStream
 
     Windows.UI.Color
+    Windows.UI.Text.FontStyle
+    Windows.UI.Text.FontWeight
     Windows.UI.Xaml.Interop.TypeKind
     Windows.UI.Xaml.Interop.TypeName
 
@@ -36,6 +55,7 @@
     Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop
 
     Microsoft.UI.Dispatching
+    Microsoft.UI.Input
     Microsoft.UI.Text
     Microsoft.UI.Windowing
     Microsoft.UI.Xaml.Interop
@@ -45,18 +65,17 @@
     Microsoft.UI.IconId
     Microsoft.UI.WindowId
 
-    Microsoft.UI.Input.PointerDeviceType
-    Microsoft.UI.Input.PointerPoint
-    Microsoft.UI.Input.PointerPointProperties
-
     Microsoft.UI.Xaml.Application
-    Microsoft.UI.Xaml.ApplicationHighContrastAdjustment
     Microsoft.UI.Xaml.ApplicationInitializationCallback
     Microsoft.UI.Xaml.ApplicationInitializationCallbackParams
     Microsoft.UI.Xaml.ApplicationTheme
-    Microsoft.UI.Xaml.DebugSettings
+    Microsoft.UI.Xaml.BringIntoViewRequestedEventArgs
+    Microsoft.UI.Xaml.DataContextChangedEventArgs
     Microsoft.UI.Xaml.DependencyObject
     Microsoft.UI.Xaml.DispatcherShutdownMode
+    Microsoft.UI.Xaml.DragStartingEventArgs
+    Microsoft.UI.Xaml.DropCompletedEventArgs
+    Microsoft.UI.Xaml.EffectiveViewportChangedEventArgs
     Microsoft.UI.Xaml.FrameworkElement
     Microsoft.UI.Xaml.FocusVisualKind
     Microsoft.UI.Xaml.GridLength
@@ -76,10 +95,17 @@
     Microsoft.UI.Xaml.VerticalAlignment
     Microsoft.UI.Xaml.Visibility
     Microsoft.UI.Xaml.Window
+    Microsoft.UI.Xaml.WindowActivatedEventArgs
+    Microsoft.UI.Xaml.WindowEventArgs
+    Microsoft.UI.Xaml.WindowSizeChangedEventArgs
+    Microsoft.UI.Xaml.WindowVisibilityChangedEventArgs
     Microsoft.UI.Xaml.XamlRoot
+    Microsoft.UI.Xaml.XamlRootChangedEventArgs
 
+    Microsoft.UI.Xaml.Controls.AnchorRequestedEventArgs
     Microsoft.UI.Xaml.Controls.BackgroundSizing
     Microsoft.UI.Xaml.Controls.Button
+    Microsoft.UI.Xaml.Controls.CandidateWindowBoundsChangedEventArgs
     Microsoft.UI.Xaml.Controls.Canvas
     Microsoft.UI.Xaml.Controls.CheckBox
     Microsoft.UI.Xaml.Controls.ColumnDefinition
@@ -92,14 +118,19 @@
     Microsoft.UI.Xaml.Controls.ContentDialogButton
     Microsoft.UI.Xaml.Controls.ContentDialogButtonClickDeferral
     Microsoft.UI.Xaml.Controls.ContentDialogButtonClickEventArgs
+    Microsoft.UI.Xaml.Controls.ContentDialogClosedEventArgs
     Microsoft.UI.Xaml.Controls.ContentDialogClosingDeferral
     Microsoft.UI.Xaml.Controls.ContentDialogClosingEventArgs
     Microsoft.UI.Xaml.Controls.ContentDialogOpenedEventArgs
     Microsoft.UI.Xaml.Controls.ContentDialogResult
     Microsoft.UI.Xaml.Controls.Control
+    Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs
+    Microsoft.UI.Xaml.Controls.FocusDisengagedEventArgs
+    Microsoft.UI.Xaml.Controls.FocusEngagedEventArgs
     Microsoft.UI.Xaml.Controls.Grid
     Microsoft.UI.Xaml.Controls.GroupStyle
     Microsoft.UI.Xaml.Controls.HyperlinkButton
+    Microsoft.UI.Xaml.Controls.IsTextTrimmedChangedEventArgs
     Microsoft.UI.Xaml.Controls.ItemCollection
     Microsoft.UI.Xaml.Controls.ItemsControl
     Microsoft.UI.Xaml.Controls.ListBox
@@ -109,6 +140,7 @@
     Microsoft.UI.Xaml.Controls.Orientation
     Microsoft.UI.Xaml.Controls.Panel
     Microsoft.UI.Xaml.Controls.PasswordBox
+    Microsoft.UI.Xaml.Controls.PasswordBoxPasswordChangingEventArgs
     Microsoft.UI.Xaml.Controls.ProgressBar
     Microsoft.UI.Xaml.Controls.RadioButton
     Microsoft.UI.Xaml.Controls.RowDefinition
@@ -123,10 +155,26 @@
     Microsoft.UI.Xaml.Controls.SwapChainPanel
     Microsoft.UI.Xaml.Controls.TabView
     Microsoft.UI.Xaml.Controls.TabViewItem
+    Microsoft.UI.Xaml.Controls.TabViewExternalTornOutTabsDroppingEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewExternalTornOutTabsDroppedEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabCloseRequestedEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabDragCompletedEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabDragStartingEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabDroppedOutsideEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabTearOutRequestedEventArgs
+    Microsoft.UI.Xaml.Controls.TabViewTabTearOutWindowRequestedEventArgs
     Microsoft.UI.Xaml.Controls.TextBlock
     Microsoft.UI.Xaml.Controls.TextBox
+    Microsoft.UI.Xaml.Controls.TextBoxBeforeTextChangingEventArgs
+    Microsoft.UI.Xaml.Controls.TextBoxSelectionChangingEventArgs
+    Microsoft.UI.Xaml.Controls.TextBoxTextChangingEventArgs
     Microsoft.UI.Xaml.Controls.TextChangedEventArgs
     Microsoft.UI.Xaml.Controls.TextChangedEventHandler
+    Microsoft.UI.Xaml.Controls.TextCompositionChangedEventArgs
+    Microsoft.UI.Xaml.Controls.TextCompositionEndedEventArgs
+    Microsoft.UI.Xaml.Controls.TextCompositionStartedEventArgs
+    Microsoft.UI.Xaml.Controls.TextControlCopyingToClipboardEventArgs
+    Microsoft.UI.Xaml.Controls.TextControlCuttingToClipboardEventArgs
     Microsoft.UI.Xaml.Controls.ToolTip
     Microsoft.UI.Xaml.Controls.ToolTipService
     Microsoft.UI.Xaml.Controls.UIElementCollection
@@ -149,10 +197,7 @@
     Microsoft.UI.Xaml.Documents.TextHighlighter
     Microsoft.UI.Xaml.Documents.TextRange
 
-    Microsoft.UI.Xaml.Input.KeyboardAccelerator
-    Microsoft.UI.Xaml.Input.Pointer
-    Microsoft.UI.Xaml.Input.PointerEventHandler
-    Microsoft.UI.Xaml.Input.PointerRoutedEventArgs
+    Microsoft.UI.Xaml.Input
 
     Microsoft.UI.Xaml.Media.Brush
     Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop

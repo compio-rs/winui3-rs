@@ -1,0 +1,11 @@
+--in
+    default
+
+--out windows-subset/src/winrt.rs
+--implement
+
+--filter
+    Windows.Foundation.TypedEventHandler
+
+    Windows.UI.ViewManagement.UIColorType
+    Windows.UI.ViewManagement.UISettings::{GetColorValue, ColorValuesChanged}

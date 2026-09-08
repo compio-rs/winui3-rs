@@ -41,5 +41,5 @@ pub fn init_apartment(apartment_type: ApartmentType) -> windows_core::Result<()>
         ApartmentType::MultiThreaded => internal::RO_INIT_MULTITHREADED,
         ApartmentType::SingleThreaded => internal::RO_INIT_SINGLETHREADED,
     };
-    unsafe { internal::RoInitialize(roinit).ok() }
+    unsafe { internal::RoInitialize(roinit) }
 }

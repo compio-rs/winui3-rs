@@ -19,3 +19,5 @@ windows-future.workspace = true
 windows-numerics.workspace = true
 windows-reference.workspace = true
 windows-time.workspace = true
+
+windows-subset.workspace = true

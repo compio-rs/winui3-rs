@@ -1,0 +1,148 @@
+--in
+    default
+    bindgen/winmd/Windows.Win32.winmd
+
+--out windows-subset/src/Win32.rs
+--implement
+--flat
+
+--filter
+    Windows.Win32.Foundation.D2DERR_RECREATE_TARGET
+    Windows.Win32.Foundation.E_FAIL
+    Windows.Win32.Foundation.E_INVALIDARG
+    Windows.Win32.Foundation.E_NOINTERFACE
+    Windows.Win32.Foundation.E_POINTER
+    Windows.Win32.Foundation.ERROR_CANCELLED
+    Windows.Win32.Foundation.ERROR_MOD_NOT_FOUND
+    Windows.Win32.Foundation.HWND
+    Windows.Win32.Foundation.RECT
+
+    Windows.Win32.Graphics.DirectWrite.DWRITE_FONT_STRETCH
+    Windows.Win32.Graphics.DirectWrite.DWRITE_FONT_STYLE
+    Windows.Win32.Graphics.DirectWrite.DWRITE_FONT_WEIGHT
+    Windows.Win32.Graphics.DirectWrite.DWRITE_FACTORY_TYPE
+    Windows.Win32.Graphics.DirectWrite.DWriteCreateFactory
+    Windows.Win32.Graphics.DirectWrite.IDWriteFactory
+    Windows.Win32.Graphics.DirectWrite.IDWriteTextLayout
+
+    Windows.Win32.Graphics.Direct2D.Common.D2D_MATRIX_3X2_F
+    Windows.Win32.Graphics.Direct2D.Common.D2D_POINT_2F
+    Windows.Win32.Graphics.Direct2D.Common.D2D_RECT_F
+    Windows.Win32.Graphics.Direct2D.Common.D2D_SIZE_F
+    Windows.Win32.Graphics.Direct2D.Common.D2D_SIZE_U
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_ALPHA_MODE
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_BEZIER_SEGMENT
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_COLOR_F
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_FIGURE_BEGIN
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_FIGURE_END
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_GRADIENT_STOP
+    Windows.Win32.Graphics.Direct2D.Common.D2D1_PIXEL_FORMAT
+    Windows.Win32.Graphics.Direct2D.Common.ID2D1SimplifiedGeometrySink
+    Windows.Win32.Graphics.Direct2D.D2D1_ARC_SEGMENT
+    Windows.Win32.Graphics.Direct2D.D2D1_ARC_SIZE
+    Windows.Win32.Graphics.Direct2D.D2D1_BITMAP_INTERPOLATION_MODE
+    Windows.Win32.Graphics.Direct2D.D2D1_BITMAP_OPTIONS
+    Windows.Win32.Graphics.Direct2D.D2D1_BITMAP_PROPERTIES
+    Windows.Win32.Graphics.Direct2D.D2D1_BITMAP_PROPERTIES1
+    Windows.Win32.Graphics.Direct2D.D2D1_BRUSH_PROPERTIES
+    Windows.Win32.Graphics.Direct2D.D2D1_DEFAULT_FLATTENING_TOLERANCE
+    Windows.Win32.Graphics.Direct2D.D2D1_DEVICE_CONTEXT_OPTIONS
+    Windows.Win32.Graphics.Direct2D.D2D1_DRAW_TEXT_OPTIONS
+    Windows.Win32.Graphics.Direct2D.D2D1_ELLIPSE
+    Windows.Win32.Graphics.Direct2D.D2D1_EXTEND_MODE
+    Windows.Win32.Graphics.Direct2D.D2D1_FACTORY_TYPE
+    Windows.Win32.Graphics.Direct2D.D2D1_FEATURE_LEVEL
+    Windows.Win32.Graphics.Direct2D.D2D1_GAMMA
+    Windows.Win32.Graphics.Direct2D.D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES
+    Windows.Win32.Graphics.Direct2D.D2D1_PRESENT_OPTIONS
+    Windows.Win32.Graphics.Direct2D.D2D1_RADIAL_GRADIENT_BRUSH_PROPERTIES
+    Windows.Win32.Graphics.Direct2D.D2D1_RENDER_TARGET_TYPE
+    Windows.Win32.Graphics.Direct2D.D2D1_RENDER_TARGET_USAGE
+    Windows.Win32.Graphics.Direct2D.D2D1_ROUNDED_RECT
+    Windows.Win32.Graphics.Direct2D.D2D1_SWEEP_DIRECTION
+    Windows.Win32.Graphics.Direct2D.D2D1CreateFactory
+    Windows.Win32.Graphics.Direct2D.ID2D1Bitmap
+    Windows.Win32.Graphics.Direct2D.ID2D1Bitmap1
+    Windows.Win32.Graphics.Direct2D.ID2D1Brush
+    Windows.Win32.Graphics.Direct2D.ID2D1Device
+    Windows.Win32.Graphics.Direct2D.ID2D1DeviceContext
+    Windows.Win32.Graphics.Direct2D.ID2D1Factory
+    Windows.Win32.Graphics.Direct2D.ID2D1Factory2
+    Windows.Win32.Graphics.Direct2D.ID2D1Geometry
+    Windows.Win32.Graphics.Direct2D.ID2D1GeometrySink
+    Windows.Win32.Graphics.Direct2D.ID2D1HwndRenderTarget
+    Windows.Win32.Graphics.Direct2D.ID2D1PathGeometry
+    Windows.Win32.Graphics.Direct2D.ID2D1RenderTarget
+
+    Windows.Win32.Graphics.Direct3D.D3D_DRIVER_TYPE
+    Windows.Win32.Graphics.Direct3D.D3D_FEATURE_LEVEL
+
+    Windows.Win32.Graphics.Direct3D11.D3D11_CREATE_DEVICE_FLAG
+    Windows.Win32.Graphics.Direct3D11.D3D11_SDK_VERSION
+    Windows.Win32.Graphics.Direct3D11.D3D11CreateDevice
+    Windows.Win32.Graphics.Direct3D11.ID3D11Device
+    Windows.Win32.Graphics.Direct3D11.ID3D11DeviceContext
+
+    Windows.Win32.Graphics.Dxgi.Common.DXGI_ALPHA_MODE
+    Windows.Win32.Graphics.Dxgi.Common.DXGI_FORMAT
+    Windows.Win32.Graphics.Dxgi.Common.DXGI_SAMPLE_DESC
+    Windows.Win32.Graphics.Dxgi.DXGI_ERROR_DEVICE_REMOVED
+    Windows.Win32.Graphics.Dxgi.DXGI_ERROR_DEVICE_RESET
+    Windows.Win32.Graphics.Dxgi.DXGI_MATRIX_3X2_F
+    Windows.Win32.Graphics.Dxgi.DXGI_SCALING
+    Windows.Win32.Graphics.Dxgi.DXGI_SWAP_CHAIN_DESC1
+    Windows.Win32.Graphics.Dxgi.DXGI_SWAP_EFFECT
+    Windows.Win32.Graphics.Dxgi.DXGI_USAGE
+    Windows.Win32.Graphics.Dxgi.IDXGIAdapter
+    Windows.Win32.Graphics.Dxgi.IDXGIDevice
+    Windows.Win32.Graphics.Dxgi.IDXGIDevice1
+    Windows.Win32.Graphics.Dxgi.IDXGIFactory2
+    Windows.Win32.Graphics.Dxgi.IDXGIObject
+    Windows.Win32.Graphics.Dxgi.IDXGISurface
+    Windows.Win32.Graphics.Dxgi.IDXGISwapChain
+    Windows.Win32.Graphics.Dxgi.IDXGISwapChain1
+    Windows.Win32.Graphics.Dxgi.IDXGISwapChain2
+
+    Windows.Win32.Media.MediaFoundation.CLSID_MFMediaEngineClassFactory
+    Windows.Win32.Media.MediaFoundation.MF_MEDIA_ENGINE_CALLBACK
+    Windows.Win32.Media.MediaFoundation.MF_MEDIA_ENGINE_EVENT
+    Windows.Win32.Media.MediaFoundation.MF_MEDIA_ENGINE_PLAYBACK_HWND
+    Windows.Win32.Media.MediaFoundation.MF_VERSION
+    Windows.Win32.Media.MediaFoundation.MFSTARTUP_FULL
+    Windows.Win32.Media.MediaFoundation.IMFAttributes
+    Windows.Win32.Media.MediaFoundation.IMFMediaEngine
+    Windows.Win32.Media.MediaFoundation.IMFMediaEngineClassFactory
+    Windows.Win32.Media.MediaFoundation.IMFMediaEngineEx
+    Windows.Win32.Media.MediaFoundation.IMFMediaEngineNotify
+    Windows.Win32.Media.MediaFoundation.MFCreateAttributes
+    Windows.Win32.Media.MediaFoundation.MFShutdown
+    Windows.Win32.Media.MediaFoundation.MFStartup
+
+    Windows.Win32.System.Com.COINIT
+    Windows.Win32.System.Com.CLSCTX
+    Windows.Win32.System.Com.CoCreateInstance
+    Windows.Win32.System.Com.CoInitializeEx
+    Windows.Win32.System.Com.CoTaskMemAlloc
+    Windows.Win32.System.Com.CoTaskMemFree
+    Windows.Win32.System.Com.CoUninitialize
+
+    Windows.Win32.System.LibraryLoader.LOAD_LIBRARY_FLAGS
+    Windows.Win32.System.LibraryLoader.AddDllDirectory
+    Windows.Win32.System.LibraryLoader.GetProcAddress
+    Windows.Win32.System.LibraryLoader.LoadLibraryW
+    Windows.Win32.System.LibraryLoader.SetDefaultDllDirectories
+
+    Windows.Win32.UI.Shell.Common.COMDLG_FILTERSPEC
+    Windows.Win32.UI.Shell.CSIDL_WINDOWS
+    Windows.Win32.UI.Shell.FILEOPENDIALOGOPTIONS
+    Windows.Win32.UI.Shell.PATHCCH_NONE
+    Windows.Win32.UI.Shell.SIGDN
+    Windows.Win32.UI.Shell.FileOpenDialog
+    Windows.Win32.UI.Shell.FileSaveDialog
+    Windows.Win32.UI.Shell.IFileDialog
+    Windows.Win32.UI.Shell.IFileOpenDialog
+    Windows.Win32.UI.Shell.IModalWindow
+    Windows.Win32.UI.Shell.IShellItem
+    Windows.Win32.UI.Shell.IShellItemArray
+    Windows.Win32.UI.Shell.PathCchCombineEx
+    Windows.Win32.UI.Shell.SHGetSpecialFolderPathW

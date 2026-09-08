@@ -1,10 +1,10 @@
 [workspace]
 resolver = "2"
-members = ["bindgen", "winui3"]
+members = ["bindgen", "winui3", "windows-subset"]
 default-members = ["winui3"]
 
 [workspace.dependencies]
-windows-bindgen = "0.100"
+windows-bindgen = { version = "0.100", package = "overrides-windows-bindgen" }
 windows-collections = "0.100"
 windows-core = "0.100"
 windows-future = "0.100"
@@ -12,3 +12,4 @@ windows-numerics = "0.100"
 windows-reference = "0.100"
 windows-time = "0.100"
 winui3 = { path = "winui3", package = "winio-winui3" }
+windows-subset = { path = "windows-subset", package = "winio-windows-subset" }

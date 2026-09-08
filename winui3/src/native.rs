@@ -8,7 +8,7 @@ windows_core::imp::interface_hierarchy!(ISwapChainPanelNative, windows_core::IUn
 impl ISwapChainPanelNative {
     pub unsafe fn SetSwapChain<P0>(&self, swapChain: P0) -> windows_core::Result<()>
     where
-        P0: windows_core::Param<crate::Windows::Win32::Graphics::Dxgi::IDXGISwapChain>,
+        P0: windows_core::Param<windows_subset::Win32::IDXGISwapChain>,
     {
         unsafe {
             (windows_core::Interface::vtable(self).SetSwapChain)(
@@ -31,7 +31,7 @@ pub struct ISwapChainPanelNative_Vtbl {
 pub trait ISwapChainPanelNative_Impl: windows_core::IUnknownImpl {
     fn SetSwapChain(
         &self,
-        swapChain: windows_core::Ref<'_, crate::Windows::Win32::Graphics::Dxgi::IDXGISwapChain>,
+        swapChain: windows_core::Ref<'_, windows_subset::Win32::IDXGISwapChain>,
     ) -> windows_core::Result<()>;
 }
 impl ISwapChainPanelNative_Vtbl {
@@ -76,9 +76,7 @@ windows_core::imp::define_interface!(
 windows_core::imp::interface_hierarchy!(IWindowNative, windows_core::IUnknown);
 
 impl IWindowNative {
-    pub unsafe fn WindowHandle(
-        &self,
-    ) -> windows_core::Result<crate::Windows::Win32::Foundation::HWND> {
+    pub unsafe fn WindowHandle(&self) -> windows_core::Result<windows_subset::Win32::HWND> {
         unsafe {
             let mut result__ = core::mem::zeroed();
             (windows_core::Interface::vtable(self).WindowHandle)(
@@ -96,11 +94,11 @@ pub struct IWindowNative_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
     pub WindowHandle: unsafe extern "system" fn(
         *mut core::ffi::c_void,
-        *mut crate::Windows::Win32::Foundation::HWND,
+        *mut windows_subset::Win32::HWND,
     ) -> windows_core::HRESULT,
 }
 pub trait IWindowNative_Impl: windows_core::IUnknownImpl {
-    fn WindowHandle(&self) -> windows_core::Result<crate::Windows::Win32::Foundation::HWND>;
+    fn WindowHandle(&self) -> windows_core::Result<windows_subset::Win32::HWND>;
 }
 impl IWindowNative_Vtbl {
     pub const fn new<Identity: IWindowNative_Impl, const OFFSET: isize>() -> Self {
@@ -109,7 +107,7 @@ impl IWindowNative_Vtbl {
             const OFFSET: isize,
         >(
             this: *mut core::ffi::c_void,
-            hWnd: *mut crate::Windows::Win32::Foundation::HWND,
+            hWnd: *mut windows_subset::Win32::HWND,
         ) -> windows_core::HRESULT {
             unsafe {
                 let this: &Identity =
