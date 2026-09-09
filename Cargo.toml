@@ -1,10 +1,10 @@
 [workspace]
-resolver = "2"
+resolver = "3"
 members = ["bindgen", "winui3", "windows-subset"]
 default-members = ["winui3"]
 
 [workspace.dependencies]
-windows-bindgen = { version = "0.100", package = "overrides-windows-bindgen" }
+windows-bindgen = { version = "0.100.8", package = "overrides-windows-bindgen" }
 windows-collections = "0.100"
 windows-core = "0.100"
 windows-future = "0.100"

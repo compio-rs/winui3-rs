@@ -32,10 +32,10 @@ where
 #[inline]
 pub unsafe fn CoInitializeEx(
     pvreserved: Option<*const core::ffi::c_void>,
-    dwcoinit: u32,
-) -> windows_core::Result<()> {
-    windows_core::link!("ole32.dll" "system" fn CoInitializeEx(pvreserved : *const core::ffi::c_void, dwcoinit : u32) -> windows_core::HRESULT);
-    unsafe { CoInitializeEx(pvreserved.unwrap_or(core::mem::zeroed()) as _, dwcoinit).ok() }
+    dwcoinit: COINIT,
+) -> windows_core::HRESULT {
+    windows_core::link!("ole32.dll" "system" fn CoInitializeEx(pvreserved : *const core::ffi::c_void, dwcoinit : COINIT) -> windows_core::HRESULT);
+    unsafe { CoInitializeEx(pvreserved.unwrap_or(core::mem::zeroed()) as _, dwcoinit) }
 }
 #[inline]
 pub unsafe fn CoTaskMemAlloc(cb: usize) -> *mut core::ffi::c_void {
@@ -341,9 +341,6 @@ pub struct CAUL {
     pub cElems: u32,
     pub pElems: *mut u32,
 }
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct CHAR(pub i8);
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct CLIPDATA {
@@ -860,6 +857,7 @@ pub struct D2D_SIZE_U {
     pub width: u32,
     pub height: u32,
 }
+pub type D3D11_BIND_FLAG = i32;
 pub type D3D11_BLEND = i32;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -896,9 +894,9 @@ pub struct D3D11_BUFFEREX_SRV {
 pub struct D3D11_BUFFER_DESC {
     pub ByteWidth: u32,
     pub Usage: D3D11_USAGE,
-    pub BindFlags: u32,
-    pub CPUAccessFlags: u32,
-    pub MiscFlags: u32,
+    pub BindFlags: D3D11_BIND_FLAG,
+    pub CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    pub MiscFlags: D3D11_RESOURCE_MISC_FLAG,
     pub StructureByteStride: u32,
 }
 #[repr(C)]
@@ -990,6 +988,7 @@ pub struct D3D11_COUNTER_INFO {
     pub NumDetectableParallelUnits: u8,
 }
 pub type D3D11_COUNTER_TYPE = i32;
+pub type D3D11_CPU_ACCESS_FLAG = i32;
 pub const D3D11_CREATE_DEVICE_BGRA_SUPPORT: D3D11_CREATE_DEVICE_FLAG = 32;
 pub const D3D11_CREATE_DEVICE_DEBUG: D3D11_CREATE_DEVICE_FLAG = 2;
 pub const D3D11_CREATE_DEVICE_DEBUGGABLE: D3D11_CREATE_DEVICE_FLAG = 64;
@@ -1139,6 +1138,7 @@ impl Default for D3D11_RENDER_TARGET_VIEW_DESC_0 {
         unsafe { core::mem::zeroed() }
     }
 }
+pub type D3D11_RESOURCE_MISC_FLAG = i32;
 pub type D3D11_RTV_DIMENSION = i32;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -1385,9 +1385,9 @@ pub struct D3D11_TEXTURE1D_DESC {
     pub ArraySize: u32,
     pub Format: DXGI_FORMAT,
     pub Usage: D3D11_USAGE,
-    pub BindFlags: u32,
-    pub CPUAccessFlags: u32,
-    pub MiscFlags: u32,
+    pub BindFlags: D3D11_BIND_FLAG,
+    pub CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    pub MiscFlags: D3D11_RESOURCE_MISC_FLAG,
 }
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
@@ -1399,9 +1399,9 @@ pub struct D3D11_TEXTURE2D_DESC {
     pub Format: DXGI_FORMAT,
     pub SampleDesc: DXGI_SAMPLE_DESC,
     pub Usage: D3D11_USAGE,
-    pub BindFlags: u32,
-    pub CPUAccessFlags: u32,
-    pub MiscFlags: u32,
+    pub BindFlags: D3D11_BIND_FLAG,
+    pub CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    pub MiscFlags: D3D11_RESOURCE_MISC_FLAG,
 }
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
@@ -1412,9 +1412,9 @@ pub struct D3D11_TEXTURE3D_DESC {
     pub MipLevels: u32,
     pub Format: DXGI_FORMAT,
     pub Usage: D3D11_USAGE,
-    pub BindFlags: u32,
-    pub CPUAccessFlags: u32,
-    pub MiscFlags: u32,
+    pub BindFlags: D3D11_BIND_FLAG,
+    pub CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    pub MiscFlags: D3D11_RESOURCE_MISC_FLAG,
 }
 pub type D3D11_TEXTURE_ADDRESS_MODE = i32;
 pub type D3D11_UAV_DIMENSION = i32;
@@ -1947,7 +1947,7 @@ pub struct DXGI_SWAP_CHAIN_DESC {
     pub OutputWindow: HWND,
     pub Windowed: windows_core::BOOL,
     pub SwapEffect: DXGI_SWAP_EFFECT,
-    pub Flags: u32,
+    pub Flags: DXGI_SWAP_CHAIN_FLAG,
 }
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
@@ -1962,8 +1962,9 @@ pub struct DXGI_SWAP_CHAIN_DESC1 {
     pub Scaling: DXGI_SCALING,
     pub SwapEffect: DXGI_SWAP_EFFECT,
     pub AlphaMode: DXGI_ALPHA_MODE,
-    pub Flags: u32,
+    pub Flags: DXGI_SWAP_CHAIN_FLAG,
 }
+pub type DXGI_SWAP_CHAIN_FLAG = i32;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct DXGI_SWAP_CHAIN_FULLSCREEN_DESC {
@@ -2199,6 +2200,8 @@ pub struct ID2D1Bitmap_Vtbl {
         u32,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1Bitmap {}
+unsafe impl Sync for ID2D1Bitmap {}
 impl windows_core::RuntimeName for ID2D1Bitmap {}
 windows_core::imp::define_interface!(
     ID2D1Bitmap1,
@@ -2281,6 +2284,8 @@ pub struct ID2D1Bitmap1_Vtbl {
     ) -> windows_core::HRESULT,
     pub Unmap: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1Bitmap1 {}
+unsafe impl Sync for ID2D1Bitmap1 {}
 impl windows_core::RuntimeName for ID2D1Bitmap1 {}
 windows_core::imp::define_interface!(
     ID2D1BitmapBrush,
@@ -2311,6 +2316,8 @@ pub struct ID2D1BitmapBrush_Vtbl {
     GetInterpolationMode: usize,
     GetBitmap: usize,
 }
+unsafe impl Send for ID2D1BitmapBrush {}
+unsafe impl Sync for ID2D1BitmapBrush {}
 impl windows_core::RuntimeName for ID2D1BitmapBrush {}
 windows_core::imp::define_interface!(
     ID2D1BitmapBrush1,
@@ -2336,6 +2343,8 @@ pub struct ID2D1BitmapBrush1_Vtbl {
     SetInterpolationMode1: usize,
     GetInterpolationMode1: usize,
 }
+unsafe impl Send for ID2D1BitmapBrush1 {}
+unsafe impl Sync for ID2D1BitmapBrush1 {}
 impl windows_core::RuntimeName for ID2D1BitmapBrush1 {}
 windows_core::imp::define_interface!(
     ID2D1BitmapRenderTarget,
@@ -2359,6 +2368,8 @@ pub struct ID2D1BitmapRenderTarget_Vtbl {
     pub base__: ID2D1RenderTarget_Vtbl,
     GetBitmap: usize,
 }
+unsafe impl Send for ID2D1BitmapRenderTarget {}
+unsafe impl Sync for ID2D1BitmapRenderTarget {}
 impl windows_core::RuntimeName for ID2D1BitmapRenderTarget {}
 windows_core::imp::define_interface!(
     ID2D1Brush,
@@ -2413,6 +2424,8 @@ pub struct ID2D1Brush_Vtbl {
     pub GetOpacity: unsafe extern "system" fn(*mut core::ffi::c_void) -> f32,
     pub GetTransform: unsafe extern "system" fn(*mut core::ffi::c_void, *mut D2D_MATRIX_3X2_F),
 }
+unsafe impl Send for ID2D1Brush {}
+unsafe impl Sync for ID2D1Brush {}
 impl windows_core::RuntimeName for ID2D1Brush {}
 windows_core::imp::define_interface!(
     ID2D1ColorContext,
@@ -2433,6 +2446,8 @@ pub struct ID2D1ColorContext_Vtbl {
     GetProfileSize: usize,
     GetProfile: usize,
 }
+unsafe impl Send for ID2D1ColorContext {}
+unsafe impl Sync for ID2D1ColorContext {}
 impl windows_core::RuntimeName for ID2D1ColorContext {}
 windows_core::imp::define_interface!(
     ID2D1CommandList,
@@ -2457,6 +2472,8 @@ pub struct ID2D1CommandList_Vtbl {
     Stream: usize,
     Close: usize,
 }
+unsafe impl Send for ID2D1CommandList {}
+unsafe impl Sync for ID2D1CommandList {}
 impl windows_core::RuntimeName for ID2D1CommandList {}
 windows_core::imp::define_interface!(
     ID2D1DCRenderTarget,
@@ -2480,6 +2497,8 @@ pub struct ID2D1DCRenderTarget_Vtbl {
     pub base__: ID2D1RenderTarget_Vtbl,
     BindDC: usize,
 }
+unsafe impl Send for ID2D1DCRenderTarget {}
+unsafe impl Sync for ID2D1DCRenderTarget {}
 impl windows_core::RuntimeName for ID2D1DCRenderTarget {}
 windows_core::imp::define_interface!(
     ID2D1Device,
@@ -2573,6 +2592,8 @@ pub struct ID2D1Device_Vtbl {
     pub GetMaximumTextureMemory: unsafe extern "system" fn(*mut core::ffi::c_void) -> u64,
     pub ClearResources: unsafe extern "system" fn(*mut core::ffi::c_void, u32),
 }
+unsafe impl Send for ID2D1Device {}
+unsafe impl Sync for ID2D1Device {}
 impl windows_core::RuntimeName for ID2D1Device {}
 windows_core::imp::define_interface!(
     ID2D1Device1,
@@ -2598,6 +2619,8 @@ pub struct ID2D1Device1_Vtbl {
     SetRenderingPriority: usize,
     CreateDeviceContext: usize,
 }
+unsafe impl Send for ID2D1Device1 {}
+unsafe impl Sync for ID2D1Device1 {}
 impl windows_core::RuntimeName for ID2D1Device1 {}
 windows_core::imp::define_interface!(
     ID2D1DeviceContext,
@@ -3327,6 +3350,8 @@ pub struct ID2D1DeviceContext_Vtbl {
         *const D2D_RECT_F,
     ),
 }
+unsafe impl Send for ID2D1DeviceContext {}
+unsafe impl Sync for ID2D1DeviceContext {}
 impl windows_core::RuntimeName for ID2D1DeviceContext {}
 windows_core::imp::define_interface!(
     ID2D1DrawingStateBlock,
@@ -3352,6 +3377,8 @@ pub struct ID2D1DrawingStateBlock_Vtbl {
     SetTextRenderingParams: usize,
     GetTextRenderingParams: usize,
 }
+unsafe impl Send for ID2D1DrawingStateBlock {}
+unsafe impl Sync for ID2D1DrawingStateBlock {}
 impl windows_core::RuntimeName for ID2D1DrawingStateBlock {}
 windows_core::imp::define_interface!(
     ID2D1Effect,
@@ -3374,6 +3401,8 @@ pub struct ID2D1Effect_Vtbl {
     GetInputCount: usize,
     GetOutput: usize,
 }
+unsafe impl Send for ID2D1Effect {}
+unsafe impl Sync for ID2D1Effect {}
 impl windows_core::RuntimeName for ID2D1Effect {}
 windows_core::imp::define_interface!(
     ID2D1EllipseGeometry,
@@ -3397,6 +3426,8 @@ pub struct ID2D1EllipseGeometry_Vtbl {
     pub base__: ID2D1Geometry_Vtbl,
     GetEllipse: usize,
 }
+unsafe impl Send for ID2D1EllipseGeometry {}
+unsafe impl Sync for ID2D1EllipseGeometry {}
 impl windows_core::RuntimeName for ID2D1EllipseGeometry {}
 windows_core::imp::define_interface!(
     ID2D1Factory,
@@ -3690,6 +3721,8 @@ pub struct ID2D1Factory_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1Factory {}
+unsafe impl Sync for ID2D1Factory {}
 pub trait ID2D1Factory_Impl: windows_core::IUnknownImpl {
     fn ReloadSystemMetrics(&self) -> windows_core::Result<()>;
     fn GetDesktopDpi(&self, dpix: *mut f32, dpiy: *mut f32);
@@ -4119,6 +4152,8 @@ pub struct ID2D1Factory1_Vtbl {
     GetRegisteredEffects: usize,
     GetEffectProperties: usize,
 }
+unsafe impl Send for ID2D1Factory1 {}
+unsafe impl Sync for ID2D1Factory1 {}
 impl windows_core::RuntimeName for ID2D1Factory1 {}
 windows_core::imp::define_interface!(
     ID2D1Factory2,
@@ -4162,6 +4197,8 @@ pub struct ID2D1Factory2_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1Factory2 {}
+unsafe impl Sync for ID2D1Factory2 {}
 impl windows_core::RuntimeName for ID2D1Factory2 {}
 windows_core::imp::define_interface!(
     ID2D1GdiMetafile,
@@ -4181,6 +4218,8 @@ pub struct ID2D1GdiMetafile_Vtbl {
     Stream: usize,
     GetBounds: usize,
 }
+unsafe impl Send for ID2D1GdiMetafile {}
+unsafe impl Sync for ID2D1GdiMetafile {}
 impl windows_core::RuntimeName for ID2D1GdiMetafile {}
 windows_core::imp::define_interface!(
     ID2D1Geometry,
@@ -4551,6 +4590,8 @@ pub struct ID2D1Geometry_Vtbl {
         *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1Geometry {}
+unsafe impl Sync for ID2D1Geometry {}
 impl windows_core::RuntimeName for ID2D1Geometry {}
 windows_core::imp::define_interface!(
     ID2D1GeometryGroup,
@@ -4576,6 +4617,8 @@ pub struct ID2D1GeometryGroup_Vtbl {
     GetSourceGeometryCount: usize,
     GetSourceGeometries: usize,
 }
+unsafe impl Send for ID2D1GeometryGroup {}
+unsafe impl Sync for ID2D1GeometryGroup {}
 impl windows_core::RuntimeName for ID2D1GeometryGroup {}
 windows_core::imp::define_interface!(
     ID2D1GeometrySink,
@@ -4650,6 +4693,8 @@ pub struct ID2D1GeometrySink_Vtbl {
     ),
     pub AddArc: unsafe extern "system" fn(*mut core::ffi::c_void, *const D2D1_ARC_SEGMENT),
 }
+unsafe impl Send for ID2D1GeometrySink {}
+unsafe impl Sync for ID2D1GeometrySink {}
 pub trait ID2D1GeometrySink_Impl: ID2D1SimplifiedGeometrySink_Impl {
     fn AddLine(&self, point: &D2D_POINT_2F);
     fn AddBezier(&self, bezier: *const D2D1_BEZIER_SEGMENT);
@@ -4765,6 +4810,8 @@ pub struct ID2D1GradientStopCollection_Vtbl {
     GetColorInterpolationGamma: usize,
     GetExtendMode: usize,
 }
+unsafe impl Send for ID2D1GradientStopCollection {}
+unsafe impl Sync for ID2D1GradientStopCollection {}
 impl windows_core::RuntimeName for ID2D1GradientStopCollection {}
 windows_core::imp::define_interface!(
     ID2D1GradientStopCollection1,
@@ -4792,6 +4839,8 @@ pub struct ID2D1GradientStopCollection1_Vtbl {
     GetBufferPrecision: usize,
     GetColorInterpolationMode: usize,
 }
+unsafe impl Send for ID2D1GradientStopCollection1 {}
+unsafe impl Sync for ID2D1GradientStopCollection1 {}
 impl windows_core::RuntimeName for ID2D1GradientStopCollection1 {}
 windows_core::imp::define_interface!(
     ID2D1HwndRenderTarget,
@@ -4843,6 +4892,8 @@ pub struct ID2D1HwndRenderTarget_Vtbl {
     ) -> windows_core::HRESULT,
     pub GetHwnd: unsafe extern "system" fn(*mut core::ffi::c_void) -> HWND,
 }
+unsafe impl Send for ID2D1HwndRenderTarget {}
+unsafe impl Sync for ID2D1HwndRenderTarget {}
 impl windows_core::RuntimeName for ID2D1HwndRenderTarget {}
 windows_core::imp::define_interface!(
     ID2D1Image,
@@ -4860,6 +4911,8 @@ windows_core::imp::interface_hierarchy!(ID2D1Image, windows_core::IUnknown, ID2D
 pub struct ID2D1Image_Vtbl {
     pub base__: ID2D1Resource_Vtbl,
 }
+unsafe impl Send for ID2D1Image {}
+unsafe impl Sync for ID2D1Image {}
 impl windows_core::RuntimeName for ID2D1Image {}
 windows_core::imp::define_interface!(
     ID2D1ImageBrush,
@@ -4892,6 +4945,8 @@ pub struct ID2D1ImageBrush_Vtbl {
     GetInterpolationMode: usize,
     GetSourceRectangle: usize,
 }
+unsafe impl Send for ID2D1ImageBrush {}
+unsafe impl Sync for ID2D1ImageBrush {}
 impl windows_core::RuntimeName for ID2D1ImageBrush {}
 windows_core::imp::define_interface!(
     ID2D1Layer,
@@ -4910,6 +4965,8 @@ pub struct ID2D1Layer_Vtbl {
     pub base__: ID2D1Resource_Vtbl,
     GetSize: usize,
 }
+unsafe impl Send for ID2D1Layer {}
+unsafe impl Sync for ID2D1Layer {}
 impl windows_core::RuntimeName for ID2D1Layer {}
 windows_core::imp::define_interface!(
     ID2D1LinearGradientBrush,
@@ -4937,6 +4994,8 @@ pub struct ID2D1LinearGradientBrush_Vtbl {
     GetEndPoint: usize,
     GetGradientStopCollection: usize,
 }
+unsafe impl Send for ID2D1LinearGradientBrush {}
+unsafe impl Sync for ID2D1LinearGradientBrush {}
 impl windows_core::RuntimeName for ID2D1LinearGradientBrush {}
 windows_core::imp::define_interface!(
     ID2D1Mesh,
@@ -4955,6 +5014,8 @@ pub struct ID2D1Mesh_Vtbl {
     pub base__: ID2D1Resource_Vtbl,
     Open: usize,
 }
+unsafe impl Send for ID2D1Mesh {}
+unsafe impl Sync for ID2D1Mesh {}
 impl windows_core::RuntimeName for ID2D1Mesh {}
 windows_core::imp::define_interface!(
     ID2D1PathGeometry,
@@ -5033,6 +5094,8 @@ pub struct ID2D1PathGeometry_Vtbl {
     pub GetFigureCount:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1PathGeometry {}
+unsafe impl Sync for ID2D1PathGeometry {}
 impl windows_core::RuntimeName for ID2D1PathGeometry {}
 windows_core::imp::define_interface!(
     ID2D1PrintControl,
@@ -5046,6 +5109,8 @@ pub struct ID2D1PrintControl_Vtbl {
     AddPage: usize,
     Close: usize,
 }
+unsafe impl Send for ID2D1PrintControl {}
+unsafe impl Sync for ID2D1PrintControl {}
 impl windows_core::RuntimeName for ID2D1PrintControl {}
 windows_core::imp::define_interface!(
     ID2D1Properties,
@@ -5068,6 +5133,8 @@ pub struct ID2D1Properties_Vtbl {
     GetValueSize: usize,
     GetSubProperties: usize,
 }
+unsafe impl Send for ID2D1Properties {}
+unsafe impl Sync for ID2D1Properties {}
 impl windows_core::RuntimeName for ID2D1Properties {}
 windows_core::imp::define_interface!(
     ID2D1RadialGradientBrush,
@@ -5099,6 +5166,8 @@ pub struct ID2D1RadialGradientBrush_Vtbl {
     GetRadiusY: usize,
     GetGradientStopCollection: usize,
 }
+unsafe impl Send for ID2D1RadialGradientBrush {}
+unsafe impl Sync for ID2D1RadialGradientBrush {}
 impl windows_core::RuntimeName for ID2D1RadialGradientBrush {}
 windows_core::imp::define_interface!(
     ID2D1RectangleGeometry,
@@ -5122,6 +5191,8 @@ pub struct ID2D1RectangleGeometry_Vtbl {
     pub base__: ID2D1Geometry_Vtbl,
     GetRect: usize,
 }
+unsafe impl Send for ID2D1RectangleGeometry {}
+unsafe impl Sync for ID2D1RectangleGeometry {}
 impl windows_core::RuntimeName for ID2D1RectangleGeometry {}
 windows_core::imp::define_interface!(
     ID2D1RenderTarget,
@@ -5786,14 +5857,13 @@ impl ID2D1RenderTarget {
         &self,
         tag1: Option<*mut u64>,
         tag2: Option<*mut u64>,
-    ) -> windows_core::Result<()> {
+    ) -> windows_core::HRESULT {
         unsafe {
             (windows_core::Interface::vtable(self).EndDraw)(
                 windows_core::Interface::as_raw(self),
                 tag1.unwrap_or(core::mem::zeroed()) as _,
                 tag2.unwrap_or(core::mem::zeroed()) as _,
             )
-            .ok()
         }
     }
     pub unsafe fn GetPixelFormat(&self) -> D2D1_PIXEL_FORMAT {
@@ -6090,6 +6160,8 @@ pub struct ID2D1RenderTarget_Vtbl {
         *const D2D1_RENDER_TARGET_PROPERTIES,
     ) -> windows_core::BOOL,
 }
+unsafe impl Send for ID2D1RenderTarget {}
+unsafe impl Sync for ID2D1RenderTarget {}
 impl windows_core::RuntimeName for ID2D1RenderTarget {}
 windows_core::imp::define_interface!(
     ID2D1Resource,
@@ -6102,6 +6174,8 @@ pub struct ID2D1Resource_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
     GetFactory: usize,
 }
+unsafe impl Send for ID2D1Resource {}
+unsafe impl Sync for ID2D1Resource {}
 impl windows_core::RuntimeName for ID2D1Resource {}
 windows_core::imp::define_interface!(
     ID2D1RoundedRectangleGeometry,
@@ -6125,6 +6199,8 @@ pub struct ID2D1RoundedRectangleGeometry_Vtbl {
     pub base__: ID2D1Geometry_Vtbl,
     GetRoundedRect: usize,
 }
+unsafe impl Send for ID2D1RoundedRectangleGeometry {}
+unsafe impl Sync for ID2D1RoundedRectangleGeometry {}
 impl windows_core::RuntimeName for ID2D1RoundedRectangleGeometry {}
 windows_core::imp::define_interface!(
     ID2D1SimplifiedGeometrySink,
@@ -6204,6 +6280,8 @@ pub struct ID2D1SimplifiedGeometrySink_Vtbl {
     pub EndFigure: unsafe extern "system" fn(*mut core::ffi::c_void, D2D1_FIGURE_END),
     pub Close: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID2D1SimplifiedGeometrySink {}
+unsafe impl Sync for ID2D1SimplifiedGeometrySink {}
 pub trait ID2D1SimplifiedGeometrySink_Impl: windows_core::IUnknownImpl {
     fn SetFillMode(&self, fillmode: D2D1_FILL_MODE);
     fn SetSegmentFlags(&self, vertexflags: D2D1_PATH_SEGMENT);
@@ -6368,6 +6446,8 @@ pub struct ID2D1SolidColorBrush_Vtbl {
     SetColor: usize,
     GetColor: usize,
 }
+unsafe impl Send for ID2D1SolidColorBrush {}
+unsafe impl Sync for ID2D1SolidColorBrush {}
 impl windows_core::RuntimeName for ID2D1SolidColorBrush {}
 windows_core::imp::define_interface!(
     ID2D1StrokeStyle,
@@ -6394,6 +6474,8 @@ pub struct ID2D1StrokeStyle_Vtbl {
     GetDashesCount: usize,
     GetDashes: usize,
 }
+unsafe impl Send for ID2D1StrokeStyle {}
+unsafe impl Sync for ID2D1StrokeStyle {}
 impl windows_core::RuntimeName for ID2D1StrokeStyle {}
 windows_core::imp::define_interface!(
     ID2D1TessellationSink,
@@ -6407,6 +6489,8 @@ pub struct ID2D1TessellationSink_Vtbl {
     AddTriangles: usize,
     Close: usize,
 }
+unsafe impl Send for ID2D1TessellationSink {}
+unsafe impl Sync for ID2D1TessellationSink {}
 impl windows_core::RuntimeName for ID2D1TessellationSink {}
 windows_core::imp::define_interface!(
     ID2D1TransformedGeometry,
@@ -6431,6 +6515,8 @@ pub struct ID2D1TransformedGeometry_Vtbl {
     GetSourceGeometry: usize,
     GetTransform: usize,
 }
+unsafe impl Send for ID2D1TransformedGeometry {}
+unsafe impl Sync for ID2D1TransformedGeometry {}
 impl windows_core::RuntimeName for ID2D1TransformedGeometry {}
 windows_core::imp::define_interface!(
     ID3D11Asynchronous,
@@ -6453,6 +6539,8 @@ pub struct ID3D11Asynchronous_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetDataSize: usize,
 }
+unsafe impl Send for ID3D11Asynchronous {}
+unsafe impl Sync for ID3D11Asynchronous {}
 impl windows_core::RuntimeName for ID3D11Asynchronous {}
 windows_core::imp::define_interface!(
     ID3D11BlendState,
@@ -6475,6 +6563,8 @@ pub struct ID3D11BlendState_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11BlendState {}
+unsafe impl Sync for ID3D11BlendState {}
 impl windows_core::RuntimeName for ID3D11BlendState {}
 windows_core::imp::define_interface!(
     ID3D11Buffer,
@@ -6498,6 +6588,8 @@ pub struct ID3D11Buffer_Vtbl {
     pub base__: ID3D11Resource_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Buffer {}
+unsafe impl Sync for ID3D11Buffer {}
 impl windows_core::RuntimeName for ID3D11Buffer {}
 windows_core::imp::define_interface!(
     ID3D11ClassInstance,
@@ -6523,6 +6615,8 @@ pub struct ID3D11ClassInstance_Vtbl {
     GetInstanceName: usize,
     GetTypeName: usize,
 }
+unsafe impl Send for ID3D11ClassInstance {}
+unsafe impl Sync for ID3D11ClassInstance {}
 impl windows_core::RuntimeName for ID3D11ClassInstance {}
 windows_core::imp::define_interface!(
     ID3D11ClassLinkage,
@@ -6546,6 +6640,8 @@ pub struct ID3D11ClassLinkage_Vtbl {
     GetClassInstance: usize,
     CreateClassInstance: usize,
 }
+unsafe impl Send for ID3D11ClassLinkage {}
+unsafe impl Sync for ID3D11ClassLinkage {}
 impl windows_core::RuntimeName for ID3D11ClassLinkage {}
 windows_core::imp::define_interface!(
     ID3D11CommandList,
@@ -6568,6 +6664,8 @@ pub struct ID3D11CommandList_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetContextFlags: usize,
 }
+unsafe impl Send for ID3D11CommandList {}
+unsafe impl Sync for ID3D11CommandList {}
 impl windows_core::RuntimeName for ID3D11CommandList {}
 windows_core::imp::define_interface!(
     ID3D11ComputeShader,
@@ -6589,6 +6687,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11ComputeShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11ComputeShader {}
+unsafe impl Sync for ID3D11ComputeShader {}
 impl windows_core::RuntimeName for ID3D11ComputeShader {}
 windows_core::imp::define_interface!(
     ID3D11Counter,
@@ -6612,6 +6712,8 @@ pub struct ID3D11Counter_Vtbl {
     pub base__: ID3D11Asynchronous_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Counter {}
+unsafe impl Sync for ID3D11Counter {}
 impl windows_core::RuntimeName for ID3D11Counter {}
 windows_core::imp::define_interface!(
     ID3D11DepthStencilState,
@@ -6634,6 +6736,8 @@ pub struct ID3D11DepthStencilState_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11DepthStencilState {}
+unsafe impl Sync for ID3D11DepthStencilState {}
 impl windows_core::RuntimeName for ID3D11DepthStencilState {}
 windows_core::imp::define_interface!(
     ID3D11DepthStencilView,
@@ -6657,6 +6761,8 @@ pub struct ID3D11DepthStencilView_Vtbl {
     pub base__: ID3D11View_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11DepthStencilView {}
+unsafe impl Sync for ID3D11DepthStencilView {}
 impl windows_core::RuntimeName for ID3D11DepthStencilView {}
 windows_core::imp::define_interface!(
     ID3D11Device,
@@ -7512,6 +7618,8 @@ pub struct ID3D11Device_Vtbl {
         unsafe extern "system" fn(*mut core::ffi::c_void, u32) -> windows_core::HRESULT,
     pub GetExceptionMode: unsafe extern "system" fn(*mut core::ffi::c_void) -> u32,
 }
+unsafe impl Send for ID3D11Device {}
+unsafe impl Sync for ID3D11Device {}
 pub trait ID3D11Device_Impl: windows_core::IUnknownImpl {
     fn CreateBuffer(
         &self,
@@ -8588,6 +8696,8 @@ pub struct ID3D11DeviceChild_Vtbl {
     SetPrivateData: usize,
     SetPrivateDataInterface: usize,
 }
+unsafe impl Send for ID3D11DeviceChild {}
+unsafe impl Sync for ID3D11DeviceChild {}
 impl windows_core::RuntimeName for ID3D11DeviceChild {}
 windows_core::imp::define_interface!(
     ID3D11DeviceContext,
@@ -10542,6 +10652,8 @@ pub struct ID3D11DeviceContext_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for ID3D11DeviceContext {}
+unsafe impl Sync for ID3D11DeviceContext {}
 impl windows_core::RuntimeName for ID3D11DeviceContext {}
 windows_core::imp::define_interface!(
     ID3D11DomainShader,
@@ -10563,6 +10675,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11DomainShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11DomainShader {}
+unsafe impl Sync for ID3D11DomainShader {}
 impl windows_core::RuntimeName for ID3D11DomainShader {}
 windows_core::imp::define_interface!(
     ID3D11GeometryShader,
@@ -10584,6 +10698,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11GeometryShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11GeometryShader {}
+unsafe impl Sync for ID3D11GeometryShader {}
 impl windows_core::RuntimeName for ID3D11GeometryShader {}
 windows_core::imp::define_interface!(
     ID3D11HullShader,
@@ -10605,6 +10721,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11HullShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11HullShader {}
+unsafe impl Sync for ID3D11HullShader {}
 impl windows_core::RuntimeName for ID3D11HullShader {}
 windows_core::imp::define_interface!(
     ID3D11InputLayout,
@@ -10626,6 +10744,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11InputLayout_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11InputLayout {}
+unsafe impl Sync for ID3D11InputLayout {}
 impl windows_core::RuntimeName for ID3D11InputLayout {}
 windows_core::imp::define_interface!(
     ID3D11PixelShader,
@@ -10647,6 +10767,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11PixelShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11PixelShader {}
+unsafe impl Sync for ID3D11PixelShader {}
 impl windows_core::RuntimeName for ID3D11PixelShader {}
 windows_core::imp::define_interface!(
     ID3D11Predicate,
@@ -10670,6 +10792,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11Predicate_Vtbl {
     pub base__: ID3D11Query_Vtbl,
 }
+unsafe impl Send for ID3D11Predicate {}
+unsafe impl Sync for ID3D11Predicate {}
 impl windows_core::RuntimeName for ID3D11Predicate {}
 windows_core::imp::define_interface!(
     ID3D11Query,
@@ -10693,6 +10817,8 @@ pub struct ID3D11Query_Vtbl {
     pub base__: ID3D11Asynchronous_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Query {}
+unsafe impl Sync for ID3D11Query {}
 impl windows_core::RuntimeName for ID3D11Query {}
 windows_core::imp::define_interface!(
     ID3D11RasterizerState,
@@ -10715,6 +10841,8 @@ pub struct ID3D11RasterizerState_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11RasterizerState {}
+unsafe impl Sync for ID3D11RasterizerState {}
 impl windows_core::RuntimeName for ID3D11RasterizerState {}
 windows_core::imp::define_interface!(
     ID3D11RenderTargetView,
@@ -10738,6 +10866,8 @@ pub struct ID3D11RenderTargetView_Vtbl {
     pub base__: ID3D11View_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11RenderTargetView {}
+unsafe impl Sync for ID3D11RenderTargetView {}
 impl windows_core::RuntimeName for ID3D11RenderTargetView {}
 windows_core::imp::define_interface!(
     ID3D11Resource,
@@ -10758,6 +10888,8 @@ pub struct ID3D11Resource_Vtbl {
     SetEvictionPriority: usize,
     GetEvictionPriority: usize,
 }
+unsafe impl Send for ID3D11Resource {}
+unsafe impl Sync for ID3D11Resource {}
 impl windows_core::RuntimeName for ID3D11Resource {}
 windows_core::imp::define_interface!(
     ID3D11SamplerState,
@@ -10780,6 +10912,8 @@ pub struct ID3D11SamplerState_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11SamplerState {}
+unsafe impl Sync for ID3D11SamplerState {}
 impl windows_core::RuntimeName for ID3D11SamplerState {}
 windows_core::imp::define_interface!(
     ID3D11ShaderResourceView,
@@ -10803,6 +10937,8 @@ pub struct ID3D11ShaderResourceView_Vtbl {
     pub base__: ID3D11View_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11ShaderResourceView {}
+unsafe impl Sync for ID3D11ShaderResourceView {}
 impl windows_core::RuntimeName for ID3D11ShaderResourceView {}
 windows_core::imp::define_interface!(
     ID3D11Texture1D,
@@ -10826,6 +10962,8 @@ pub struct ID3D11Texture1D_Vtbl {
     pub base__: ID3D11Resource_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Texture1D {}
+unsafe impl Sync for ID3D11Texture1D {}
 impl windows_core::RuntimeName for ID3D11Texture1D {}
 windows_core::imp::define_interface!(
     ID3D11Texture2D,
@@ -10849,6 +10987,8 @@ pub struct ID3D11Texture2D_Vtbl {
     pub base__: ID3D11Resource_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Texture2D {}
+unsafe impl Sync for ID3D11Texture2D {}
 impl windows_core::RuntimeName for ID3D11Texture2D {}
 windows_core::imp::define_interface!(
     ID3D11Texture3D,
@@ -10872,6 +11012,8 @@ pub struct ID3D11Texture3D_Vtbl {
     pub base__: ID3D11Resource_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11Texture3D {}
+unsafe impl Sync for ID3D11Texture3D {}
 impl windows_core::RuntimeName for ID3D11Texture3D {}
 windows_core::imp::define_interface!(
     ID3D11UnorderedAccessView,
@@ -10895,6 +11037,8 @@ pub struct ID3D11UnorderedAccessView_Vtbl {
     pub base__: ID3D11View_Vtbl,
     GetDesc: usize,
 }
+unsafe impl Send for ID3D11UnorderedAccessView {}
+unsafe impl Sync for ID3D11UnorderedAccessView {}
 impl windows_core::RuntimeName for ID3D11UnorderedAccessView {}
 windows_core::imp::define_interface!(
     ID3D11VertexShader,
@@ -10916,6 +11060,8 @@ windows_core::imp::interface_hierarchy!(
 pub struct ID3D11VertexShader_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
 }
+unsafe impl Send for ID3D11VertexShader {}
+unsafe impl Sync for ID3D11VertexShader {}
 impl windows_core::RuntimeName for ID3D11VertexShader {}
 windows_core::imp::define_interface!(
     ID3D11View,
@@ -10934,6 +11080,8 @@ pub struct ID3D11View_Vtbl {
     pub base__: ID3D11DeviceChild_Vtbl,
     GetResource: usize,
 }
+unsafe impl Send for ID3D11View {}
+unsafe impl Sync for ID3D11View {}
 impl windows_core::RuntimeName for ID3D11View {}
 windows_core::imp::define_interface!(
     IDWriteFactory,
@@ -11460,6 +11608,8 @@ pub struct IDWriteFactory_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDWriteFactory {}
+unsafe impl Sync for IDWriteFactory {}
 pub trait IDWriteFactory_Impl: windows_core::IUnknownImpl {
     fn GetSystemFontCollection(
         &self,
@@ -12134,6 +12284,8 @@ pub struct IDWriteFontCollection_Vtbl {
     FindFamilyName: usize,
     GetFontFromFontFace: usize,
 }
+unsafe impl Send for IDWriteFontCollection {}
+unsafe impl Sync for IDWriteFontCollection {}
 impl windows_core::RuntimeName for IDWriteFontCollection {}
 windows_core::imp::define_interface!(
     IDWriteFontCollectionLoader,
@@ -12146,6 +12298,8 @@ pub struct IDWriteFontCollectionLoader_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
     CreateEnumeratorFromKey: usize,
 }
+unsafe impl Send for IDWriteFontCollectionLoader {}
+unsafe impl Sync for IDWriteFontCollectionLoader {}
 impl windows_core::RuntimeName for IDWriteFontCollectionLoader {}
 windows_core::imp::define_interface!(
     IDWriteFontFace,
@@ -12172,6 +12326,8 @@ pub struct IDWriteFontFace_Vtbl {
     GetGdiCompatibleMetrics: usize,
     GetGdiCompatibleGlyphMetrics: usize,
 }
+unsafe impl Send for IDWriteFontFace {}
+unsafe impl Sync for IDWriteFontFace {}
 impl windows_core::RuntimeName for IDWriteFontFace {}
 windows_core::imp::define_interface!(
     IDWriteFontFile,
@@ -12186,6 +12342,8 @@ pub struct IDWriteFontFile_Vtbl {
     GetLoader: usize,
     Analyze: usize,
 }
+unsafe impl Send for IDWriteFontFile {}
+unsafe impl Sync for IDWriteFontFile {}
 impl windows_core::RuntimeName for IDWriteFontFile {}
 windows_core::imp::define_interface!(
     IDWriteFontFileLoader,
@@ -12198,6 +12356,8 @@ pub struct IDWriteFontFileLoader_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
     CreateStreamFromKey: usize,
 }
+unsafe impl Send for IDWriteFontFileLoader {}
+unsafe impl Sync for IDWriteFontFileLoader {}
 impl windows_core::RuntimeName for IDWriteFontFileLoader {}
 windows_core::imp::define_interface!(
     IDWriteGdiInterop,
@@ -12214,6 +12374,8 @@ pub struct IDWriteGdiInterop_Vtbl {
     CreateFontFaceFromHdc: usize,
     CreateBitmapRenderTarget: usize,
 }
+unsafe impl Send for IDWriteGdiInterop {}
+unsafe impl Sync for IDWriteGdiInterop {}
 impl windows_core::RuntimeName for IDWriteGdiInterop {}
 windows_core::imp::define_interface!(
     IDWriteGlyphRunAnalysis,
@@ -12228,6 +12390,8 @@ pub struct IDWriteGlyphRunAnalysis_Vtbl {
     CreateAlphaTexture: usize,
     GetAlphaBlendParams: usize,
 }
+unsafe impl Send for IDWriteGlyphRunAnalysis {}
+unsafe impl Sync for IDWriteGlyphRunAnalysis {}
 impl windows_core::RuntimeName for IDWriteGlyphRunAnalysis {}
 windows_core::imp::define_interface!(
     IDWriteInlineObject,
@@ -12243,6 +12407,8 @@ pub struct IDWriteInlineObject_Vtbl {
     GetOverhangMetrics: usize,
     GetBreakConditions: usize,
 }
+unsafe impl Send for IDWriteInlineObject {}
+unsafe impl Sync for IDWriteInlineObject {}
 impl windows_core::RuntimeName for IDWriteInlineObject {}
 windows_core::imp::define_interface!(
     IDWriteNumberSubstitution,
@@ -12254,6 +12420,8 @@ windows_core::imp::interface_hierarchy!(IDWriteNumberSubstitution, windows_core:
 pub struct IDWriteNumberSubstitution_Vtbl {
     pub base__: windows_core::IUnknown_Vtbl,
 }
+unsafe impl Send for IDWriteNumberSubstitution {}
+unsafe impl Sync for IDWriteNumberSubstitution {}
 pub trait IDWriteNumberSubstitution_Impl: windows_core::IUnknownImpl {}
 impl IDWriteNumberSubstitution_Vtbl {
     pub const fn new<Identity: IDWriteNumberSubstitution_Impl, const OFFSET: isize>() -> Self {
@@ -12279,6 +12447,8 @@ pub struct IDWritePixelSnapping_Vtbl {
     GetCurrentTransform: usize,
     GetPixelsPerDip: usize,
 }
+unsafe impl Send for IDWritePixelSnapping {}
+unsafe impl Sync for IDWritePixelSnapping {}
 impl windows_core::RuntimeName for IDWritePixelSnapping {}
 windows_core::imp::define_interface!(
     IDWriteRenderingParams,
@@ -12295,6 +12465,8 @@ pub struct IDWriteRenderingParams_Vtbl {
     GetPixelGeometry: usize,
     GetRenderingMode: usize,
 }
+unsafe impl Send for IDWriteRenderingParams {}
+unsafe impl Sync for IDWriteRenderingParams {}
 impl windows_core::RuntimeName for IDWriteRenderingParams {}
 windows_core::imp::define_interface!(
     IDWriteTextAnalyzer,
@@ -12313,6 +12485,8 @@ pub struct IDWriteTextAnalyzer_Vtbl {
     GetGlyphPlacements: usize,
     GetGdiCompatibleGlyphPlacements: usize,
 }
+unsafe impl Send for IDWriteTextAnalyzer {}
+unsafe impl Sync for IDWriteTextAnalyzer {}
 impl windows_core::RuntimeName for IDWriteTextAnalyzer {}
 windows_core::imp::define_interface!(
     IDWriteTextFormat,
@@ -12349,6 +12523,8 @@ pub struct IDWriteTextFormat_Vtbl {
     GetLocaleNameLength: usize,
     GetLocaleName: usize,
 }
+unsafe impl Send for IDWriteTextFormat {}
+unsafe impl Sync for IDWriteTextFormat {}
 impl windows_core::RuntimeName for IDWriteTextFormat {}
 windows_core::imp::define_interface!(
     IDWriteTextLayout,
@@ -13174,6 +13350,8 @@ pub struct IDWriteTextLayout_Vtbl {
         *mut u32,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDWriteTextLayout {}
+unsafe impl Sync for IDWriteTextLayout {}
 impl windows_core::RuntimeName for IDWriteTextLayout {}
 windows_core::imp::define_interface!(
     IDWriteTextRenderer,
@@ -13199,6 +13377,8 @@ pub struct IDWriteTextRenderer_Vtbl {
     DrawStrikethrough: usize,
     DrawInlineObject: usize,
 }
+unsafe impl Send for IDWriteTextRenderer {}
+unsafe impl Sync for IDWriteTextRenderer {}
 impl windows_core::RuntimeName for IDWriteTextRenderer {}
 windows_core::imp::define_interface!(
     IDWriteTypography,
@@ -13213,6 +13393,8 @@ pub struct IDWriteTypography_Vtbl {
     GetFontFeatureCount: usize,
     GetFontFeature: usize,
 }
+unsafe impl Send for IDWriteTypography {}
+unsafe impl Sync for IDWriteTypography {}
 impl windows_core::RuntimeName for IDWriteTypography {}
 windows_core::imp::define_interface!(
     IDXGIAdapter,
@@ -13281,6 +13463,8 @@ pub struct IDXGIAdapter_Vtbl {
         *mut i64,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGIAdapter {}
+unsafe impl Sync for IDXGIAdapter {}
 pub trait IDXGIAdapter_Impl: IDXGIObject_Impl {
     fn EnumOutputs(&self, output: u32) -> windows_core::Result<IDXGIOutput>;
     fn GetDesc(&self) -> windows_core::Result<DXGI_ADAPTER_DESC>;
@@ -13465,6 +13649,8 @@ pub struct IDXGIDevice_Vtbl {
     pub GetGPUThreadPriority:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGIDevice {}
+unsafe impl Sync for IDXGIDevice {}
 pub trait IDXGIDevice_Impl: IDXGIObject_Impl {
     fn GetAdapter(&self) -> windows_core::Result<IDXGIAdapter>;
     fn CreateSurface(
@@ -13639,6 +13825,8 @@ pub struct IDXGIDevice1_Vtbl {
     pub GetMaximumFrameLatency:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGIDevice1 {}
+unsafe impl Sync for IDXGIDevice1 {}
 pub trait IDXGIDevice1_Impl: IDXGIDevice_Impl {
     fn SetMaximumFrameLatency(&self, maxlatency: u32) -> windows_core::Result<()>;
     fn GetMaximumFrameLatency(&self) -> windows_core::Result<u32>;
@@ -13711,6 +13899,8 @@ pub struct IDXGIDeviceSubObject_Vtbl {
     pub base__: IDXGIObject_Vtbl,
     GetDevice: usize,
 }
+unsafe impl Send for IDXGIDeviceSubObject {}
+unsafe impl Sync for IDXGIDeviceSubObject {}
 impl windows_core::RuntimeName for IDXGIDeviceSubObject {}
 windows_core::imp::define_interface!(
     IDXGIFactory,
@@ -13733,6 +13923,8 @@ pub struct IDXGIFactory_Vtbl {
     CreateSwapChain: usize,
     CreateSoftwareAdapter: usize,
 }
+unsafe impl Send for IDXGIFactory {}
+unsafe impl Sync for IDXGIFactory {}
 impl windows_core::RuntimeName for IDXGIFactory {}
 windows_core::imp::define_interface!(
     IDXGIFactory1,
@@ -13757,6 +13949,8 @@ pub struct IDXGIFactory1_Vtbl {
     EnumAdapters1: usize,
     IsCurrent: usize,
 }
+unsafe impl Send for IDXGIFactory1 {}
+unsafe impl Sync for IDXGIFactory1 {}
 impl windows_core::RuntimeName for IDXGIFactory1 {}
 windows_core::imp::define_interface!(
     IDXGIFactory2,
@@ -14001,6 +14195,8 @@ pub struct IDXGIFactory2_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGIFactory2 {}
+unsafe impl Sync for IDXGIFactory2 {}
 impl windows_core::RuntimeName for IDXGIFactory2 {}
 windows_core::imp::define_interface!(
     IDXGIObject,
@@ -14099,6 +14295,8 @@ pub struct IDXGIObject_Vtbl {
         *mut *mut core::ffi::c_void,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGIObject {}
+unsafe impl Sync for IDXGIObject {}
 pub trait IDXGIObject_Impl: windows_core::IUnknownImpl {
     fn SetPrivateData(
         &self,
@@ -14243,6 +14441,8 @@ pub struct IDXGIOutput_Vtbl {
     GetDisplaySurfaceData: usize,
     GetFrameStatistics: usize,
 }
+unsafe impl Send for IDXGIOutput {}
+unsafe impl Sync for IDXGIOutput {}
 impl windows_core::RuntimeName for IDXGIOutput {}
 windows_core::imp::define_interface!(
     IDXGISurface,
@@ -14307,6 +14507,8 @@ pub struct IDXGISurface_Vtbl {
     ) -> windows_core::HRESULT,
     pub Unmap: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGISurface {}
+unsafe impl Sync for IDXGISurface {}
 impl windows_core::RuntimeName for IDXGISurface {}
 windows_core::imp::define_interface!(
     IDXGISwapChain,
@@ -14326,18 +14528,13 @@ windows_core::imp::interface_hierarchy!(
     IDXGIDeviceSubObject
 );
 impl IDXGISwapChain {
-    pub unsafe fn Present(
-        &self,
-        syncinterval: u32,
-        flags: DXGI_PRESENT,
-    ) -> windows_core::Result<()> {
+    pub unsafe fn Present(&self, syncinterval: u32, flags: DXGI_PRESENT) -> windows_core::HRESULT {
         unsafe {
             (windows_core::Interface::vtable(self).Present)(
                 windows_core::Interface::as_raw(self),
                 syncinterval,
                 flags,
             )
-            .ok()
         }
     }
     pub unsafe fn GetBuffer<T>(&self, buffer: u32) -> windows_core::Result<T>
@@ -14402,7 +14599,7 @@ impl IDXGISwapChain {
         width: u32,
         height: u32,
         newformat: DXGI_FORMAT,
-        swapchainflags: u32,
+        swapchainflags: DXGI_SWAP_CHAIN_FLAG,
     ) -> windows_core::Result<()> {
         unsafe {
             (windows_core::Interface::vtable(self).ResizeBuffers)(
@@ -14495,7 +14692,7 @@ pub struct IDXGISwapChain_Vtbl {
         u32,
         u32,
         DXGI_FORMAT,
-        u32,
+        DXGI_SWAP_CHAIN_FLAG,
     ) -> windows_core::HRESULT,
     pub ResizeTarget: unsafe extern "system" fn(
         *mut core::ffi::c_void,
@@ -14512,6 +14709,8 @@ pub struct IDXGISwapChain_Vtbl {
     pub GetLastPresentCount:
         unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGISwapChain {}
+unsafe impl Sync for IDXGISwapChain {}
 impl windows_core::RuntimeName for IDXGISwapChain {}
 windows_core::imp::define_interface!(
     IDXGISwapChain1,
@@ -14583,7 +14782,7 @@ impl IDXGISwapChain1 {
         syncinterval: u32,
         presentflags: DXGI_PRESENT,
         ppresentparameters: *const DXGI_PRESENT_PARAMETERS,
-    ) -> windows_core::Result<()> {
+    ) -> windows_core::HRESULT {
         unsafe {
             (windows_core::Interface::vtable(self).Present1)(
                 windows_core::Interface::as_raw(self),
@@ -14591,7 +14790,6 @@ impl IDXGISwapChain1 {
                 presentflags,
                 ppresentparameters,
             )
-            .ok()
         }
     }
     pub unsafe fn IsTemporaryMonoSupported(&self) -> windows_core::BOOL {
@@ -14695,6 +14893,8 @@ pub struct IDXGISwapChain1_Vtbl {
         *mut DXGI_MODE_ROTATION,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGISwapChain1 {}
+unsafe impl Sync for IDXGISwapChain1 {}
 impl windows_core::RuntimeName for IDXGISwapChain1 {}
 windows_core::imp::define_interface!(
     IDXGISwapChain2,
@@ -14815,6 +15015,8 @@ pub struct IDXGISwapChain2_Vtbl {
         *mut DXGI_MATRIX_3X2_F,
     ) -> windows_core::HRESULT,
 }
+unsafe impl Send for IDXGISwapChain2 {}
+unsafe impl Sync for IDXGISwapChain2 {}
 impl windows_core::RuntimeName for IDXGISwapChain2 {}
 windows_core::imp::define_interface!(
     IDispatch,
@@ -20582,11 +20784,6 @@ pub struct PROPERTYKEY {
 pub struct PROPVARIANT {
     pub Anonymous: PROPVARIANT_0,
 }
-impl Clone for PROPVARIANT {
-    fn clone(&self) -> Self {
-        unsafe { core::mem::transmute_copy(self) }
-    }
-}
 impl Default for PROPVARIANT {
     fn default() -> Self {
         unsafe { core::mem::zeroed() }
@@ -20627,7 +20824,7 @@ impl Default for PROPVARIANT_0_0 {
 }
 #[repr(C)]
 pub union PROPVARIANT_0_0_0 {
-    pub cVal: CHAR,
+    pub cVal: i8,
     pub bVal: u8,
     pub iVal: i16,
     pub uiVal: u16,
