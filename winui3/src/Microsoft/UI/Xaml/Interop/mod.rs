@@ -1,0 +1,962 @@
+windows_core::imp::define_interface!(BindableVectorChangedEventHandler, BindableVectorChangedEventHandler_Vtbl, 0x624cd4e1_d007_43b1_9c03_af4d3e6258c4);
+impl windows_core::RuntimeType for BindableVectorChangedEventHandler {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl BindableVectorChangedEventHandler {
+    pub fn new<F: Fn(windows_core::Ref<IBindableObservableVector>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static>(invoke: F) -> Self {
+        let com = windows_core::imp::DelegateBox::<Self, F>::new(&BindableVectorChangedEventHandlerBox::<F>::VTABLE, invoke);
+        unsafe { core::mem::transmute(windows_core::imp::box_new(com)) }
+    }
+    pub fn Invoke<P0, P1>(&self, vector: P0, e: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<IBindableObservableVector>,
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).Invoke)(windows_core::Interface::as_raw(self), vector.param().abi(), e.param().abi()).ok() }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct BindableVectorChangedEventHandler_Vtbl {
+    base__: windows_core::IUnknown_Vtbl,
+    Invoke: unsafe extern "system" fn(this: *mut core::ffi::c_void, vector: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+struct BindableVectorChangedEventHandlerBox<F: Fn(windows_core::Ref<IBindableObservableVector>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static>(core::marker::PhantomData<(fn() -> F,)>);
+impl<F: Fn(windows_core::Ref<IBindableObservableVector>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static> BindableVectorChangedEventHandlerBox<F> {
+    const VTABLE: BindableVectorChangedEventHandler_Vtbl = BindableVectorChangedEventHandler_Vtbl {
+        base__: windows_core::IUnknown_Vtbl {
+            QueryInterface: windows_core::imp::DelegateBox::<BindableVectorChangedEventHandler, F>::QueryInterface,
+            AddRef: windows_core::imp::DelegateBox::<BindableVectorChangedEventHandler, F>::AddRef,
+            Release: windows_core::imp::DelegateBox::<BindableVectorChangedEventHandler, F>::Release,
+        },
+        Invoke: Self::Invoke,
+    };
+    unsafe extern "system" fn Invoke(this: *mut core::ffi::c_void, vector: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+        unsafe {
+            let this = &mut *(this as *mut *mut core::ffi::c_void as *mut windows_core::imp::DelegateBox<BindableVectorChangedEventHandler, F>);
+            (this.invoke)(core::mem::transmute_copy(&vector), core::mem::transmute_copy(&e)).into()
+        }
+    }
+}
+windows_core::imp::define_interface!(IBindableIterable, IBindableIterable_Vtbl, 0x036d2c08_df29_41af_8aa2_d774be62ba6f);
+impl windows_core::RuntimeType for IBindableIterable {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.IBindableIterable");
+}
+windows_core::imp::interface_hierarchy!(IBindableIterable, windows_core::IUnknown, windows_core::IInspectable);
+impl IBindableIterable {
+    pub fn First(&self) -> windows_core::Result<IBindableIterator> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).First)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeName for IBindableIterable {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.IBindableIterable";
+}
+pub trait IBindableIterable_Impl: windows_core::IUnknownImpl {
+    fn First(&self) -> windows_core::Result<IBindableIterator>;
+}
+impl IBindableIterable_Vtbl {
+    pub const fn new<Identity: IBindableIterable_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn First<Identity: IBindableIterable_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableIterable_Impl::First(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IBindableIterable, OFFSET>(), First: First::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBindableIterable as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBindableIterable_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub First: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IBindableIterator, IBindableIterator_Vtbl, 0x6a1d6c07_076d_49f2_8314_f52c9c9a8331);
+impl windows_core::RuntimeType for IBindableIterator {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.IBindableIterator");
+}
+windows_core::imp::interface_hierarchy!(IBindableIterator, windows_core::IUnknown, windows_core::IInspectable);
+impl IBindableIterator {
+    pub fn Current(&self) -> windows_core::Result<windows_core::IInspectable> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Current)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn HasCurrent(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).HasCurrent)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn MoveNext(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).MoveNext)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+}
+impl windows_core::RuntimeName for IBindableIterator {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.IBindableIterator";
+}
+pub trait IBindableIterator_Impl: windows_core::IUnknownImpl {
+    fn Current(&self) -> windows_core::Result<windows_core::IInspectable>;
+    fn HasCurrent(&self) -> windows_core::Result<bool>;
+    fn MoveNext(&self) -> windows_core::Result<bool>;
+}
+impl IBindableIterator_Vtbl {
+    pub const fn new<Identity: IBindableIterator_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Current<Identity: IBindableIterator_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableIterator_Impl::Current(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn HasCurrent<Identity: IBindableIterator_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableIterator_Impl::HasCurrent(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn MoveNext<Identity: IBindableIterator_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableIterator_Impl::MoveNext(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBindableIterator, OFFSET>(),
+            Current: Current::<Identity, OFFSET>,
+            HasCurrent: HasCurrent::<Identity, OFFSET>,
+            MoveNext: MoveNext::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBindableIterator as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBindableIterator_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Current: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub HasCurrent: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub MoveNext: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IBindableObservableVector, IBindableObservableVector_Vtbl, 0xfe1eb536_7e7f_4f90_ac9a_474984aae512);
+impl windows_core::RuntimeType for IBindableObservableVector {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.IBindableObservableVector");
+}
+windows_core::imp::interface_hierarchy!(IBindableObservableVector, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(IBindableObservableVector, IBindableIterable, IBindableVector);
+impl IBindableObservableVector {
+    pub fn VectorChanged<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <BindableVectorChangedEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).VectorChanged)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveVectorChanged))
+        }
+    }
+    pub fn First(&self) -> windows_core::Result<IBindableIterator> {
+        let this = &windows_core::Interface::cast::<IBindableIterable>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<windows_core::IInspectable> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetAt)(windows_core::Interface::as_raw(this), index, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Size)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn GetView(&self) -> windows_core::Result<IBindableVectorView> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetView)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IndexOf)(windows_core::Interface::as_raw(this), value.param().abi(), index, &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetAt)(windows_core::Interface::as_raw(this), index, value.param().abi()).ok() }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).InsertAt)(windows_core::Interface::as_raw(this), index, value.param().abi()).ok() }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).RemoveAt)(windows_core::Interface::as_raw(this), index).ok() }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).Append)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).RemoveAtEnd)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IBindableVector>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).Clear)(windows_core::Interface::as_raw(this)).ok() }
+    }
+}
+impl windows_core::RuntimeName for IBindableObservableVector {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.IBindableObservableVector";
+}
+pub trait IBindableObservableVector_Impl: IBindableIterable_Impl + IBindableVector_Impl {
+    fn VectorChanged(&self, handler: windows_core::Ref<BindableVectorChangedEventHandler>) -> windows_core::Result<i64>;
+    fn RemoveVectorChanged(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IBindableObservableVector_Vtbl {
+    pub const fn new<Identity: IBindableObservableVector_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn VectorChanged<Identity: IBindableObservableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableObservableVector_Impl::VectorChanged(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveVectorChanged<Identity: IBindableObservableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableObservableVector_Impl::RemoveVectorChanged(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBindableObservableVector, OFFSET>(),
+            VectorChanged: VectorChanged::<Identity, OFFSET>,
+            RemoveVectorChanged: RemoveVectorChanged::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBindableObservableVector as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBindableObservableVector_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub VectorChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveVectorChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IBindableVector, IBindableVector_Vtbl, 0x393de7de_6fd0_4c0d_bb71_47244a113e93);
+impl windows_core::RuntimeType for IBindableVector {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.IBindableVector");
+}
+windows_core::imp::interface_hierarchy!(IBindableVector, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(IBindableVector, IBindableIterable);
+impl IBindableVector {
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<windows_core::IInspectable> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetAt)(windows_core::Interface::as_raw(self), index, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn GetView(&self) -> windows_core::Result<IBindableVectorView> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetView)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IndexOf)(windows_core::Interface::as_raw(self), value.param().abi(), index, &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).InsertAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAt)(windows_core::Interface::as_raw(self), index).ok() }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).Append)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAtEnd)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Clear)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn First(&self) -> windows_core::Result<IBindableIterator> {
+        let this = &windows_core::Interface::cast::<IBindableIterable>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeName for IBindableVector {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.IBindableVector";
+}
+pub trait IBindableVector_Impl: IBindableIterable_Impl {
+    fn GetAt(&self, index: u32) -> windows_core::Result<windows_core::IInspectable>;
+    fn Size(&self) -> windows_core::Result<u32>;
+    fn GetView(&self) -> windows_core::Result<IBindableVectorView>;
+    fn IndexOf(&self, value: windows_core::Ref<windows_core::IInspectable>, index: &mut u32) -> windows_core::Result<bool>;
+    fn SetAt(&self, index: u32, value: windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()>;
+    fn InsertAt(&self, index: u32, value: windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()>;
+    fn RemoveAt(&self, index: u32) -> windows_core::Result<()>;
+    fn Append(&self, value: windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()>;
+    fn RemoveAtEnd(&self) -> windows_core::Result<()>;
+    fn Clear(&self) -> windows_core::Result<()>;
+}
+impl IBindableVector_Vtbl {
+    pub const fn new<Identity: IBindableVector_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetAt<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, index: u32, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVector_Impl::GetAt(this, index) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Size<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut u32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVector_Impl::Size(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetView<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVector_Impl::GetView(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IndexOf<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void, index: *mut u32, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVector_Impl::IndexOf(this, core::mem::transmute_copy(&value), core::mem::transmute_copy(&index)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetAt<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, index: u32, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::SetAt(this, index, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn InsertAt<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, index: u32, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::InsertAt(this, index, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn RemoveAt<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, index: u32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::RemoveAt(this, index).into()
+            }
+        }
+        unsafe extern "system" fn Append<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::Append(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn RemoveAtEnd<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::RemoveAtEnd(this).into()
+            }
+        }
+        unsafe extern "system" fn Clear<Identity: IBindableVector_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IBindableVector_Impl::Clear(this).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBindableVector, OFFSET>(),
+            GetAt: GetAt::<Identity, OFFSET>,
+            Size: Size::<Identity, OFFSET>,
+            GetView: GetView::<Identity, OFFSET>,
+            IndexOf: IndexOf::<Identity, OFFSET>,
+            SetAt: SetAt::<Identity, OFFSET>,
+            InsertAt: InsertAt::<Identity, OFFSET>,
+            RemoveAt: RemoveAt::<Identity, OFFSET>,
+            Append: Append::<Identity, OFFSET>,
+            RemoveAtEnd: RemoveAtEnd::<Identity, OFFSET>,
+            Clear: Clear::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBindableVector as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBindableVector_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetAt: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Size: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
+    pub GetView: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub IndexOf: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut u32, *mut bool) -> windows_core::HRESULT,
+    pub SetAt: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub InsertAt: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub RemoveAt: unsafe extern "system" fn(*mut core::ffi::c_void, u32) -> windows_core::HRESULT,
+    pub Append: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub RemoveAtEnd: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Clear: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IBindableVectorView, IBindableVectorView_Vtbl, 0x346dd6e7_976e_4bc3_815d_ece243bc0f33);
+impl windows_core::RuntimeType for IBindableVectorView {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.IBindableVectorView");
+}
+windows_core::imp::interface_hierarchy!(IBindableVectorView, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(IBindableVectorView, IBindableIterable);
+impl IBindableVectorView {
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<windows_core::IInspectable> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetAt)(windows_core::Interface::as_raw(self), index, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IndexOf)(windows_core::Interface::as_raw(self), value.param().abi(), index, &mut result__).map(|| result__)
+        }
+    }
+    pub fn First(&self) -> windows_core::Result<IBindableIterator> {
+        let this = &windows_core::Interface::cast::<IBindableIterable>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeName for IBindableVectorView {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.IBindableVectorView";
+}
+pub trait IBindableVectorView_Impl: IBindableIterable_Impl {
+    fn GetAt(&self, index: u32) -> windows_core::Result<windows_core::IInspectable>;
+    fn Size(&self) -> windows_core::Result<u32>;
+    fn IndexOf(&self, value: windows_core::Ref<windows_core::IInspectable>, index: &mut u32) -> windows_core::Result<bool>;
+}
+impl IBindableVectorView_Vtbl {
+    pub const fn new<Identity: IBindableVectorView_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetAt<Identity: IBindableVectorView_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, index: u32, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVectorView_Impl::GetAt(this, index) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Size<Identity: IBindableVectorView_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut u32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVectorView_Impl::Size(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IndexOf<Identity: IBindableVectorView_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void, index: *mut u32, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IBindableVectorView_Impl::IndexOf(this, core::mem::transmute_copy(&value), core::mem::transmute_copy(&index)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IBindableVectorView, OFFSET>(),
+            GetAt: GetAt::<Identity, OFFSET>,
+            Size: Size::<Identity, OFFSET>,
+            IndexOf: IndexOf::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IBindableVectorView as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IBindableVectorView_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetAt: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Size: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32) -> windows_core::HRESULT,
+    pub IndexOf: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut u32, *mut bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(INotifyCollectionChanged, INotifyCollectionChanged_Vtbl, 0x530155e1_28a5_5693_87ce_30724d95a06d);
+impl windows_core::RuntimeType for INotifyCollectionChanged {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.INotifyCollectionChanged");
+}
+windows_core::imp::interface_hierarchy!(INotifyCollectionChanged, windows_core::IUnknown, windows_core::IInspectable);
+impl INotifyCollectionChanged {
+    pub fn CollectionChanged<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<NotifyCollectionChangedEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <NotifyCollectionChangedEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).CollectionChanged)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveCollectionChanged))
+        }
+    }
+}
+impl windows_core::RuntimeName for INotifyCollectionChanged {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.INotifyCollectionChanged";
+}
+pub trait INotifyCollectionChanged_Impl: windows_core::IUnknownImpl {
+    fn CollectionChanged(&self, handler: windows_core::Ref<NotifyCollectionChangedEventHandler>) -> windows_core::Result<i64>;
+    fn RemoveCollectionChanged(&self, token: i64) -> windows_core::Result<()>;
+}
+impl INotifyCollectionChanged_Vtbl {
+    pub const fn new<Identity: INotifyCollectionChanged_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CollectionChanged<Identity: INotifyCollectionChanged_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChanged_Impl::CollectionChanged(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveCollectionChanged<Identity: INotifyCollectionChanged_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                INotifyCollectionChanged_Impl::RemoveCollectionChanged(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, INotifyCollectionChanged, OFFSET>(),
+            CollectionChanged: CollectionChanged::<Identity, OFFSET>,
+            RemoveCollectionChanged: RemoveCollectionChanged::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<INotifyCollectionChanged as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct INotifyCollectionChanged_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub CollectionChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveCollectionChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(INotifyCollectionChangedEventArgs, INotifyCollectionChangedEventArgs_Vtbl, 0xda049ff2_d2e0_5fe8_8c7b_f87f26060b6f);
+impl windows_core::RuntimeType for INotifyCollectionChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgs");
+}
+impl windows_core::RuntimeName for INotifyCollectionChangedEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgs";
+}
+pub trait INotifyCollectionChangedEventArgs_Impl: windows_core::IUnknownImpl {
+    fn Action(&self) -> windows_core::Result<NotifyCollectionChangedAction>;
+    fn NewItems(&self) -> windows_core::Result<IBindableVector>;
+    fn OldItems(&self) -> windows_core::Result<IBindableVector>;
+    fn NewStartingIndex(&self) -> windows_core::Result<i32>;
+    fn OldStartingIndex(&self) -> windows_core::Result<i32>;
+}
+impl INotifyCollectionChangedEventArgs_Vtbl {
+    pub const fn new<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Action<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut NotifyCollectionChangedAction) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgs_Impl::Action(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn NewItems<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgs_Impl::NewItems(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn OldItems<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgs_Impl::OldItems(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn NewStartingIndex<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgs_Impl::NewStartingIndex(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn OldStartingIndex<Identity: INotifyCollectionChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgs_Impl::OldStartingIndex(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, INotifyCollectionChangedEventArgs, OFFSET>(),
+            Action: Action::<Identity, OFFSET>,
+            NewItems: NewItems::<Identity, OFFSET>,
+            OldItems: OldItems::<Identity, OFFSET>,
+            NewStartingIndex: NewStartingIndex::<Identity, OFFSET>,
+            OldStartingIndex: OldStartingIndex::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<INotifyCollectionChangedEventArgs as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct INotifyCollectionChangedEventArgs_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Action: unsafe extern "system" fn(*mut core::ffi::c_void, *mut NotifyCollectionChangedAction) -> windows_core::HRESULT,
+    pub NewItems: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub OldItems: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub NewStartingIndex: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub OldStartingIndex: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(INotifyCollectionChangedEventArgsFactory, INotifyCollectionChangedEventArgsFactory_Vtbl, 0x5108eba4_4892_5a20_8374_a96815e0fd27);
+impl windows_core::RuntimeType for INotifyCollectionChangedEventArgsFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgsFactory");
+}
+impl windows_core::RuntimeName for INotifyCollectionChangedEventArgsFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgsFactory";
+}
+pub trait INotifyCollectionChangedEventArgsFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstanceWithAllParameters(&self, action: NotifyCollectionChangedAction, newItems: windows_core::Ref<IBindableVector>, oldItems: windows_core::Ref<IBindableVector>, newIndex: i32, oldIndex: i32, baseInterface: windows_core::Ref<windows_core::IInspectable>, innerInterface: windows_core::OutRef<windows_core::IInspectable>) -> windows_core::Result<NotifyCollectionChangedEventArgs>;
+}
+impl INotifyCollectionChangedEventArgsFactory_Vtbl {
+    pub const fn new<Identity: INotifyCollectionChangedEventArgsFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstanceWithAllParameters<Identity: INotifyCollectionChangedEventArgsFactory_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, action: NotifyCollectionChangedAction, newitems: *mut core::ffi::c_void, olditems: *mut core::ffi::c_void, newindex: i32, oldindex: i32, baseinterface: *mut core::ffi::c_void, innerinterface: *mut *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match INotifyCollectionChangedEventArgsFactory_Impl::CreateInstanceWithAllParameters(this, action, core::mem::transmute_copy(&newitems), core::mem::transmute_copy(&olditems), newindex, oldindex, core::mem::transmute_copy(&baseinterface), core::mem::transmute_copy(&innerinterface)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, INotifyCollectionChangedEventArgsFactory, OFFSET>(),
+            CreateInstanceWithAllParameters: CreateInstanceWithAllParameters::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<INotifyCollectionChangedEventArgsFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct INotifyCollectionChangedEventArgsFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub CreateInstanceWithAllParameters: unsafe extern "system" fn(*mut core::ffi::c_void, NotifyCollectionChangedAction, *mut core::ffi::c_void, *mut core::ffi::c_void, i32, i32, *mut core::ffi::c_void, *mut *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct NotifyCollectionChangedAction(pub i32);
+impl NotifyCollectionChangedAction {
+    pub const Add: Self = Self(0);
+    pub const Remove: Self = Self(1);
+    pub const Replace: Self = Self(2);
+    pub const Move: Self = Self(3);
+    pub const Reset: Self = Self(4);
+}
+impl windows_core::imp::TypeKind for NotifyCollectionChangedAction {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for NotifyCollectionChangedAction {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.Interop.NotifyCollectionChangedAction;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Interop.NotifyCollectionChangedAction");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct NotifyCollectionChangedEventArgs(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(NotifyCollectionChangedEventArgs, windows_core::IUnknown, windows_core::IInspectable);
+impl NotifyCollectionChangedEventArgs {
+    pub fn Action(&self) -> windows_core::Result<NotifyCollectionChangedAction> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Action)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn NewItems(&self) -> windows_core::Result<IBindableVector> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).NewItems)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn OldItems(&self) -> windows_core::Result<IBindableVector> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).OldItems)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn NewStartingIndex(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).NewStartingIndex)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn OldStartingIndex(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).OldStartingIndex)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn CreateInstanceWithAllParameters<P1, P2>(action: NotifyCollectionChangedAction, newitems: P1, olditems: P2, newindex: i32, oldindex: i32) -> windows_core::Result<Self>
+    where
+        P1: windows_core::Param<IBindableVector>,
+        P2: windows_core::Param<IBindableVector>,
+    {
+        Self::INotifyCollectionChangedEventArgsFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstanceWithAllParameters)(windows_core::Interface::as_raw(this), action, newitems.param().abi(), olditems.param().abi(), newindex, oldindex, core::ptr::null_mut(), core::ptr::null_mut(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateInstanceWithAllParameters_compose<P1, P2, T>(action: NotifyCollectionChangedAction, newitems: P1, olditems: P2, newindex: i32, oldindex: i32, compose: T) -> windows_core::Result<Self>
+    where
+        P1: windows_core::Param<IBindableVector>,
+        P2: windows_core::Param<IBindableVector>,
+        T: windows_core::Compose,
+    {
+        Self::INotifyCollectionChangedEventArgsFactory(|this| unsafe {
+            let (derived__, base__) = windows_core::Compose::compose(compose);
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstanceWithAllParameters)(windows_core::Interface::as_raw(this), action, newitems.param().abi(), olditems.param().abi(), newindex, oldindex, core::mem::transmute_copy(&derived__), base__ as *mut _ as _, &mut result__).ok()?;
+            let _ = &derived__;
+            windows_core::imp::Type::from_abi(result__)
+        })
+    }
+    fn INotifyCollectionChangedEventArgsFactory<R, F: FnOnce(&INotifyCollectionChangedEventArgsFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<NotifyCollectionChangedEventArgs, INotifyCollectionChangedEventArgsFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for NotifyCollectionChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, INotifyCollectionChangedEventArgs>();
+}
+unsafe impl windows_core::Interface for NotifyCollectionChangedEventArgs {
+    type Vtable = <INotifyCollectionChangedEventArgs as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <INotifyCollectionChangedEventArgs as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for NotifyCollectionChangedEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Interop.NotifyCollectionChangedEventArgs";
+}
+unsafe impl Send for NotifyCollectionChangedEventArgs {}
+unsafe impl Sync for NotifyCollectionChangedEventArgs {}
+windows_core::imp::define_interface!(NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventHandler_Vtbl, 0x8b0909dc_2005_5d93_bf8a_725f017baa8d);
+impl windows_core::RuntimeType for NotifyCollectionChangedEventHandler {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+}
+impl NotifyCollectionChangedEventHandler {
+    pub fn new<F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<NotifyCollectionChangedEventArgs>) -> windows_core::Result<()> + Send + 'static>(invoke: F) -> Self {
+        let com = windows_core::imp::DelegateBox::<Self, F>::new(&NotifyCollectionChangedEventHandlerBox::<F>::VTABLE, invoke);
+        unsafe { core::mem::transmute(windows_core::imp::box_new(com)) }
+    }
+    pub fn Invoke<P0, P1>(&self, sender: P0, e: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+        P1: windows_core::Param<NotifyCollectionChangedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).Invoke)(windows_core::Interface::as_raw(self), sender.param().abi(), e.param().abi()).ok() }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct NotifyCollectionChangedEventHandler_Vtbl {
+    base__: windows_core::IUnknown_Vtbl,
+    Invoke: unsafe extern "system" fn(this: *mut core::ffi::c_void, sender: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+struct NotifyCollectionChangedEventHandlerBox<F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<NotifyCollectionChangedEventArgs>) -> windows_core::Result<()> + Send + 'static>(core::marker::PhantomData<(fn() -> F,)>);
+impl<F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<NotifyCollectionChangedEventArgs>) -> windows_core::Result<()> + Send + 'static> NotifyCollectionChangedEventHandlerBox<F> {
+    const VTABLE: NotifyCollectionChangedEventHandler_Vtbl = NotifyCollectionChangedEventHandler_Vtbl {
+        base__: windows_core::IUnknown_Vtbl {
+            QueryInterface: windows_core::imp::DelegateBox::<NotifyCollectionChangedEventHandler, F>::QueryInterface,
+            AddRef: windows_core::imp::DelegateBox::<NotifyCollectionChangedEventHandler, F>::AddRef,
+            Release: windows_core::imp::DelegateBox::<NotifyCollectionChangedEventHandler, F>::Release,
+        },
+        Invoke: Self::Invoke,
+    };
+    unsafe extern "system" fn Invoke(this: *mut core::ffi::c_void, sender: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+        unsafe {
+            let this = &mut *(this as *mut *mut core::ffi::c_void as *mut windows_core::imp::DelegateBox<NotifyCollectionChangedEventHandler, F>);
+            (this.invoke)(core::mem::transmute_copy(&sender), core::mem::transmute_copy(&e)).into()
+        }
+    }
+}

@@ -1,0 +1,4269 @@
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindow(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindow, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindow {
+    pub fn Id(&self) -> windows_core::Result<super::WindowId> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Id)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IsShownInSwitchers(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsShownInSwitchers)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsShownInSwitchers(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsShownInSwitchers)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsVisible(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsVisible)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn OwnerWindowId(&self) -> windows_core::Result<super::WindowId> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).OwnerWindowId)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Position(&self) -> windows_core::Result<windows::Graphics::PointInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Position)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Presenter(&self) -> windows_core::Result<AppWindowPresenter> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Presenter)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<windows::Graphics::SizeInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Title(&self) -> windows_core::Result<windows_core::HSTRING> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Title)(windows_core::Interface::as_raw(self), &mut result__).map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn SetTitle(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetTitle)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(value)).ok() }
+    }
+    pub fn TitleBar(&self) -> windows_core::Result<AppWindowTitleBar> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).TitleBar)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Destroy(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Destroy)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Hide(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Hide)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Move(&self, position: windows::Graphics::PointInt32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Move)(windows_core::Interface::as_raw(self), position).ok() }
+    }
+    pub fn MoveAndResize(&self, rect: windows::Graphics::RectInt32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).MoveAndResize)(windows_core::Interface::as_raw(self), rect).ok() }
+    }
+    pub fn MoveAndResizeRelativeToDisplayArea<P1>(&self, rect: windows::Graphics::RectInt32, displayarea: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<DisplayArea>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).MoveAndResizeRelativeToDisplayArea)(windows_core::Interface::as_raw(self), rect, displayarea.param().abi()).ok() }
+    }
+    pub fn Resize(&self, size: windows::Graphics::SizeInt32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Resize)(windows_core::Interface::as_raw(self), size).ok() }
+    }
+    pub fn SetIcon(&self, iconpath: &windows_core::HSTRING) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIcon)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(iconpath)).ok() }
+    }
+    pub fn SetIconWithIconId(&self, iconid: super::IconId) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIconWithIconId)(windows_core::Interface::as_raw(self), iconid).ok() }
+    }
+    pub fn SetPresenter<P0>(&self, appwindowpresenter: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<AppWindowPresenter>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetPresenter)(windows_core::Interface::as_raw(self), appwindowpresenter.param().abi()).ok() }
+    }
+    pub fn SetPresenterByKind(&self, appwindowpresenterkind: AppWindowPresenterKind) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetPresenterByKind)(windows_core::Interface::as_raw(self), appwindowpresenterkind).ok() }
+    }
+    pub fn Show(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Show)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn ShowWithActivation(&self, activatewindow: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).ShowWithActivation)(windows_core::Interface::as_raw(self), activatewindow).ok() }
+    }
+    pub fn Changed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<AppWindowChangedEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, AppWindowChangedEventArgs>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Changed)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveChanged))
+        }
+    }
+    pub fn Closing<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<AppWindowClosingEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, AppWindowClosingEventArgs>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Closing)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveClosing))
+        }
+    }
+    pub fn Destroying<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Destroying)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveDestroying))
+        }
+    }
+    pub fn ClientSize(&self) -> windows_core::Result<windows::Graphics::SizeInt32> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ClientSize)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn MoveInZOrderAtBottom(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).MoveInZOrderAtBottom)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    pub fn MoveInZOrderAtTop(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).MoveInZOrderAtTop)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    pub fn MoveInZOrderBelow(&self, windowid: super::WindowId) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).MoveInZOrderBelow)(windows_core::Interface::as_raw(this), windowid).ok() }
+    }
+    pub fn ResizeClient(&self, size: windows::Graphics::SizeInt32) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).ResizeClient)(windows_core::Interface::as_raw(this), size).ok() }
+    }
+    pub fn ShowOnceWithRequestedStartupState(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).ShowOnceWithRequestedStartupState)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn AssociateWithDispatcherQueue<P0>(&self, dispatcherqueue: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Dispatching::DispatcherQueue>,
+    {
+        let this = &windows_core::Interface::cast::<IAppWindow3>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).AssociateWithDispatcherQueue)(windows_core::Interface::as_raw(this), dispatcherqueue.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<IAppWindow3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn SetTaskbarIcon(&self, iconpath: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetTaskbarIcon)(windows_core::Interface::as_raw(this), core::mem::transmute_copy(iconpath)).ok() }
+    }
+    pub fn SetTaskbarIconWithIconId(&self, iconid: super::IconId) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetTaskbarIconWithIconId)(windows_core::Interface::as_raw(this), iconid).ok() }
+    }
+    pub fn SetTitleBarIcon(&self, iconpath: &windows_core::HSTRING) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetTitleBarIcon)(windows_core::Interface::as_raw(this), core::mem::transmute_copy(iconpath)).ok() }
+    }
+    pub fn SetTitleBarIconWithIconId(&self, iconid: super::IconId) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindow4>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetTitleBarIconWithIconId)(windows_core::Interface::as_raw(this), iconid).ok() }
+    }
+    pub fn PersistedStateId(&self) -> windows_core::Result<windows_core::GUID> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PersistedStateId)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows_core::GUID>| r__.Value())
+        }
+    }
+    pub fn SetPersistedStateId(&self, value: Option<windows_core::GUID>) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        let value__ = value.map(<windows_reference::IReference<windows_core::GUID> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(this).SetPersistedStateId)(windows_core::Interface::as_raw(this), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn PlacementRestorationBehavior(&self) -> windows_core::Result<PlacementRestorationBehavior> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PlacementRestorationBehavior)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetPlacementRestorationBehavior(&self, value: PlacementRestorationBehavior) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetPlacementRestorationBehavior)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    pub fn GetCurrentPlacement(&self) -> windows_core::Result<AppWindowPlacementDetails> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetCurrentPlacement)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn SaveCurrentPlacement(&self) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SaveCurrentPlacement)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    pub fn SetCurrentPlacement<P0>(&self, placementdetails: P0, isfirstwindow: bool) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<AppWindowPlacementDetails>,
+    {
+        let this = &windows_core::Interface::cast::<IAppWindowExperimental>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).SetCurrentPlacement)(windows_core::Interface::as_raw(this), placementdetails.param().abi(), isfirstwindow, &mut result__).map(|| result__)
+        }
+    }
+    pub fn Create() -> windows_core::Result<Self> {
+        Self::IAppWindowStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Create)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateWithPresenter<P0>(appwindowpresenter: P0) -> windows_core::Result<Self>
+    where
+        P0: windows_core::Param<AppWindowPresenter>,
+    {
+        Self::IAppWindowStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateWithPresenter)(windows_core::Interface::as_raw(this), appwindowpresenter.param().abi(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateWithPresenterAndOwner<P0>(appwindowpresenter: P0, ownerwindowid: super::WindowId) -> windows_core::Result<Self>
+    where
+        P0: windows_core::Param<AppWindowPresenter>,
+    {
+        Self::IAppWindowStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateWithPresenterAndOwner)(windows_core::Interface::as_raw(this), appwindowpresenter.param().abi(), ownerwindowid, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn GetFromWindowId(windowid: super::WindowId) -> windows_core::Result<Self> {
+        Self::IAppWindowStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetFromWindowId)(windows_core::Interface::as_raw(this), windowid, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn CreateWithDispatcherQueue<P0, P2>(appwindowpresenter: P0, ownerwindowid: super::WindowId, dispatcherqueue: P2) -> windows_core::Result<Self>
+    where
+        P0: windows_core::Param<AppWindowPresenter>,
+        P2: windows_core::Param<super::Dispatching::DispatcherQueue>,
+    {
+        Self::IAppWindowStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateWithDispatcherQueue)(windows_core::Interface::as_raw(this), appwindowpresenter.param().abi(), ownerwindowid, dispatcherqueue.param().abi(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn SaveCurrentPlacementForAllPersistedStateIds() -> windows_core::Result<()> {
+        Self::IAppWindowStatics3(|this| unsafe { (windows_core::Interface::vtable(this).SaveCurrentPlacementForAllPersistedStateIds)(windows_core::Interface::as_raw(this)).ok() })
+    }
+    fn IAppWindowStatics<R, F: FnOnce(&IAppWindowStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<AppWindow, IAppWindowStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IAppWindowStatics2<R, F: FnOnce(&IAppWindowStatics2) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<AppWindow, IAppWindowStatics2> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IAppWindowStatics3<R, F: FnOnce(&IAppWindowStatics3) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<AppWindow, IAppWindowStatics3> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for AppWindow {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindow>();
+}
+unsafe impl windows_core::Interface for AppWindow {
+    type Vtable = <IAppWindow as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindow as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindow {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindow";
+}
+unsafe impl Send for AppWindow {}
+unsafe impl Sync for AppWindow {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindowChangedEventArgs(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindowChangedEventArgs, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindowChangedEventArgs {
+    pub fn DidPositionChange(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).DidPositionChange)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn DidPresenterChange(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).DidPresenterChange)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn DidSizeChange(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).DidSizeChange)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn DidVisibilityChange(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).DidVisibilityChange)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn DidZOrderChange(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<IAppWindowChangedEventArgs2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DidZOrderChange)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IsZOrderAtBottom(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<IAppWindowChangedEventArgs2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsZOrderAtBottom)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IsZOrderAtTop(&self) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<IAppWindowChangedEventArgs2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsZOrderAtTop)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ZOrderBelowWindowId(&self) -> windows_core::Result<super::WindowId> {
+        let this = &windows_core::Interface::cast::<IAppWindowChangedEventArgs2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ZOrderBelowWindowId)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+}
+impl windows_core::RuntimeType for AppWindowChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindowChangedEventArgs>();
+}
+unsafe impl windows_core::Interface for AppWindowChangedEventArgs {
+    type Vtable = <IAppWindowChangedEventArgs as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindowChangedEventArgs as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindowChangedEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindowChangedEventArgs";
+}
+unsafe impl Send for AppWindowChangedEventArgs {}
+unsafe impl Sync for AppWindowChangedEventArgs {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindowClosingEventArgs(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindowClosingEventArgs, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindowClosingEventArgs {
+    pub fn Cancel(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Cancel)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetCancel(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetCancel)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+}
+impl windows_core::RuntimeType for AppWindowClosingEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindowClosingEventArgs>();
+}
+unsafe impl windows_core::Interface for AppWindowClosingEventArgs {
+    type Vtable = <IAppWindowClosingEventArgs as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindowClosingEventArgs as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindowClosingEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindowClosingEventArgs";
+}
+unsafe impl Send for AppWindowClosingEventArgs {}
+unsafe impl Sync for AppWindowClosingEventArgs {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindowPlacementDetails(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindowPlacementDetails, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindowPlacementDetails {
+    pub fn NormalRect(&self) -> windows_core::Result<windows::Graphics::RectInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).NormalRect)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn WorkArea(&self) -> windows_core::Result<windows::Graphics::RectInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).WorkArea)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Dpi(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Dpi)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ShowCmd(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ShowCmd)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ArrangeRect(&self) -> windows_core::Result<windows::Graphics::RectInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ArrangeRect)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn DeviceName(&self) -> windows_core::Result<windows_core::HSTRING> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).DeviceName)(windows_core::Interface::as_raw(self), &mut result__).map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn Flags(&self) -> windows_core::Result<PlacementInfo> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Flags)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Create(normalrect: windows::Graphics::RectInt32, workarea: windows::Graphics::RectInt32, dpi: i32, showcmd: i32, arrangerect: windows::Graphics::RectInt32, flags: PlacementInfo, devicename: &windows_core::HSTRING) -> windows_core::Result<Self> {
+        Self::IAppWindowPlacementDetailsStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Create)(windows_core::Interface::as_raw(this), normalrect, workarea, dpi, showcmd, arrangerect, flags, core::mem::transmute_copy(devicename), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    fn IAppWindowPlacementDetailsStatics<R, F: FnOnce(&IAppWindowPlacementDetailsStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<AppWindowPlacementDetails, IAppWindowPlacementDetailsStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for AppWindowPlacementDetails {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindowPlacementDetails>();
+}
+unsafe impl windows_core::Interface for AppWindowPlacementDetails {
+    type Vtable = <IAppWindowPlacementDetails as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindowPlacementDetails as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindowPlacementDetails {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindowPlacementDetails";
+}
+unsafe impl Send for AppWindowPlacementDetails {}
+unsafe impl Sync for AppWindowPlacementDetails {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindowPresenter(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindowPresenter, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindowPresenter {
+    pub fn Kind(&self) -> windows_core::Result<AppWindowPresenterKind> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Kind)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+}
+impl windows_core::RuntimeType for AppWindowPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindowPresenter>();
+}
+unsafe impl windows_core::Interface for AppWindowPresenter {
+    type Vtable = <IAppWindowPresenter as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindowPresenter as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindowPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindowPresenter";
+}
+unsafe impl Send for AppWindowPresenter {}
+unsafe impl Sync for AppWindowPresenter {}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct AppWindowPresenterKind(pub i32);
+impl AppWindowPresenterKind {
+    pub const Default: Self = Self(0);
+    pub const CompactOverlay: Self = Self(1);
+    pub const FullScreen: Self = Self(2);
+    pub const Overlapped: Self = Self(3);
+}
+impl windows_core::imp::TypeKind for AppWindowPresenterKind {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for AppWindowPresenterKind {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.AppWindowPresenterKind;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.AppWindowPresenterKind");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct AppWindowTitleBar(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(AppWindowTitleBar, windows_core::IUnknown, windows_core::IInspectable);
+impl AppWindowTitleBar {
+    pub fn BackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).BackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonBackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonHoverBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonHoverBackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonHoverBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonHoverBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonHoverForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonHoverForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonHoverForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonHoverForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonInactiveBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonInactiveBackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonInactiveBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonInactiveBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonInactiveForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonInactiveForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonInactiveForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonInactiveForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonPressedBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonPressedBackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonPressedBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonPressedBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ButtonPressedForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ButtonPressedForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetButtonPressedForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetButtonPressedForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn ExtendsContentIntoTitleBar(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ExtendsContentIntoTitleBar)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetExtendsContentIntoTitleBar(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetExtendsContentIntoTitleBar)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn ForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn Height(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Height)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IconShowOptions(&self) -> windows_core::Result<IconShowOptions> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IconShowOptions)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIconShowOptions(&self, value: IconShowOptions) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIconShowOptions)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn InactiveBackgroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).InactiveBackgroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetInactiveBackgroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetInactiveBackgroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn InactiveForegroundColor(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).InactiveForegroundColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<windows::UI::Color>| r__.Value())
+        }
+    }
+    pub fn SetInactiveForegroundColor(&self, value: Option<windows::UI::Color>) -> windows_core::Result<()> {
+        let value__ = value.map(<windows_reference::IReference<windows::UI::Color> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(self).SetInactiveForegroundColor)(windows_core::Interface::as_raw(self), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn LeftInset(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).LeftInset)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn RightInset(&self) -> windows_core::Result<i32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).RightInset)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ResetToDefault(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).ResetToDefault)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn SetDragRectangles(&self, value: &[windows::Graphics::RectInt32]) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetDragRectangles)(windows_core::Interface::as_raw(self), value.len().try_into().unwrap(), value.as_ptr()).ok() }
+    }
+    pub fn PreferredHeightOption(&self) -> windows_core::Result<TitleBarHeightOption> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar2>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredHeightOption)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetPreferredHeightOption(&self, value: TitleBarHeightOption) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredHeightOption)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    pub fn PreferredTheme(&self) -> windows_core::Result<TitleBarTheme> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredTheme)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetPreferredTheme(&self, value: TitleBarTheme) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IAppWindowTitleBar3>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredTheme)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    pub fn IsCustomizationSupported() -> windows_core::Result<bool> {
+        Self::IAppWindowTitleBarStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsCustomizationSupported)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    fn IAppWindowTitleBarStatics<R, F: FnOnce(&IAppWindowTitleBarStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<AppWindowTitleBar, IAppWindowTitleBarStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for AppWindowTitleBar {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IAppWindowTitleBar>();
+}
+unsafe impl windows_core::Interface for AppWindowTitleBar {
+    type Vtable = <IAppWindowTitleBar as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IAppWindowTitleBar as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for AppWindowTitleBar {
+    const NAME: &'static str = "Microsoft.UI.Windowing.AppWindowTitleBar";
+}
+unsafe impl Send for AppWindowTitleBar {}
+unsafe impl Sync for AppWindowTitleBar {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct CompactOverlayPresenter(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(CompactOverlayPresenter, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(CompactOverlayPresenter, AppWindowPresenter);
+impl CompactOverlayPresenter {
+    pub fn Kind(&self) -> windows_core::Result<AppWindowPresenterKind> {
+        let this = &windows_core::Interface::cast::<IAppWindowPresenter>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Kind)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn InitialSize(&self) -> windows_core::Result<CompactOverlaySize> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).InitialSize)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetInitialSize(&self, value: CompactOverlaySize) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetInitialSize)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn Create() -> windows_core::Result<Self> {
+        Self::ICompactOverlayPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Create)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    fn ICompactOverlayPresenterStatics<R, F: FnOnce(&ICompactOverlayPresenterStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<CompactOverlayPresenter, ICompactOverlayPresenterStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for CompactOverlayPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, ICompactOverlayPresenter>();
+}
+unsafe impl windows_core::Interface for CompactOverlayPresenter {
+    type Vtable = <ICompactOverlayPresenter as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <ICompactOverlayPresenter as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for CompactOverlayPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.CompactOverlayPresenter";
+}
+unsafe impl Send for CompactOverlayPresenter {}
+unsafe impl Sync for CompactOverlayPresenter {}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct CompactOverlaySize(pub i32);
+impl CompactOverlaySize {
+    pub const Small: Self = Self(0);
+    pub const Medium: Self = Self(1);
+    pub const Large: Self = Self(2);
+}
+impl windows_core::imp::TypeKind for CompactOverlaySize {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for CompactOverlaySize {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.CompactOverlaySize;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.CompactOverlaySize");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct DisplayArea(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(DisplayArea, windows_core::IUnknown, windows_core::IInspectable);
+impl DisplayArea {
+    pub fn IsPrimary(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsPrimary)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn OuterBounds(&self) -> windows_core::Result<windows::Graphics::RectInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).OuterBounds)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn WorkArea(&self) -> windows_core::Result<windows::Graphics::RectInt32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).WorkArea)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Primary() -> windows_core::Result<Self> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Primary)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateWatcher() -> windows_core::Result<DisplayAreaWatcher> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateWatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn FindAll() -> windows_core::Result<windows_collections::IVectorView<Self>> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FindAll)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn GetFromWindowId(windowid: super::WindowId, displayareafallback: DisplayAreaFallback) -> windows_core::Result<Self> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetFromWindowId)(windows_core::Interface::as_raw(this), windowid, displayareafallback, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn GetFromPoint(point: windows::Graphics::PointInt32, displayareafallback: DisplayAreaFallback) -> windows_core::Result<Self> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetFromPoint)(windows_core::Interface::as_raw(this), point, displayareafallback, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn GetFromRect(rect: windows::Graphics::RectInt32, displayareafallback: DisplayAreaFallback) -> windows_core::Result<Self> {
+        Self::IDisplayAreaStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetFromRect)(windows_core::Interface::as_raw(this), rect, displayareafallback, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    fn IDisplayAreaStatics<R, F: FnOnce(&IDisplayAreaStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<DisplayArea, IDisplayAreaStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IDisplayAreaStatics2<R, F: FnOnce(&IDisplayAreaStatics2) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<DisplayArea, IDisplayAreaStatics2> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IDisplayAreaStatics3<R, F: FnOnce(&IDisplayAreaStatics3) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<DisplayArea, IDisplayAreaStatics3> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for DisplayArea {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IDisplayArea>();
+}
+unsafe impl windows_core::Interface for DisplayArea {
+    type Vtable = <IDisplayArea as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IDisplayArea as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for DisplayArea {
+    const NAME: &'static str = "Microsoft.UI.Windowing.DisplayArea";
+}
+unsafe impl Send for DisplayArea {}
+unsafe impl Sync for DisplayArea {}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct DisplayAreaFallback(pub i32);
+impl DisplayAreaFallback {
+    pub const None: Self = Self(0);
+    pub const Primary: Self = Self(1);
+    pub const Nearest: Self = Self(2);
+}
+impl windows_core::imp::TypeKind for DisplayAreaFallback {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for DisplayAreaFallback {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.DisplayAreaFallback;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.DisplayAreaFallback");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct DisplayAreaWatcher(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(DisplayAreaWatcher, windows_core::IUnknown, windows_core::IInspectable);
+impl DisplayAreaWatcher {
+    pub fn Status(&self) -> windows_core::Result<DisplayAreaWatcherStatus> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Status)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Start(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Start)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Stop(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Stop)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Added<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<DisplayArea>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, DisplayArea>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Added)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveAdded))
+        }
+    }
+    pub fn EnumerationCompleted<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).EnumerationCompleted)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveEnumerationCompleted))
+        }
+    }
+    pub fn Removed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<DisplayArea>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, DisplayArea>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Removed)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveRemoved))
+        }
+    }
+    pub fn Stopped<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Stopped)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveStopped))
+        }
+    }
+    pub fn Updated<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<Self>, windows_core::Ref<DisplayArea>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <windows::Foundation::TypedEventHandler<Self, DisplayArea>>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).Updated)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveUpdated))
+        }
+    }
+}
+impl windows_core::RuntimeType for DisplayAreaWatcher {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IDisplayAreaWatcher>();
+}
+unsafe impl windows_core::Interface for DisplayAreaWatcher {
+    type Vtable = <IDisplayAreaWatcher as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IDisplayAreaWatcher as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for DisplayAreaWatcher {
+    const NAME: &'static str = "Microsoft.UI.Windowing.DisplayAreaWatcher";
+}
+unsafe impl Send for DisplayAreaWatcher {}
+unsafe impl Sync for DisplayAreaWatcher {}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct DisplayAreaWatcherStatus(pub i32);
+impl DisplayAreaWatcherStatus {
+    pub const Created: Self = Self(0);
+    pub const Started: Self = Self(1);
+    pub const EnumerationCompleted: Self = Self(2);
+    pub const Stopping: Self = Self(3);
+    pub const Stopped: Self = Self(4);
+    pub const Aborted: Self = Self(5);
+}
+impl windows_core::imp::TypeKind for DisplayAreaWatcherStatus {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for DisplayAreaWatcherStatus {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.DisplayAreaWatcherStatus;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.DisplayAreaWatcherStatus");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct FullScreenPresenter(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(FullScreenPresenter, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(FullScreenPresenter, AppWindowPresenter);
+impl FullScreenPresenter {
+    pub fn Kind(&self) -> windows_core::Result<AppWindowPresenterKind> {
+        let this = &windows_core::Interface::cast::<IAppWindowPresenter>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Kind)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Create() -> windows_core::Result<Self> {
+        Self::IFullScreenPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Create)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    fn IFullScreenPresenterStatics<R, F: FnOnce(&IFullScreenPresenterStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<FullScreenPresenter, IFullScreenPresenterStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for FullScreenPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IFullScreenPresenter>();
+}
+unsafe impl windows_core::Interface for FullScreenPresenter {
+    type Vtable = <IFullScreenPresenter as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IFullScreenPresenter as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for FullScreenPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.FullScreenPresenter";
+}
+unsafe impl Send for FullScreenPresenter {}
+unsafe impl Sync for FullScreenPresenter {}
+windows_core::imp::define_interface!(IAppWindow, IAppWindow_Vtbl, 0xcfa788b3_643b_5c5e_ad4e_321d48a82acd);
+impl windows_core::RuntimeType for IAppWindow {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindow");
+}
+impl windows_core::RuntimeName for IAppWindow {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindow";
+}
+pub trait IAppWindow_Impl: windows_core::IUnknownImpl {
+    fn Id(&self) -> windows_core::Result<super::WindowId>;
+    fn IsShownInSwitchers(&self) -> windows_core::Result<bool>;
+    fn SetIsShownInSwitchers(&self, value: bool) -> windows_core::Result<()>;
+    fn IsVisible(&self) -> windows_core::Result<bool>;
+    fn OwnerWindowId(&self) -> windows_core::Result<super::WindowId>;
+    fn Position(&self) -> windows_core::Result<windows::Graphics::PointInt32>;
+    fn Presenter(&self) -> windows_core::Result<AppWindowPresenter>;
+    fn Size(&self) -> windows_core::Result<windows::Graphics::SizeInt32>;
+    fn Title(&self) -> windows_core::Result<windows_core::HSTRING>;
+    fn SetTitle(&self, value: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn TitleBar(&self) -> windows_core::Result<AppWindowTitleBar>;
+    fn Destroy(&self) -> windows_core::Result<()>;
+    fn Hide(&self) -> windows_core::Result<()>;
+    fn Move(&self, position: &windows::Graphics::PointInt32) -> windows_core::Result<()>;
+    fn MoveAndResize(&self, rect: &windows::Graphics::RectInt32) -> windows_core::Result<()>;
+    fn MoveAndResizeRelativeToDisplayArea(&self, rect: &windows::Graphics::RectInt32, displayarea: windows_core::Ref<DisplayArea>) -> windows_core::Result<()>;
+    fn Resize(&self, size: &windows::Graphics::SizeInt32) -> windows_core::Result<()>;
+    fn SetIcon(&self, iconPath: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetIconWithIconId(&self, iconId: &super::IconId) -> windows_core::Result<()>;
+    fn SetPresenter(&self, appWindowPresenter: windows_core::Ref<AppWindowPresenter>) -> windows_core::Result<()>;
+    fn SetPresenterByKind(&self, appWindowPresenterKind: AppWindowPresenterKind) -> windows_core::Result<()>;
+    fn Show(&self) -> windows_core::Result<()>;
+    fn ShowWithActivation(&self, activateWindow: bool) -> windows_core::Result<()>;
+    fn Changed(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<AppWindow, AppWindowChangedEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveChanged(&self, token: i64) -> windows_core::Result<()>;
+    fn Closing(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<AppWindow, AppWindowClosingEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveClosing(&self, token: i64) -> windows_core::Result<()>;
+    fn Destroying(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<AppWindow, windows_core::IInspectable>>) -> windows_core::Result<i64>;
+    fn RemoveDestroying(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IAppWindow_Vtbl {
+    pub const fn new<Identity: IAppWindow_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Id<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::WindowId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Id(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IsShownInSwitchers<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::IsShownInSwitchers(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsShownInSwitchers<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetIsShownInSwitchers(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsVisible<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::IsVisible(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn OwnerWindowId<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::WindowId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::OwnerWindowId(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Position<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::PointInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Position(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Presenter<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Presenter(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Size<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::SizeInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Size(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Title<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Title(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetTitle<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetTitle(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn TitleBar<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::TitleBar(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Destroy<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::Destroy(this).into()
+            }
+        }
+        unsafe extern "system" fn Hide<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::Hide(this).into()
+            }
+        }
+        unsafe extern "system" fn Move<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, position: windows::Graphics::PointInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::Move(this, core::mem::transmute(&position)).into()
+            }
+        }
+        unsafe extern "system" fn MoveAndResize<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, rect: windows::Graphics::RectInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::MoveAndResize(this, core::mem::transmute(&rect)).into()
+            }
+        }
+        unsafe extern "system" fn MoveAndResizeRelativeToDisplayArea<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, rect: windows::Graphics::RectInt32, displayarea: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::MoveAndResizeRelativeToDisplayArea(this, core::mem::transmute(&rect), core::mem::transmute_copy(&displayarea)).into()
+            }
+        }
+        unsafe extern "system" fn Resize<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, size: windows::Graphics::SizeInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::Resize(this, core::mem::transmute(&size)).into()
+            }
+        }
+        unsafe extern "system" fn SetIcon<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconpath: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetIcon(this, core::mem::transmute(&iconpath)).into()
+            }
+        }
+        unsafe extern "system" fn SetIconWithIconId<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconid: super::IconId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetIconWithIconId(this, core::mem::transmute(&iconid)).into()
+            }
+        }
+        unsafe extern "system" fn SetPresenter<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, appwindowpresenter: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetPresenter(this, core::mem::transmute_copy(&appwindowpresenter)).into()
+            }
+        }
+        unsafe extern "system" fn SetPresenterByKind<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, appwindowpresenterkind: AppWindowPresenterKind) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::SetPresenterByKind(this, appwindowpresenterkind).into()
+            }
+        }
+        unsafe extern "system" fn Show<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::Show(this).into()
+            }
+        }
+        unsafe extern "system" fn ShowWithActivation<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, activatewindow: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::ShowWithActivation(this, activatewindow).into()
+            }
+        }
+        unsafe extern "system" fn Changed<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Changed(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveChanged<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::RemoveChanged(this, token).into()
+            }
+        }
+        unsafe extern "system" fn Closing<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Closing(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveClosing<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::RemoveClosing(this, token).into()
+            }
+        }
+        unsafe extern "system" fn Destroying<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow_Impl::Destroying(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveDestroying<Identity: IAppWindow_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow_Impl::RemoveDestroying(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindow, OFFSET>(),
+            Id: Id::<Identity, OFFSET>,
+            IsShownInSwitchers: IsShownInSwitchers::<Identity, OFFSET>,
+            SetIsShownInSwitchers: SetIsShownInSwitchers::<Identity, OFFSET>,
+            IsVisible: IsVisible::<Identity, OFFSET>,
+            OwnerWindowId: OwnerWindowId::<Identity, OFFSET>,
+            Position: Position::<Identity, OFFSET>,
+            Presenter: Presenter::<Identity, OFFSET>,
+            Size: Size::<Identity, OFFSET>,
+            Title: Title::<Identity, OFFSET>,
+            SetTitle: SetTitle::<Identity, OFFSET>,
+            TitleBar: TitleBar::<Identity, OFFSET>,
+            Destroy: Destroy::<Identity, OFFSET>,
+            Hide: Hide::<Identity, OFFSET>,
+            Move: Move::<Identity, OFFSET>,
+            MoveAndResize: MoveAndResize::<Identity, OFFSET>,
+            MoveAndResizeRelativeToDisplayArea: MoveAndResizeRelativeToDisplayArea::<Identity, OFFSET>,
+            Resize: Resize::<Identity, OFFSET>,
+            SetIcon: SetIcon::<Identity, OFFSET>,
+            SetIconWithIconId: SetIconWithIconId::<Identity, OFFSET>,
+            SetPresenter: SetPresenter::<Identity, OFFSET>,
+            SetPresenterByKind: SetPresenterByKind::<Identity, OFFSET>,
+            Show: Show::<Identity, OFFSET>,
+            ShowWithActivation: ShowWithActivation::<Identity, OFFSET>,
+            Changed: Changed::<Identity, OFFSET>,
+            RemoveChanged: RemoveChanged::<Identity, OFFSET>,
+            Closing: Closing::<Identity, OFFSET>,
+            RemoveClosing: RemoveClosing::<Identity, OFFSET>,
+            Destroying: Destroying::<Identity, OFFSET>,
+            RemoveDestroying: RemoveDestroying::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindow as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindow_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Id: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::WindowId) -> windows_core::HRESULT,
+    pub IsShownInSwitchers: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsShownInSwitchers: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsVisible: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub OwnerWindowId: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::WindowId) -> windows_core::HRESULT,
+    pub Position: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::PointInt32) -> windows_core::HRESULT,
+    pub Presenter: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Size: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::SizeInt32) -> windows_core::HRESULT,
+    pub Title: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetTitle: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub TitleBar: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Destroy: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Hide: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Move: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::PointInt32) -> windows_core::HRESULT,
+    pub MoveAndResize: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::RectInt32) -> windows_core::HRESULT,
+    pub MoveAndResizeRelativeToDisplayArea: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::RectInt32, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Resize: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::SizeInt32) -> windows_core::HRESULT,
+    pub SetIcon: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetIconWithIconId: unsafe extern "system" fn(*mut core::ffi::c_void, super::IconId) -> windows_core::HRESULT,
+    pub SetPresenter: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPresenterByKind: unsafe extern "system" fn(*mut core::ffi::c_void, AppWindowPresenterKind) -> windows_core::HRESULT,
+    pub Show: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ShowWithActivation: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub Changed: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub Closing: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveClosing: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub Destroying: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveDestroying: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindow2, IAppWindow2_Vtbl, 0x6cd41292_794c_5cac_8961_210d012c6ebc);
+impl windows_core::RuntimeType for IAppWindow2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindow2");
+}
+impl windows_core::RuntimeName for IAppWindow2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindow2";
+}
+pub trait IAppWindow2_Impl: windows_core::IUnknownImpl {
+    fn ClientSize(&self) -> windows_core::Result<windows::Graphics::SizeInt32>;
+    fn MoveInZOrderAtBottom(&self) -> windows_core::Result<()>;
+    fn MoveInZOrderAtTop(&self) -> windows_core::Result<()>;
+    fn MoveInZOrderBelow(&self, windowId: &super::WindowId) -> windows_core::Result<()>;
+    fn ResizeClient(&self, size: &windows::Graphics::SizeInt32) -> windows_core::Result<()>;
+    fn ShowOnceWithRequestedStartupState(&self) -> windows_core::Result<()>;
+}
+impl IAppWindow2_Vtbl {
+    pub const fn new<Identity: IAppWindow2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn ClientSize<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::SizeInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow2_Impl::ClientSize(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn MoveInZOrderAtBottom<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow2_Impl::MoveInZOrderAtBottom(this).into()
+            }
+        }
+        unsafe extern "system" fn MoveInZOrderAtTop<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow2_Impl::MoveInZOrderAtTop(this).into()
+            }
+        }
+        unsafe extern "system" fn MoveInZOrderBelow<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, windowid: super::WindowId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow2_Impl::MoveInZOrderBelow(this, core::mem::transmute(&windowid)).into()
+            }
+        }
+        unsafe extern "system" fn ResizeClient<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, size: windows::Graphics::SizeInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow2_Impl::ResizeClient(this, core::mem::transmute(&size)).into()
+            }
+        }
+        unsafe extern "system" fn ShowOnceWithRequestedStartupState<Identity: IAppWindow2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow2_Impl::ShowOnceWithRequestedStartupState(this).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindow2, OFFSET>(),
+            ClientSize: ClientSize::<Identity, OFFSET>,
+            MoveInZOrderAtBottom: MoveInZOrderAtBottom::<Identity, OFFSET>,
+            MoveInZOrderAtTop: MoveInZOrderAtTop::<Identity, OFFSET>,
+            MoveInZOrderBelow: MoveInZOrderBelow::<Identity, OFFSET>,
+            ResizeClient: ResizeClient::<Identity, OFFSET>,
+            ShowOnceWithRequestedStartupState: ShowOnceWithRequestedStartupState::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindow2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindow2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub ClientSize: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::SizeInt32) -> windows_core::HRESULT,
+    pub MoveInZOrderAtBottom: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub MoveInZOrderAtTop: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub MoveInZOrderBelow: unsafe extern "system" fn(*mut core::ffi::c_void, super::WindowId) -> windows_core::HRESULT,
+    pub ResizeClient: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::SizeInt32) -> windows_core::HRESULT,
+    pub ShowOnceWithRequestedStartupState: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindow3, IAppWindow3_Vtbl, 0x2f260cea_193d_5dd6_a904_d7649a608d2f);
+impl windows_core::RuntimeType for IAppWindow3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindow3");
+}
+#[cfg(feature = "UI_Dispatching")]
+impl windows_core::RuntimeName for IAppWindow3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindow3";
+}
+#[cfg(feature = "UI_Dispatching")]
+pub trait IAppWindow3_Impl: windows_core::IUnknownImpl {
+    fn AssociateWithDispatcherQueue(&self, dispatcherQueue: windows_core::Ref<super::Dispatching::DispatcherQueue>) -> windows_core::Result<()>;
+    fn DispatcherQueue(&self) -> windows_core::Result<super::Dispatching::DispatcherQueue>;
+}
+#[cfg(feature = "UI_Dispatching")]
+impl IAppWindow3_Vtbl {
+    pub const fn new<Identity: IAppWindow3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn AssociateWithDispatcherQueue<Identity: IAppWindow3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, dispatcherqueue: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow3_Impl::AssociateWithDispatcherQueue(this, core::mem::transmute_copy(&dispatcherqueue)).into()
+            }
+        }
+        unsafe extern "system" fn DispatcherQueue<Identity: IAppWindow3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindow3_Impl::DispatcherQueue(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindow3, OFFSET>(),
+            AssociateWithDispatcherQueue: AssociateWithDispatcherQueue::<Identity, OFFSET>,
+            DispatcherQueue: DispatcherQueue::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindow3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindow3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Dispatching")]
+    pub AssociateWithDispatcherQueue: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Dispatching"))]
+    AssociateWithDispatcherQueue: usize,
+    #[cfg(feature = "UI_Dispatching")]
+    pub DispatcherQueue: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Dispatching"))]
+    DispatcherQueue: usize,
+}
+windows_core::imp::define_interface!(IAppWindow4, IAppWindow4_Vtbl, 0x383bfb91_ea29_5414_80cd_6c76d981eb31);
+impl windows_core::RuntimeType for IAppWindow4 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindow4");
+}
+impl windows_core::RuntimeName for IAppWindow4 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindow4";
+}
+pub trait IAppWindow4_Impl: windows_core::IUnknownImpl {
+    fn SetTaskbarIcon(&self, iconPath: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetTaskbarIconWithIconId(&self, iconId: &super::IconId) -> windows_core::Result<()>;
+    fn SetTitleBarIcon(&self, iconPath: &windows_core::HSTRING) -> windows_core::Result<()>;
+    fn SetTitleBarIconWithIconId(&self, iconId: &super::IconId) -> windows_core::Result<()>;
+}
+impl IAppWindow4_Vtbl {
+    pub const fn new<Identity: IAppWindow4_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn SetTaskbarIcon<Identity: IAppWindow4_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconpath: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTaskbarIcon(this, core::mem::transmute(&iconpath)).into()
+            }
+        }
+        unsafe extern "system" fn SetTaskbarIconWithIconId<Identity: IAppWindow4_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconid: super::IconId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTaskbarIconWithIconId(this, core::mem::transmute(&iconid)).into()
+            }
+        }
+        unsafe extern "system" fn SetTitleBarIcon<Identity: IAppWindow4_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconpath: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTitleBarIcon(this, core::mem::transmute(&iconpath)).into()
+            }
+        }
+        unsafe extern "system" fn SetTitleBarIconWithIconId<Identity: IAppWindow4_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, iconid: super::IconId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindow4_Impl::SetTitleBarIconWithIconId(this, core::mem::transmute(&iconid)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindow4, OFFSET>(),
+            SetTaskbarIcon: SetTaskbarIcon::<Identity, OFFSET>,
+            SetTaskbarIconWithIconId: SetTaskbarIconWithIconId::<Identity, OFFSET>,
+            SetTitleBarIcon: SetTitleBarIcon::<Identity, OFFSET>,
+            SetTitleBarIconWithIconId: SetTitleBarIconWithIconId::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindow4 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindow4_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub SetTaskbarIcon: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetTaskbarIconWithIconId: unsafe extern "system" fn(*mut core::ffi::c_void, super::IconId) -> windows_core::HRESULT,
+    pub SetTitleBarIcon: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetTitleBarIconWithIconId: unsafe extern "system" fn(*mut core::ffi::c_void, super::IconId) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowChangedEventArgs, IAppWindowChangedEventArgs_Vtbl, 0x2182bc5d_fdac_5c3e_bf37_7d8d684e9d1d);
+impl windows_core::RuntimeType for IAppWindowChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowChangedEventArgs");
+}
+impl windows_core::RuntimeName for IAppWindowChangedEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowChangedEventArgs";
+}
+pub trait IAppWindowChangedEventArgs_Impl: windows_core::IUnknownImpl {
+    fn DidPositionChange(&self) -> windows_core::Result<bool>;
+    fn DidPresenterChange(&self) -> windows_core::Result<bool>;
+    fn DidSizeChange(&self) -> windows_core::Result<bool>;
+    fn DidVisibilityChange(&self) -> windows_core::Result<bool>;
+}
+impl IAppWindowChangedEventArgs_Vtbl {
+    pub const fn new<Identity: IAppWindowChangedEventArgs_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn DidPositionChange<Identity: IAppWindowChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs_Impl::DidPositionChange(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn DidPresenterChange<Identity: IAppWindowChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs_Impl::DidPresenterChange(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn DidSizeChange<Identity: IAppWindowChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs_Impl::DidSizeChange(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn DidVisibilityChange<Identity: IAppWindowChangedEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs_Impl::DidVisibilityChange(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowChangedEventArgs, OFFSET>(),
+            DidPositionChange: DidPositionChange::<Identity, OFFSET>,
+            DidPresenterChange: DidPresenterChange::<Identity, OFFSET>,
+            DidSizeChange: DidSizeChange::<Identity, OFFSET>,
+            DidVisibilityChange: DidVisibilityChange::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowChangedEventArgs as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowChangedEventArgs_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub DidPositionChange: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub DidPresenterChange: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub DidSizeChange: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub DidVisibilityChange: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowChangedEventArgs2, IAppWindowChangedEventArgs2_Vtbl, 0xa773ab4c_a5ec_50e8_98ac_247fe6cd4227);
+impl windows_core::RuntimeType for IAppWindowChangedEventArgs2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowChangedEventArgs2");
+}
+impl windows_core::RuntimeName for IAppWindowChangedEventArgs2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowChangedEventArgs2";
+}
+pub trait IAppWindowChangedEventArgs2_Impl: windows_core::IUnknownImpl {
+    fn DidZOrderChange(&self) -> windows_core::Result<bool>;
+    fn IsZOrderAtBottom(&self) -> windows_core::Result<bool>;
+    fn IsZOrderAtTop(&self) -> windows_core::Result<bool>;
+    fn ZOrderBelowWindowId(&self) -> windows_core::Result<super::WindowId>;
+}
+impl IAppWindowChangedEventArgs2_Vtbl {
+    pub const fn new<Identity: IAppWindowChangedEventArgs2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn DidZOrderChange<Identity: IAppWindowChangedEventArgs2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs2_Impl::DidZOrderChange(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IsZOrderAtBottom<Identity: IAppWindowChangedEventArgs2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs2_Impl::IsZOrderAtBottom(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IsZOrderAtTop<Identity: IAppWindowChangedEventArgs2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs2_Impl::IsZOrderAtTop(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ZOrderBelowWindowId<Identity: IAppWindowChangedEventArgs2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::WindowId) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowChangedEventArgs2_Impl::ZOrderBelowWindowId(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowChangedEventArgs2, OFFSET>(),
+            DidZOrderChange: DidZOrderChange::<Identity, OFFSET>,
+            IsZOrderAtBottom: IsZOrderAtBottom::<Identity, OFFSET>,
+            IsZOrderAtTop: IsZOrderAtTop::<Identity, OFFSET>,
+            ZOrderBelowWindowId: ZOrderBelowWindowId::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowChangedEventArgs2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowChangedEventArgs2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub DidZOrderChange: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub IsZOrderAtBottom: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub IsZOrderAtTop: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub ZOrderBelowWindowId: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::WindowId) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowClosingEventArgs, IAppWindowClosingEventArgs_Vtbl, 0x0e09d90b_2261_590b_9ad1_8504991d8754);
+impl windows_core::RuntimeType for IAppWindowClosingEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowClosingEventArgs");
+}
+impl windows_core::RuntimeName for IAppWindowClosingEventArgs {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowClosingEventArgs";
+}
+pub trait IAppWindowClosingEventArgs_Impl: windows_core::IUnknownImpl {
+    fn Cancel(&self) -> windows_core::Result<bool>;
+    fn SetCancel(&self, value: bool) -> windows_core::Result<()>;
+}
+impl IAppWindowClosingEventArgs_Vtbl {
+    pub const fn new<Identity: IAppWindowClosingEventArgs_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Cancel<Identity: IAppWindowClosingEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowClosingEventArgs_Impl::Cancel(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCancel<Identity: IAppWindowClosingEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowClosingEventArgs_Impl::SetCancel(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowClosingEventArgs, OFFSET>(),
+            Cancel: Cancel::<Identity, OFFSET>,
+            SetCancel: SetCancel::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowClosingEventArgs as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowClosingEventArgs_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Cancel: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetCancel: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowExperimental, IAppWindowExperimental_Vtbl, 0x04db96c7_deb6_5be4_bfdc_1bc0361c8a12);
+impl windows_core::RuntimeType for IAppWindowExperimental {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowExperimental");
+}
+impl windows_core::RuntimeName for IAppWindowExperimental {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowExperimental";
+}
+pub trait IAppWindowExperimental_Impl: windows_core::IUnknownImpl {
+    fn PersistedStateId(&self) -> windows_core::Result<windows_reference::IReference<windows_core::GUID>>;
+    fn SetPersistedStateId(&self, value: windows_core::Ref<windows_reference::IReference<windows_core::GUID>>) -> windows_core::Result<()>;
+    fn PlacementRestorationBehavior(&self) -> windows_core::Result<PlacementRestorationBehavior>;
+    fn SetPlacementRestorationBehavior(&self, value: PlacementRestorationBehavior) -> windows_core::Result<()>;
+    fn GetCurrentPlacement(&self) -> windows_core::Result<AppWindowPlacementDetails>;
+    fn SaveCurrentPlacement(&self) -> windows_core::Result<()>;
+    fn SetCurrentPlacement(&self, placementDetails: windows_core::Ref<AppWindowPlacementDetails>, isFirstWindow: bool) -> windows_core::Result<bool>;
+}
+impl IAppWindowExperimental_Vtbl {
+    pub const fn new<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PersistedStateId<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowExperimental_Impl::PersistedStateId(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPersistedStateId<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowExperimental_Impl::SetPersistedStateId(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn PlacementRestorationBehavior<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut PlacementRestorationBehavior) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowExperimental_Impl::PlacementRestorationBehavior(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPlacementRestorationBehavior<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: PlacementRestorationBehavior) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowExperimental_Impl::SetPlacementRestorationBehavior(this, value).into()
+            }
+        }
+        unsafe extern "system" fn GetCurrentPlacement<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowExperimental_Impl::GetCurrentPlacement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SaveCurrentPlacement<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowExperimental_Impl::SaveCurrentPlacement(this).into()
+            }
+        }
+        unsafe extern "system" fn SetCurrentPlacement<Identity: IAppWindowExperimental_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, placementdetails: *mut core::ffi::c_void, isfirstwindow: bool, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowExperimental_Impl::SetCurrentPlacement(this, core::mem::transmute_copy(&placementdetails), isfirstwindow) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowExperimental, OFFSET>(),
+            PersistedStateId: PersistedStateId::<Identity, OFFSET>,
+            SetPersistedStateId: SetPersistedStateId::<Identity, OFFSET>,
+            PlacementRestorationBehavior: PlacementRestorationBehavior::<Identity, OFFSET>,
+            SetPlacementRestorationBehavior: SetPlacementRestorationBehavior::<Identity, OFFSET>,
+            GetCurrentPlacement: GetCurrentPlacement::<Identity, OFFSET>,
+            SaveCurrentPlacement: SaveCurrentPlacement::<Identity, OFFSET>,
+            SetCurrentPlacement: SetCurrentPlacement::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowExperimental as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowExperimental_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PersistedStateId: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPersistedStateId: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub PlacementRestorationBehavior: unsafe extern "system" fn(*mut core::ffi::c_void, *mut PlacementRestorationBehavior) -> windows_core::HRESULT,
+    pub SetPlacementRestorationBehavior: unsafe extern "system" fn(*mut core::ffi::c_void, PlacementRestorationBehavior) -> windows_core::HRESULT,
+    pub GetCurrentPlacement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SaveCurrentPlacement: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetCurrentPlacement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, bool, *mut bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowPlacementDetails, IAppWindowPlacementDetails_Vtbl, 0x639ec5b2_ac0c_5bbf_8422_98dca540d219);
+impl windows_core::RuntimeType for IAppWindowPlacementDetails {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowPlacementDetails");
+}
+impl windows_core::RuntimeName for IAppWindowPlacementDetails {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowPlacementDetails";
+}
+pub trait IAppWindowPlacementDetails_Impl: windows_core::IUnknownImpl {
+    fn NormalRect(&self) -> windows_core::Result<windows::Graphics::RectInt32>;
+    fn WorkArea(&self) -> windows_core::Result<windows::Graphics::RectInt32>;
+    fn Dpi(&self) -> windows_core::Result<i32>;
+    fn ShowCmd(&self) -> windows_core::Result<i32>;
+    fn ArrangeRect(&self) -> windows_core::Result<windows::Graphics::RectInt32>;
+    fn DeviceName(&self) -> windows_core::Result<windows_core::HSTRING>;
+    fn Flags(&self) -> windows_core::Result<PlacementInfo>;
+}
+impl IAppWindowPlacementDetails_Vtbl {
+    pub const fn new<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn NormalRect<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::RectInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::NormalRect(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn WorkArea<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::RectInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::WorkArea(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Dpi<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::Dpi(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ShowCmd<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::ShowCmd(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ArrangeRect<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Graphics::RectInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::ArrangeRect(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn DeviceName<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::DeviceName(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Flags<Identity: IAppWindowPlacementDetails_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut PlacementInfo) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetails_Impl::Flags(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowPlacementDetails, OFFSET>(),
+            NormalRect: NormalRect::<Identity, OFFSET>,
+            WorkArea: WorkArea::<Identity, OFFSET>,
+            Dpi: Dpi::<Identity, OFFSET>,
+            ShowCmd: ShowCmd::<Identity, OFFSET>,
+            ArrangeRect: ArrangeRect::<Identity, OFFSET>,
+            DeviceName: DeviceName::<Identity, OFFSET>,
+            Flags: Flags::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowPlacementDetails as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowPlacementDetails_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub NormalRect: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::RectInt32) -> windows_core::HRESULT,
+    pub WorkArea: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::RectInt32) -> windows_core::HRESULT,
+    pub Dpi: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub ShowCmd: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub ArrangeRect: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::RectInt32) -> windows_core::HRESULT,
+    pub DeviceName: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Flags: unsafe extern "system" fn(*mut core::ffi::c_void, *mut PlacementInfo) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowPlacementDetailsStatics, IAppWindowPlacementDetailsStatics_Vtbl, 0xf19f1745_52ad_5cf7_97ea_76c5fd6ff3c1);
+impl windows_core::RuntimeType for IAppWindowPlacementDetailsStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowPlacementDetailsStatics");
+}
+impl windows_core::RuntimeName for IAppWindowPlacementDetailsStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowPlacementDetailsStatics";
+}
+pub trait IAppWindowPlacementDetailsStatics_Impl: windows_core::IUnknownImpl {
+    fn Create(&self, normalRect: &windows::Graphics::RectInt32, workArea: &windows::Graphics::RectInt32, dpi: i32, showCmd: i32, arrangeRect: &windows::Graphics::RectInt32, flags: PlacementInfo, deviceName: &windows_core::HSTRING) -> windows_core::Result<AppWindowPlacementDetails>;
+}
+impl IAppWindowPlacementDetailsStatics_Vtbl {
+    pub const fn new<Identity: IAppWindowPlacementDetailsStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Create<Identity: IAppWindowPlacementDetailsStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, normalrect: windows::Graphics::RectInt32, workarea: windows::Graphics::RectInt32, dpi: i32, showcmd: i32, arrangerect: windows::Graphics::RectInt32, flags: PlacementInfo, devicename: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPlacementDetailsStatics_Impl::Create(this, core::mem::transmute(&normalrect), core::mem::transmute(&workarea), dpi, showcmd, core::mem::transmute(&arrangerect), flags, core::mem::transmute(&devicename)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowPlacementDetailsStatics, OFFSET>(), Create: Create::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowPlacementDetailsStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowPlacementDetailsStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Create: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::RectInt32, windows::Graphics::RectInt32, i32, i32, windows::Graphics::RectInt32, PlacementInfo, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowPresenter, IAppWindowPresenter_Vtbl, 0xbc3042c2_c6c6_5632_8989_ff0ec6d3b40d);
+impl windows_core::RuntimeType for IAppWindowPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowPresenter");
+}
+impl windows_core::RuntimeName for IAppWindowPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowPresenter";
+}
+pub trait IAppWindowPresenter_Impl: windows_core::IUnknownImpl {
+    fn Kind(&self) -> windows_core::Result<AppWindowPresenterKind>;
+}
+impl IAppWindowPresenter_Vtbl {
+    pub const fn new<Identity: IAppWindowPresenter_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Kind<Identity: IAppWindowPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut AppWindowPresenterKind) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowPresenter_Impl::Kind(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowPresenter, OFFSET>(), Kind: Kind::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowPresenter as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowPresenter_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Kind: unsafe extern "system" fn(*mut core::ffi::c_void, *mut AppWindowPresenterKind) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowPresenterFactory, IAppWindowPresenterFactory_Vtbl, 0x62082e3c_1368_5238_90d1_e932dc718a82);
+impl windows_core::RuntimeType for IAppWindowPresenterFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowPresenterFactory");
+}
+impl windows_core::RuntimeName for IAppWindowPresenterFactory {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowPresenterFactory";
+}
+pub trait IAppWindowPresenterFactory_Impl: windows_core::IUnknownImpl {}
+impl IAppWindowPresenterFactory_Vtbl {
+    pub const fn new<Identity: IAppWindowPresenterFactory_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowPresenterFactory, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowPresenterFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowPresenterFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IAppWindowStatics, IAppWindowStatics_Vtbl, 0x3c315c24_d540_5d72_b518_b226b83627cb);
+impl windows_core::RuntimeType for IAppWindowStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowStatics");
+}
+impl windows_core::RuntimeName for IAppWindowStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowStatics";
+}
+pub trait IAppWindowStatics_Impl: windows_core::IUnknownImpl {
+    fn Create(&self) -> windows_core::Result<AppWindow>;
+    fn CreateWithPresenter(&self, appWindowPresenter: windows_core::Ref<AppWindowPresenter>) -> windows_core::Result<AppWindow>;
+    fn CreateWithPresenterAndOwner(&self, appWindowPresenter: windows_core::Ref<AppWindowPresenter>, ownerWindowId: &super::WindowId) -> windows_core::Result<AppWindow>;
+    fn GetFromWindowId(&self, windowId: &super::WindowId) -> windows_core::Result<AppWindow>;
+}
+impl IAppWindowStatics_Vtbl {
+    pub const fn new<Identity: IAppWindowStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Create<Identity: IAppWindowStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowStatics_Impl::Create(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateWithPresenter<Identity: IAppWindowStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, appwindowpresenter: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowStatics_Impl::CreateWithPresenter(this, core::mem::transmute_copy(&appwindowpresenter)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateWithPresenterAndOwner<Identity: IAppWindowStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, appwindowpresenter: *mut core::ffi::c_void, ownerwindowid: super::WindowId, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowStatics_Impl::CreateWithPresenterAndOwner(this, core::mem::transmute_copy(&appwindowpresenter), core::mem::transmute(&ownerwindowid)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFromWindowId<Identity: IAppWindowStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, windowid: super::WindowId, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowStatics_Impl::GetFromWindowId(this, core::mem::transmute(&windowid)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowStatics, OFFSET>(),
+            Create: Create::<Identity, OFFSET>,
+            CreateWithPresenter: CreateWithPresenter::<Identity, OFFSET>,
+            CreateWithPresenterAndOwner: CreateWithPresenterAndOwner::<Identity, OFFSET>,
+            GetFromWindowId: GetFromWindowId::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Create: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateWithPresenter: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateWithPresenterAndOwner: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, super::WindowId, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GetFromWindowId: unsafe extern "system" fn(*mut core::ffi::c_void, super::WindowId, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowStatics2, IAppWindowStatics2_Vtbl, 0xcabc23db_4606_5d6e_89a5_06de1d8bd3e2);
+impl windows_core::RuntimeType for IAppWindowStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowStatics2");
+}
+#[cfg(feature = "UI_Dispatching")]
+impl windows_core::RuntimeName for IAppWindowStatics2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowStatics2";
+}
+#[cfg(feature = "UI_Dispatching")]
+pub trait IAppWindowStatics2_Impl: windows_core::IUnknownImpl {
+    fn CreateWithDispatcherQueue(&self, appWindowPresenter: windows_core::Ref<AppWindowPresenter>, ownerWindowId: &super::WindowId, DispatcherQueue: windows_core::Ref<super::Dispatching::DispatcherQueue>) -> windows_core::Result<AppWindow>;
+}
+#[cfg(feature = "UI_Dispatching")]
+impl IAppWindowStatics2_Vtbl {
+    pub const fn new<Identity: IAppWindowStatics2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateWithDispatcherQueue<Identity: IAppWindowStatics2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, appwindowpresenter: *mut core::ffi::c_void, ownerwindowid: super::WindowId, dispatcherqueue: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowStatics2_Impl::CreateWithDispatcherQueue(this, core::mem::transmute_copy(&appwindowpresenter), core::mem::transmute(&ownerwindowid), core::mem::transmute_copy(&dispatcherqueue)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowStatics2, OFFSET>(),
+            CreateWithDispatcherQueue: CreateWithDispatcherQueue::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowStatics2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Dispatching")]
+    pub CreateWithDispatcherQueue: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, super::WindowId, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Dispatching"))]
+    CreateWithDispatcherQueue: usize,
+}
+windows_core::imp::define_interface!(IAppWindowStatics3, IAppWindowStatics3_Vtbl, 0x0bcc835a_1286_5113_9f59_f1093d2e087a);
+impl windows_core::RuntimeType for IAppWindowStatics3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowStatics3");
+}
+impl windows_core::RuntimeName for IAppWindowStatics3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowStatics3";
+}
+pub trait IAppWindowStatics3_Impl: windows_core::IUnknownImpl {
+    fn SaveCurrentPlacementForAllPersistedStateIds(&self) -> windows_core::Result<()>;
+}
+impl IAppWindowStatics3_Vtbl {
+    pub const fn new<Identity: IAppWindowStatics3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn SaveCurrentPlacementForAllPersistedStateIds<Identity: IAppWindowStatics3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowStatics3_Impl::SaveCurrentPlacementForAllPersistedStateIds(this).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowStatics3, OFFSET>(),
+            SaveCurrentPlacementForAllPersistedStateIds: SaveCurrentPlacementForAllPersistedStateIds::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowStatics3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowStatics3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub SaveCurrentPlacementForAllPersistedStateIds: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowTitleBar, IAppWindowTitleBar_Vtbl, 0x5574efa2_c91c_5700_a363_539c71a7aaf4);
+impl windows_core::RuntimeType for IAppWindowTitleBar {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowTitleBar");
+}
+impl windows_core::RuntimeName for IAppWindowTitleBar {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowTitleBar";
+}
+pub trait IAppWindowTitleBar_Impl: windows_core::IUnknownImpl {
+    fn BackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonBackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonHoverBackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonHoverBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonHoverForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonHoverForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonInactiveBackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonInactiveBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonInactiveForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonInactiveForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonPressedBackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonPressedBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ButtonPressedForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetButtonPressedForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn ExtendsContentIntoTitleBar(&self) -> windows_core::Result<bool>;
+    fn SetExtendsContentIntoTitleBar(&self, value: bool) -> windows_core::Result<()>;
+    fn ForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn Height(&self) -> windows_core::Result<i32>;
+    fn IconShowOptions(&self) -> windows_core::Result<IconShowOptions>;
+    fn SetIconShowOptions(&self, value: IconShowOptions) -> windows_core::Result<()>;
+    fn InactiveBackgroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetInactiveBackgroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn InactiveForegroundColor(&self) -> windows_core::Result<windows_reference::IReference<windows::UI::Color>>;
+    fn SetInactiveForegroundColor(&self, value: windows_core::Ref<windows_reference::IReference<windows::UI::Color>>) -> windows_core::Result<()>;
+    fn LeftInset(&self) -> windows_core::Result<i32>;
+    fn RightInset(&self) -> windows_core::Result<i32>;
+    fn ResetToDefault(&self) -> windows_core::Result<()>;
+    fn SetDragRectangles(&self, value: &[windows::Graphics::RectInt32]) -> windows_core::Result<()>;
+}
+impl IAppWindowTitleBar_Vtbl {
+    pub const fn new<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn BackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::BackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonHoverBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonHoverBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonHoverBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonHoverBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonHoverForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonHoverForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonHoverForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonHoverForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonInactiveBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonInactiveBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonInactiveBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonInactiveBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonInactiveForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonInactiveForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonInactiveForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonInactiveForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonPressedBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonPressedBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonPressedBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonPressedBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ButtonPressedForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ButtonPressedForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetButtonPressedForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetButtonPressedForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn ExtendsContentIntoTitleBar<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ExtendsContentIntoTitleBar(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetExtendsContentIntoTitleBar<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetExtendsContentIntoTitleBar(this, value).into()
+            }
+        }
+        unsafe extern "system" fn ForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::ForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn Height<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::Height(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IconShowOptions<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut IconShowOptions) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::IconShowOptions(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIconShowOptions<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: IconShowOptions) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetIconShowOptions(this, value).into()
+            }
+        }
+        unsafe extern "system" fn InactiveBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::InactiveBackgroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetInactiveBackgroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetInactiveBackgroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn InactiveForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::InactiveForegroundColor(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetInactiveForegroundColor<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetInactiveForegroundColor(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn LeftInset<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::LeftInset(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RightInset<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut i32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar_Impl::RightInset(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn ResetToDefault<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::ResetToDefault(this).into()
+            }
+        }
+        unsafe extern "system" fn SetDragRectangles<Identity: IAppWindowTitleBar_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value_array_size: u32, value: *const windows::Graphics::RectInt32) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar_Impl::SetDragRectangles(this, core::slice::from_raw_parts(core::mem::transmute_copy(&value), value_array_size as usize)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowTitleBar, OFFSET>(),
+            BackgroundColor: BackgroundColor::<Identity, OFFSET>,
+            SetBackgroundColor: SetBackgroundColor::<Identity, OFFSET>,
+            ButtonBackgroundColor: ButtonBackgroundColor::<Identity, OFFSET>,
+            SetButtonBackgroundColor: SetButtonBackgroundColor::<Identity, OFFSET>,
+            ButtonForegroundColor: ButtonForegroundColor::<Identity, OFFSET>,
+            SetButtonForegroundColor: SetButtonForegroundColor::<Identity, OFFSET>,
+            ButtonHoverBackgroundColor: ButtonHoverBackgroundColor::<Identity, OFFSET>,
+            SetButtonHoverBackgroundColor: SetButtonHoverBackgroundColor::<Identity, OFFSET>,
+            ButtonHoverForegroundColor: ButtonHoverForegroundColor::<Identity, OFFSET>,
+            SetButtonHoverForegroundColor: SetButtonHoverForegroundColor::<Identity, OFFSET>,
+            ButtonInactiveBackgroundColor: ButtonInactiveBackgroundColor::<Identity, OFFSET>,
+            SetButtonInactiveBackgroundColor: SetButtonInactiveBackgroundColor::<Identity, OFFSET>,
+            ButtonInactiveForegroundColor: ButtonInactiveForegroundColor::<Identity, OFFSET>,
+            SetButtonInactiveForegroundColor: SetButtonInactiveForegroundColor::<Identity, OFFSET>,
+            ButtonPressedBackgroundColor: ButtonPressedBackgroundColor::<Identity, OFFSET>,
+            SetButtonPressedBackgroundColor: SetButtonPressedBackgroundColor::<Identity, OFFSET>,
+            ButtonPressedForegroundColor: ButtonPressedForegroundColor::<Identity, OFFSET>,
+            SetButtonPressedForegroundColor: SetButtonPressedForegroundColor::<Identity, OFFSET>,
+            ExtendsContentIntoTitleBar: ExtendsContentIntoTitleBar::<Identity, OFFSET>,
+            SetExtendsContentIntoTitleBar: SetExtendsContentIntoTitleBar::<Identity, OFFSET>,
+            ForegroundColor: ForegroundColor::<Identity, OFFSET>,
+            SetForegroundColor: SetForegroundColor::<Identity, OFFSET>,
+            Height: Height::<Identity, OFFSET>,
+            IconShowOptions: IconShowOptions::<Identity, OFFSET>,
+            SetIconShowOptions: SetIconShowOptions::<Identity, OFFSET>,
+            InactiveBackgroundColor: InactiveBackgroundColor::<Identity, OFFSET>,
+            SetInactiveBackgroundColor: SetInactiveBackgroundColor::<Identity, OFFSET>,
+            InactiveForegroundColor: InactiveForegroundColor::<Identity, OFFSET>,
+            SetInactiveForegroundColor: SetInactiveForegroundColor::<Identity, OFFSET>,
+            LeftInset: LeftInset::<Identity, OFFSET>,
+            RightInset: RightInset::<Identity, OFFSET>,
+            ResetToDefault: ResetToDefault::<Identity, OFFSET>,
+            SetDragRectangles: SetDragRectangles::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowTitleBar as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowTitleBar_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub BackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonHoverBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonHoverBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonHoverForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonHoverForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonInactiveBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonInactiveBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonInactiveForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonInactiveForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonPressedBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonPressedBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ButtonPressedForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetButtonPressedForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ExtendsContentIntoTitleBar: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetExtendsContentIntoTitleBar: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub ForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Height: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub IconShowOptions: unsafe extern "system" fn(*mut core::ffi::c_void, *mut IconShowOptions) -> windows_core::HRESULT,
+    pub SetIconShowOptions: unsafe extern "system" fn(*mut core::ffi::c_void, IconShowOptions) -> windows_core::HRESULT,
+    pub InactiveBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetInactiveBackgroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub InactiveForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetInactiveForegroundColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub LeftInset: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub RightInset: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
+    pub ResetToDefault: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetDragRectangles: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *const windows::Graphics::RectInt32) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowTitleBar2, IAppWindowTitleBar2_Vtbl, 0x86faed38_748a_5b4b_9ccf_3ba0496c9041);
+impl windows_core::RuntimeType for IAppWindowTitleBar2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowTitleBar2");
+}
+impl windows_core::RuntimeName for IAppWindowTitleBar2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowTitleBar2";
+}
+pub trait IAppWindowTitleBar2_Impl: windows_core::IUnknownImpl {
+    fn PreferredHeightOption(&self) -> windows_core::Result<TitleBarHeightOption>;
+    fn SetPreferredHeightOption(&self, value: TitleBarHeightOption) -> windows_core::Result<()>;
+}
+impl IAppWindowTitleBar2_Vtbl {
+    pub const fn new<Identity: IAppWindowTitleBar2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PreferredHeightOption<Identity: IAppWindowTitleBar2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut TitleBarHeightOption) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar2_Impl::PreferredHeightOption(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredHeightOption<Identity: IAppWindowTitleBar2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: TitleBarHeightOption) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar2_Impl::SetPreferredHeightOption(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowTitleBar2, OFFSET>(),
+            PreferredHeightOption: PreferredHeightOption::<Identity, OFFSET>,
+            SetPreferredHeightOption: SetPreferredHeightOption::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowTitleBar2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowTitleBar2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PreferredHeightOption: unsafe extern "system" fn(*mut core::ffi::c_void, *mut TitleBarHeightOption) -> windows_core::HRESULT,
+    pub SetPreferredHeightOption: unsafe extern "system" fn(*mut core::ffi::c_void, TitleBarHeightOption) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowTitleBar3, IAppWindowTitleBar3_Vtbl, 0x07146e74_0410_5597_aba7_1af276d2ae07);
+impl windows_core::RuntimeType for IAppWindowTitleBar3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowTitleBar3");
+}
+impl windows_core::RuntimeName for IAppWindowTitleBar3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowTitleBar3";
+}
+pub trait IAppWindowTitleBar3_Impl: windows_core::IUnknownImpl {
+    fn PreferredTheme(&self) -> windows_core::Result<TitleBarTheme>;
+    fn SetPreferredTheme(&self, value: TitleBarTheme) -> windows_core::Result<()>;
+}
+impl IAppWindowTitleBar3_Vtbl {
+    pub const fn new<Identity: IAppWindowTitleBar3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PreferredTheme<Identity: IAppWindowTitleBar3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut TitleBarTheme) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBar3_Impl::PreferredTheme(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredTheme<Identity: IAppWindowTitleBar3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: TitleBarTheme) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IAppWindowTitleBar3_Impl::SetPreferredTheme(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowTitleBar3, OFFSET>(),
+            PreferredTheme: PreferredTheme::<Identity, OFFSET>,
+            SetPreferredTheme: SetPreferredTheme::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowTitleBar3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowTitleBar3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PreferredTheme: unsafe extern "system" fn(*mut core::ffi::c_void, *mut TitleBarTheme) -> windows_core::HRESULT,
+    pub SetPreferredTheme: unsafe extern "system" fn(*mut core::ffi::c_void, TitleBarTheme) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IAppWindowTitleBarStatics, IAppWindowTitleBarStatics_Vtbl, 0x9e1da52e_8b15_54d6_a886_f7b9f9d930b2);
+impl windows_core::RuntimeType for IAppWindowTitleBarStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IAppWindowTitleBarStatics");
+}
+impl windows_core::RuntimeName for IAppWindowTitleBarStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IAppWindowTitleBarStatics";
+}
+pub trait IAppWindowTitleBarStatics_Impl: windows_core::IUnknownImpl {
+    fn IsCustomizationSupported(&self) -> windows_core::Result<bool>;
+}
+impl IAppWindowTitleBarStatics_Vtbl {
+    pub const fn new<Identity: IAppWindowTitleBarStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn IsCustomizationSupported<Identity: IAppWindowTitleBarStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IAppWindowTitleBarStatics_Impl::IsCustomizationSupported(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IAppWindowTitleBarStatics, OFFSET>(),
+            IsCustomizationSupported: IsCustomizationSupported::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IAppWindowTitleBarStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IAppWindowTitleBarStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub IsCustomizationSupported: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(ICompactOverlayPresenter, ICompactOverlayPresenter_Vtbl, 0xefeb0812_6fc7_5b7d_bd92_cc8f9a6454c9);
+impl windows_core::RuntimeType for ICompactOverlayPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.ICompactOverlayPresenter");
+}
+impl windows_core::RuntimeName for ICompactOverlayPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.ICompactOverlayPresenter";
+}
+pub trait ICompactOverlayPresenter_Impl: windows_core::IUnknownImpl {
+    fn InitialSize(&self) -> windows_core::Result<CompactOverlaySize>;
+    fn SetInitialSize(&self, value: CompactOverlaySize) -> windows_core::Result<()>;
+}
+impl ICompactOverlayPresenter_Vtbl {
+    pub const fn new<Identity: ICompactOverlayPresenter_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn InitialSize<Identity: ICompactOverlayPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut CompactOverlaySize) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICompactOverlayPresenter_Impl::InitialSize(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetInitialSize<Identity: ICompactOverlayPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: CompactOverlaySize) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ICompactOverlayPresenter_Impl::SetInitialSize(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ICompactOverlayPresenter, OFFSET>(),
+            InitialSize: InitialSize::<Identity, OFFSET>,
+            SetInitialSize: SetInitialSize::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICompactOverlayPresenter as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICompactOverlayPresenter_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub InitialSize: unsafe extern "system" fn(*mut core::ffi::c_void, *mut CompactOverlaySize) -> windows_core::HRESULT,
+    pub SetInitialSize: unsafe extern "system" fn(*mut core::ffi::c_void, CompactOverlaySize) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(ICompactOverlayPresenterStatics, ICompactOverlayPresenterStatics_Vtbl, 0xeab93186_4f6a_52f9_8c03_da57a1522f6e);
+impl windows_core::RuntimeType for ICompactOverlayPresenterStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.ICompactOverlayPresenterStatics");
+}
+impl windows_core::RuntimeName for ICompactOverlayPresenterStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.ICompactOverlayPresenterStatics";
+}
+pub trait ICompactOverlayPresenterStatics_Impl: windows_core::IUnknownImpl {
+    fn Create(&self) -> windows_core::Result<CompactOverlayPresenter>;
+}
+impl ICompactOverlayPresenterStatics_Vtbl {
+    pub const fn new<Identity: ICompactOverlayPresenterStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Create<Identity: ICompactOverlayPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICompactOverlayPresenterStatics_Impl::Create(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, ICompactOverlayPresenterStatics, OFFSET>(), Create: Create::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICompactOverlayPresenterStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ICompactOverlayPresenterStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Create: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IDisplayArea, IDisplayArea_Vtbl, 0x5c7e0537_b621_5579_bcae_a84aa8746167);
+impl windows_core::RuntimeType for IDisplayArea {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IDisplayArea");
+}
+impl windows_core::RuntimeName for IDisplayArea {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IDisplayArea";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IDisplayArea_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    DisplayId: usize,
+    pub IsPrimary: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub OuterBounds: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::RectInt32) -> windows_core::HRESULT,
+    pub WorkArea: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Graphics::RectInt32) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IDisplayAreaStatics, IDisplayAreaStatics_Vtbl, 0x02ab4926_211e_5d49_8e4b_2af193daed09);
+impl windows_core::RuntimeType for IDisplayAreaStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IDisplayAreaStatics");
+}
+impl windows_core::RuntimeName for IDisplayAreaStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IDisplayAreaStatics";
+}
+pub trait IDisplayAreaStatics_Impl: windows_core::IUnknownImpl {
+    fn Primary(&self) -> windows_core::Result<DisplayArea>;
+    fn CreateWatcher(&self) -> windows_core::Result<DisplayAreaWatcher>;
+    fn FindAll(&self) -> windows_core::Result<windows_collections::IVectorView<DisplayArea>>;
+    fn GetFromWindowId(&self, windowId: &super::WindowId, displayAreaFallback: DisplayAreaFallback) -> windows_core::Result<DisplayArea>;
+    fn GetFromPoint(&self, point: &windows::Graphics::PointInt32, displayAreaFallback: DisplayAreaFallback) -> windows_core::Result<DisplayArea>;
+    fn GetFromRect(&self, rect: &windows::Graphics::RectInt32, displayAreaFallback: DisplayAreaFallback) -> windows_core::Result<DisplayArea>;
+}
+impl IDisplayAreaStatics_Vtbl {
+    pub const fn new<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Primary<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::Primary(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateWatcher<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::CreateWatcher(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindAll<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::FindAll(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFromWindowId<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, windowid: super::WindowId, displayareafallback: DisplayAreaFallback, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::GetFromWindowId(this, core::mem::transmute(&windowid), displayareafallback) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFromPoint<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, point: windows::Graphics::PointInt32, displayareafallback: DisplayAreaFallback, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::GetFromPoint(this, core::mem::transmute(&point), displayareafallback) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFromRect<Identity: IDisplayAreaStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, rect: windows::Graphics::RectInt32, displayareafallback: DisplayAreaFallback, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaStatics_Impl::GetFromRect(this, core::mem::transmute(&rect), displayareafallback) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IDisplayAreaStatics, OFFSET>(),
+            Primary: Primary::<Identity, OFFSET>,
+            CreateWatcher: CreateWatcher::<Identity, OFFSET>,
+            FindAll: FindAll::<Identity, OFFSET>,
+            GetFromWindowId: GetFromWindowId::<Identity, OFFSET>,
+            GetFromPoint: GetFromPoint::<Identity, OFFSET>,
+            GetFromRect: GetFromRect::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IDisplayAreaStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IDisplayAreaStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Primary: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateWatcher: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub FindAll: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GetFromWindowId: unsafe extern "system" fn(*mut core::ffi::c_void, super::WindowId, DisplayAreaFallback, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GetFromPoint: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::PointInt32, DisplayAreaFallback, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub GetFromRect: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Graphics::RectInt32, DisplayAreaFallback, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IDisplayAreaStatics2, IDisplayAreaStatics2_Vtbl, 0x7207ad4b_890d_5dd7_bc18_78ffd9544d8f);
+impl windows_core::RuntimeType for IDisplayAreaStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IDisplayAreaStatics2");
+}
+impl windows_core::RuntimeName for IDisplayAreaStatics2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IDisplayAreaStatics2";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IDisplayAreaStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IDisplayAreaStatics3, IDisplayAreaStatics3_Vtbl, 0x745d3602_268b_5060_8437_fcc025e255d6);
+impl windows_core::RuntimeType for IDisplayAreaStatics3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IDisplayAreaStatics3");
+}
+impl windows_core::RuntimeName for IDisplayAreaStatics3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IDisplayAreaStatics3";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IDisplayAreaStatics3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IDisplayAreaWatcher, IDisplayAreaWatcher_Vtbl, 0x83f6562f_d3a0_548b_8e4f_a99be3d95c9c);
+impl windows_core::RuntimeType for IDisplayAreaWatcher {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IDisplayAreaWatcher");
+}
+impl windows_core::RuntimeName for IDisplayAreaWatcher {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IDisplayAreaWatcher";
+}
+pub trait IDisplayAreaWatcher_Impl: windows_core::IUnknownImpl {
+    fn Status(&self) -> windows_core::Result<DisplayAreaWatcherStatus>;
+    fn Start(&self) -> windows_core::Result<()>;
+    fn Stop(&self) -> windows_core::Result<()>;
+    fn Added(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<DisplayAreaWatcher, DisplayArea>>) -> windows_core::Result<i64>;
+    fn RemoveAdded(&self, token: i64) -> windows_core::Result<()>;
+    fn EnumerationCompleted(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<DisplayAreaWatcher, windows_core::IInspectable>>) -> windows_core::Result<i64>;
+    fn RemoveEnumerationCompleted(&self, token: i64) -> windows_core::Result<()>;
+    fn Removed(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<DisplayAreaWatcher, DisplayArea>>) -> windows_core::Result<i64>;
+    fn RemoveRemoved(&self, token: i64) -> windows_core::Result<()>;
+    fn Stopped(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<DisplayAreaWatcher, windows_core::IInspectable>>) -> windows_core::Result<i64>;
+    fn RemoveStopped(&self, token: i64) -> windows_core::Result<()>;
+    fn Updated(&self, handler: windows_core::Ref<windows::Foundation::TypedEventHandler<DisplayAreaWatcher, DisplayArea>>) -> windows_core::Result<i64>;
+    fn RemoveUpdated(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IDisplayAreaWatcher_Vtbl {
+    pub const fn new<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Status<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut DisplayAreaWatcherStatus) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::Status(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Start<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::Start(this).into()
+            }
+        }
+        unsafe extern "system" fn Stop<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::Stop(this).into()
+            }
+        }
+        unsafe extern "system" fn Added<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::Added(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveAdded<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::RemoveAdded(this, token).into()
+            }
+        }
+        unsafe extern "system" fn EnumerationCompleted<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::EnumerationCompleted(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveEnumerationCompleted<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::RemoveEnumerationCompleted(this, token).into()
+            }
+        }
+        unsafe extern "system" fn Removed<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::Removed(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveRemoved<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::RemoveRemoved(this, token).into()
+            }
+        }
+        unsafe extern "system" fn Stopped<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::Stopped(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveStopped<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::RemoveStopped(this, token).into()
+            }
+        }
+        unsafe extern "system" fn Updated<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IDisplayAreaWatcher_Impl::Updated(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveUpdated<Identity: IDisplayAreaWatcher_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IDisplayAreaWatcher_Impl::RemoveUpdated(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IDisplayAreaWatcher, OFFSET>(),
+            Status: Status::<Identity, OFFSET>,
+            Start: Start::<Identity, OFFSET>,
+            Stop: Stop::<Identity, OFFSET>,
+            Added: Added::<Identity, OFFSET>,
+            RemoveAdded: RemoveAdded::<Identity, OFFSET>,
+            EnumerationCompleted: EnumerationCompleted::<Identity, OFFSET>,
+            RemoveEnumerationCompleted: RemoveEnumerationCompleted::<Identity, OFFSET>,
+            Removed: Removed::<Identity, OFFSET>,
+            RemoveRemoved: RemoveRemoved::<Identity, OFFSET>,
+            Stopped: Stopped::<Identity, OFFSET>,
+            RemoveStopped: RemoveStopped::<Identity, OFFSET>,
+            Updated: Updated::<Identity, OFFSET>,
+            RemoveUpdated: RemoveUpdated::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IDisplayAreaWatcher as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IDisplayAreaWatcher_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Status: unsafe extern "system" fn(*mut core::ffi::c_void, *mut DisplayAreaWatcherStatus) -> windows_core::HRESULT,
+    pub Start: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Stop: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Added: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveAdded: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub EnumerationCompleted: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveEnumerationCompleted: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub Removed: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveRemoved: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub Stopped: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveStopped: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub Updated: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveUpdated: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IFullScreenPresenter, IFullScreenPresenter_Vtbl, 0xfa9141fd_b8dd_5da1_8b2b_7cdadb76f593);
+impl windows_core::RuntimeType for IFullScreenPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IFullScreenPresenter");
+}
+impl windows_core::RuntimeName for IFullScreenPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IFullScreenPresenter";
+}
+pub trait IFullScreenPresenter_Impl: windows_core::IUnknownImpl {}
+impl IFullScreenPresenter_Vtbl {
+    pub const fn new<Identity: IFullScreenPresenter_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IFullScreenPresenter, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IFullScreenPresenter as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IFullScreenPresenter_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IFullScreenPresenterStatics, IFullScreenPresenterStatics_Vtbl, 0x2ec0d2c1_e086_55bb_a3b2_44942e231c67);
+impl windows_core::RuntimeType for IFullScreenPresenterStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IFullScreenPresenterStatics");
+}
+impl windows_core::RuntimeName for IFullScreenPresenterStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IFullScreenPresenterStatics";
+}
+pub trait IFullScreenPresenterStatics_Impl: windows_core::IUnknownImpl {
+    fn Create(&self) -> windows_core::Result<FullScreenPresenter>;
+}
+impl IFullScreenPresenterStatics_Vtbl {
+    pub const fn new<Identity: IFullScreenPresenterStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Create<Identity: IFullScreenPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFullScreenPresenterStatics_Impl::Create(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IFullScreenPresenterStatics, OFFSET>(), Create: Create::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IFullScreenPresenterStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IFullScreenPresenterStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Create: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IOverlappedPresenter, IOverlappedPresenter_Vtbl, 0x21693970_4f4c_5172_9e9d_682a2d174884);
+impl windows_core::RuntimeType for IOverlappedPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IOverlappedPresenter");
+}
+impl windows_core::RuntimeName for IOverlappedPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenter";
+}
+pub trait IOverlappedPresenter_Impl: windows_core::IUnknownImpl {
+    fn HasBorder(&self) -> windows_core::Result<bool>;
+    fn HasTitleBar(&self) -> windows_core::Result<bool>;
+    fn IsAlwaysOnTop(&self) -> windows_core::Result<bool>;
+    fn SetIsAlwaysOnTop(&self, value: bool) -> windows_core::Result<()>;
+    fn IsMaximizable(&self) -> windows_core::Result<bool>;
+    fn SetIsMaximizable(&self, value: bool) -> windows_core::Result<()>;
+    fn IsMinimizable(&self) -> windows_core::Result<bool>;
+    fn SetIsMinimizable(&self, value: bool) -> windows_core::Result<()>;
+    fn IsModal(&self) -> windows_core::Result<bool>;
+    fn SetIsModal(&self, value: bool) -> windows_core::Result<()>;
+    fn IsResizable(&self) -> windows_core::Result<bool>;
+    fn SetIsResizable(&self, value: bool) -> windows_core::Result<()>;
+    fn State(&self) -> windows_core::Result<OverlappedPresenterState>;
+    fn Maximize(&self) -> windows_core::Result<()>;
+    fn Minimize(&self) -> windows_core::Result<()>;
+    fn Restore(&self) -> windows_core::Result<()>;
+    fn SetBorderAndTitleBar(&self, hasBorder: bool, hasTitleBar: bool) -> windows_core::Result<()>;
+}
+impl IOverlappedPresenter_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn HasBorder<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::HasBorder(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn HasTitleBar<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::HasTitleBar(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn IsAlwaysOnTop<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::IsAlwaysOnTop(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsAlwaysOnTop<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetIsAlwaysOnTop(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsMaximizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::IsMaximizable(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsMaximizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetIsMaximizable(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsMinimizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::IsMinimizable(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsMinimizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetIsMinimizable(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsModal<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::IsModal(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsModal<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetIsModal(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsResizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::IsResizable(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsResizable<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetIsResizable(this, value).into()
+            }
+        }
+        unsafe extern "system" fn State<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut OverlappedPresenterState) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter_Impl::State(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Maximize<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::Maximize(this).into()
+            }
+        }
+        unsafe extern "system" fn Minimize<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::Minimize(this).into()
+            }
+        }
+        unsafe extern "system" fn Restore<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::Restore(this).into()
+            }
+        }
+        unsafe extern "system" fn SetBorderAndTitleBar<Identity: IOverlappedPresenter_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, hasborder: bool, hastitlebar: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter_Impl::SetBorderAndTitleBar(this, hasborder, hastitlebar).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenter, OFFSET>(),
+            HasBorder: HasBorder::<Identity, OFFSET>,
+            HasTitleBar: HasTitleBar::<Identity, OFFSET>,
+            IsAlwaysOnTop: IsAlwaysOnTop::<Identity, OFFSET>,
+            SetIsAlwaysOnTop: SetIsAlwaysOnTop::<Identity, OFFSET>,
+            IsMaximizable: IsMaximizable::<Identity, OFFSET>,
+            SetIsMaximizable: SetIsMaximizable::<Identity, OFFSET>,
+            IsMinimizable: IsMinimizable::<Identity, OFFSET>,
+            SetIsMinimizable: SetIsMinimizable::<Identity, OFFSET>,
+            IsModal: IsModal::<Identity, OFFSET>,
+            SetIsModal: SetIsModal::<Identity, OFFSET>,
+            IsResizable: IsResizable::<Identity, OFFSET>,
+            SetIsResizable: SetIsResizable::<Identity, OFFSET>,
+            State: State::<Identity, OFFSET>,
+            Maximize: Maximize::<Identity, OFFSET>,
+            Minimize: Minimize::<Identity, OFFSET>,
+            Restore: Restore::<Identity, OFFSET>,
+            SetBorderAndTitleBar: SetBorderAndTitleBar::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenter as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenter_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub HasBorder: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub HasTitleBar: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub IsAlwaysOnTop: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsAlwaysOnTop: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsMaximizable: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsMaximizable: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsMinimizable: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsMinimizable: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsModal: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsModal: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsResizable: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsResizable: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub State: unsafe extern "system" fn(*mut core::ffi::c_void, *mut OverlappedPresenterState) -> windows_core::HRESULT,
+    pub Maximize: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Minimize: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Restore: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetBorderAndTitleBar: unsafe extern "system" fn(*mut core::ffi::c_void, bool, bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IOverlappedPresenter2, IOverlappedPresenter2_Vtbl, 0x5c6ccd93_4244_5cd2_b355_ed5ea34df730);
+impl windows_core::RuntimeType for IOverlappedPresenter2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IOverlappedPresenter2");
+}
+impl windows_core::RuntimeName for IOverlappedPresenter2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenter2";
+}
+pub trait IOverlappedPresenter2_Impl: windows_core::IUnknownImpl {
+    fn MinimizeWithActivation(&self, activateWindow: bool) -> windows_core::Result<()>;
+    fn RestoreWithActivation(&self, activateWindow: bool) -> windows_core::Result<()>;
+}
+impl IOverlappedPresenter2_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenter2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn MinimizeWithActivation<Identity: IOverlappedPresenter2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, activatewindow: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter2_Impl::MinimizeWithActivation(this, activatewindow).into()
+            }
+        }
+        unsafe extern "system" fn RestoreWithActivation<Identity: IOverlappedPresenter2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, activatewindow: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter2_Impl::RestoreWithActivation(this, activatewindow).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenter2, OFFSET>(),
+            MinimizeWithActivation: MinimizeWithActivation::<Identity, OFFSET>,
+            RestoreWithActivation: RestoreWithActivation::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenter2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenter2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub MinimizeWithActivation: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub RestoreWithActivation: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IOverlappedPresenter3, IOverlappedPresenter3_Vtbl, 0x55d26138_4c38_57e7_a0c1_d467b774db8c);
+impl windows_core::RuntimeType for IOverlappedPresenter3 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IOverlappedPresenter3");
+}
+impl windows_core::RuntimeName for IOverlappedPresenter3 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenter3";
+}
+pub trait IOverlappedPresenter3_Impl: windows_core::IUnknownImpl {
+    fn PreferredMinimumHeight(&self) -> windows_core::Result<windows_reference::IReference<i32>>;
+    fn SetPreferredMinimumHeight(&self, value: windows_core::Ref<windows_reference::IReference<i32>>) -> windows_core::Result<()>;
+    fn PreferredMinimumWidth(&self) -> windows_core::Result<windows_reference::IReference<i32>>;
+    fn SetPreferredMinimumWidth(&self, value: windows_core::Ref<windows_reference::IReference<i32>>) -> windows_core::Result<()>;
+    fn PreferredMaximumWidth(&self) -> windows_core::Result<windows_reference::IReference<i32>>;
+    fn SetPreferredMaximumWidth(&self, value: windows_core::Ref<windows_reference::IReference<i32>>) -> windows_core::Result<()>;
+    fn PreferredMaximumHeight(&self) -> windows_core::Result<windows_reference::IReference<i32>>;
+    fn SetPreferredMaximumHeight(&self, value: windows_core::Ref<windows_reference::IReference<i32>>) -> windows_core::Result<()>;
+}
+impl IOverlappedPresenter3_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn PreferredMinimumHeight<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMinimumHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMinimumHeight<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMinimumHeight(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn PreferredMinimumWidth<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMinimumWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMinimumWidth<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMinimumWidth(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn PreferredMaximumWidth<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMaximumWidth(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMaximumWidth<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMaximumWidth(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn PreferredMaximumHeight<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenter3_Impl::PreferredMaximumHeight(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPreferredMaximumHeight<Identity: IOverlappedPresenter3_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IOverlappedPresenter3_Impl::SetPreferredMaximumHeight(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenter3, OFFSET>(),
+            PreferredMinimumHeight: PreferredMinimumHeight::<Identity, OFFSET>,
+            SetPreferredMinimumHeight: SetPreferredMinimumHeight::<Identity, OFFSET>,
+            PreferredMinimumWidth: PreferredMinimumWidth::<Identity, OFFSET>,
+            SetPreferredMinimumWidth: SetPreferredMinimumWidth::<Identity, OFFSET>,
+            PreferredMaximumWidth: PreferredMaximumWidth::<Identity, OFFSET>,
+            SetPreferredMaximumWidth: SetPreferredMaximumWidth::<Identity, OFFSET>,
+            PreferredMaximumHeight: PreferredMaximumHeight::<Identity, OFFSET>,
+            SetPreferredMaximumHeight: SetPreferredMaximumHeight::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenter3 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenter3_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub PreferredMinimumHeight: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPreferredMinimumHeight: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub PreferredMinimumWidth: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPreferredMinimumWidth: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub PreferredMaximumWidth: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPreferredMaximumWidth: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub PreferredMaximumHeight: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetPreferredMaximumHeight: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IOverlappedPresenterStatics, IOverlappedPresenterStatics_Vtbl, 0x997225e4_7b00_5aee_a4be_d4068d1999e2);
+impl windows_core::RuntimeType for IOverlappedPresenterStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IOverlappedPresenterStatics");
+}
+impl windows_core::RuntimeName for IOverlappedPresenterStatics {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenterStatics";
+}
+pub trait IOverlappedPresenterStatics_Impl: windows_core::IUnknownImpl {
+    fn Create(&self) -> windows_core::Result<OverlappedPresenter>;
+    fn CreateForContextMenu(&self) -> windows_core::Result<OverlappedPresenter>;
+    fn CreateForDialog(&self) -> windows_core::Result<OverlappedPresenter>;
+    fn CreateForToolWindow(&self) -> windows_core::Result<OverlappedPresenter>;
+}
+impl IOverlappedPresenterStatics_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenterStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Create<Identity: IOverlappedPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenterStatics_Impl::Create(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateForContextMenu<Identity: IOverlappedPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenterStatics_Impl::CreateForContextMenu(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateForDialog<Identity: IOverlappedPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenterStatics_Impl::CreateForDialog(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn CreateForToolWindow<Identity: IOverlappedPresenterStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenterStatics_Impl::CreateForToolWindow(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenterStatics, OFFSET>(),
+            Create: Create::<Identity, OFFSET>,
+            CreateForContextMenu: CreateForContextMenu::<Identity, OFFSET>,
+            CreateForDialog: CreateForDialog::<Identity, OFFSET>,
+            CreateForToolWindow: CreateForToolWindow::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenterStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenterStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Create: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateForContextMenu: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateForDialog: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub CreateForToolWindow: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IOverlappedPresenterStatics2, IOverlappedPresenterStatics2_Vtbl, 0xed5c4f92_32f4_5d15_80d0_b2a5efa04d39);
+impl windows_core::RuntimeType for IOverlappedPresenterStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IOverlappedPresenterStatics2");
+}
+impl windows_core::RuntimeName for IOverlappedPresenterStatics2 {
+    const NAME: &'static str = "Microsoft.UI.Windowing.IOverlappedPresenterStatics2";
+}
+pub trait IOverlappedPresenterStatics2_Impl: windows_core::IUnknownImpl {
+    fn RequestedStartupState(&self) -> windows_core::Result<OverlappedPresenterState>;
+}
+impl IOverlappedPresenterStatics2_Vtbl {
+    pub const fn new<Identity: IOverlappedPresenterStatics2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn RequestedStartupState<Identity: IOverlappedPresenterStatics2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut OverlappedPresenterState) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IOverlappedPresenterStatics2_Impl::RequestedStartupState(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IOverlappedPresenterStatics2, OFFSET>(),
+            RequestedStartupState: RequestedStartupState::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IOverlappedPresenterStatics2 as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IOverlappedPresenterStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub RequestedStartupState: unsafe extern "system" fn(*mut core::ffi::c_void, *mut OverlappedPresenterState) -> windows_core::HRESULT,
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct IconShowOptions(pub i32);
+impl IconShowOptions {
+    pub const ShowIconAndSystemMenu: Self = Self(0);
+    pub const HideIconAndSystemMenu: Self = Self(1);
+}
+impl windows_core::imp::TypeKind for IconShowOptions {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for IconShowOptions {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.IconShowOptions;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.IconShowOptions");
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct OverlappedPresenter(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(OverlappedPresenter, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(OverlappedPresenter, AppWindowPresenter);
+impl OverlappedPresenter {
+    pub fn Kind(&self) -> windows_core::Result<AppWindowPresenterKind> {
+        let this = &windows_core::Interface::cast::<IAppWindowPresenter>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Kind)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn HasBorder(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).HasBorder)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn HasTitleBar(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).HasTitleBar)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn IsAlwaysOnTop(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsAlwaysOnTop)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsAlwaysOnTop(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsAlwaysOnTop)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsMaximizable(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsMaximizable)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsMaximizable(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsMaximizable)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsMinimizable(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsMinimizable)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsMinimizable(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsMinimizable)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsModal(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsModal)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsModal(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsModal)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsResizable(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsResizable)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsResizable(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsResizable)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn State(&self) -> windows_core::Result<OverlappedPresenterState> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).State)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Maximize(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Maximize)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Minimize(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Minimize)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Restore(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Restore)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn SetBorderAndTitleBar(&self, hasborder: bool, hastitlebar: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetBorderAndTitleBar)(windows_core::Interface::as_raw(self), hasborder, hastitlebar).ok() }
+    }
+    pub fn MinimizeWithActivation(&self, activatewindow: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).MinimizeWithActivation)(windows_core::Interface::as_raw(this), activatewindow).ok() }
+    }
+    pub fn RestoreWithActivation(&self, activatewindow: bool) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter2>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).RestoreWithActivation)(windows_core::Interface::as_raw(this), activatewindow).ok() }
+    }
+    pub fn PreferredMinimumHeight(&self) -> windows_core::Result<i32> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMinimumHeight)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<i32>| r__.Value())
+        }
+    }
+    pub fn SetPreferredMinimumHeight(&self, value: Option<i32>) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        let value__ = value.map(<windows_reference::IReference<i32> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredMinimumHeight)(windows_core::Interface::as_raw(this), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn PreferredMinimumWidth(&self) -> windows_core::Result<i32> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMinimumWidth)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<i32>| r__.Value())
+        }
+    }
+    pub fn SetPreferredMinimumWidth(&self, value: Option<i32>) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        let value__ = value.map(<windows_reference::IReference<i32> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredMinimumWidth)(windows_core::Interface::as_raw(this), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn PreferredMaximumWidth(&self) -> windows_core::Result<i32> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMaximumWidth)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<i32>| r__.Value())
+        }
+    }
+    pub fn SetPreferredMaximumWidth(&self, value: Option<i32>) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        let value__ = value.map(<windows_reference::IReference<i32> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredMaximumWidth)(windows_core::Interface::as_raw(this), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn PreferredMaximumHeight(&self) -> windows_core::Result<i32> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).PreferredMaximumHeight)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__)).and_then(|r__: windows_reference::IReference<i32>| r__.Value())
+        }
+    }
+    pub fn SetPreferredMaximumHeight(&self, value: Option<i32>) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IOverlappedPresenter3>(self)?;
+        let value__ = value.map(<windows_reference::IReference<i32> as From<_>>::from);
+        unsafe { (windows_core::Interface::vtable(this).SetPreferredMaximumHeight)(windows_core::Interface::as_raw(this), windows_core::Param::param(value__.as_ref()).abi()).ok() }
+    }
+    pub fn Create() -> windows_core::Result<Self> {
+        Self::IOverlappedPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Create)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateForContextMenu() -> windows_core::Result<Self> {
+        Self::IOverlappedPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateForContextMenu)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateForDialog() -> windows_core::Result<Self> {
+        Self::IOverlappedPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateForDialog)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn CreateForToolWindow() -> windows_core::Result<Self> {
+        Self::IOverlappedPresenterStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateForToolWindow)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn RequestedStartupState() -> windows_core::Result<OverlappedPresenterState> {
+        Self::IOverlappedPresenterStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).RequestedStartupState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    fn IOverlappedPresenterStatics<R, F: FnOnce(&IOverlappedPresenterStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<OverlappedPresenter, IOverlappedPresenterStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IOverlappedPresenterStatics2<R, F: FnOnce(&IOverlappedPresenterStatics2) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<OverlappedPresenter, IOverlappedPresenterStatics2> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for OverlappedPresenter {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IOverlappedPresenter>();
+}
+unsafe impl windows_core::Interface for OverlappedPresenter {
+    type Vtable = <IOverlappedPresenter as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IOverlappedPresenter as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for OverlappedPresenter {
+    const NAME: &'static str = "Microsoft.UI.Windowing.OverlappedPresenter";
+}
+unsafe impl Send for OverlappedPresenter {}
+unsafe impl Sync for OverlappedPresenter {}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct OverlappedPresenterState(pub i32);
+impl OverlappedPresenterState {
+    pub const Maximized: Self = Self(0);
+    pub const Minimized: Self = Self(1);
+    pub const Restored: Self = Self(2);
+}
+impl windows_core::imp::TypeKind for OverlappedPresenterState {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for OverlappedPresenterState {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.OverlappedPresenterState;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.OverlappedPresenterState");
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct PlacementInfo(pub u32);
+impl PlacementInfo {
+    pub const None: Self = Self(0);
+    pub const RestoreToMaximized: Self = Self(2);
+    pub const RestoreToArranged: Self = Self(8);
+    pub const Arranged: Self = Self(16);
+    pub const Resizable: Self = Self(32);
+    pub const FullScreen: Self = Self(64);
+}
+impl windows_core::imp::TypeKind for PlacementInfo {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for PlacementInfo {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.PlacementInfo;u4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.PlacementInfo");
+}
+impl PlacementInfo {
+    pub const fn contains(&self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl core::ops::BitOr for PlacementInfo {
+    type Output = Self;
+    fn bitor(self, other: Self) -> Self {
+        Self(self.0 | other.0)
+    }
+}
+impl core::ops::BitAnd for PlacementInfo {
+    type Output = Self;
+    fn bitand(self, other: Self) -> Self {
+        Self(self.0 & other.0)
+    }
+}
+impl core::ops::BitOrAssign for PlacementInfo {
+    fn bitor_assign(&mut self, other: Self) {
+        self.0.bitor_assign(other.0);
+    }
+}
+impl core::ops::BitAndAssign for PlacementInfo {
+    fn bitand_assign(&mut self, other: Self) {
+        self.0.bitand_assign(other.0);
+    }
+}
+impl core::ops::Not for PlacementInfo {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(self.0.not())
+    }
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct PlacementRestorationBehavior(pub u32);
+impl PlacementRestorationBehavior {
+    pub const None: Self = Self(0);
+    pub const AllowShowMaximized: Self = Self(1);
+    pub const AllowShowFullScreen: Self = Self(2);
+    pub const AllowShowArranged: Self = Self(4);
+    pub const UseStartupInfoForFirstWindow: Self = Self(8);
+    pub const All: Self = Self(4294967295);
+}
+impl windows_core::imp::TypeKind for PlacementRestorationBehavior {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for PlacementRestorationBehavior {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.PlacementRestorationBehavior;u4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.PlacementRestorationBehavior");
+}
+impl PlacementRestorationBehavior {
+    pub const fn contains(&self, other: Self) -> bool {
+        self.0 & other.0 == other.0
+    }
+}
+impl core::ops::BitOr for PlacementRestorationBehavior {
+    type Output = Self;
+    fn bitor(self, other: Self) -> Self {
+        Self(self.0 | other.0)
+    }
+}
+impl core::ops::BitAnd for PlacementRestorationBehavior {
+    type Output = Self;
+    fn bitand(self, other: Self) -> Self {
+        Self(self.0 & other.0)
+    }
+}
+impl core::ops::BitOrAssign for PlacementRestorationBehavior {
+    fn bitor_assign(&mut self, other: Self) {
+        self.0.bitor_assign(other.0);
+    }
+}
+impl core::ops::BitAndAssign for PlacementRestorationBehavior {
+    fn bitand_assign(&mut self, other: Self) {
+        self.0.bitand_assign(other.0);
+    }
+}
+impl core::ops::Not for PlacementRestorationBehavior {
+    type Output = Self;
+    fn not(self) -> Self {
+        Self(self.0.not())
+    }
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct TitleBarHeightOption(pub i32);
+impl TitleBarHeightOption {
+    pub const Standard: Self = Self(0);
+    pub const Tall: Self = Self(1);
+    pub const Collapsed: Self = Self(2);
+}
+impl windows_core::imp::TypeKind for TitleBarHeightOption {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for TitleBarHeightOption {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.TitleBarHeightOption;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.TitleBarHeightOption");
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct TitleBarTheme(pub i32);
+impl TitleBarTheme {
+    pub const Legacy: Self = Self(0);
+    pub const UseDefaultAppMode: Self = Self(1);
+    pub const Light: Self = Self(2);
+    pub const Dark: Self = Self(3);
+}
+impl windows_core::imp::TypeKind for TitleBarTheme {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for TitleBarTheme {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Windowing.TitleBarTheme;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Windowing.TitleBarTheme");
+}

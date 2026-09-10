@@ -1,33 +1,14 @@
 mod bootstrap;
 pub use bootstrap::*;
 
-#[allow(
-    non_snake_case,
-    non_upper_case_globals,
-    non_camel_case_types,
-    dead_code,
-    clippy::all
-)]
-mod bindings;
-pub use bindings::*;
+#[allow(non_snake_case, non_upper_case_globals, non_camel_case_types, dead_code, clippy::all)]
+mod Microsoft;
+pub use Microsoft::*;
 
-#[allow(
-    non_snake_case,
-    non_upper_case_globals,
-    non_camel_case_types,
-    dead_code,
-    clippy::all
-)]
-pub(crate) mod internal;
-
-#[allow(
-    non_snake_case,
-    non_upper_case_globals,
-    non_camel_case_types,
-    dead_code,
-    clippy::all
-)]
+#[allow(non_snake_case, non_upper_case_globals, non_camel_case_types, dead_code, clippy::all)]
+#[cfg(feature = "native")]
 mod native;
+#[cfg(feature = "native")]
 pub use native::*;
 
 pub enum ApartmentType {
@@ -37,9 +18,11 @@ pub enum ApartmentType {
 
 #[inline]
 pub fn init_apartment(apartment_type: ApartmentType) -> windows_core::Result<()> {
+    use windows::Win32::System::WinRT;
+
     let roinit = match apartment_type {
-        ApartmentType::MultiThreaded => internal::RO_INIT_MULTITHREADED,
-        ApartmentType::SingleThreaded => internal::RO_INIT_SINGLETHREADED,
+        ApartmentType::MultiThreaded => WinRT::RO_INIT_MULTITHREADED,
+        ApartmentType::SingleThreaded => WinRT::RO_INIT_SINGLETHREADED,
     };
-    unsafe { internal::RoInitialize(roinit) }
+    unsafe { WinRT::RoInitialize(roinit) }
 }

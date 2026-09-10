@@ -2,11 +2,99 @@
     default
     bindgen/winmd/Windows.Win32.winmd
 
---out windows-subset/src/Win32.rs
+--out windows-subset
 --implement
---flat
+--package
+
+--rustfmt max_width=800
 
 --filter
+    Windows.ApplicationModel.Activation.LaunchActivatedEventArgs
+
+    Windows.ApplicationModel.DataTransfer.DataPackage
+    Windows.ApplicationModel.DataTransfer.DataPackageOperation
+    Windows.ApplicationModel.DataTransfer.DataPackageView
+    Windows.ApplicationModel.DataTransfer.OperationCompletedEventArgs
+    Windows.ApplicationModel.DataTransfer.ShareCompletedEventArgs
+
+    Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragInfo
+    Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragUIOverride
+
+    Windows.Devices.Input.PenDevice
+
+    Windows.Foundation.Deferral
+    Windows.Foundation.EventHandler
+    Windows.Foundation.IMemoryBufferReference
+    Windows.Foundation.Point
+    Windows.Foundation.Rect
+    Windows.Foundation.Size
+    Windows.Foundation.TypedEventHandler
+    Windows.Foundation.Uri
+
+    Windows.Graphics.PointInt32
+    Windows.Graphics.RectInt32
+    Windows.Graphics.SizeInt32
+
+    Windows.Graphics.Imaging.SoftwareBitmap
+
+    Windows.Media.Core.IMediaCue
+    Windows.Media.Core.MediaCueEventArgs
+    Windows.Media.Core.MediaSource
+    Windows.Media.Core.MediaSourceOpenOperationCompletedEventArgs
+    Windows.Media.Core.MediaSourceStateChangedEventArgs
+    Windows.Media.Core.TimedMetadataTrack
+    Windows.Media.Core.TimedMetadataTrackFailedEventArgs
+    Windows.Media.Core.TimedTextSource
+    Windows.Media.Core.TimedTextSourceResolveResultEventArgs
+
+    Windows.Media.Playback.MediaPlayer
+    Windows.Media.Playback.MediaPlayerFailedEventArgs
+    Windows.Media.Playback.MediaPlayerRateChangedEventArgs
+    Windows.Media.Playback.PlaybackMediaMarkerReachedEventArgs
+
+    Windows.Security.Cryptography.Certificates.Certificate
+    Windows.Security.Cryptography.Certificates.CertificateChain
+
+    Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
+
+    Windows.Storage.IStorageItem
+
+    Windows.Storage.FileProperties.BasicProperties
+
+    Windows.Storage.Streams.IRandomAccessStream
+    Windows.Storage.Streams.IRandomAccessStreamWithContentType
+    Windows.Storage.Streams.RandomAccessStreamReference
+
+    Windows.System.VirtualKey
+    Windows.System.VirtualKeyModifiers
+
+    Windows.UI.Color
+
+    Windows.UI.Composition.CompositionBrush
+    Windows.UI.Composition.CompositionTarget
+
+    Windows.UI.Core
+    !Windows.UI.Core.AnimationMetrics
+    !Windows.UI.Core.CoreWindowDialog
+    !Windows.UI.Core.CoreWindowFlyout
+    !Windows.UI.Core.Preview
+
+    Windows.UI.Input.PointerPoint
+
+    Windows.UI.Text.FontStretch
+    Windows.UI.Text.FontStyle
+    Windows.UI.Text.FontWeight
+    Windows.UI.Text.TextDecorations
+
+    Windows.UI.Xaml.Interop.TypeKind
+    Windows.UI.Xaml.Interop.TypeName
+
+    Windows.UI.ViewManagement.UIColorType
+    Windows.UI.ViewManagement.UISettings
+    Windows.UI.ViewManagement.UISettingsAnimationsEnabledChangedEventArgs
+    Windows.UI.ViewManagement.UISettingsAutoHideScrollBarsChangedEventArgs
+    Windows.UI.ViewManagement.UISettingsMessageDurationChangedEventArgs
+
     Windows.Win32.Foundation.D2DERR_RECREATE_TARGET
     Windows.Win32.Foundation.E_FAIL
     Windows.Win32.Foundation.E_INVALIDARG
@@ -14,8 +102,10 @@
     Windows.Win32.Foundation.E_POINTER
     Windows.Win32.Foundation.ERROR_CANCELLED
     Windows.Win32.Foundation.ERROR_MOD_NOT_FOUND
+    Windows.Win32.Foundation.HANDLE
     Windows.Win32.Foundation.HWND
     Windows.Win32.Foundation.RECT
+    Windows.Win32.Foundation.FreeLibrary
 
     Windows.Win32.Graphics.DirectWrite.DWRITE_FONT_STRETCH
     Windows.Win32.Graphics.DirectWrite.DWRITE_FONT_STYLE
@@ -118,6 +208,15 @@
     Windows.Win32.Media.MediaFoundation.MFShutdown
     Windows.Win32.Media.MediaFoundation.MFStartup
 
+    Windows.Win32.Security.PSID
+
+    Windows.Win32.Storage.Packaging.Appx.AddPackageDependencyOptions
+    Windows.Win32.Storage.Packaging.Appx.CreatePackageDependencyOptions
+    Windows.Win32.Storage.Packaging.Appx.PACKAGE_VERSION
+    Windows.Win32.Storage.Packaging.Appx.PACKAGEDEPENDENCY_CONTEXT
+    Windows.Win32.Storage.Packaging.Appx.PackageDependencyLifetimeKind
+    Windows.Win32.Storage.Packaging.Appx.PackageDependencyProcessorArchitectures
+
     Windows.Win32.System.Com.COINIT
     Windows.Win32.System.Com.CLSCTX
     Windows.Win32.System.Com.CoCreateInstance
@@ -128,9 +227,13 @@
 
     Windows.Win32.System.LibraryLoader.LOAD_LIBRARY_FLAGS
     Windows.Win32.System.LibraryLoader.AddDllDirectory
+    Windows.Win32.System.LibraryLoader.GetModuleHandleExW
     Windows.Win32.System.LibraryLoader.GetProcAddress
     Windows.Win32.System.LibraryLoader.LoadLibraryW
     Windows.Win32.System.LibraryLoader.SetDefaultDllDirectories
+
+    Windows.Win32.System.Memory.GetProcessHeap
+    Windows.Win32.System.Memory.HeapFree
 
     Windows.Win32.UI.Shell.Common.COMDLG_FILTERSPEC
     Windows.Win32.UI.Shell.CSIDL_WINDOWS
@@ -146,3 +249,7 @@
     Windows.Win32.UI.Shell.IShellItemArray
     Windows.Win32.UI.Shell.PathCchCombineEx
     Windows.Win32.UI.Shell.SHGetSpecialFolderPathW
+
+    Windows.Win32.System.WinRT.RO_INIT_MULTITHREADED
+    Windows.Win32.System.WinRT.RO_INIT_SINGLETHREADED
+    Windows.Win32.System.WinRT.RoInitialize

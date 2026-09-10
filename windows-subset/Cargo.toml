@@ -1,6 +1,6 @@
 [package]
 name = "winio-windows-subset"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2024"
 description = "Windows API bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -13,4 +13,72 @@ repository = "https://github.com/compio-rs/winui3-rs"
 name = "windows_subset"
 
 [dependencies]
+windows-collections.workspace = true
 windows-core.workspace = true
+windows-future.workspace = true
+windows-reference.workspace = true
+windows-time.workspace = true
+
+[features]
+default = ["std"]
+std = [
+    "windows-collections/std",
+    "windows-core/std",
+    "windows-future/std",
+    "windows-reference/std",
+    "windows-time/std",
+]
+# generated features
+ApplicationModel = ["Foundation"]
+ApplicationModel_Activation = ["ApplicationModel"]
+ApplicationModel_DataTransfer = ["ApplicationModel"]
+ApplicationModel_DataTransfer_DragDrop = ["ApplicationModel_DataTransfer"]
+ApplicationModel_DataTransfer_DragDrop_Core = ["ApplicationModel_DataTransfer_DragDrop"]
+Devices = ["Foundation"]
+Devices_Input = ["Devices"]
+Foundation = []
+Graphics = ["Foundation"]
+Graphics_Imaging = ["Graphics"]
+Media = ["Foundation"]
+Media_Core = ["Media"]
+Media_Playback = ["Media"]
+Security = ["Foundation"]
+Security_Cryptography = ["Security"]
+Security_Cryptography_Certificates = ["Security_Cryptography"]
+Security_EnterpriseData = ["Security"]
+Storage = ["Foundation"]
+Storage_FileProperties = ["Storage"]
+Storage_Streams = ["Storage"]
+System = ["Foundation"]
+UI = ["Foundation"]
+UI_Composition = ["UI"]
+UI_Core = ["UI"]
+UI_Input = ["UI"]
+UI_Text = ["UI"]
+UI_ViewManagement = ["UI"]
+UI_Xaml = ["UI"]
+UI_Xaml_Interop = ["UI_Xaml"]
+Win32 = ["Win32_Foundation"]
+Win32_Foundation = ["Win32"]
+Win32_Graphics = ["Win32"]
+Win32_Graphics_Direct2D = ["Win32_Graphics"]
+Win32_Graphics_Direct2D_Common = ["Win32_Graphics_Direct2D"]
+Win32_Graphics_Direct3D = ["Win32_Graphics"]
+Win32_Graphics_Direct3D11 = ["Win32_Graphics"]
+Win32_Graphics_DirectWrite = ["Win32_Graphics"]
+Win32_Graphics_Dxgi = ["Win32_Graphics"]
+Win32_Graphics_Dxgi_Common = ["Win32_Graphics_Dxgi"]
+Win32_Media = ["Win32"]
+Win32_Media_MediaFoundation = ["Win32_Media"]
+Win32_Security = ["Win32"]
+Win32_Storage = ["Win32"]
+Win32_Storage_Packaging = ["Win32_Storage"]
+Win32_Storage_Packaging_Appx = ["Win32_Storage_Packaging"]
+Win32_System = ["Win32"]
+Win32_System_Com = ["Win32_System"]
+Win32_System_LibraryLoader = ["Win32_System"]
+Win32_System_Memory = ["Win32_System"]
+Win32_System_WinRT = ["Win32_System"]
+Win32_UI = ["Win32"]
+Win32_UI_Shell = ["Win32_UI"]
+Win32_UI_Shell_Common = ["Win32_UI_Shell"]

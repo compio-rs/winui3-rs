@@ -9,44 +9,16 @@
     bindgen/winmd/Microsoft.Web.WebView2.Core.winmd
     bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd
 
---out winui3/src/bindings.rs
+--out winui3
 --implement
+--package
+
+--rustfmt max_width=800
+
+--reference
+    windows,skip-root,Windows
 
 --filter
-    Windows.ApplicationModel.DataTransfer.DataPackageOperation
-
-    Windows.Foundation.Point
-    Windows.Foundation.Rect
-    Windows.Foundation.Size
-    Windows.Foundation.TypedEventHandler
-    Windows.Foundation.Uri
-
-    Windows.Graphics.PointInt32
-    Windows.Graphics.SizeInt32
-
-    Windows.Media.Core.IMediaCue
-    Windows.Media.Core.MediaCueEventArgs
-    Windows.Media.Core.MediaSource
-    Windows.Media.Core.MediaSourceOpenOperationCompletedEventArgs
-    Windows.Media.Core.MediaSourceStateChangedEventArgs
-    Windows.Media.Core.TimedMetadataTrack
-    Windows.Media.Core.TimedMetadataTrackFailedEventArgs
-    Windows.Media.Core.TimedTextSource
-    Windows.Media.Core.TimedTextSourceResolveResultEventArgs
-
-    Windows.Media.Playback.MediaPlayer
-    Windows.Media.Playback.MediaPlayerFailedEventArgs
-    Windows.Media.Playback.MediaPlayerRateChangedEventArgs
-    Windows.Media.Playback.PlaybackMediaMarkerReachedEventArgs
-
-    Windows.Storage.Streams.IRandomAccessStream
-
-    Windows.UI.Color
-    Windows.UI.Text.FontStyle
-    Windows.UI.Text.FontWeight
-    Windows.UI.Xaml.Interop.TypeKind
-    Windows.UI.Xaml.Interop.TypeName
-
     Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController
     Microsoft.UI.Composition.SystemBackdrops.MicaController
     Microsoft.UI.Composition.SystemBackdrops.MicaKind
@@ -147,6 +119,8 @@
     Microsoft.UI.Xaml.Controls.RowDefinitionCollection
     Microsoft.UI.Xaml.Controls.ScrollBarVisibility
     Microsoft.UI.Xaml.Controls.ScrollViewer
+    Microsoft.UI.Xaml.Controls.ScrollViewerViewChangedEventArgs
+    Microsoft.UI.Xaml.Controls.ScrollViewerViewChangingEventArgs
     Microsoft.UI.Xaml.Controls.SelectionChangedEventArgs
     Microsoft.UI.Xaml.Controls.SelectionChangedEventHandler
     Microsoft.UI.Xaml.Controls.SelectionMode

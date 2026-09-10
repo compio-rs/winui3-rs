@@ -1,0 +1,14 @@
+#[cfg(feature = "Win32_Foundation")]
+pub mod Foundation;
+#[cfg(feature = "Win32_Graphics")]
+pub mod Graphics;
+#[cfg(feature = "Win32_Media")]
+pub mod Media;
+#[cfg(feature = "Win32_Security")]
+pub mod Security;
+#[cfg(feature = "Win32_Storage")]
+pub mod Storage;
+#[cfg(feature = "Win32_System")]
+pub mod System;
+#[cfg(feature = "Win32_UI")]
+pub mod UI;
