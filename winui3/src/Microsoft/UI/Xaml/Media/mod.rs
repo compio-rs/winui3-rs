@@ -693,6 +693,31 @@ impl windows_core::RuntimeType for ISystemBackdropOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ISystemBackdropOverrides");
 }
+impl ISystemBackdropOverrides {
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetConnected<P0, P1>(&self, connectedtarget: P0, xamlroot: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnTargetConnected)(windows_core::Interface::as_raw(self), connectedtarget.param().abi(), xamlroot.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnTargetDisconnected<P0>(&self, disconnectedtarget: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnTargetDisconnected)(windows_core::Interface::as_raw(self), disconnectedtarget.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDefaultSystemBackdropConfigurationChanged<P0, P1>(&self, target: P0, xamlroot: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Composition::ICompositionSupportsSystemBackdrop>,
+        P1: windows_core::Param<super::XamlRoot>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDefaultSystemBackdropConfigurationChanged)(windows_core::Interface::as_raw(self), target.param().abi(), xamlroot.param().abi()).ok() }
+    }
+}
 #[cfg(feature = "UI_Composition")]
 impl windows_core::RuntimeName for ISystemBackdropOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISystemBackdropOverrides";
@@ -816,6 +841,28 @@ windows_core::imp::define_interface!(IXamlLightOverrides, IXamlLightOverrides_Vt
 impl windows_core::RuntimeType for IXamlLightOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IXamlLightOverrides");
+}
+impl IXamlLightOverrides {
+    pub fn GetId(&self) -> windows_core::Result<windows_core::HSTRING> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetId)(windows_core::Interface::as_raw(self), &mut result__).map(|| core::mem::transmute(result__))
+        }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnConnected<P0>(&self, newelement: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::UIElement>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnConnected)(windows_core::Interface::as_raw(self), newelement.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Composition")]
+    pub fn OnDisconnected<P0>(&self, oldelement: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::UIElement>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDisconnected)(windows_core::Interface::as_raw(self), oldelement.param().abi()).ok() }
+    }
 }
 #[cfg(feature = "UI_Composition")]
 impl windows_core::RuntimeName for IXamlLightOverrides {

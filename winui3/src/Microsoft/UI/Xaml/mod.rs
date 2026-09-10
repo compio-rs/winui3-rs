@@ -2405,6 +2405,14 @@ impl windows_core::RuntimeType for IApplicationOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IApplicationOverrides");
 }
+impl IApplicationOverrides {
+    pub fn OnLaunched<P0>(&self, args: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<LaunchActivatedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnLaunched)(windows_core::Interface::as_raw(self), args.param().abi()).ok() }
+    }
+}
 impl windows_core::RuntimeName for IApplicationOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.IApplicationOverrides";
 }
@@ -3090,6 +3098,29 @@ windows_core::imp::define_interface!(IFrameworkElementOverrides, IFrameworkEleme
 impl windows_core::RuntimeType for IFrameworkElementOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IFrameworkElementOverrides");
+}
+impl IFrameworkElementOverrides {
+    pub fn MeasureOverride(&self, availablesize: windows::Foundation::Size) -> windows_core::Result<windows::Foundation::Size> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).MeasureOverride)(windows_core::Interface::as_raw(self), availablesize, &mut result__).map(|| result__)
+        }
+    }
+    pub fn ArrangeOverride(&self, finalsize: windows::Foundation::Size) -> windows_core::Result<windows::Foundation::Size> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ArrangeOverride)(windows_core::Interface::as_raw(self), finalsize, &mut result__).map(|| result__)
+        }
+    }
+    pub fn OnApplyTemplate(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).OnApplyTemplate)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn GoToElementStateCore(&self, statename: &windows_core::HSTRING, usetransitions: bool) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GoToElementStateCore)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(statename), usetransitions, &mut result__).map(|| result__)
+        }
+    }
 }
 impl windows_core::RuntimeName for IFrameworkElementOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.IFrameworkElementOverrides";
@@ -4003,6 +4034,43 @@ windows_core::imp::define_interface!(IUIElementOverrides, IUIElementOverrides_Vt
 impl windows_core::RuntimeType for IUIElementOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IUIElementOverrides");
+}
+impl IUIElementOverrides {
+    pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).OnDisconnectVisualChildren)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn FindSubElementsForTouchTargeting(&self, point: windows::Foundation::Point, boundingrect: windows::Foundation::Rect) -> windows_core::Result<windows_collections::IIterable<windows_collections::IIterable<windows::Foundation::Point>>> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).FindSubElementsForTouchTargeting)(windows_core::Interface::as_raw(self), point, boundingrect, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn GetChildrenInTabFocusOrder(&self) -> windows_core::Result<windows_collections::IIterable<DependencyObject>> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetChildrenInTabFocusOrder)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnKeyboardAcceleratorInvoked<P0>(&self, args: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Input::KeyboardAcceleratorInvokedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnKeyboardAcceleratorInvoked)(windows_core::Interface::as_raw(self), args.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnProcessKeyboardAccelerators<P0>(&self, args: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Input::ProcessKeyboardAcceleratorEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnProcessKeyboardAccelerators)(windows_core::Interface::as_raw(self), args.param().abi()).ok() }
+    }
+    pub fn OnBringIntoViewRequested<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<BringIntoViewRequestedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnBringIntoViewRequested)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
 }
 #[cfg(feature = "UI_Xaml_Input")]
 impl windows_core::RuntimeName for IUIElementOverrides {

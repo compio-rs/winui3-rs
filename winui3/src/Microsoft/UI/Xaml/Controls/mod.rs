@@ -23112,6 +23112,20 @@ impl windows_core::RuntimeType for IComboBoxOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.IComboBoxOverrides");
 }
+impl IComboBoxOverrides {
+    pub fn OnDropDownClosed<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDropDownClosed)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnDropDownOpened<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDropDownOpened)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+}
 impl windows_core::RuntimeName for IComboBoxOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IComboBoxOverrides";
 }
@@ -23302,6 +23316,15 @@ windows_core::imp::define_interface!(IContentControlOverrides, IContentControlOv
 impl windows_core::RuntimeType for IContentControlOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.IContentControlOverrides");
+}
+impl IContentControlOverrides {
+    pub fn OnContentChanged<P0, P1>(&self, oldcontent: P0, newcontent: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnContentChanged)(windows_core::Interface::as_raw(self), oldcontent.param().abi(), newcontent.param().abi()).ok() }
+    }
 }
 impl windows_core::RuntimeName for IContentControlOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IContentControlOverrides";
@@ -23902,6 +23925,174 @@ windows_core::imp::define_interface!(IControlOverrides, IControlOverrides_Vtbl, 
 impl windows_core::RuntimeType for IControlOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.IControlOverrides");
+}
+impl IControlOverrides {
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerEntered<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerEntered)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerPressed<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerPressed)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerMoved<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerMoved)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerReleased<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerReleased)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerExited<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerExited)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerCaptureLost<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerCaptureLost)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerCanceled<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerCanceled)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPointerWheelChanged<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::PointerRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPointerWheelChanged)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnTapped<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::TappedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnTapped)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnDoubleTapped<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::DoubleTappedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDoubleTapped)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnHolding<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::HoldingRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnHolding)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnRightTapped<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::RightTappedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnRightTapped)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnManipulationStarting<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::ManipulationStartingRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnManipulationStarting)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnManipulationInertiaStarting<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::ManipulationInertiaStartingRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnManipulationInertiaStarting)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnManipulationStarted<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::ManipulationStartedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnManipulationStarted)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnManipulationDelta<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::ManipulationDeltaRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnManipulationDelta)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnManipulationCompleted<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::ManipulationCompletedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnManipulationCompleted)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnKeyUp<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::KeyRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnKeyUp)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnKeyDown<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::KeyRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnKeyDown)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPreviewKeyDown<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::KeyRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPreviewKeyDown)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnPreviewKeyUp<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::KeyRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnPreviewKeyUp)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnGotFocus<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::RoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnGotFocus)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnLostFocus<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::RoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnLostFocus)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Input")]
+    pub fn OnCharacterReceived<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Input::CharacterReceivedRoutedEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnCharacterReceived)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
 }
 #[cfg(feature = "UI_Xaml_Input")]
 impl windows_core::RuntimeName for IControlOverrides {
@@ -24820,6 +25011,50 @@ windows_core::imp::define_interface!(IItemsControlOverrides, IItemsControlOverri
 impl windows_core::RuntimeType for IItemsControlOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.IItemsControlOverrides");
+}
+impl IItemsControlOverrides {
+    pub fn IsItemItsOwnContainerOverride<P0>(&self, item: P0) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsItemItsOwnContainerOverride)(windows_core::Interface::as_raw(self), item.param().abi(), &mut result__).map(|| result__)
+        }
+    }
+    pub fn GetContainerForItemOverride(&self) -> windows_core::Result<super::DependencyObject> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetContainerForItemOverride)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn ClearContainerForItemOverride<P0, P1>(&self, element: P0, item: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).ClearContainerForItemOverride)(windows_core::Interface::as_raw(self), element.param().abi(), item.param().abi()).ok() }
+    }
+    pub fn PrepareContainerForItemOverride<P0, P1>(&self, element: P0, item: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+        P1: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).PrepareContainerForItemOverride)(windows_core::Interface::as_raw(self), element.param().abi(), item.param().abi()).ok() }
+    }
+    pub fn OnItemsChanged<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<windows_core::IInspectable>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnItemsChanged)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnItemContainerStyleChanged<P0, P1>(&self, olditemcontainerstyle: P0, newitemcontainerstyle: P1) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Style>,
+        P1: windows_core::Param<super::Style>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnItemContainerStyleChanged)(windows_core::Interface::as_raw(self), olditemcontainerstyle.param().abi(), newitemcontainerstyle.param().abi()).ok() }
+    }
 }
 impl windows_core::RuntimeName for IItemsControlOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IItemsControlOverrides";
