@@ -18,6 +18,23 @@ pub const D3D11_CREATE_DEVICE_SINGLETHREADED: D3D11_CREATE_DEVICE_FLAG = 1;
 pub const D3D11_CREATE_DEVICE_SWITCH_TO_REF: D3D11_CREATE_DEVICE_FLAG = 4;
 pub const D3D11_CREATE_DEVICE_VIDEO_SUPPORT: D3D11_CREATE_DEVICE_FLAG = 2048;
 pub const D3D11_SDK_VERSION: u32 = 7;
+windows_core::imp::define_interface!(ID3D11DepthStencilView, ID3D11DepthStencilView_Vtbl, 0x9fdac92a_1876_48c3_afad_25b94f84a9b6);
+impl core::ops::Deref for ID3D11DepthStencilView {
+    type Target = ID3D11View;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(ID3D11DepthStencilView, windows_core::IUnknown, ID3D11DeviceChild, ID3D11View);
+#[repr(C)]
+#[doc(hidden)]
+pub struct ID3D11DepthStencilView_Vtbl {
+    pub base__: ID3D11View_Vtbl,
+    GetDesc: usize,
+}
+unsafe impl Send for ID3D11DepthStencilView {}
+unsafe impl Sync for ID3D11DepthStencilView {}
+impl windows_core::RuntimeName for ID3D11DepthStencilView {}
 windows_core::imp::define_interface!(ID3D11Device, ID3D11Device_Vtbl, 0xdb6f6ddb_ac77_4e88_8253_819df9bbf140);
 windows_core::imp::interface_hierarchy!(ID3D11Device, windows_core::IUnknown);
 impl ID3D11Device {
@@ -246,6 +263,14 @@ impl ID3D11DeviceContext {
             (windows_core::Interface::vtable(self).DrawInstanced)(windows_core::Interface::as_raw(self), vertexcountperinstance, instancecount, startvertexlocation, startinstancelocation);
         }
     }
+    pub unsafe fn OMSetRenderTargets<P2>(&self, pprendertargetviews: Option<&[Option<ID3D11RenderTargetView>]>, pdepthstencilview: P2)
+    where
+        P2: windows_core::Param<ID3D11DepthStencilView>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).OMSetRenderTargets)(windows_core::Interface::as_raw(self), pprendertargetviews.map_or(0, |slice| slice.len().try_into().unwrap()), core::mem::transmute(pprendertargetviews.map_or(core::ptr::null(), |slice| slice.as_ptr())), pdepthstencilview.param().abi());
+        }
+    }
     pub unsafe fn DrawAuto(&self) {
         unsafe {
             (windows_core::Interface::vtable(self).DrawAuto)(windows_core::Interface::as_raw(self));
@@ -259,6 +284,27 @@ impl ID3D11DeviceContext {
     pub unsafe fn RSSetScissorRects(&self, prects: Option<&[super::super::Foundation::RECT]>) {
         unsafe {
             (windows_core::Interface::vtable(self).RSSetScissorRects)(windows_core::Interface::as_raw(self), prects.map_or(0, |slice| slice.len().try_into().unwrap()), prects.map_or(core::ptr::null(), |slice| slice.as_ptr()));
+        }
+    }
+    pub unsafe fn ClearRenderTargetView<P0>(&self, prendertargetview: P0, colorrgba: &[f32; 4])
+    where
+        P0: windows_core::Param<ID3D11RenderTargetView>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).ClearRenderTargetView)(windows_core::Interface::as_raw(self), prendertargetview.param().abi(), colorrgba.as_ptr());
+        }
+    }
+    pub unsafe fn ClearDepthStencilView<P0>(&self, pdepthstencilview: P0, clearflags: u32, depth: f32, stencil: u8)
+    where
+        P0: windows_core::Param<ID3D11DepthStencilView>,
+    {
+        unsafe {
+            (windows_core::Interface::vtable(self).ClearDepthStencilView)(windows_core::Interface::as_raw(self), pdepthstencilview.param().abi(), clearflags, depth, stencil);
+        }
+    }
+    pub unsafe fn OMGetRenderTargets(&self, numviews: u32, pprendertargetviews: Option<*mut Option<ID3D11RenderTargetView>>, ppdepthstencilview: Option<*mut Option<ID3D11DepthStencilView>>) {
+        unsafe {
+            (windows_core::Interface::vtable(self).OMGetRenderTargets)(windows_core::Interface::as_raw(self), numviews, pprendertargetviews.unwrap_or(core::mem::zeroed()) as _, ppdepthstencilview.unwrap_or(core::mem::zeroed()) as _);
         }
     }
     pub unsafe fn RSGetScissorRects(&self, pnumrects: *mut u32, prects: Option<*mut super::super::Foundation::RECT>) {
@@ -310,7 +356,7 @@ pub struct ID3D11DeviceContext_Vtbl {
     SetPredication: usize,
     GSSetShaderResources: usize,
     GSSetSamplers: usize,
-    OMSetRenderTargets: usize,
+    pub OMSetRenderTargets: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *const *mut core::ffi::c_void, *mut core::ffi::c_void),
     OMSetRenderTargetsAndUnorderedAccessViews: usize,
     OMSetBlendState: usize,
     OMSetDepthStencilState: usize,
@@ -327,10 +373,10 @@ pub struct ID3D11DeviceContext_Vtbl {
     CopyResource: usize,
     UpdateSubresource: usize,
     CopyStructureCount: usize,
-    ClearRenderTargetView: usize,
+    pub ClearRenderTargetView: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *const f32),
     ClearUnorderedAccessViewUint: usize,
     ClearUnorderedAccessViewFloat: usize,
-    ClearDepthStencilView: usize,
+    pub ClearDepthStencilView: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, u32, f32, u8),
     GenerateMips: usize,
     SetResourceMinLOD: usize,
     GetResourceMinLOD: usize,
@@ -366,7 +412,7 @@ pub struct ID3D11DeviceContext_Vtbl {
     GetPredication: usize,
     GSGetShaderResources: usize,
     GSGetSamplers: usize,
-    OMGetRenderTargets: usize,
+    pub OMGetRenderTargets: unsafe extern "system" fn(*mut core::ffi::c_void, u32, *mut *mut core::ffi::c_void, *mut *mut core::ffi::c_void),
     OMGetRenderTargetsAndUnorderedAccessViews: usize,
     OMGetBlendState: usize,
     OMGetDepthStencilState: usize,
@@ -396,3 +442,37 @@ pub struct ID3D11DeviceContext_Vtbl {
 unsafe impl Send for ID3D11DeviceContext {}
 unsafe impl Sync for ID3D11DeviceContext {}
 impl windows_core::RuntimeName for ID3D11DeviceContext {}
+windows_core::imp::define_interface!(ID3D11RenderTargetView, ID3D11RenderTargetView_Vtbl, 0xdfdba067_0b8d_4865_875b_d7b4516cc164);
+impl core::ops::Deref for ID3D11RenderTargetView {
+    type Target = ID3D11View;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(ID3D11RenderTargetView, windows_core::IUnknown, ID3D11DeviceChild, ID3D11View);
+#[repr(C)]
+#[doc(hidden)]
+pub struct ID3D11RenderTargetView_Vtbl {
+    pub base__: ID3D11View_Vtbl,
+    GetDesc: usize,
+}
+unsafe impl Send for ID3D11RenderTargetView {}
+unsafe impl Sync for ID3D11RenderTargetView {}
+impl windows_core::RuntimeName for ID3D11RenderTargetView {}
+windows_core::imp::define_interface!(ID3D11View, ID3D11View_Vtbl, 0x839d1216_bb2e_412b_b7f4_a9dbebe08ed1);
+impl core::ops::Deref for ID3D11View {
+    type Target = ID3D11DeviceChild;
+    fn deref(&self) -> &Self::Target {
+        unsafe { core::mem::transmute(self) }
+    }
+}
+windows_core::imp::interface_hierarchy!(ID3D11View, windows_core::IUnknown, ID3D11DeviceChild);
+#[repr(C)]
+#[doc(hidden)]
+pub struct ID3D11View_Vtbl {
+    pub base__: ID3D11DeviceChild_Vtbl,
+    GetResource: usize,
+}
+unsafe impl Send for ID3D11View {}
+unsafe impl Sync for ID3D11View {}
+impl windows_core::RuntimeName for ID3D11View {}
