@@ -12,4 +12,4 @@ windows-numerics = "0.100"
 windows-reference = "0.100"
 windows-time = "0.100"
 winui3 = { path = "winui3", package = "winio-winui3" }
-windows = { path = "windows-subset", package = "winio-windows-subset", version = "0.1.0" }
+windows = { path = "windows-subset", package = "winio-windows-subset", version = "0.2.0" }
