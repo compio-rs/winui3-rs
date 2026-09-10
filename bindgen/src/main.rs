@@ -9,12 +9,8 @@ fn main() -> Result<(), &'static str> {
         std::env::set_var("WINDOWS_BINDGEN_TIMINGS", "1");
     }
 
-    if !fs::exists("bindgen/winmd").expect("failed to check if winmd dir exists") {
-        return Err("please make sure to put WinUI 3 metadata in the bindgen/winmd dir");
-    }
-
     windows_bindgen::bindgen(["--etc", "bindgen/etc/subset.txt"]);
-
+    windows_bindgen::bindgen(["--etc", "bindgen/etc/webview2.txt"]);
     windows_bindgen::bindgen(["--etc", "bindgen/etc/winui3.txt"]);
 
     println!("Patching features...");

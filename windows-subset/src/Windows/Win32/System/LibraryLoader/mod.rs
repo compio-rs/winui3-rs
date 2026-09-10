@@ -15,6 +15,14 @@ where
     unsafe { GetModuleHandleExW(dwflags, lpmodulename.param().abi(), phmodule as _) }
 }
 #[inline]
+pub unsafe fn GetModuleHandleW<P0>(lpmodulename: P0) -> super::super::Foundation::HMODULE
+where
+    P0: windows_core::Param<windows_core::PCWSTR>,
+{
+    windows_core::link!("kernel32.dll" "system" fn GetModuleHandleW(lpmodulename : windows_core::PCWSTR) -> super::super::Foundation::HMODULE);
+    unsafe { GetModuleHandleW(lpmodulename.param().abi()) }
+}
+#[inline]
 pub unsafe fn GetProcAddress<P1>(hmodule: super::super::Foundation::HMODULE, lpprocname: P1) -> super::super::Foundation::FARPROC
 where
     P1: windows_core::Param<windows_core::PCSTR>,

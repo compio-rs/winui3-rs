@@ -9,6 +9,12 @@ authors = ["Alovchin91", "Berrysoft <Strawberry_Str@hotmail.com>"]
 license = "MIT"
 repository = "https://github.com/compio-rs/winui3-rs"
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+targets = ["x86_64-pc-windows-msvc"]
+default-target = "x86_64-pc-windows-msvc"
+
 [lib]
 name = "winui3"
 

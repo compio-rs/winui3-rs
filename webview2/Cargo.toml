@@ -1,0 +1,33 @@
+[package]
+name = "winio-webview2"
+version = "0.3.1"
+edition = "2024"
+description = "WebView2 Win32 bindings for Rust"
+categories = ["os::windows-apis", "gui"]
+keywords = ["webview2", "gui"]
+authors = ["Berrysoft <Strawberry_Str@hotmail.com>"]
+license = "MIT"
+repository = "https://github.com/compio-rs/webview2-rs"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+targets = ["x86_64-pc-windows-msvc"]
+default-target = "x86_64-pc-windows-msvc"
+
+[lib]
+name = "webview2"
+
+[dependencies]
+windows = { workspace = true, features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage_Packaging_Appx",
+    "Win32_System_Com",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Memory",
+    "Win32_System_Variant",
+    "Win32_UI_WindowsAndMessaging",
+] }
+windows-core = { workspace = true }
+windows-registry = { workspace = true }

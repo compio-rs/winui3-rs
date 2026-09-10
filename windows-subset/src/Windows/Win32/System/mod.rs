@@ -4,5 +4,11 @@ pub mod Com;
 pub mod LibraryLoader;
 #[cfg(feature = "Win32_System_Memory")]
 pub mod Memory;
+#[cfg(feature = "Win32_System_Ole")]
+pub mod Ole;
+#[cfg(feature = "Win32_System_Registry")]
+pub mod Registry;
+#[cfg(feature = "Win32_System_Variant")]
+pub mod Variant;
 #[cfg(feature = "Win32_System_WinRT")]
 pub mod WinRT;

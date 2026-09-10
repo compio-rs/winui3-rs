@@ -1,0 +1,21 @@
+--in
+    default
+    bindgen/winmd/Windows.Win32.winmd
+    winmdgen/bin/Microsoft.Web.WebView2.winmd
+
+--out webview2/src/bindings.rs
+--implement
+--flat
+
+--rustfmt max_width=800
+
+--reference
+    windows,skip-root,Windows
+
+--filter
+    Microsoft.Web.WebView2.Win32
+    !Microsoft.Web.WebView2.Win32.CreateCoreWebView2Environment
+    !Microsoft.Web.WebView2.Win32.CreateCoreWebView2EnvironmentWithOptions
+    !Microsoft.Web.WebView2.Win32.GetAvailableCoreWebView2BrowserVersionString
+    !Microsoft.Web.WebView2.Win32.GetAvailableCoreWebView2BrowserVersionStringWithOptions
+    !Microsoft.Web.WebView2.Win32.CompareBrowserVersions

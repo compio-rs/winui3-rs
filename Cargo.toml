@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["bindgen", "winui3", "windows-subset"]
+members = ["bindgen", "winui3", "windows-subset", "webview2"]
 
 [workspace.dependencies]
 toml_edit = "0.25"
@@ -10,6 +10,6 @@ windows-core = "0.100"
 windows-future = "0.100"
 windows-numerics = "0.100"
 windows-reference = "0.100"
+windows-registry = "0.100"
 windows-time = "0.100"
-winui3 = { path = "winui3", package = "winio-winui3" }
 windows = { path = "windows-subset", package = "winio-windows-subset", version = "0.2.0" }
