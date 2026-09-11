@@ -4564,6 +4564,46 @@ pub struct IWindowFactory_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     pub CreateInstance: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
 }
+windows_core::imp::define_interface!(IWindowNative, IWindowNative_Vtbl, 0xeecdbf0e_bae9_4cb6_a68e_9598e1cb57bb);
+windows_core::imp::interface_hierarchy!(IWindowNative, windows_core::IUnknown);
+impl IWindowNative {
+    pub unsafe fn WindowHandle(&self) -> windows_core::Result<windows::Win32::Foundation::HWND> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).WindowHandle)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IWindowNative_Vtbl {
+    pub base__: windows_core::IUnknown_Vtbl,
+    pub WindowHandle: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Win32::Foundation::HWND) -> windows_core::HRESULT,
+}
+pub trait IWindowNative_Impl: windows_core::IUnknownImpl {
+    fn WindowHandle(&self) -> windows_core::Result<windows::Win32::Foundation::HWND>;
+}
+impl IWindowNative_Vtbl {
+    pub const fn new<Identity: IWindowNative_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn WindowHandle<Identity: IWindowNative_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, hwnd: *mut windows::Win32::Foundation::HWND) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IWindowNative_Impl::WindowHandle(this) {
+                    Ok(ok__) => {
+                        hwnd.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IUnknown_Vtbl::new::<Identity, OFFSET>(), WindowHandle: WindowHandle::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IWindowNative as windows_core::Interface>::IID
+    }
+}
+impl windows_core::RuntimeName for IWindowNative {}
 windows_core::imp::define_interface!(IWindowSizeChangedEventArgs, IWindowSizeChangedEventArgs_Vtbl, 0x542f6f2c_4b64_5c72_a7a5_3a7e0664b8ff);
 impl windows_core::RuntimeType for IWindowSizeChangedEventArgs {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();

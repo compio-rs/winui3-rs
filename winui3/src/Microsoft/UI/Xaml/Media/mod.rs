@@ -1,3 +1,5 @@
+#[cfg(feature = "UI_Xaml_Media_DxInterop")]
+pub mod DxInterop;
 #[cfg(feature = "UI_Composition")]
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]

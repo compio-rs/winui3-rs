@@ -8,6 +8,7 @@
     bindgen/winmd/Microsoft.UI.Xaml.winmd
     bindgen/winmd/Microsoft.Web.WebView2.Core.winmd
     bindgen/winmd/Microsoft.Windows.ApplicationModel.Resources.winmd
+    winmdgen/winui3/bin/WinUI3.Interop.winmd
 
 --out winui3
 --implement
@@ -31,6 +32,7 @@
     Microsoft.UI.Text
     Microsoft.UI.Windowing
     Microsoft.UI.Xaml.Interop
+    Microsoft.UI.Xaml.IWindowNative
     Microsoft.UI.Xaml.Markup
     Microsoft.UI.Xaml.XamlTypeInfo
 
@@ -180,5 +182,7 @@
     Microsoft.UI.Xaml.Media.Stretch
     Microsoft.UI.Xaml.Media.SystemBackdrop
     Microsoft.UI.Xaml.Media.XamlLight
+
+    Microsoft.UI.Xaml.Media.DxInterop.ISwapChainPanelNative
 
     Microsoft.Web.WebView2.Core

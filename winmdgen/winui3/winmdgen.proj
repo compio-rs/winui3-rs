@@ -22,7 +22,7 @@
     </Partition>
     <Partition Include="microsoft.ui.xaml.window.cpp">
       <TraverseFiles>@(WinUI3Headers)</TraverseFiles>
-      <Namespace>Microsoft.UI.Xaml.Window</Namespace>
+      <Namespace>Microsoft.UI.Xaml</Namespace>
       <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
     </Partition>
   </ItemGroup>
