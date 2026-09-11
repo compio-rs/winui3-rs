@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Windows.WinmdGenerator">
+
+  <PropertyGroup>
+    <OutputWinmd>bin\WinUI3.Interop.winmd</OutputWinmd>
+    <WinmdVersion>2.3.6</WinmdVersion>
+    <GenerateAssemblyVersionInfo>false</GenerateAssemblyVersionInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <WinUI3Headers Condition=" '$(PkgMicrosoft_WindowsAppSDK_WinUI)' != '' " Include="$(PkgMicrosoft_WindowsAppSDK_WinUI)\**\*.h"/>
+
+    <Partition Include="microsoft.ui.xaml.media.dxinterop.cpp">
+      <TraverseFiles>@(WinUI3Headers)</TraverseFiles>
+      <Namespace>Microsoft.UI.Xaml.Media.DxInterop</Namespace>
+      <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
+    </Partition>
+    <Partition Include="microsoft.ui.xaml.hosting.referencetracker.cpp">
+      <TraverseFiles>@(WinUI3Headers)</TraverseFiles>
+      <Namespace>Microsoft.UI.Xaml.Hosting.ReferenceTracker</Namespace>
+      <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
+    </Partition>
+    <Partition Include="microsoft.ui.xaml.window.cpp">
+      <TraverseFiles>@(WinUI3Headers)</TraverseFiles>
+      <Namespace>Microsoft.UI.Xaml.Window</Namespace>
+      <ExcludeFromCrossarch>true</ExcludeFromCrossarch>
+    </Partition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="$(WinmdVersion)" GeneratePathProperty="true"/>
+  </ItemGroup>
+
+</Project>
