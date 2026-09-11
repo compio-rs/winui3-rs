@@ -99,7 +99,9 @@
     Windows.Win32.Foundation.E_FAIL
     Windows.Win32.Foundation.E_INVALIDARG
     Windows.Win32.Foundation.E_NOINTERFACE
+    Windows.Win32.Foundation.E_NOTIMPL
     Windows.Win32.Foundation.E_POINTER
+    Windows.Win32.Foundation.S_OK
     Windows.Win32.Foundation.ERROR_CANCELLED
     Windows.Win32.Foundation.ERROR_FILE_NOT_FOUND
     Windows.Win32.Foundation.ERROR_INSUFFICIENT_BUFFER

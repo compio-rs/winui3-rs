@@ -58,6 +58,7 @@ pub const ERROR_MOD_NOT_FOUND: windows_core::WIN32_ERROR = windows_core::WIN32_E
 pub const E_FAIL: windows_core::HRESULT = windows_core::HRESULT(0x80004005_u32 as _);
 pub const E_INVALIDARG: windows_core::HRESULT = windows_core::HRESULT(0x80070057_u32 as _);
 pub const E_NOINTERFACE: windows_core::HRESULT = windows_core::HRESULT(0x80004002_u32 as _);
+pub const E_NOTIMPL: windows_core::HRESULT = windows_core::HRESULT(0x80004001_u32 as _);
 pub const E_POINTER: windows_core::HRESULT = windows_core::HRESULT(0x80004003_u32 as _);
 pub type FARPROC = Option<unsafe extern "system" fn() -> isize>;
 #[repr(transparent)]
@@ -83,6 +84,7 @@ pub struct RECT {
     pub right: i32,
     pub bottom: i32,
 }
+pub const S_OK: windows_core::HRESULT = windows_core::HRESULT(0x0_u32 as _);
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
 pub struct VARIANT_BOOL(pub i16);
