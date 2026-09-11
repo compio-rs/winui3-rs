@@ -8,7 +8,7 @@ use windows::Win32::{
     Storage::Packaging::Appx::{AddPackageDependencyOptions, CreatePackageDependencyOptions, PACKAGE_VERSION, PACKAGEDEPENDENCY_CONTEXT, PackageDependencyLifetimeKind, PackageDependencyProcessorArchitectures},
     System::LibraryLoader::{GetModuleHandleExW, GetProcAddress, LoadLibraryW},
 };
-use windows_core::{HRESULT, PCWSTR, PWSTR, Param, Result, WIN32_ERROR, s, w};
+use windows_core::{HRESULT, PCWSTR, PWSTR, Param, Result, s, w};
 
 type TryCreatePackageDependencyFn = unsafe extern "system" fn(user: PSID, packagefamilyname: PCWSTR, minversion: PACKAGE_VERSION, packagedependencyprocessorarchitectures: PackageDependencyProcessorArchitectures, lifetimekind: PackageDependencyLifetimeKind, lifetimeartifact: PCWSTR, options: CreatePackageDependencyOptions, packagedependencyid: *mut PWSTR) -> HRESULT;
 
@@ -75,7 +75,7 @@ fn get_mdd_lib() -> Result<&'static MddLib> {
             None
         })
         .as_ref()
-        .ok_or_else(|| WIN32_ERROR(ERROR_MOD_NOT_FOUND).to_hresult().into())
+        .ok_or_else(|| ERROR_MOD_NOT_FOUND.to_hresult().into())
 }
 
 #[inline]

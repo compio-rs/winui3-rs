@@ -19,7 +19,7 @@ use windows::Win32::{
         Memory::{GetProcessHeap, HeapFree},
     },
 };
-use windows_core::{Error, HRESULT, HSTRING, PCWSTR, PWSTR, Param, Result, WIN32_ERROR, h, s, w};
+use windows_core::{Error, HRESULT, HSTRING, PCWSTR, PWSTR, Param, Result, h, s, w};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[repr(C)]
@@ -124,7 +124,7 @@ fn find_installed_client_dll(preference: WebView2ReleaseChannelPreference) -> Re
             return Ok((path, version, CHANNEL_NAME[channel]));
         }
     }
-    Err(WIN32_ERROR(ERROR_FILE_NOT_FOUND).to_hresult().into())
+    Err(ERROR_FILE_NOT_FOUND.to_hresult().into())
 }
 
 fn find_installed_client_dll_for_channel(sub_key: &str, system: bool) -> Option<(PathBuf, String)> {
@@ -177,8 +177,7 @@ fn search_package_info(package_name: &HSTRING) -> Option<(PathBuf, [u16; 4])> {
         return None;
     }
     let mut buffer = Vec::<PACKAGE_INFO>::with_capacity(packages as usize);
-    let res = unsafe { GetCurrentPackageInfo(flags, &mut len, Some(buffer.as_mut_ptr().cast()), Some(&mut packages)) };
-    WIN32_ERROR(res).ok().ok()?;
+    unsafe { GetCurrentPackageInfo(flags, &mut len, Some(buffer.as_mut_ptr().cast()), Some(&mut packages)) }.ok().ok()?;
     unsafe { buffer.set_len(packages as usize) };
     let package = buffer.iter().find(|package| unsafe {
         let package_family_name = std::ptr::addr_of!(package.packageFamilyName).read_unaligned();
@@ -217,7 +216,7 @@ fn find_client_dll_in_folder(folder: PathBuf) -> Result<PathBuf> {
     const EMBEDDED_WEBVIEW_PATH: &str = "EBWebView\\arm64\\EmbeddedBrowserWebView.dll";
 
     let path = folder.join(EMBEDDED_WEBVIEW_PATH);
-    if path.exists() { Ok(path) } else { Err(WIN32_ERROR(ERROR_FILE_NOT_FOUND).to_hresult().into()) }
+    if path.exists() { Ok(path) } else { Err(ERROR_FILE_NOT_FOUND.to_hresult().into()) }
 }
 
 fn find_embedded_version(path: &Path) -> Result<HSTRING> {

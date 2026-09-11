@@ -51,10 +51,10 @@ pub struct DECIMAL_1_0 {
     pub Lo32: u32,
     pub Mid32: u32,
 }
-pub const ERROR_CANCELLED: WIN32_ERROR = 1223;
-pub const ERROR_FILE_NOT_FOUND: WIN32_ERROR = 2;
-pub const ERROR_INSUFFICIENT_BUFFER: WIN32_ERROR = 122;
-pub const ERROR_MOD_NOT_FOUND: WIN32_ERROR = 126;
+pub const ERROR_CANCELLED: windows_core::WIN32_ERROR = windows_core::WIN32_ERROR(1223);
+pub const ERROR_FILE_NOT_FOUND: windows_core::WIN32_ERROR = windows_core::WIN32_ERROR(2);
+pub const ERROR_INSUFFICIENT_BUFFER: windows_core::WIN32_ERROR = windows_core::WIN32_ERROR(122);
+pub const ERROR_MOD_NOT_FOUND: windows_core::WIN32_ERROR = windows_core::WIN32_ERROR(126);
 pub const E_FAIL: windows_core::HRESULT = windows_core::HRESULT(0x80004005_u32 as _);
 pub const E_INVALIDARG: windows_core::HRESULT = windows_core::HRESULT(0x80070057_u32 as _);
 pub const E_NOINTERFACE: windows_core::HRESULT = windows_core::HRESULT(0x80004002_u32 as _);
@@ -86,4 +86,3 @@ pub struct RECT {
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
 pub struct VARIANT_BOOL(pub i16);
-pub type WIN32_ERROR = u32;

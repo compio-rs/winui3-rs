@@ -1,11 +1,11 @@
 #[inline]
-pub unsafe fn GetCurrentApplicationUserModelId(applicationusermodelidlength: *mut u32, applicationusermodelid: Option<windows_core::PWSTR>) -> super::super::super::Foundation::WIN32_ERROR {
-    windows_core::link!("kernel32.dll" "system" fn GetCurrentApplicationUserModelId(applicationusermodelidlength : *mut u32, applicationusermodelid : windows_core::PWSTR) -> super::super::super::Foundation::WIN32_ERROR);
+pub unsafe fn GetCurrentApplicationUserModelId(applicationusermodelidlength: *mut u32, applicationusermodelid: Option<windows_core::PWSTR>) -> windows_core::WIN32_ERROR {
+    windows_core::link!("kernel32.dll" "system" fn GetCurrentApplicationUserModelId(applicationusermodelidlength : *mut u32, applicationusermodelid : windows_core::PWSTR) -> windows_core::WIN32_ERROR);
     unsafe { GetCurrentApplicationUserModelId(applicationusermodelidlength as _, applicationusermodelid.unwrap_or(core::mem::zeroed()) as _) }
 }
 #[inline]
-pub unsafe fn GetCurrentPackageInfo(flags: u32, bufferlength: *mut u32, buffer: Option<*mut u8>, count: Option<*mut u32>) -> super::super::super::Foundation::WIN32_ERROR {
-    windows_core::link!("kernel32.dll" "system" fn GetCurrentPackageInfo(flags : u32, bufferlength : *mut u32, buffer : *mut u8, count : *mut u32) -> super::super::super::Foundation::WIN32_ERROR);
+pub unsafe fn GetCurrentPackageInfo(flags: u32, bufferlength: *mut u32, buffer: Option<*mut u8>, count: Option<*mut u32>) -> windows_core::WIN32_ERROR {
+    windows_core::link!("kernel32.dll" "system" fn GetCurrentPackageInfo(flags : u32, bufferlength : *mut u32, buffer : *mut u8, count : *mut u32) -> windows_core::WIN32_ERROR);
     unsafe { GetCurrentPackageInfo(flags, bufferlength as _, buffer.unwrap_or(core::mem::zeroed()) as _, count.unwrap_or(core::mem::zeroed()) as _) }
 }
 pub type AddPackageDependencyOptions = i32;
