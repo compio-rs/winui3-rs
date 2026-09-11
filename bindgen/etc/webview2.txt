@@ -1,7 +1,7 @@
 --in
     default
     bindgen/winmd/Windows.Win32.winmd
-    winmdgen/bin/Microsoft.Web.WebView2.winmd
+    winmdgen/webview2/bin/Microsoft.Web.WebView2.winmd
 
 --out webview2/src/bindings.rs
 --implement
