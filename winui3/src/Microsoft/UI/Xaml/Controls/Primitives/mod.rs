@@ -1518,6 +1518,13 @@ impl ButtonBase {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -2141,6 +2148,13 @@ impl ButtonBase {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;
@@ -4929,6 +4943,13 @@ impl RangeBase {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -5552,6 +5573,13 @@ impl RangeBase {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;
@@ -7262,6 +7290,13 @@ impl ScrollBar {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -7885,6 +7920,13 @@ impl ScrollBar {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;
@@ -9718,6 +9760,13 @@ impl Selector {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -10341,6 +10390,13 @@ impl Selector {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;
@@ -11901,6 +11957,13 @@ impl SelectorItem {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -12524,6 +12587,13 @@ impl SelectorItem {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;
@@ -14208,6 +14278,13 @@ impl ToggleButton {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<super::super::FocusState> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -14831,6 +14908,13 @@ impl ToggleButton {
     {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: super::super::FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElementOverrides>(self)?;

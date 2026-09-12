@@ -553,6 +553,22 @@ unsafe impl Send for EffectiveViewportChangedEventArgs {}
 unsafe impl Sync for EffectiveViewportChangedEventArgs {}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct FocusState(pub i32);
+impl FocusState {
+    pub const Unfocused: Self = Self(0);
+    pub const Pointer: Self = Self(1);
+    pub const Keyboard: Self = Self(2);
+    pub const Programmatic: Self = Self(3);
+}
+impl windows_core::imp::TypeKind for FocusState {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for FocusState {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.FocusState;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.FocusState");
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct FocusVisualKind(pub i32);
 impl FocusVisualKind {
     pub const DottedLine: Self = Self(0);
@@ -1466,6 +1482,13 @@ impl FrameworkElement {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetRasterizationScale)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<FocusState> {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).FocusState)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
         unsafe {
@@ -2089,6 +2112,13 @@ impl FrameworkElement {
     {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(this), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: FocusState) -> windows_core::Result<bool> {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Focus)(windows_core::Interface::as_raw(this), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IUIElementOverrides>(self)?;
@@ -3782,7 +3812,7 @@ pub struct IUIElement_Vtbl {
     SetShadow: usize,
     pub RasterizationScale: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
     pub SetRasterizationScale: unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
-    FocusState: usize,
+    pub FocusState: unsafe extern "system" fn(*mut core::ffi::c_void, *mut FocusState) -> windows_core::HRESULT,
     pub UseSystemFocusVisuals: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetUseSystemFocusVisuals: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
     pub XYFocusLeft: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -4007,6 +4037,7 @@ pub struct IUIElement_Vtbl {
     pub TryInvokeKeyboardAccelerator: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Xaml_Input"))]
     TryInvokeKeyboardAccelerator: usize,
+    pub Focus: unsafe extern "system" fn(*mut core::ffi::c_void, FocusState, *mut bool) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(IUIElementFactory, IUIElementFactory_Vtbl, 0x14d1d309_add0_5ccb_b946_77488cd70f87);
 impl windows_core::RuntimeType for IUIElementFactory {
@@ -5799,6 +5830,12 @@ impl UIElement {
     pub fn SetRasterizationScale(&self, value: f64) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).SetRasterizationScale)(windows_core::Interface::as_raw(self), value).ok() }
     }
+    pub fn FocusState(&self) -> windows_core::Result<FocusState> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).FocusState)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
     pub fn UseSystemFocusVisuals(&self) -> windows_core::Result<bool> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -6360,6 +6397,12 @@ impl UIElement {
         P0: windows_core::Param<Input::ProcessKeyboardAcceleratorEventArgs>,
     {
         unsafe { (windows_core::Interface::vtable(self).TryInvokeKeyboardAccelerator)(windows_core::Interface::as_raw(self), args.param().abi()).ok() }
+    }
+    pub fn Focus(&self, value: FocusState) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Focus)(windows_core::Interface::as_raw(self), value, &mut result__).map(|| result__)
+        }
     }
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IUIElementOverrides>(self)?;

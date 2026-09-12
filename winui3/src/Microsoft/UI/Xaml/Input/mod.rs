@@ -535,6 +535,15 @@ impl FocusManager {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveLosingFocus))
         })
     }
+    pub fn TryFocusAsync<P0>(element: P0, value: super::FocusState) -> windows_core::Result<windows_future::IAsyncOperation<FocusMovementResult>>
+    where
+        P0: windows_core::Param<super::DependencyObject>,
+    {
+        Self::IFocusManagerStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).TryFocusAsync)(windows_core::Interface::as_raw(this), element.param().abi(), value, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
     pub fn TryMoveFocusAsync(focusnavigationdirection: FocusNavigationDirection) -> windows_core::Result<windows_future::IAsyncOperation<FocusMovementResult>> {
         Self::IFocusManagerStatics(|this| unsafe {
             let mut result__ = core::mem::zeroed();
@@ -770,6 +779,12 @@ impl GettingFocusEventArgs {
         P0: windows_core::Param<super::DependencyObject>,
     {
         unsafe { (windows_core::Interface::vtable(self).SetNewFocusedElement)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn FocusState(&self) -> windows_core::Result<super::FocusState> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).FocusState)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
     }
     pub fn Direction(&self) -> windows_core::Result<FocusNavigationDirection> {
         unsafe {
@@ -1920,6 +1935,301 @@ impl windows_core::RuntimeType for IFocusManagerStatics {
 impl windows_core::RuntimeName for IFocusManagerStatics {
     const NAME: &'static str = "Microsoft.UI.Xaml.Input.IFocusManagerStatics";
 }
+#[cfg(feature = "UI_Composition")]
+pub trait IFocusManagerStatics_Impl: windows_core::IUnknownImpl {
+    fn GotFocus(&self, handler: windows_core::Ref<windows::Foundation::EventHandler<FocusManagerGotFocusEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveGotFocus(&self, token: i64) -> windows_core::Result<()>;
+    fn LostFocus(&self, handler: windows_core::Ref<windows::Foundation::EventHandler<FocusManagerLostFocusEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveLostFocus(&self, token: i64) -> windows_core::Result<()>;
+    fn GettingFocus(&self, handler: windows_core::Ref<windows::Foundation::EventHandler<GettingFocusEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveGettingFocus(&self, token: i64) -> windows_core::Result<()>;
+    fn LosingFocus(&self, handler: windows_core::Ref<windows::Foundation::EventHandler<LosingFocusEventArgs>>) -> windows_core::Result<i64>;
+    fn RemoveLosingFocus(&self, token: i64) -> windows_core::Result<()>;
+    fn TryFocusAsync(&self, element: windows_core::Ref<super::DependencyObject>, value: super::FocusState) -> windows_core::Result<windows_future::IAsyncOperation<FocusMovementResult>>;
+    fn TryMoveFocusAsync(&self, focusNavigationDirection: FocusNavigationDirection) -> windows_core::Result<windows_future::IAsyncOperation<FocusMovementResult>>;
+    fn TryMoveFocusWithOptionsAsync(&self, focusNavigationDirection: FocusNavigationDirection, focusNavigationOptions: windows_core::Ref<FindNextElementOptions>) -> windows_core::Result<windows_future::IAsyncOperation<FocusMovementResult>>;
+    fn TryMoveFocusWithOptions(&self, focusNavigationDirection: FocusNavigationDirection, focusNavigationOptions: windows_core::Ref<FindNextElementOptions>) -> windows_core::Result<bool>;
+    fn FindNextElement(&self, focusNavigationDirection: FocusNavigationDirection) -> windows_core::Result<super::DependencyObject>;
+    fn FindFirstFocusableElement(&self, searchScope: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<super::DependencyObject>;
+    fn FindLastFocusableElement(&self, searchScope: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<super::DependencyObject>;
+    fn FindNextElementWithOptions(&self, focusNavigationDirection: FocusNavigationDirection, focusNavigationOptions: windows_core::Ref<FindNextElementOptions>) -> windows_core::Result<super::DependencyObject>;
+    fn FindNextFocusableElement(&self, focusNavigationDirection: FocusNavigationDirection) -> windows_core::Result<super::UIElement>;
+    fn FindNextFocusableElementWithHint(&self, focusNavigationDirection: FocusNavigationDirection, hintRect: &windows::Foundation::Rect) -> windows_core::Result<super::UIElement>;
+    fn TryMoveFocus(&self, focusNavigationDirection: FocusNavigationDirection) -> windows_core::Result<bool>;
+    fn GetFocusedElement(&self) -> windows_core::Result<windows_core::IInspectable>;
+    fn GetFocusedElementWithRoot(&self, xamlRoot: windows_core::Ref<super::XamlRoot>) -> windows_core::Result<windows_core::IInspectable>;
+}
+#[cfg(feature = "UI_Composition")]
+impl IFocusManagerStatics_Vtbl {
+    pub const fn new<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GotFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::GotFocus(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveGotFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFocusManagerStatics_Impl::RemoveGotFocus(this, token).into()
+            }
+        }
+        unsafe extern "system" fn LostFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::LostFocus(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveLostFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFocusManagerStatics_Impl::RemoveLostFocus(this, token).into()
+            }
+        }
+        unsafe extern "system" fn GettingFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::GettingFocus(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveGettingFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFocusManagerStatics_Impl::RemoveGettingFocus(this, token).into()
+            }
+        }
+        unsafe extern "system" fn LosingFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::LosingFocus(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveLosingFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IFocusManagerStatics_Impl::RemoveLosingFocus(this, token).into()
+            }
+        }
+        unsafe extern "system" fn TryFocusAsync<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, element: *mut core::ffi::c_void, value: super::FocusState, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::TryFocusAsync(this, core::mem::transmute_copy(&element), value) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryMoveFocusAsync<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::TryMoveFocusAsync(this, focusnavigationdirection) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryMoveFocusWithOptionsAsync<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, focusnavigationoptions: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::TryMoveFocusWithOptionsAsync(this, focusnavigationdirection, core::mem::transmute_copy(&focusnavigationoptions)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryMoveFocusWithOptions<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, focusnavigationoptions: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::TryMoveFocusWithOptions(this, focusnavigationdirection, core::mem::transmute_copy(&focusnavigationoptions)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindNextElement<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindNextElement(this, focusnavigationdirection) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindFirstFocusableElement<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, searchscope: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindFirstFocusableElement(this, core::mem::transmute_copy(&searchscope)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindLastFocusableElement<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, searchscope: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindLastFocusableElement(this, core::mem::transmute_copy(&searchscope)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindNextElementWithOptions<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, focusnavigationoptions: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindNextElementWithOptions(this, focusnavigationdirection, core::mem::transmute_copy(&focusnavigationoptions)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindNextFocusableElement<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindNextFocusableElement(this, focusnavigationdirection) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn FindNextFocusableElementWithHint<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, hintrect: windows::Foundation::Rect, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::FindNextFocusableElementWithHint(this, focusnavigationdirection, core::mem::transmute(&hintrect)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryMoveFocus<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, focusnavigationdirection: FocusNavigationDirection, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::TryMoveFocus(this, focusnavigationdirection) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFocusedElement<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::GetFocusedElement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn GetFocusedElementWithRoot<Identity: IFocusManagerStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, xamlroot: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IFocusManagerStatics_Impl::GetFocusedElementWithRoot(this, core::mem::transmute_copy(&xamlroot)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IFocusManagerStatics, OFFSET>(),
+            GotFocus: GotFocus::<Identity, OFFSET>,
+            RemoveGotFocus: RemoveGotFocus::<Identity, OFFSET>,
+            LostFocus: LostFocus::<Identity, OFFSET>,
+            RemoveLostFocus: RemoveLostFocus::<Identity, OFFSET>,
+            GettingFocus: GettingFocus::<Identity, OFFSET>,
+            RemoveGettingFocus: RemoveGettingFocus::<Identity, OFFSET>,
+            LosingFocus: LosingFocus::<Identity, OFFSET>,
+            RemoveLosingFocus: RemoveLosingFocus::<Identity, OFFSET>,
+            TryFocusAsync: TryFocusAsync::<Identity, OFFSET>,
+            TryMoveFocusAsync: TryMoveFocusAsync::<Identity, OFFSET>,
+            TryMoveFocusWithOptionsAsync: TryMoveFocusWithOptionsAsync::<Identity, OFFSET>,
+            TryMoveFocusWithOptions: TryMoveFocusWithOptions::<Identity, OFFSET>,
+            FindNextElement: FindNextElement::<Identity, OFFSET>,
+            FindFirstFocusableElement: FindFirstFocusableElement::<Identity, OFFSET>,
+            FindLastFocusableElement: FindLastFocusableElement::<Identity, OFFSET>,
+            FindNextElementWithOptions: FindNextElementWithOptions::<Identity, OFFSET>,
+            FindNextFocusableElement: FindNextFocusableElement::<Identity, OFFSET>,
+            FindNextFocusableElementWithHint: FindNextFocusableElementWithHint::<Identity, OFFSET>,
+            TryMoveFocus: TryMoveFocus::<Identity, OFFSET>,
+            GetFocusedElement: GetFocusedElement::<Identity, OFFSET>,
+            GetFocusedElementWithRoot: GetFocusedElementWithRoot::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IFocusManagerStatics as windows_core::Interface>::IID
+    }
+}
 #[repr(C)]
 #[doc(hidden)]
 pub struct IFocusManagerStatics_Vtbl {
@@ -1932,7 +2242,7 @@ pub struct IFocusManagerStatics_Vtbl {
     pub RemoveGettingFocus: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
     pub LosingFocus: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
     pub RemoveLosingFocus: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
-    TryFocusAsync: usize,
+    pub TryFocusAsync: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, super::FocusState, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub TryMoveFocusAsync: unsafe extern "system" fn(*mut core::ffi::c_void, FocusNavigationDirection, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub TryMoveFocusWithOptionsAsync: unsafe extern "system" fn(*mut core::ffi::c_void, FocusNavigationDirection, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub TryMoveFocusWithOptions: unsafe extern "system" fn(*mut core::ffi::c_void, FocusNavigationDirection, *mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
@@ -1997,6 +2307,184 @@ impl windows_core::RuntimeType for IGettingFocusEventArgs {
 impl windows_core::RuntimeName for IGettingFocusEventArgs {
     const NAME: &'static str = "Microsoft.UI.Xaml.Input.IGettingFocusEventArgs";
 }
+pub trait IGettingFocusEventArgs_Impl: windows_core::IUnknownImpl {
+    fn OldFocusedElement(&self) -> windows_core::Result<super::DependencyObject>;
+    fn NewFocusedElement(&self) -> windows_core::Result<super::DependencyObject>;
+    fn SetNewFocusedElement(&self, value: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<()>;
+    fn FocusState(&self) -> windows_core::Result<super::FocusState>;
+    fn Direction(&self) -> windows_core::Result<FocusNavigationDirection>;
+    fn Handled(&self) -> windows_core::Result<bool>;
+    fn SetHandled(&self, value: bool) -> windows_core::Result<()>;
+    fn InputDevice(&self) -> windows_core::Result<FocusInputDeviceKind>;
+    fn Cancel(&self) -> windows_core::Result<bool>;
+    fn SetCancel(&self, value: bool) -> windows_core::Result<()>;
+    fn CorrelationId(&self) -> windows_core::Result<windows_core::GUID>;
+    fn TryCancel(&self) -> windows_core::Result<bool>;
+    fn TrySetNewFocusedElement(&self, element: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<bool>;
+}
+impl IGettingFocusEventArgs_Vtbl {
+    pub const fn new<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn OldFocusedElement<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::OldFocusedElement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn NewFocusedElement<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::NewFocusedElement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetNewFocusedElement<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IGettingFocusEventArgs_Impl::SetNewFocusedElement(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn FocusState<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::FocusState) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::FocusState(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Direction<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut FocusNavigationDirection) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::Direction(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Handled<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::Handled(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetHandled<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IGettingFocusEventArgs_Impl::SetHandled(this, value).into()
+            }
+        }
+        unsafe extern "system" fn InputDevice<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut FocusInputDeviceKind) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::InputDevice(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Cancel<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::Cancel(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCancel<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IGettingFocusEventArgs_Impl::SetCancel(this, value).into()
+            }
+        }
+        unsafe extern "system" fn CorrelationId<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows_core::GUID) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::CorrelationId(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryCancel<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::TryCancel(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TrySetNewFocusedElement<Identity: IGettingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, element: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IGettingFocusEventArgs_Impl::TrySetNewFocusedElement(this, core::mem::transmute_copy(&element)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IGettingFocusEventArgs, OFFSET>(),
+            OldFocusedElement: OldFocusedElement::<Identity, OFFSET>,
+            NewFocusedElement: NewFocusedElement::<Identity, OFFSET>,
+            SetNewFocusedElement: SetNewFocusedElement::<Identity, OFFSET>,
+            FocusState: FocusState::<Identity, OFFSET>,
+            Direction: Direction::<Identity, OFFSET>,
+            Handled: Handled::<Identity, OFFSET>,
+            SetHandled: SetHandled::<Identity, OFFSET>,
+            InputDevice: InputDevice::<Identity, OFFSET>,
+            Cancel: Cancel::<Identity, OFFSET>,
+            SetCancel: SetCancel::<Identity, OFFSET>,
+            CorrelationId: CorrelationId::<Identity, OFFSET>,
+            TryCancel: TryCancel::<Identity, OFFSET>,
+            TrySetNewFocusedElement: TrySetNewFocusedElement::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IGettingFocusEventArgs as windows_core::Interface>::IID
+    }
+}
 #[repr(C)]
 #[doc(hidden)]
 pub struct IGettingFocusEventArgs_Vtbl {
@@ -2004,7 +2492,7 @@ pub struct IGettingFocusEventArgs_Vtbl {
     pub OldFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub NewFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub SetNewFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
-    FocusState: usize,
+    pub FocusState: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::FocusState) -> windows_core::HRESULT,
     pub Direction: unsafe extern "system" fn(*mut core::ffi::c_void, *mut FocusNavigationDirection) -> windows_core::HRESULT,
     pub Handled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetHandled: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
@@ -2864,6 +3352,184 @@ impl windows_core::RuntimeType for ILosingFocusEventArgs {
 impl windows_core::RuntimeName for ILosingFocusEventArgs {
     const NAME: &'static str = "Microsoft.UI.Xaml.Input.ILosingFocusEventArgs";
 }
+pub trait ILosingFocusEventArgs_Impl: windows_core::IUnknownImpl {
+    fn OldFocusedElement(&self) -> windows_core::Result<super::DependencyObject>;
+    fn NewFocusedElement(&self) -> windows_core::Result<super::DependencyObject>;
+    fn SetNewFocusedElement(&self, value: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<()>;
+    fn FocusState(&self) -> windows_core::Result<super::FocusState>;
+    fn Direction(&self) -> windows_core::Result<FocusNavigationDirection>;
+    fn Handled(&self) -> windows_core::Result<bool>;
+    fn SetHandled(&self, value: bool) -> windows_core::Result<()>;
+    fn InputDevice(&self) -> windows_core::Result<FocusInputDeviceKind>;
+    fn Cancel(&self) -> windows_core::Result<bool>;
+    fn SetCancel(&self, value: bool) -> windows_core::Result<()>;
+    fn CorrelationId(&self) -> windows_core::Result<windows_core::GUID>;
+    fn TryCancel(&self) -> windows_core::Result<bool>;
+    fn TrySetNewFocusedElement(&self, element: windows_core::Ref<super::DependencyObject>) -> windows_core::Result<bool>;
+}
+impl ILosingFocusEventArgs_Vtbl {
+    pub const fn new<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn OldFocusedElement<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::OldFocusedElement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn NewFocusedElement<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::NewFocusedElement(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetNewFocusedElement<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ILosingFocusEventArgs_Impl::SetNewFocusedElement(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn FocusState<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::FocusState) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::FocusState(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Direction<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut FocusNavigationDirection) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::Direction(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Handled<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::Handled(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetHandled<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ILosingFocusEventArgs_Impl::SetHandled(this, value).into()
+            }
+        }
+        unsafe extern "system" fn InputDevice<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut FocusInputDeviceKind) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::InputDevice(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Cancel<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::Cancel(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetCancel<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ILosingFocusEventArgs_Impl::SetCancel(this, value).into()
+            }
+        }
+        unsafe extern "system" fn CorrelationId<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows_core::GUID) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::CorrelationId(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TryCancel<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::TryCancel(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn TrySetNewFocusedElement<Identity: ILosingFocusEventArgs_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, element: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILosingFocusEventArgs_Impl::TrySetNewFocusedElement(this, core::mem::transmute_copy(&element)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ILosingFocusEventArgs, OFFSET>(),
+            OldFocusedElement: OldFocusedElement::<Identity, OFFSET>,
+            NewFocusedElement: NewFocusedElement::<Identity, OFFSET>,
+            SetNewFocusedElement: SetNewFocusedElement::<Identity, OFFSET>,
+            FocusState: FocusState::<Identity, OFFSET>,
+            Direction: Direction::<Identity, OFFSET>,
+            Handled: Handled::<Identity, OFFSET>,
+            SetHandled: SetHandled::<Identity, OFFSET>,
+            InputDevice: InputDevice::<Identity, OFFSET>,
+            Cancel: Cancel::<Identity, OFFSET>,
+            SetCancel: SetCancel::<Identity, OFFSET>,
+            CorrelationId: CorrelationId::<Identity, OFFSET>,
+            TryCancel: TryCancel::<Identity, OFFSET>,
+            TrySetNewFocusedElement: TrySetNewFocusedElement::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ILosingFocusEventArgs as windows_core::Interface>::IID
+    }
+}
 #[repr(C)]
 #[doc(hidden)]
 pub struct ILosingFocusEventArgs_Vtbl {
@@ -2871,7 +3537,7 @@ pub struct ILosingFocusEventArgs_Vtbl {
     pub OldFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub NewFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub SetNewFocusedElement: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
-    FocusState: usize,
+    pub FocusState: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::FocusState) -> windows_core::HRESULT,
     pub Direction: unsafe extern "system" fn(*mut core::ffi::c_void, *mut FocusNavigationDirection) -> windows_core::HRESULT,
     pub Handled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetHandled: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
@@ -5204,6 +5870,12 @@ impl LosingFocusEventArgs {
         P0: windows_core::Param<super::DependencyObject>,
     {
         unsafe { (windows_core::Interface::vtable(self).SetNewFocusedElement)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn FocusState(&self) -> windows_core::Result<super::FocusState> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).FocusState)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
     }
     pub fn Direction(&self) -> windows_core::Result<FocusNavigationDirection> {
         unsafe {

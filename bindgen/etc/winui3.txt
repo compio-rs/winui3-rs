@@ -51,6 +51,7 @@
     Microsoft.UI.Xaml.DropCompletedEventArgs
     Microsoft.UI.Xaml.EffectiveViewportChangedEventArgs
     Microsoft.UI.Xaml.FrameworkElement
+    Microsoft.UI.Xaml.FocusState
     Microsoft.UI.Xaml.FocusVisualKind
     Microsoft.UI.Xaml.GridLength
     Microsoft.UI.Xaml.GridUnitType
