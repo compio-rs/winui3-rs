@@ -2544,6 +2544,7 @@ impl windows_core::RuntimeType for IRangeBaseOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.Primitives.IRangeBaseOverrides");
 }
+windows_core::imp::interface_hierarchy!(IRangeBaseOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IRangeBaseOverrides {
     pub fn OnMinimumChanged(&self, oldminimum: f64, newminimum: f64) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).OnMinimumChanged)(windows_core::Interface::as_raw(self), oldminimum, newminimum).ok() }
@@ -3389,6 +3390,7 @@ impl windows_core::RuntimeType for IToggleButtonOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.Primitives.IToggleButtonOverrides");
 }
+windows_core::imp::interface_hierarchy!(IToggleButtonOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IToggleButtonOverrides {
     pub fn OnToggle(&self) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).OnToggle)(windows_core::Interface::as_raw(self)).ok() }

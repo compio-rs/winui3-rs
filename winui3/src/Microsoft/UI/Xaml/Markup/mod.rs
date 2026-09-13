@@ -186,6 +186,7 @@ impl windows_core::RuntimeType for IMarkupExtensionOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Markup.IMarkupExtensionOverrides");
 }
+windows_core::imp::interface_hierarchy!(IMarkupExtensionOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IMarkupExtensionOverrides {
     pub fn ProvideValue(&self) -> windows_core::Result<windows_core::IInspectable> {
         unsafe {

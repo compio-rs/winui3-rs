@@ -155,6 +155,7 @@
     Microsoft.UI.Xaml.Controls.ToolTip
     Microsoft.UI.Xaml.Controls.ToolTipService
     Microsoft.UI.Xaml.Controls.UIElementCollection
+    Microsoft.UI.Xaml.Controls.UserControl
     Microsoft.UI.Xaml.Controls.WebView2
     Microsoft.UI.Xaml.Controls.XamlControlsResources
 

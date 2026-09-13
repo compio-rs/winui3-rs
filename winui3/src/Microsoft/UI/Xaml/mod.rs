@@ -2435,6 +2435,7 @@ impl windows_core::RuntimeType for IApplicationOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IApplicationOverrides");
 }
+windows_core::imp::interface_hierarchy!(IApplicationOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IApplicationOverrides {
     pub fn OnLaunched<P0>(&self, args: P0) -> windows_core::Result<()>
     where
@@ -3129,6 +3130,7 @@ impl windows_core::RuntimeType for IFrameworkElementOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IFrameworkElementOverrides");
 }
+windows_core::imp::interface_hierarchy!(IFrameworkElementOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IFrameworkElementOverrides {
     pub fn MeasureOverride(&self, availablesize: windows::Foundation::Size) -> windows_core::Result<windows::Foundation::Size> {
         unsafe {
@@ -4066,6 +4068,7 @@ impl windows_core::RuntimeType for IUIElementOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IUIElementOverrides");
 }
+windows_core::imp::interface_hierarchy!(IUIElementOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IUIElementOverrides {
     pub fn OnDisconnectVisualChildren(&self) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).OnDisconnectVisualChildren)(windows_core::Interface::as_raw(self)).ok() }

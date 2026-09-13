@@ -292,6 +292,7 @@ impl windows_core::RuntimeType for IBrushOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IBrushOverrides");
 }
+windows_core::imp::interface_hierarchy!(IBrushOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl windows_core::RuntimeName for IBrushOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Media.IBrushOverrides";
 }
@@ -695,6 +696,7 @@ impl windows_core::RuntimeType for ISystemBackdropOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ISystemBackdropOverrides");
 }
+windows_core::imp::interface_hierarchy!(ISystemBackdropOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl ISystemBackdropOverrides {
     #[cfg(feature = "UI_Composition")]
     pub fn OnTargetConnected<P0, P1>(&self, connectedtarget: P0, xamlroot: P1) -> windows_core::Result<()>
@@ -844,6 +846,7 @@ impl windows_core::RuntimeType for IXamlLightOverrides {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IXamlLightOverrides");
 }
+windows_core::imp::interface_hierarchy!(IXamlLightOverrides, windows_core::IUnknown, windows_core::IInspectable);
 impl IXamlLightOverrides {
     pub fn GetId(&self) -> windows_core::Result<windows_core::HSTRING> {
         unsafe {
