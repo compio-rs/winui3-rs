@@ -1,6 +1,6 @@
 [package]
 name = "winio-winui3"
-version = "0.6.0"
+version = "0.6.1"
 edition = "2024"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
