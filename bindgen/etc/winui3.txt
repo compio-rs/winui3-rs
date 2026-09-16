@@ -105,6 +105,7 @@
     Microsoft.UI.Xaml.Controls.Grid
     Microsoft.UI.Xaml.Controls.GroupStyle
     Microsoft.UI.Xaml.Controls.HyperlinkButton
+    Microsoft.UI.Xaml.Controls.Image
     Microsoft.UI.Xaml.Controls.IsTextTrimmedChangedEventArgs
     Microsoft.UI.Xaml.Controls.ItemCollection
     Microsoft.UI.Xaml.Controls.ItemsControl
@@ -180,11 +181,14 @@
     Microsoft.UI.Xaml.Media.Brush
     Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop
     Microsoft.UI.Xaml.Media.FontFamily
+    Microsoft.UI.Xaml.Media.ImageSource
     Microsoft.UI.Xaml.Media.MicaBackdrop
     Microsoft.UI.Xaml.Media.Stretch
     Microsoft.UI.Xaml.Media.SystemBackdrop
     Microsoft.UI.Xaml.Media.XamlLight
 
     Microsoft.UI.Xaml.Media.DxInterop.ISwapChainPanelNative
+
+    Microsoft.UI.Xaml.Media.Imaging.WriteableBitmap
 
     Microsoft.Web.WebView2.Core

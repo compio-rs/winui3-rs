@@ -12,4 +12,4 @@ windows-numerics = "0.100"
 windows-reference = "0.100"
 windows-registry = "0.100"
 windows-time = "0.100"
-windows = { path = "windows-subset", package = "winio-windows-subset", version = "0.2.1" }
+windows = { path = "windows-subset", package = "winio-windows-subset", version = "0.2.2" }

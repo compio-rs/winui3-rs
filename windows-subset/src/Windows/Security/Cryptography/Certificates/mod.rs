@@ -30,6 +30,13 @@ impl Certificate {
             (windows_core::Interface::vtable(self).GetHashValueWithAlgorithm)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(hashalgorithmname), windows_core::Array::<u8>::set_abi_len(core::mem::transmute(&mut result__)), result__.as_mut_ptr() as *mut _ as _).map(|| result__.assume_init())
         }
     }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn GetCertificateBlob(&self) -> windows_core::Result<super::super::super::Storage::Streams::IBuffer> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetCertificateBlob)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
     pub fn Subject(&self) -> windows_core::Result<windows_core::HSTRING> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -130,6 +137,16 @@ impl Certificate {
             (windows_core::Interface::vtable(this).KeyStorageProviderName)(windows_core::Interface::as_raw(this), &mut result__).map(|| core::mem::transmute(result__))
         }
     }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn CreateCertificate<P0>(certblob: P0) -> windows_core::Result<Self>
+    where
+        P0: windows_core::Param<super::super::super::Storage::Streams::IBuffer>,
+    {
+        Self::ICertificateFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateCertificate)(windows_core::Interface::as_raw(this), certblob.param().abi(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
     fn ICertificateFactory<R, F: FnOnce(&ICertificateFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
         static SHARED: windows_core::imp::FactoryCache<Certificate, ICertificateFactory> = windows_core::imp::FactoryCache::new();
         SHARED.call(callback)
@@ -176,6 +193,7 @@ impl windows_core::RuntimeType for ICertificate {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.Security.Cryptography.Certificates.ICertificate");
 }
+#[cfg(feature = "Storage_Streams")]
 impl windows_core::RuntimeName for ICertificate {
     const NAME: &'static str = "Windows.Security.Cryptography.Certificates.ICertificate";
 }
@@ -188,6 +206,9 @@ pub struct ICertificate_Vtbl {
     pub SerialNumber: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32, *mut *mut u8) -> windows_core::HRESULT,
     pub GetHashValue: unsafe extern "system" fn(*mut core::ffi::c_void, *mut u32, *mut *mut u8) -> windows_core::HRESULT,
     pub GetHashValueWithAlgorithm: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut u32, *mut *mut u8) -> windows_core::HRESULT,
+    #[cfg(feature = "Storage_Streams")]
+    pub GetCertificateBlob: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Storage_Streams"))]
     GetCertificateBlob: usize,
     pub Subject: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub Issuer: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -310,11 +331,45 @@ impl windows_core::RuntimeType for ICertificateFactory {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.Security.Cryptography.Certificates.ICertificateFactory");
 }
+#[cfg(feature = "Storage_Streams")]
 impl windows_core::RuntimeName for ICertificateFactory {
     const NAME: &'static str = "Windows.Security.Cryptography.Certificates.ICertificateFactory";
+}
+#[cfg(feature = "Storage_Streams")]
+pub trait ICertificateFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateCertificate(&self, certBlob: windows_core::Ref<super::super::super::Storage::Streams::IBuffer>) -> windows_core::Result<Certificate>;
+}
+#[cfg(feature = "Storage_Streams")]
+impl ICertificateFactory_Vtbl {
+    pub const fn new<Identity: ICertificateFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateCertificate<Identity: ICertificateFactory_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, certblob: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICertificateFactory_Impl::CreateCertificate(this, core::mem::transmute_copy(&certblob)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ICertificateFactory, OFFSET>(),
+            CreateCertificate: CreateCertificate::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICertificateFactory as windows_core::Interface>::IID
+    }
 }
 #[repr(C)]
 #[doc(hidden)]
 pub struct ICertificateFactory_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "Storage_Streams")]
+    pub CreateCertificate: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Storage_Streams"))]
+    CreateCertificate: usize,
 }

@@ -94,6 +94,7 @@ impl windows_core::RuntimeType for IMediaPlayer3 {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.Media.Playback.IMediaPlayer3");
 }
+#[cfg(feature = "Media_Casting")]
 impl windows_core::RuntimeName for IMediaPlayer3 {
     const NAME: &'static str = "Windows.Media.Playback.IMediaPlayer3";
 }
@@ -122,6 +123,10 @@ pub struct IMediaPlayer3_Vtbl {
     PlaybackSession: usize,
     pub StepForwardOneFrame: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
     pub StepBackwardOneFrame: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(feature = "Media_Casting")]
+    pub GetAsCastingSource: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Media_Casting"))]
+    GetAsCastingSource: usize,
 }
 windows_core::imp::define_interface!(IMediaPlayer4, IMediaPlayer4_Vtbl, 0x80035db0_7448_4770_afcf_2a57450914c5);
 impl windows_core::RuntimeType for IMediaPlayer4 {
@@ -634,6 +639,14 @@ impl MediaPlayer {
     pub fn StepBackwardOneFrame(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IMediaPlayer3>(self)?;
         unsafe { (windows_core::Interface::vtable(this).StepBackwardOneFrame)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    #[cfg(feature = "Media_Casting")]
+    pub fn GetAsCastingSource(&self) -> windows_core::Result<super::Casting::CastingSource> {
+        let this = &windows_core::Interface::cast::<IMediaPlayer3>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetAsCastingSource)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
     }
     pub fn SetSurfaceSize(&self, size: super::super::Foundation::Size) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IMediaPlayer4>(self)?;

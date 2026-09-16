@@ -37,6 +37,8 @@
 
     Windows.Graphics.Imaging.SoftwareBitmap
 
+    Windows.Media.Casting.CastingSource
+
     Windows.Media.Core.IMediaCue
     Windows.Media.Core.MediaCueEventArgs
     Windows.Media.Core.MediaSource
@@ -61,6 +63,7 @@
 
     Windows.Storage.FileProperties.BasicProperties
 
+    Windows.Storage.Streams.IBuffer
     Windows.Storage.Streams.IRandomAccessStream
     Windows.Storage.Streams.IRandomAccessStreamWithContentType
     Windows.Storage.Streams.RandomAccessStreamReference
@@ -214,6 +217,8 @@
     Windows.Win32.System.Memory.HeapFree
 
     Windows.Win32.System.Variant.VARIANT
+
+    Windows.Win32.System.WinRT.IBufferByteAccess
 
     Windows.Win32.UI.Shell.Common.COMDLG_FILTERSPEC
     Windows.Win32.UI.Shell.CSIDL_WINDOWS

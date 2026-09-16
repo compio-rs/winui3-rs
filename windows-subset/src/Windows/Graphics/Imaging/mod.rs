@@ -3,6 +3,7 @@ impl windows_core::RuntimeType for ISoftwareBitmap {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.Graphics.Imaging.ISoftwareBitmap");
 }
+#[cfg(feature = "Storage_Streams")]
 impl windows_core::RuntimeName for ISoftwareBitmap {
     const NAME: &'static str = "Windows.Graphics.Imaging.ISoftwareBitmap";
 }
@@ -21,7 +22,13 @@ pub struct ISoftwareBitmap_Vtbl {
     pub DpiY: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
     LockBuffer: usize,
     pub CopyTo: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(feature = "Storage_Streams")]
+    pub CopyFromBuffer: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Storage_Streams"))]
     CopyFromBuffer: usize,
+    #[cfg(feature = "Storage_Streams")]
+    pub CopyToBuffer: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Storage_Streams"))]
     CopyToBuffer: usize,
     pub GetReadOnlyView: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
 }
@@ -103,6 +110,20 @@ impl SoftwareBitmap {
         P0: windows_core::Param<Self>,
     {
         unsafe { (windows_core::Interface::vtable(self).CopyTo)(windows_core::Interface::as_raw(self), bitmap.param().abi()).ok() }
+    }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn CopyFromBuffer<P0>(&self, buffer: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Storage::Streams::IBuffer>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).CopyFromBuffer)(windows_core::Interface::as_raw(self), buffer.param().abi()).ok() }
+    }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn CopyToBuffer<P0>(&self, buffer: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Storage::Streams::IBuffer>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).CopyToBuffer)(windows_core::Interface::as_raw(self), buffer.param().abi()).ok() }
     }
     pub fn GetReadOnlyView(&self) -> windows_core::Result<Self> {
         unsafe {

@@ -1,6 +1,6 @@
 [package]
 name = "winio-windows-subset"
-version = "0.2.1"
+version = "0.2.2"
 edition = "2024"
 description = "Windows API bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -46,6 +46,7 @@ Foundation = []
 Graphics = ["Foundation"]
 Graphics_Imaging = ["Graphics"]
 Media = ["Foundation"]
+Media_Casting = ["Media"]
 Media_Core = ["Media"]
 Media_Playback = ["Media"]
 Security = ["Foundation"]

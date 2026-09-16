@@ -1,5 +1,7 @@
 #[cfg(feature = "UI_Xaml_Media_DxInterop")]
 pub mod DxInterop;
+#[cfg(feature = "UI_Xaml_Media_Imaging")]
+pub mod Imaging;
 #[cfg(feature = "UI_Composition")]
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -496,6 +498,50 @@ impl IFontFamilyStatics_Vtbl {
 pub struct IFontFamilyStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     pub XamlAutoFontFamily: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IImageSource, IImageSource_Vtbl, 0x6c2038f6_d6d5_55e9_9b9e_082f12dbff60);
+impl windows_core::RuntimeType for IImageSource {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IImageSource");
+}
+impl windows_core::RuntimeName for IImageSource {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IImageSource";
+}
+pub trait IImageSource_Impl: windows_core::IUnknownImpl {}
+impl IImageSource_Vtbl {
+    pub const fn new<Identity: IImageSource_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IImageSource, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IImageSource as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IImageSource_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IImageSourceFactory, IImageSourceFactory_Vtbl, 0x0b1e64a3_e353_5901_b84b_ae9842aea5cd);
+impl windows_core::RuntimeType for IImageSourceFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IImageSourceFactory");
+}
+impl windows_core::RuntimeName for IImageSourceFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IImageSourceFactory";
+}
+pub trait IImageSourceFactory_Impl: windows_core::IUnknownImpl {}
+impl IImageSourceFactory_Vtbl {
+    pub const fn new<Identity: IImageSourceFactory_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IImageSourceFactory, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IImageSourceFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IImageSourceFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
 }
 windows_core::imp::define_interface!(IMicaBackdrop, IMicaBackdrop_Vtbl, 0xc156a404_3dac_593a_b1f3_7a33c289dc83);
 impl windows_core::RuntimeType for IMicaBackdrop {
@@ -1021,6 +1067,40 @@ pub struct IXamlLightStatics_Vtbl {
     #[cfg(not(feature = "UI_Composition"))]
     RemoveTargetBrush: usize,
 }
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ImageSource(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(ImageSource, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(ImageSource, super::DependencyObject);
+impl ImageSource {
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeType for ImageSource {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IImageSource>();
+}
+unsafe impl windows_core::Interface for ImageSource {
+    type Vtable = <IImageSource as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IImageSource as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ImageSource {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ImageSource";
+}
+unsafe impl Send for ImageSource {}
+unsafe impl Sync for ImageSource {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MicaBackdrop(windows_core::IUnknown);
