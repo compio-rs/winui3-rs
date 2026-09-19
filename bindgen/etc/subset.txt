@@ -160,6 +160,20 @@
     Windows.Win32.Graphics.Dxgi.IDXGISwapChain1
     Windows.Win32.Graphics.Dxgi.IDXGISwapChain2
 
+    Windows.Win32.Graphics.Imaging.CLSID_WICImagingFactory
+    Windows.Win32.Graphics.Imaging.GUID_WICPixelFormat32bppPBGRA
+    Windows.Win32.Graphics.Imaging.GUID_WICPixelFormat32bppRGBA
+    Windows.Win32.Graphics.Imaging.IWICBitmap
+    Windows.Win32.Graphics.Imaging.IWICBitmapLock
+    Windows.Win32.Graphics.Imaging.IWICBitmapSource
+    Windows.Win32.Graphics.Imaging.IWICImagingFactory
+    Windows.Win32.Graphics.Imaging.IWICFormatConverter
+    Windows.Win32.Graphics.Imaging.WICBitmapCreateCacheOption
+    Windows.Win32.Graphics.Imaging.WICBitmapDitherType
+    Windows.Win32.Graphics.Imaging.WICBitmapLockFlags
+    Windows.Win32.Graphics.Imaging.WICBitmapPaletteType
+    Windows.Win32.Graphics.Imaging.WICRect
+
     Windows.Win32.Media.MediaFoundation.CLSID_MFMediaEngineClassFactory
     Windows.Win32.Media.MediaFoundation.MF_MEDIA_ENGINE_CALLBACK
     Windows.Win32.Media.MediaFoundation.MF_MEDIA_ENGINE_EVENT

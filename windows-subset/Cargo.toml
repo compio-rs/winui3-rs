@@ -1,6 +1,6 @@
 [package]
 name = "winio-windows-subset"
-version = "0.2.2"
+version = "0.2.3"
 edition = "2024"
 description = "Windows API bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -75,6 +75,7 @@ Win32_Graphics_Direct3D11 = ["Win32_Graphics"]
 Win32_Graphics_DirectWrite = ["Win32_Graphics"]
 Win32_Graphics_Dxgi = ["Win32_Graphics"]
 Win32_Graphics_Dxgi_Common = ["Win32_Graphics_Dxgi"]
+Win32_Graphics_Imaging = ["Win32_Graphics"]
 Win32_Media = ["Win32"]
 Win32_Media_MediaFoundation = ["Win32_Media"]
 Win32_Security = ["Win32"]

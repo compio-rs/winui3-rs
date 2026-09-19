@@ -8,3 +8,5 @@ pub mod Direct3D11;
 pub mod DirectWrite;
 #[cfg(feature = "Win32_Graphics_Dxgi")]
 pub mod Dxgi;
+#[cfg(feature = "Win32_Graphics_Imaging")]
+pub mod Imaging;

@@ -2007,7 +2007,7 @@ pub struct ID2D1BitmapRenderTarget_Vtbl {
 }
 unsafe impl Send for ID2D1BitmapRenderTarget {}
 unsafe impl Sync for ID2D1BitmapRenderTarget {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1BitmapRenderTarget {}
 windows_core::imp::define_interface!(ID2D1BlendTransform, ID2D1BlendTransform_Vtbl, 0x63ac0b32_ba44_450f_8806_7f4ca1ff2f1b);
 impl core::ops::Deref for ID2D1BlendTransform {
@@ -2994,7 +2994,7 @@ pub struct ID2D1DCRenderTarget_Vtbl {
 }
 unsafe impl Send for ID2D1DCRenderTarget {}
 unsafe impl Sync for ID2D1DCRenderTarget {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DCRenderTarget {}
 windows_core::imp::define_interface!(ID2D1Device, ID2D1Device_Vtbl, 0x47dd575d_ac05_4cdd_8049_9b02cd16f44c);
 impl core::ops::Deref for ID2D1Device {
@@ -3275,6 +3275,16 @@ impl ID2D1DeviceContext {
             (windows_core::Interface::vtable(self).CreateBitmap)(windows_core::Interface::as_raw(self), size, sourcedata.unwrap_or(core::mem::zeroed()) as _, pitch, bitmapproperties, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub unsafe fn CreateBitmapFromWicBitmap<P0>(&self, wicbitmapsource: P0, bitmapproperties: Option<*const D2D1_BITMAP_PROPERTIES1>) -> windows_core::Result<ID2D1Bitmap1>
+    where
+        P0: windows_core::Param<super::Imaging::IWICBitmapSource>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).CreateBitmapFromWicBitmap)(windows_core::Interface::as_raw(self), wicbitmapsource.param().abi(), bitmapproperties.unwrap_or(core::mem::zeroed()) as _, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
     pub unsafe fn CreateColorContext(&self, space: D2D1_COLOR_SPACE, profile: Option<&[u8]>) -> windows_core::Result<ID2D1ColorContext> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -3503,6 +3513,9 @@ pub struct ID2D1DeviceContext_Vtbl {
     pub CreateBitmap: unsafe extern "system" fn(*mut core::ffi::c_void, Common::D2D_SIZE_U, *const core::ffi::c_void, u32, *const D2D1_BITMAP_PROPERTIES1, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common")))]
     CreateBitmap: usize,
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub CreateBitmapFromWicBitmap: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *const D2D1_BITMAP_PROPERTIES1, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging")))]
     CreateBitmapFromWicBitmap: usize,
     pub CreateColorContext: unsafe extern "system" fn(*mut core::ffi::c_void, D2D1_COLOR_SPACE, *const u8, u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub CreateColorContextFromFilename: unsafe extern "system" fn(*mut core::ffi::c_void, windows_core::PCWSTR, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -3591,7 +3604,7 @@ pub struct ID2D1DeviceContext_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext {}
 unsafe impl Sync for ID2D1DeviceContext {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext {}
 windows_core::imp::define_interface!(ID2D1DeviceContext1, ID2D1DeviceContext1_Vtbl, 0xd37f57e4_6908_459f_a199_e72f24f79987);
 impl core::ops::Deref for ID2D1DeviceContext1 {
@@ -3641,7 +3654,7 @@ pub struct ID2D1DeviceContext1_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext1 {}
 unsafe impl Sync for ID2D1DeviceContext1 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext1 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext2, ID2D1DeviceContext2_Vtbl, 0x394ea6a3_0c34_4321_950b_6ca20f0be6c7);
 impl core::ops::Deref for ID2D1DeviceContext2 {
@@ -3670,6 +3683,16 @@ impl ID2D1DeviceContext2 {
         unsafe {
             let mut result__ = core::mem::zeroed();
             (windows_core::Interface::vtable(self).CreateGradientMesh)(windows_core::Interface::as_raw(self), patches.as_ptr(), patches.len().try_into().unwrap(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging"))]
+    pub unsafe fn CreateImageSourceFromWic<P0>(&self, wicbitmapsource: P0, loadingoptions: D2D1_IMAGE_SOURCE_LOADING_OPTIONS, alphamode: Common::D2D1_ALPHA_MODE) -> windows_core::Result<ID2D1ImageSourceFromWic>
+    where
+        P0: windows_core::Param<super::Imaging::IWICBitmapSource>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).CreateImageSourceFromWic)(windows_core::Interface::as_raw(self), wicbitmapsource.param().abi(), loadingoptions, alphamode, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
     pub unsafe fn CreateLookupTable3D(&self, precision: D2D1_BUFFER_PRECISION, extents: &[u32; 3], data: &[u8], strides: &[u32; 2]) -> windows_core::Result<ID2D1LookupTable3D> {
@@ -3738,6 +3761,9 @@ pub struct ID2D1DeviceContext2_Vtbl {
     pub CreateGradientMesh: unsafe extern "system" fn(*mut core::ffi::c_void, *const D2D1_GRADIENT_MESH_PATCH, u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(feature = "Win32_Graphics_Direct2D_Common"))]
     CreateGradientMesh: usize,
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging"))]
+    pub CreateImageSourceFromWic: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, D2D1_IMAGE_SOURCE_LOADING_OPTIONS, Common::D2D1_ALPHA_MODE, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging")))]
     CreateImageSourceFromWic: usize,
     pub CreateLookupTable3D: unsafe extern "system" fn(*mut core::ffi::c_void, D2D1_BUFFER_PRECISION, *const u32, *const u8, u32, *const u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     CreateImageSourceFromDxgi: usize,
@@ -3755,7 +3781,7 @@ pub struct ID2D1DeviceContext2_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext2 {}
 unsafe impl Sync for ID2D1DeviceContext2 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext2 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext3, ID2D1DeviceContext3_Vtbl, 0x235a7496_8351_414c_bcd4_6672ab2d8e00);
 impl core::ops::Deref for ID2D1DeviceContext3 {
@@ -3791,7 +3817,7 @@ pub struct ID2D1DeviceContext3_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext3 {}
 unsafe impl Sync for ID2D1DeviceContext3 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext3 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext4, ID2D1DeviceContext4_Vtbl, 0x8c427831_3d90_4476_b647_c4fae349e4db);
 impl core::ops::Deref for ID2D1DeviceContext4 {
@@ -3837,7 +3863,7 @@ pub struct ID2D1DeviceContext4_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext4 {}
 unsafe impl Sync for ID2D1DeviceContext4 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext4 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext5, ID2D1DeviceContext5_Vtbl, 0x7836d248_68cc_4df6_b9e8_de991bf62eb7);
 impl core::ops::Deref for ID2D1DeviceContext5 {
@@ -3891,7 +3917,7 @@ pub struct ID2D1DeviceContext5_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext5 {}
 unsafe impl Sync for ID2D1DeviceContext5 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext5 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext6, ID2D1DeviceContext6_Vtbl, 0x985f7e37_4ed0_4a19_98a3_15b0edfde306);
 impl core::ops::Deref for ID2D1DeviceContext6 {
@@ -3923,7 +3949,7 @@ pub struct ID2D1DeviceContext6_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext6 {}
 unsafe impl Sync for ID2D1DeviceContext6 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext6 {}
 windows_core::imp::define_interface!(ID2D1DeviceContext7, ID2D1DeviceContext7_Vtbl, 0xec891cf7_9b69_4851_9def_4e0915771e62);
 impl core::ops::Deref for ID2D1DeviceContext7 {
@@ -3943,7 +3969,7 @@ pub struct ID2D1DeviceContext7_Vtbl {
 }
 unsafe impl Send for ID2D1DeviceContext7 {}
 unsafe impl Sync for ID2D1DeviceContext7 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1DeviceContext7 {}
 windows_core::imp::define_interface!(ID2D1DrawInfo, ID2D1DrawInfo_Vtbl, 0x693ce632_7f2f_45de_93fe_18d88b37aa21);
 impl core::ops::Deref for ID2D1DrawInfo {
@@ -4650,6 +4676,16 @@ impl ID2D1Factory {
             (windows_core::Interface::vtable(self).CreateStrokeStyle)(windows_core::Interface::as_raw(self), strokestyleproperties, dashes.map_or(core::ptr::null(), |slice| slice.as_ptr()), dashes.map_or(0, |slice| slice.len().try_into().unwrap()), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub unsafe fn CreateWicBitmapRenderTarget<P0>(&self, target: P0, rendertargetproperties: *const D2D1_RENDER_TARGET_PROPERTIES) -> windows_core::Result<ID2D1RenderTarget>
+    where
+        P0: windows_core::Param<super::Imaging::IWICBitmap>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).CreateWicBitmapRenderTarget)(windows_core::Interface::as_raw(self), target.param().abi(), rendertargetproperties, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
     #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
     pub unsafe fn CreateHwndRenderTarget(&self, rendertargetproperties: *const D2D1_RENDER_TARGET_PROPERTIES, hwndrendertargetproperties: *const D2D1_HWND_RENDER_TARGET_PROPERTIES) -> windows_core::Result<ID2D1HwndRenderTarget> {
         unsafe {
@@ -4704,6 +4740,9 @@ pub struct ID2D1Factory_Vtbl {
     pub CreatePathGeometry: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub CreateStrokeStyle: unsafe extern "system" fn(*mut core::ffi::c_void, *const D2D1_STROKE_STYLE_PROPERTIES, *const f32, u32, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     CreateDrawingStateBlock: usize,
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub CreateWicBitmapRenderTarget: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *const D2D1_RENDER_TARGET_PROPERTIES, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging")))]
     CreateWicBitmapRenderTarget: usize,
     #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
     pub CreateHwndRenderTarget: unsafe extern "system" fn(*mut core::ffi::c_void, *const D2D1_RENDER_TARGET_PROPERTIES, *const D2D1_HWND_RENDER_TARGET_PROPERTIES, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -4720,7 +4759,7 @@ pub struct ID2D1Factory_Vtbl {
 }
 unsafe impl Send for ID2D1Factory {}
 unsafe impl Sync for ID2D1Factory {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1Factory {}
 windows_core::imp::define_interface!(ID2D1Factory1, ID2D1Factory1_Vtbl, 0xbb12d362_daee_4b9a_aa1d_14ba401cfa1f);
 impl core::ops::Deref for ID2D1Factory1 {
@@ -4815,7 +4854,7 @@ pub struct ID2D1Factory1_Vtbl {
 }
 unsafe impl Send for ID2D1Factory1 {}
 unsafe impl Sync for ID2D1Factory1 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory1 {}
 windows_core::imp::define_interface!(ID2D1Factory2, ID2D1Factory2_Vtbl, 0x94f81a73_9212_4376_9c58_b16a3a0d3992);
 impl core::ops::Deref for ID2D1Factory2 {
@@ -4848,7 +4887,7 @@ pub struct ID2D1Factory2_Vtbl {
 }
 unsafe impl Send for ID2D1Factory2 {}
 unsafe impl Sync for ID2D1Factory2 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory2 {}
 windows_core::imp::define_interface!(ID2D1Factory3, ID2D1Factory3_Vtbl, 0x0869759f_4f00_413f_b03e_2bda45404d0f);
 impl core::ops::Deref for ID2D1Factory3 {
@@ -4881,7 +4920,7 @@ pub struct ID2D1Factory3_Vtbl {
 }
 unsafe impl Send for ID2D1Factory3 {}
 unsafe impl Sync for ID2D1Factory3 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory3 {}
 windows_core::imp::define_interface!(ID2D1Factory4, ID2D1Factory4_Vtbl, 0xbd4ec2d2_0662_4bee_ba8e_6f29f032e096);
 impl core::ops::Deref for ID2D1Factory4 {
@@ -4914,7 +4953,7 @@ pub struct ID2D1Factory4_Vtbl {
 }
 unsafe impl Send for ID2D1Factory4 {}
 unsafe impl Sync for ID2D1Factory4 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory4 {}
 windows_core::imp::define_interface!(ID2D1Factory5, ID2D1Factory5_Vtbl, 0xc4349994_838e_4b0f_8cab_44997d9eeacc);
 impl core::ops::Deref for ID2D1Factory5 {
@@ -4947,7 +4986,7 @@ pub struct ID2D1Factory5_Vtbl {
 }
 unsafe impl Send for ID2D1Factory5 {}
 unsafe impl Sync for ID2D1Factory5 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory5 {}
 windows_core::imp::define_interface!(ID2D1Factory6, ID2D1Factory6_Vtbl, 0xf9976f46_f642_44c1_97ca_da32ea2a2635);
 impl core::ops::Deref for ID2D1Factory6 {
@@ -4980,7 +5019,7 @@ pub struct ID2D1Factory6_Vtbl {
 }
 unsafe impl Send for ID2D1Factory6 {}
 unsafe impl Sync for ID2D1Factory6 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory6 {}
 windows_core::imp::define_interface!(ID2D1Factory7, ID2D1Factory7_Vtbl, 0xbdc2bdd3_b96c_4de6_bdf7_99d4745454de);
 impl core::ops::Deref for ID2D1Factory7 {
@@ -5013,7 +5052,7 @@ pub struct ID2D1Factory7_Vtbl {
 }
 unsafe impl Send for ID2D1Factory7 {}
 unsafe impl Sync for ID2D1Factory7 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory7 {}
 windows_core::imp::define_interface!(ID2D1Factory8, ID2D1Factory8_Vtbl, 0x677c9311_f36d_4b1f_ae86_86d1223ffd3a);
 impl core::ops::Deref for ID2D1Factory8 {
@@ -5046,7 +5085,7 @@ pub struct ID2D1Factory8_Vtbl {
 }
 unsafe impl Send for ID2D1Factory8 {}
 unsafe impl Sync for ID2D1Factory8 {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_System_Com"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging", feature = "Win32_System_Com"))]
 impl windows_core::RuntimeName for ID2D1Factory8 {}
 windows_core::imp::define_interface!(ID2D1GdiInteropRenderTarget, ID2D1GdiInteropRenderTarget_Vtbl, 0xe0db51c3_6f77_4bae_b3d5_e47509b35838);
 windows_core::imp::interface_hierarchy!(ID2D1GdiInteropRenderTarget, windows_core::IUnknown);
@@ -6096,7 +6135,7 @@ pub struct ID2D1HwndRenderTarget_Vtbl {
 }
 unsafe impl Send for ID2D1HwndRenderTarget {}
 unsafe impl Sync for ID2D1HwndRenderTarget {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1HwndRenderTarget {}
 windows_core::imp::define_interface!(ID2D1Image, ID2D1Image_Vtbl, 0x65019f75_8da2_497c_b32c_dfa34e48ede6);
 impl core::ops::Deref for ID2D1Image {
@@ -6385,6 +6424,14 @@ impl ID2D1ImageSourceFromWic {
     pub unsafe fn TrimCache(&self, rectangletopreserve: Option<*const Common::D2D_RECT_U>) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).TrimCache)(windows_core::Interface::as_raw(self), rectangletopreserve.unwrap_or(core::mem::zeroed()) as _).ok() }
     }
+    #[cfg(feature = "Win32_Graphics_Imaging")]
+    pub unsafe fn GetSource(&self) -> windows_core::Result<super::Imaging::IWICBitmapSource> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetSource)(windows_core::Interface::as_raw(self), &mut result__);
+            windows_core::imp::Type::from_abi(result__)
+        }
+    }
 }
 #[repr(C)]
 #[doc(hidden)]
@@ -6398,11 +6445,52 @@ pub struct ID2D1ImageSourceFromWic_Vtbl {
     pub TrimCache: unsafe extern "system" fn(*mut core::ffi::c_void, *const Common::D2D_RECT_U) -> windows_core::HRESULT,
     #[cfg(not(feature = "Win32_Graphics_Direct2D_Common"))]
     TrimCache: usize,
+    #[cfg(feature = "Win32_Graphics_Imaging")]
+    pub GetSource: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void),
+    #[cfg(not(feature = "Win32_Graphics_Imaging"))]
     GetSource: usize,
 }
 unsafe impl Send for ID2D1ImageSourceFromWic {}
 unsafe impl Sync for ID2D1ImageSourceFromWic {}
-#[cfg(feature = "Win32_Graphics_Direct2D_Common")]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging"))]
+pub trait ID2D1ImageSourceFromWic_Impl: ID2D1ImageSource_Impl {
+    fn EnsureCached(&self, rectangletofill: *const Common::D2D_RECT_U) -> windows_core::Result<()>;
+    fn TrimCache(&self, rectangletopreserve: *const Common::D2D_RECT_U) -> windows_core::Result<()>;
+    fn GetSource(&self, wicbitmapsource: windows_core::OutRef<super::Imaging::IWICBitmapSource>);
+}
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging"))]
+impl ID2D1ImageSourceFromWic_Vtbl {
+    pub const fn new<Identity: ID2D1ImageSourceFromWic_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn EnsureCached<Identity: ID2D1ImageSourceFromWic_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, rectangletofill: *const Common::D2D_RECT_U) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ID2D1ImageSourceFromWic_Impl::EnsureCached(this, core::mem::transmute_copy(&rectangletofill)).into()
+            }
+        }
+        unsafe extern "system" fn TrimCache<Identity: ID2D1ImageSourceFromWic_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, rectangletopreserve: *const Common::D2D_RECT_U) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ID2D1ImageSourceFromWic_Impl::TrimCache(this, core::mem::transmute_copy(&rectangletopreserve)).into()
+            }
+        }
+        unsafe extern "system" fn GetSource<Identity: ID2D1ImageSourceFromWic_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, wicbitmapsource: *mut *mut core::ffi::c_void) {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ID2D1ImageSourceFromWic_Impl::GetSource(this, core::mem::transmute_copy(&wicbitmapsource));
+            }
+        }
+        Self {
+            base__: ID2D1ImageSource_Vtbl::new::<Identity, OFFSET>(),
+            EnsureCached: EnsureCached::<Identity, OFFSET>,
+            TrimCache: TrimCache::<Identity, OFFSET>,
+            GetSource: GetSource::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ID2D1ImageSourceFromWic as windows_core::Interface>::IID || iid == &<ID2D1Resource as windows_core::Interface>::IID || iid == &<ID2D1Image as windows_core::Interface>::IID || iid == &<ID2D1ImageSource as windows_core::Interface>::IID
+    }
+}
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1ImageSourceFromWic {}
 windows_core::imp::define_interface!(ID2D1Ink, ID2D1Ink_Vtbl, 0xb499923b_7029_478f_a8b3_432c7c5f5312);
 impl core::ops::Deref for ID2D1Ink {
@@ -7763,6 +7851,16 @@ impl ID2D1RenderTarget {
             (windows_core::Interface::vtable(self).CreateBitmap)(windows_core::Interface::as_raw(self), size, srcdata.unwrap_or(core::mem::zeroed()) as _, pitch, bitmapproperties, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub unsafe fn CreateBitmapFromWicBitmap<P0>(&self, wicbitmapsource: P0, bitmapproperties: Option<*const D2D1_BITMAP_PROPERTIES>) -> windows_core::Result<ID2D1Bitmap>
+    where
+        P0: windows_core::Param<super::Imaging::IWICBitmapSource>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).CreateBitmapFromWicBitmap)(windows_core::Interface::as_raw(self), wicbitmapsource.param().abi(), bitmapproperties.unwrap_or(core::mem::zeroed()) as _, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
     #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
     pub unsafe fn CreateSharedBitmap(&self, riid: *const windows_core::GUID, data: *mut core::ffi::c_void, bitmapproperties: Option<*const D2D1_BITMAP_PROPERTIES>, bitmap: *mut Option<ID2D1Bitmap>) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).CreateSharedBitmap)(windows_core::Interface::as_raw(self), riid, data as _, bitmapproperties.unwrap_or(core::mem::zeroed()) as _, core::mem::transmute(bitmap)).ok() }
@@ -8102,6 +8200,9 @@ pub struct ID2D1RenderTarget_Vtbl {
     pub CreateBitmap: unsafe extern "system" fn(*mut core::ffi::c_void, Common::D2D_SIZE_U, *const core::ffi::c_void, u32, *const D2D1_BITMAP_PROPERTIES, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common")))]
     CreateBitmap: usize,
+    #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
+    pub CreateBitmapFromWicBitmap: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *const D2D1_BITMAP_PROPERTIES, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging")))]
     CreateBitmapFromWicBitmap: usize,
     #[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_Dxgi_Common"))]
     pub CreateSharedBitmap: unsafe extern "system" fn(*mut core::ffi::c_void, *const windows_core::GUID, *mut core::ffi::c_void, *const D2D1_BITMAP_PROPERTIES, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -8238,7 +8339,7 @@ pub struct ID2D1RenderTarget_Vtbl {
 }
 unsafe impl Send for ID2D1RenderTarget {}
 unsafe impl Sync for ID2D1RenderTarget {}
-#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common"))]
+#[cfg(all(feature = "Win32_Graphics_Direct2D_Common", feature = "Win32_Graphics_DirectWrite", feature = "Win32_Graphics_Dxgi_Common", feature = "Win32_Graphics_Imaging"))]
 impl windows_core::RuntimeName for ID2D1RenderTarget {}
 windows_core::imp::define_interface!(ID2D1Resource, ID2D1Resource_Vtbl, 0x2cd90691_12e2_11dc_9fed_001143a055f9);
 windows_core::imp::interface_hierarchy!(ID2D1Resource, windows_core::IUnknown);
