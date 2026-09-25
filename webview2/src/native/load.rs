@@ -85,7 +85,7 @@ type DllCanUnloadNowFn = Option<unsafe extern "system" fn() -> HRESULT>;
 fn create_env_with_client_dll(path: HSTRING, unknown: bool, runtime_type: WebView2RunTimeType, user_data_folder: CowPCWSTR, options: Option<&ICoreWebView2EnvironmentOptions>, handler: &ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler) -> Result<()> {
     unsafe {
         let client_dll = LoadLibraryW(&path);
-        if client_dll.0.is_null() {
+        if client_dll.is_null() {
             return Err(Error::from_thread());
         }
         let Some(create_proc) = std::mem::transmute::<FARPROC, CreateWebViewEnvironmentWithOptionsInternalFn>(GetProcAddress(client_dll, s!("CreateWebViewEnvironmentWithOptionsInternal"))) else {
@@ -151,7 +151,7 @@ fn add_package_dependency(package_name: &HSTRING) -> Option<()> {
 
     unsafe {
         let lib = GetModuleHandleW(w!("kernelbase.dll"));
-        if lib.0.is_null() {
+        if lib.is_null() {
             return None;
         }
 

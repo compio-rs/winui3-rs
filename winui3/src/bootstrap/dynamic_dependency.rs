@@ -69,7 +69,7 @@ fn get_mdd_lib() -> Result<&'static MddLib> {
                 return Some(mdd_lib);
             }
             let lib = LoadLibraryW(w!("Microsoft.WindowsAppRuntime.dll"));
-            if !lib.0.is_null() {
+            if !lib.is_null() {
                 return load_app_runtime(lib);
             }
             None
