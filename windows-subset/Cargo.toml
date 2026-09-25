@@ -1,6 +1,6 @@
 [package]
 name = "winio-windows-subset"
-version = "0.2.3"
+version = "0.3.0"
 edition = "2024"
 description = "Windows API bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -22,6 +22,7 @@ name = "windows_subset"
 windows-collections.workspace = true
 windows-core.workspace = true
 windows-future.workspace = true
+windows-numerics.workspace = true
 windows-reference.workspace = true
 windows-time.workspace = true
 
@@ -31,6 +32,7 @@ std = [
     "windows-collections/std",
     "windows-core/std",
     "windows-future/std",
+    "windows-numerics/std",
     "windows-reference/std",
     "windows-time/std",
 ]
