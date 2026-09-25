@@ -15,9 +15,7 @@ pub type CreatePackageDependencyOptions = i32;
 pub const CreatePackageDependencyOptions_DoNotVerifyDependencyResolution: CreatePackageDependencyOptions = 1;
 pub const CreatePackageDependencyOptions_None: CreatePackageDependencyOptions = 0;
 pub const CreatePackageDependencyOptions_ScopeIsSystem: CreatePackageDependencyOptions = 2;
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct PACKAGEDEPENDENCY_CONTEXT(pub *mut core::ffi::c_void);
+pub type PACKAGEDEPENDENCY_CONTEXT = *mut core::ffi::c_void;
 #[repr(C)]
 #[cfg(target_arch = "x86")]
 #[derive(Clone, Copy)]

@@ -61,15 +61,9 @@ pub const E_NOINTERFACE: windows_core::HRESULT = windows_core::HRESULT(0x8000400
 pub const E_NOTIMPL: windows_core::HRESULT = windows_core::HRESULT(0x80004001_u32 as _);
 pub const E_POINTER: windows_core::HRESULT = windows_core::HRESULT(0x80004003_u32 as _);
 pub type FARPROC = Option<unsafe extern "system" fn() -> isize>;
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct HANDLE(pub *mut core::ffi::c_void);
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct HMODULE(pub *mut core::ffi::c_void);
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct HWND(pub *mut core::ffi::c_void);
+pub type HANDLE = *mut core::ffi::c_void;
+pub type HMODULE = *mut core::ffi::c_void;
+pub type HWND = *mut core::ffi::c_void;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct POINT {
@@ -85,6 +79,4 @@ pub struct RECT {
     pub bottom: i32,
 }
 pub const S_OK: windows_core::HRESULT = windows_core::HRESULT(0x0_u32 as _);
-#[repr(transparent)]
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Default)]
-pub struct VARIANT_BOOL(pub i16);
+pub type VARIANT_BOOL = i16;
