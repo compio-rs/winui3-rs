@@ -113,12 +113,19 @@
     Microsoft.UI.Xaml.Controls.ListBoxItem
     Microsoft.UI.Xaml.Controls.ListViewItem
     Microsoft.UI.Xaml.Controls.MediaPlayerElement
+    Microsoft.UI.Xaml.Controls.MenuBar
+    Microsoft.UI.Xaml.Controls.MenuBarItem
+    Microsoft.UI.Xaml.Controls.MenuFlyoutItem
+    Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
+    Microsoft.UI.Xaml.Controls.MenuFlyoutSeparator
+    Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem
     Microsoft.UI.Xaml.Controls.Orientation
     Microsoft.UI.Xaml.Controls.Panel
     Microsoft.UI.Xaml.Controls.PasswordBox
     Microsoft.UI.Xaml.Controls.PasswordBoxPasswordChangingEventArgs
     Microsoft.UI.Xaml.Controls.ProgressBar
     Microsoft.UI.Xaml.Controls.RadioButton
+    Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem
     Microsoft.UI.Xaml.Controls.RowDefinition
     Microsoft.UI.Xaml.Controls.RowDefinitionCollection
     Microsoft.UI.Xaml.Controls.ScrollBarVisibility
@@ -153,6 +160,7 @@
     Microsoft.UI.Xaml.Controls.TextCompositionStartedEventArgs
     Microsoft.UI.Xaml.Controls.TextControlCopyingToClipboardEventArgs
     Microsoft.UI.Xaml.Controls.TextControlCuttingToClipboardEventArgs
+    Microsoft.UI.Xaml.Controls.ToggleMenuFlyoutItem
     Microsoft.UI.Xaml.Controls.ToolTip
     Microsoft.UI.Xaml.Controls.ToolTipService
     Microsoft.UI.Xaml.Controls.UIElementCollection
