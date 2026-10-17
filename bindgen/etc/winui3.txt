@@ -105,7 +105,9 @@
     Microsoft.UI.Xaml.Controls.Grid
     Microsoft.UI.Xaml.Controls.GroupStyle
     Microsoft.UI.Xaml.Controls.HyperlinkButton
+    Microsoft.UI.Xaml.Controls.IconElement
     Microsoft.UI.Xaml.Controls.Image
+    Microsoft.UI.Xaml.Controls.ImageIcon
     Microsoft.UI.Xaml.Controls.IsTextTrimmedChangedEventArgs
     Microsoft.UI.Xaml.Controls.ItemCollection
     Microsoft.UI.Xaml.Controls.ItemsControl
