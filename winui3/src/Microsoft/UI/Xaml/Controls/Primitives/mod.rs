@@ -1058,6 +1058,22 @@ impl ButtonBase {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
+    }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -4485,6 +4501,22 @@ impl RangeBase {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
+    }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -6831,6 +6863,22 @@ impl ScrollBar {
     pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
     }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
@@ -9302,6 +9350,22 @@ impl Selector {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
+    }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe {
@@ -11498,6 +11562,22 @@ impl SelectorItem {
     pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
     }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
@@ -13819,6 +13899,22 @@ impl ToggleButton {
     pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<super::super::Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
     }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<super::super::IUIElement>(self)?;

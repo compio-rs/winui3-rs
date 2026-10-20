@@ -188,17 +188,30 @@
 
     Microsoft.UI.Xaml.Input
 
+    Microsoft.UI.Xaml.Media.ArcSegment
     Microsoft.UI.Xaml.Media.Brush
     Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop
     Microsoft.UI.Xaml.Media.FontFamily
+    Microsoft.UI.Xaml.Media.Geometry
     Microsoft.UI.Xaml.Media.ImageSource
+    Microsoft.UI.Xaml.Media.LineSegment
     Microsoft.UI.Xaml.Media.MicaBackdrop
+    Microsoft.UI.Xaml.Media.PathFigure
+    Microsoft.UI.Xaml.Media.PathFigureCollection
+    Microsoft.UI.Xaml.Media.PathGeometry
+    Microsoft.UI.Xaml.Media.PathSegment
+    Microsoft.UI.Xaml.Media.PathSegmentCollection
+    Microsoft.UI.Xaml.Media.RectangleGeometry
     Microsoft.UI.Xaml.Media.Stretch
+    Microsoft.UI.Xaml.Media.SweepDirection
     Microsoft.UI.Xaml.Media.SystemBackdrop
     Microsoft.UI.Xaml.Media.XamlLight
 
     Microsoft.UI.Xaml.Media.DxInterop.ISwapChainPanelNative
 
     Microsoft.UI.Xaml.Media.Imaging.WriteableBitmap
+
+    Microsoft.UI.Xaml.Shapes.Shape
+    Microsoft.UI.Xaml.Shapes.Path
 
     Microsoft.Web.WebView2.Core

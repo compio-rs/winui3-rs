@@ -2,6 +2,96 @@
 pub mod DxInterop;
 #[cfg(feature = "UI_Xaml_Media_Imaging")]
 pub mod Imaging;
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ArcSegment(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(ArcSegment, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(ArcSegment, PathSegment, super::DependencyObject);
+impl ArcSegment {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<ArcSegment, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Point(&self) -> windows_core::Result<windows::Foundation::Point> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Point)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetPoint(&self, value: windows::Foundation::Point) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetPoint)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn Size(&self) -> windows_core::Result<windows::Foundation::Size> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetSize(&self, value: windows::Foundation::Size) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetSize)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn RotationAngle(&self) -> windows_core::Result<f64> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).RotationAngle)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetRotationAngle(&self, value: f64) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetRotationAngle)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsLargeArc(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsLargeArc)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsLargeArc(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsLargeArc)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn SweepDirection(&self) -> windows_core::Result<SweepDirection> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SweepDirection)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetSweepDirection(&self, value: SweepDirection) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetSweepDirection)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    fn IArcSegmentStatics<R, F: FnOnce(&IArcSegmentStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<ArcSegment, IArcSegmentStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for ArcSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IArcSegment>();
+}
+unsafe impl windows_core::Interface for ArcSegment {
+    type Vtable = <IArcSegment as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IArcSegment as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ArcSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ArcSegment";
+}
+unsafe impl Send for ArcSegment {}
+unsafe impl Sync for ArcSegment {}
 #[cfg(feature = "UI_Composition")]
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -230,6 +320,220 @@ impl windows_core::RuntimeName for FontFamily {
 }
 unsafe impl Send for FontFamily {}
 unsafe impl Sync for FontFamily {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Geometry(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(Geometry, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(Geometry, super::DependencyObject);
+impl Geometry {
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Bounds(&self) -> windows_core::Result<windows::Foundation::Rect> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Bounds)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Empty() -> windows_core::Result<Self> {
+        Self::IGeometryStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Empty)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn StandardFlatteningTolerance() -> windows_core::Result<f64> {
+        Self::IGeometryStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).StandardFlatteningTolerance)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    fn IGeometryStatics<R, F: FnOnce(&IGeometryStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Geometry, IGeometryStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for Geometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IGeometry>();
+}
+unsafe impl windows_core::Interface for Geometry {
+    type Vtable = <IGeometry as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IGeometry as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for Geometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.Geometry";
+}
+unsafe impl Send for Geometry {}
+unsafe impl Sync for Geometry {}
+windows_core::imp::define_interface!(IArcSegment, IArcSegment_Vtbl, 0x6b7ce02b_87be_5acb_9d3b_c9964c6962d0);
+impl windows_core::RuntimeType for IArcSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IArcSegment");
+}
+impl windows_core::RuntimeName for IArcSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IArcSegment";
+}
+pub trait IArcSegment_Impl: windows_core::IUnknownImpl {
+    fn Point(&self) -> windows_core::Result<windows::Foundation::Point>;
+    fn SetPoint(&self, value: &windows::Foundation::Point) -> windows_core::Result<()>;
+    fn Size(&self) -> windows_core::Result<windows::Foundation::Size>;
+    fn SetSize(&self, value: &windows::Foundation::Size) -> windows_core::Result<()>;
+    fn RotationAngle(&self) -> windows_core::Result<f64>;
+    fn SetRotationAngle(&self, value: f64) -> windows_core::Result<()>;
+    fn IsLargeArc(&self) -> windows_core::Result<bool>;
+    fn SetIsLargeArc(&self, value: bool) -> windows_core::Result<()>;
+    fn SweepDirection(&self) -> windows_core::Result<SweepDirection>;
+    fn SetSweepDirection(&self, value: SweepDirection) -> windows_core::Result<()>;
+}
+impl IArcSegment_Vtbl {
+    pub const fn new<Identity: IArcSegment_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Point<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IArcSegment_Impl::Point(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPoint<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IArcSegment_Impl::SetPoint(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn Size<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Foundation::Size) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IArcSegment_Impl::Size(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSize<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::Foundation::Size) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IArcSegment_Impl::SetSize(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn RotationAngle<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut f64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IArcSegment_Impl::RotationAngle(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetRotationAngle<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: f64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IArcSegment_Impl::SetRotationAngle(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsLargeArc<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IArcSegment_Impl::IsLargeArc(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsLargeArc<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IArcSegment_Impl::SetIsLargeArc(this, value).into()
+            }
+        }
+        unsafe extern "system" fn SweepDirection<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut SweepDirection) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IArcSegment_Impl::SweepDirection(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSweepDirection<Identity: IArcSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: SweepDirection) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IArcSegment_Impl::SetSweepDirection(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IArcSegment, OFFSET>(),
+            Point: Point::<Identity, OFFSET>,
+            SetPoint: SetPoint::<Identity, OFFSET>,
+            Size: Size::<Identity, OFFSET>,
+            SetSize: SetSize::<Identity, OFFSET>,
+            RotationAngle: RotationAngle::<Identity, OFFSET>,
+            SetRotationAngle: SetRotationAngle::<Identity, OFFSET>,
+            IsLargeArc: IsLargeArc::<Identity, OFFSET>,
+            SetIsLargeArc: SetIsLargeArc::<Identity, OFFSET>,
+            SweepDirection: SweepDirection::<Identity, OFFSET>,
+            SetSweepDirection: SetSweepDirection::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IArcSegment as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IArcSegment_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Point: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Point) -> windows_core::HRESULT,
+    pub SetPoint: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Foundation::Point) -> windows_core::HRESULT,
+    pub Size: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Size) -> windows_core::HRESULT,
+    pub SetSize: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Foundation::Size) -> windows_core::HRESULT,
+    pub RotationAngle: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    pub SetRotationAngle: unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    pub IsLargeArc: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsLargeArc: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub SweepDirection: unsafe extern "system" fn(*mut core::ffi::c_void, *mut SweepDirection) -> windows_core::HRESULT,
+    pub SetSweepDirection: unsafe extern "system" fn(*mut core::ffi::c_void, SweepDirection) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IArcSegmentStatics, IArcSegmentStatics_Vtbl, 0x5ba7ccb3_5bc7_5038_99c5_93dc730230cf);
+impl windows_core::RuntimeType for IArcSegmentStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IArcSegmentStatics");
+}
+impl windows_core::RuntimeName for IArcSegmentStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IArcSegmentStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IArcSegmentStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
 windows_core::imp::define_interface!(IBrush, IBrush_Vtbl, 0x2de3cb83_1329_5679_88f8_c822bc5442cb);
 impl windows_core::RuntimeType for IBrush {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
@@ -499,6 +803,59 @@ pub struct IFontFamilyStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     pub XamlAutoFontFamily: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
 }
+windows_core::imp::define_interface!(IGeometry, IGeometry_Vtbl, 0xdc102dcc_3be2_5414_8599_94b6e76ef39b);
+impl windows_core::RuntimeType for IGeometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IGeometry");
+}
+impl windows_core::RuntimeName for IGeometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IGeometry";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IGeometry_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    Transform: usize,
+    SetTransform: usize,
+    pub Bounds: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Rect) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IGeometryFactory, IGeometryFactory_Vtbl, 0x4edcd536_7949_548a_a9b1_6ff03b951cf3);
+impl windows_core::RuntimeType for IGeometryFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IGeometryFactory");
+}
+impl windows_core::RuntimeName for IGeometryFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IGeometryFactory";
+}
+pub trait IGeometryFactory_Impl: windows_core::IUnknownImpl {}
+impl IGeometryFactory_Vtbl {
+    pub const fn new<Identity: IGeometryFactory_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IGeometryFactory, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IGeometryFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IGeometryFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IGeometryStatics, IGeometryStatics_Vtbl, 0x349f78d0_4978_5742_b7d2_b34ea2c95600);
+impl windows_core::RuntimeType for IGeometryStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IGeometryStatics");
+}
+impl windows_core::RuntimeName for IGeometryStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IGeometryStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IGeometryStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Empty: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub StandardFlatteningTolerance: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+}
 windows_core::imp::define_interface!(IImageSource, IImageSource_Vtbl, 0x6c2038f6_d6d5_55e9_9b9e_082f12dbff60);
 impl windows_core::RuntimeType for IImageSource {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
@@ -541,6 +898,68 @@ impl IImageSourceFactory_Vtbl {
 #[repr(C)]
 #[doc(hidden)]
 pub struct IImageSourceFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(ILineSegment, ILineSegment_Vtbl, 0x0c618e54_d883_588c_8875_bd8dfd6a6a3e);
+impl windows_core::RuntimeType for ILineSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ILineSegment");
+}
+impl windows_core::RuntimeName for ILineSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ILineSegment";
+}
+pub trait ILineSegment_Impl: windows_core::IUnknownImpl {
+    fn Point(&self) -> windows_core::Result<windows::Foundation::Point>;
+    fn SetPoint(&self, value: &windows::Foundation::Point) -> windows_core::Result<()>;
+}
+impl ILineSegment_Vtbl {
+    pub const fn new<Identity: ILineSegment_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Point<Identity: ILineSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ILineSegment_Impl::Point(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetPoint<Identity: ILineSegment_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ILineSegment_Impl::SetPoint(this, core::mem::transmute(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ILineSegment, OFFSET>(),
+            Point: Point::<Identity, OFFSET>,
+            SetPoint: SetPoint::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ILineSegment as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ILineSegment_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Point: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Point) -> windows_core::HRESULT,
+    pub SetPoint: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Foundation::Point) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(ILineSegmentStatics, ILineSegmentStatics_Vtbl, 0xc3ec48a9_b9c0_561f_9925_d1d1b2a6bae6);
+impl windows_core::RuntimeType for ILineSegmentStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ILineSegmentStatics");
+}
+impl windows_core::RuntimeName for ILineSegmentStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ILineSegmentStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ILineSegmentStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
 }
 windows_core::imp::define_interface!(IMicaBackdrop, IMicaBackdrop_Vtbl, 0xc156a404_3dac_593a_b1f3_7a33c289dc83);
@@ -650,6 +1069,277 @@ impl windows_core::RuntimeName for IMicaBackdropStatics {
 #[repr(C)]
 #[doc(hidden)]
 pub struct IMicaBackdropStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IPathFigure, IPathFigure_Vtbl, 0x0ee00712_bf65_5f27_9c06_14abdf6656d7);
+impl windows_core::RuntimeType for IPathFigure {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathFigure");
+}
+impl windows_core::RuntimeName for IPathFigure {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathFigure";
+}
+pub trait IPathFigure_Impl: windows_core::IUnknownImpl {
+    fn Segments(&self) -> windows_core::Result<PathSegmentCollection>;
+    fn SetSegments(&self, value: windows_core::Ref<PathSegmentCollection>) -> windows_core::Result<()>;
+    fn StartPoint(&self) -> windows_core::Result<windows::Foundation::Point>;
+    fn SetStartPoint(&self, value: &windows::Foundation::Point) -> windows_core::Result<()>;
+    fn IsClosed(&self) -> windows_core::Result<bool>;
+    fn SetIsClosed(&self, value: bool) -> windows_core::Result<()>;
+    fn IsFilled(&self) -> windows_core::Result<bool>;
+    fn SetIsFilled(&self, value: bool) -> windows_core::Result<()>;
+}
+impl IPathFigure_Vtbl {
+    pub const fn new<Identity: IPathFigure_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Segments<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPathFigure_Impl::Segments(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetSegments<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IPathFigure_Impl::SetSegments(this, core::mem::transmute_copy(&value)).into()
+            }
+        }
+        unsafe extern "system" fn StartPoint<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPathFigure_Impl::StartPoint(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetStartPoint<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IPathFigure_Impl::SetStartPoint(this, core::mem::transmute(&value)).into()
+            }
+        }
+        unsafe extern "system" fn IsClosed<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPathFigure_Impl::IsClosed(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsClosed<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IPathFigure_Impl::SetIsClosed(this, value).into()
+            }
+        }
+        unsafe extern "system" fn IsFilled<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IPathFigure_Impl::IsFilled(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetIsFilled<Identity: IPathFigure_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: bool) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IPathFigure_Impl::SetIsFilled(this, value).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IPathFigure, OFFSET>(),
+            Segments: Segments::<Identity, OFFSET>,
+            SetSegments: SetSegments::<Identity, OFFSET>,
+            StartPoint: StartPoint::<Identity, OFFSET>,
+            SetStartPoint: SetStartPoint::<Identity, OFFSET>,
+            IsClosed: IsClosed::<Identity, OFFSET>,
+            SetIsClosed: SetIsClosed::<Identity, OFFSET>,
+            IsFilled: IsFilled::<Identity, OFFSET>,
+            SetIsFilled: SetIsFilled::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IPathFigure as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathFigure_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Segments: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetSegments: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub StartPoint: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Point) -> windows_core::HRESULT,
+    pub SetStartPoint: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Foundation::Point) -> windows_core::HRESULT,
+    pub IsClosed: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsClosed: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    pub IsFilled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub SetIsFilled: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IPathFigureStatics, IPathFigureStatics_Vtbl, 0x93bc33c4_879a_5edb_b8d7_7ecb861a7314);
+impl windows_core::RuntimeType for IPathFigureStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathFigureStatics");
+}
+impl windows_core::RuntimeName for IPathFigureStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathFigureStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathFigureStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IPathGeometry, IPathGeometry_Vtbl, 0x11b9d95d_d3d9_5337_a05c_73a27a2b5124);
+impl windows_core::RuntimeType for IPathGeometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathGeometry");
+}
+impl windows_core::RuntimeName for IPathGeometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathGeometry";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathGeometry_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    FillRule: usize,
+    SetFillRule: usize,
+    pub Figures: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetFigures: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IPathGeometryStatics, IPathGeometryStatics_Vtbl, 0xd7f408fe_6c3a_5cce_91cc_c5a95d4b345a);
+impl windows_core::RuntimeType for IPathGeometryStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathGeometryStatics");
+}
+impl windows_core::RuntimeName for IPathGeometryStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathGeometryStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathGeometryStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IPathSegment, IPathSegment_Vtbl, 0xb922ebbe_08f0_57e9_8785_7e57097f3bd4);
+impl windows_core::RuntimeType for IPathSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathSegment");
+}
+impl windows_core::RuntimeName for IPathSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathSegment";
+}
+pub trait IPathSegment_Impl: windows_core::IUnknownImpl {}
+impl IPathSegment_Vtbl {
+    pub const fn new<Identity: IPathSegment_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IPathSegment, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IPathSegment as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathSegment_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IPathSegmentFactory, IPathSegmentFactory_Vtbl, 0x0559a4ff_ac4b_5bb7_b541_d373960e083b);
+impl windows_core::RuntimeType for IPathSegmentFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IPathSegmentFactory");
+}
+impl windows_core::RuntimeName for IPathSegmentFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IPathSegmentFactory";
+}
+pub trait IPathSegmentFactory_Impl: windows_core::IUnknownImpl {}
+impl IPathSegmentFactory_Vtbl {
+    pub const fn new<Identity: IPathSegmentFactory_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IPathSegmentFactory, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IPathSegmentFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IPathSegmentFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IRectangleGeometry, IRectangleGeometry_Vtbl, 0xb6143890_a5f5_54e0_ab42_d88bab451f04);
+impl windows_core::RuntimeType for IRectangleGeometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IRectangleGeometry");
+}
+impl windows_core::RuntimeName for IRectangleGeometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IRectangleGeometry";
+}
+pub trait IRectangleGeometry_Impl: windows_core::IUnknownImpl {
+    fn Rect(&self) -> windows_core::Result<windows::Foundation::Rect>;
+    fn SetRect(&self, value: &windows::Foundation::Rect) -> windows_core::Result<()>;
+}
+impl IRectangleGeometry_Vtbl {
+    pub const fn new<Identity: IRectangleGeometry_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Rect<Identity: IRectangleGeometry_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::Foundation::Rect) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IRectangleGeometry_Impl::Rect(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetRect<Identity: IRectangleGeometry_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::Foundation::Rect) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IRectangleGeometry_Impl::SetRect(this, core::mem::transmute(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IRectangleGeometry, OFFSET>(),
+            Rect: Rect::<Identity, OFFSET>,
+            SetRect: SetRect::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IRectangleGeometry as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IRectangleGeometry_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Rect: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::Foundation::Rect) -> windows_core::HRESULT,
+    pub SetRect: unsafe extern "system" fn(*mut core::ffi::c_void, windows::Foundation::Rect) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IRectangleGeometryStatics, IRectangleGeometryStatics_Vtbl, 0x1ae7ac26_8a8b_55a5_b035_586e2b642919);
+impl windows_core::RuntimeType for IRectangleGeometryStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.IRectangleGeometryStatics");
+}
+impl windows_core::RuntimeName for IRectangleGeometryStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.IRectangleGeometryStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IRectangleGeometryStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
 }
 windows_core::imp::define_interface!(ISystemBackdrop, ISystemBackdrop_Vtbl, 0x5aeed5c4_37ac_5852_b73f_1b76ebc3205f);
@@ -1103,6 +1793,60 @@ unsafe impl Send for ImageSource {}
 unsafe impl Sync for ImageSource {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
+pub struct LineSegment(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(LineSegment, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(LineSegment, PathSegment, super::DependencyObject);
+impl LineSegment {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<LineSegment, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Point(&self) -> windows_core::Result<windows::Foundation::Point> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Point)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetPoint(&self, value: windows::Foundation::Point) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetPoint)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    fn ILineSegmentStatics<R, F: FnOnce(&ILineSegmentStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<LineSegment, ILineSegmentStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for LineSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, ILineSegment>();
+}
+unsafe impl windows_core::Interface for LineSegment {
+    type Vtable = <ILineSegment as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <ILineSegment as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for LineSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.LineSegment";
+}
+unsafe impl Send for LineSegment {}
+unsafe impl Sync for LineSegment {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct MicaBackdrop(windows_core::IUnknown);
 windows_core::imp::interface_hierarchy!(MicaBackdrop, windows_core::IUnknown, windows_core::IInspectable);
 windows_core::imp::required_hierarchy!(MicaBackdrop, SystemBackdrop, super::DependencyObject);
@@ -1211,6 +1955,469 @@ impl windows_core::RuntimeName for MicaBackdrop {
 unsafe impl Send for MicaBackdrop {}
 unsafe impl Sync for MicaBackdrop {}
 #[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PathFigure(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(PathFigure, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(PathFigure, super::DependencyObject);
+impl PathFigure {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathFigure, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Segments(&self) -> windows_core::Result<PathSegmentCollection> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Segments)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn SetSegments<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<PathSegmentCollection>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSegments)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn StartPoint(&self) -> windows_core::Result<windows::Foundation::Point> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).StartPoint)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetStartPoint(&self, value: windows::Foundation::Point) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetStartPoint)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsClosed(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsClosed)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsClosed(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsClosed)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn IsFilled(&self) -> windows_core::Result<bool> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IsFilled)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetIsFilled(&self, value: bool) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetIsFilled)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    fn IPathFigureStatics<R, F: FnOnce(&IPathFigureStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathFigure, IPathFigureStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for PathFigure {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IPathFigure>();
+}
+unsafe impl windows_core::Interface for PathFigure {
+    type Vtable = <IPathFigure as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IPathFigure as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for PathFigure {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.PathFigure";
+}
+unsafe impl Send for PathFigure {}
+unsafe impl Sync for PathFigure {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PathFigureCollection(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(PathFigureCollection, windows_core::IUnknown, windows_core::IInspectable, windows_collections::IVector<PathFigure>);
+windows_core::imp::required_hierarchy!(PathFigureCollection, windows_collections::IIterable<PathFigure>);
+impl PathFigureCollection {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathFigureCollection, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn First(&self) -> windows_core::Result<windows_collections::IIterator<PathFigure>> {
+        let this = &windows_core::Interface::cast::<windows_collections::IIterable<PathFigure>>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<PathFigure> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetAt)(windows_core::Interface::as_raw(self), index, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn GetView(&self) -> windows_core::Result<windows_collections::IVectorView<PathFigure>> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetView)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<PathFigure>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IndexOf)(windows_core::Interface::as_raw(self), value.param().abi(), index, &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<PathFigure>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<PathFigure>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).InsertAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAt)(windows_core::Interface::as_raw(self), index).ok() }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<PathFigure>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).Append)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAtEnd)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Clear)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn GetMany(&self, startindex: u32, items: &mut [Option<PathFigure>]) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetMany)(windows_core::Interface::as_raw(self), startindex, items.len().try_into().unwrap(), core::mem::transmute_copy(&items), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ReplaceAll(&self, items: &[Option<PathFigure>]) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).ReplaceAll)(windows_core::Interface::as_raw(self), items.len().try_into().unwrap(), core::mem::transmute(items.as_ptr())).ok() }
+    }
+}
+impl windows_core::RuntimeType for PathFigureCollection {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, windows_collections::IVector<PathFigure>>();
+}
+unsafe impl windows_core::Interface for PathFigureCollection {
+    type Vtable = <windows_collections::IVector<PathFigure> as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <windows_collections::IVector<PathFigure> as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for PathFigureCollection {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.PathFigureCollection";
+}
+unsafe impl Send for PathFigureCollection {}
+unsafe impl Sync for PathFigureCollection {}
+impl IntoIterator for PathFigureCollection {
+    type Item = PathFigure;
+    type IntoIter = windows_collections::BufferedIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIterator::into_iter(&self)
+    }
+}
+impl IntoIterator for &PathFigureCollection {
+    type Item = PathFigure;
+    type IntoIter = windows_collections::BufferedIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        windows_collections::BufferedIterator::new(self.First().unwrap())
+    }
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PathGeometry(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(PathGeometry, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(PathGeometry, Geometry, super::DependencyObject);
+impl PathGeometry {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathGeometry, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Bounds(&self) -> windows_core::Result<windows::Foundation::Rect> {
+        let this = &windows_core::Interface::cast::<IGeometry>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Bounds)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Figures(&self) -> windows_core::Result<PathFigureCollection> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Figures)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn SetFigures<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<PathFigureCollection>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetFigures)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    fn IPathGeometryStatics<R, F: FnOnce(&IPathGeometryStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathGeometry, IPathGeometryStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for PathGeometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IPathGeometry>();
+}
+unsafe impl windows_core::Interface for PathGeometry {
+    type Vtable = <IPathGeometry as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IPathGeometry as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for PathGeometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.PathGeometry";
+}
+unsafe impl Send for PathGeometry {}
+unsafe impl Sync for PathGeometry {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PathSegment(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(PathSegment, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(PathSegment, super::DependencyObject);
+impl PathSegment {
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeType for PathSegment {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IPathSegment>();
+}
+unsafe impl windows_core::Interface for PathSegment {
+    type Vtable = <IPathSegment as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IPathSegment as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for PathSegment {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.PathSegment";
+}
+unsafe impl Send for PathSegment {}
+unsafe impl Sync for PathSegment {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct PathSegmentCollection(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(PathSegmentCollection, windows_core::IUnknown, windows_core::IInspectable, windows_collections::IVector<PathSegment>);
+windows_core::imp::required_hierarchy!(PathSegmentCollection, windows_collections::IIterable<PathSegment>);
+impl PathSegmentCollection {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<PathSegmentCollection, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn First(&self) -> windows_core::Result<windows_collections::IIterator<PathSegment>> {
+        let this = &windows_core::Interface::cast::<windows_collections::IIterable<PathSegment>>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).First)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn GetAt(&self, index: u32) -> windows_core::Result<PathSegment> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetAt)(windows_core::Interface::as_raw(self), index, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Size(&self) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Size)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn GetView(&self) -> windows_core::Result<windows_collections::IVectorView<PathSegment>> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetView)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn IndexOf<P0>(&self, value: P0, index: &mut u32) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<PathSegment>,
+    {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).IndexOf)(windows_core::Interface::as_raw(self), value.param().abi(), index, &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<PathSegment>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn InsertAt<P1>(&self, index: u32, value: P1) -> windows_core::Result<()>
+    where
+        P1: windows_core::Param<PathSegment>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).InsertAt)(windows_core::Interface::as_raw(self), index, value.param().abi()).ok() }
+    }
+    pub fn RemoveAt(&self, index: u32) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAt)(windows_core::Interface::as_raw(self), index).ok() }
+    }
+    pub fn Append<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<PathSegment>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).Append)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    pub fn RemoveAtEnd(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).RemoveAtEnd)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn Clear(&self) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).Clear)(windows_core::Interface::as_raw(self)).ok() }
+    }
+    pub fn GetMany(&self, startindex: u32, items: &mut [Option<PathSegment>]) -> windows_core::Result<u32> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).GetMany)(windows_core::Interface::as_raw(self), startindex, items.len().try_into().unwrap(), core::mem::transmute_copy(&items), &mut result__).map(|| result__)
+        }
+    }
+    pub fn ReplaceAll(&self, items: &[Option<PathSegment>]) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).ReplaceAll)(windows_core::Interface::as_raw(self), items.len().try_into().unwrap(), core::mem::transmute(items.as_ptr())).ok() }
+    }
+}
+impl windows_core::RuntimeType for PathSegmentCollection {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, windows_collections::IVector<PathSegment>>();
+}
+unsafe impl windows_core::Interface for PathSegmentCollection {
+    type Vtable = <windows_collections::IVector<PathSegment> as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <windows_collections::IVector<PathSegment> as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for PathSegmentCollection {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.PathSegmentCollection";
+}
+unsafe impl Send for PathSegmentCollection {}
+unsafe impl Sync for PathSegmentCollection {}
+impl IntoIterator for PathSegmentCollection {
+    type Item = PathSegment;
+    type IntoIter = windows_collections::BufferedIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        IntoIterator::into_iter(&self)
+    }
+}
+impl IntoIterator for &PathSegmentCollection {
+    type Item = PathSegment;
+    type IntoIter = windows_collections::BufferedIterator<Self::Item>;
+    fn into_iter(self) -> Self::IntoIter {
+        windows_collections::BufferedIterator::new(self.First().unwrap())
+    }
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct RectangleGeometry(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(RectangleGeometry, windows_core::IUnknown, windows_core::IInspectable);
+windows_core::imp::required_hierarchy!(RectangleGeometry, Geometry, super::DependencyObject);
+impl RectangleGeometry {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<RectangleGeometry, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Bounds(&self) -> windows_core::Result<windows::Foundation::Rect> {
+        let this = &windows_core::Interface::cast::<IGeometry>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Bounds)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Rect(&self) -> windows_core::Result<windows::Foundation::Rect> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Rect)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetRect(&self, value: windows::Foundation::Rect) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetRect)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    fn IRectangleGeometryStatics<R, F: FnOnce(&IRectangleGeometryStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<RectangleGeometry, IRectangleGeometryStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeType for RectangleGeometry {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IRectangleGeometry>();
+}
+unsafe impl windows_core::Interface for RectangleGeometry {
+    type Vtable = <IRectangleGeometry as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IRectangleGeometry as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for RectangleGeometry {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.RectangleGeometry";
+}
+unsafe impl Send for RectangleGeometry {}
+unsafe impl Sync for RectangleGeometry {}
+#[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct Stretch(pub i32);
 impl Stretch {
@@ -1225,6 +2432,20 @@ impl windows_core::imp::TypeKind for Stretch {
 impl windows_core::RuntimeType for Stretch {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.Media.Stretch;i4)");
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.Stretch");
+}
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct SweepDirection(pub i32);
+impl SweepDirection {
+    pub const Counterclockwise: Self = Self(0);
+    pub const Clockwise: Self = Self(1);
+}
+impl windows_core::imp::TypeKind for SweepDirection {
+    type TypeKind = windows_core::imp::CopyType;
+}
+impl windows_core::RuntimeType for SweepDirection {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"enum(Microsoft.UI.Xaml.Media.SweepDirection;i4)");
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.SweepDirection");
 }
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]

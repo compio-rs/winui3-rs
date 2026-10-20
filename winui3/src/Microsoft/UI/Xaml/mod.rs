@@ -12,6 +12,8 @@ pub mod Interop;
 pub mod Markup;
 #[cfg(feature = "UI_Xaml_Media")]
 pub mod Media;
+#[cfg(feature = "UI_Xaml_Shapes")]
+pub mod Shapes;
 #[cfg(feature = "UI_Xaml_XamlTypeInfo")]
 pub mod XamlTypeInfo;
 #[repr(transparent)]
@@ -1021,6 +1023,22 @@ impl FrameworkElement {
     pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
         unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<Media::RectangleGeometry> {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Clip)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Media::RectangleGeometry>,
+    {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetClip)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
     }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
@@ -3647,7 +3665,13 @@ pub struct IUIElement_Vtbl {
     pub SetAllowDrop: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
     pub Opacity: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
     pub SetOpacity: unsafe extern "system" fn(*mut core::ffi::c_void, f64) -> windows_core::HRESULT,
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub Clip: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Media"))]
     Clip: usize,
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub SetClip: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Media"))]
     SetClip: usize,
     RenderTransform: usize,
     SetRenderTransform: usize,
@@ -5448,6 +5472,20 @@ impl UIElement {
     }
     pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).SetOpacity)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn Clip(&self) -> windows_core::Result<Media::RectangleGeometry> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Clip)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetClip<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Media::RectangleGeometry>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetClip)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
     }
     pub fn RenderTransformOrigin(&self) -> windows_core::Result<windows::Foundation::Point> {
         unsafe {
