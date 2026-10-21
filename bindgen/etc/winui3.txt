@@ -78,6 +78,9 @@
     Microsoft.UI.Xaml.XamlRootChangedEventArgs
 
     Microsoft.UI.Xaml.Controls.AnchorRequestedEventArgs
+    Microsoft.UI.Xaml.Controls.AppBarButton
+    Microsoft.UI.Xaml.Controls.AppBarSeparator
+    Microsoft.UI.Xaml.Controls.AppBarToggleButton
     Microsoft.UI.Xaml.Controls.BackgroundSizing
     Microsoft.UI.Xaml.Controls.Button
     Microsoft.UI.Xaml.Controls.CandidateWindowBoundsChangedEventArgs
@@ -88,6 +91,9 @@
     Microsoft.UI.Xaml.Controls.ComboBox
     Microsoft.UI.Xaml.Controls.ComboBoxItem
     Microsoft.UI.Xaml.Controls.ComboBoxTextSubmittedEventArgs
+    Microsoft.UI.Xaml.Controls.CommandBar
+    Microsoft.UI.Xaml.Controls.CommandBarDefaultLabelPosition
+    Microsoft.UI.Xaml.Controls.CommandBarLabelPosition
     Microsoft.UI.Xaml.Controls.ContentControl
     Microsoft.UI.Xaml.Controls.ContentDialog
     Microsoft.UI.Xaml.Controls.ContentDialogButton
@@ -100,11 +106,13 @@
     Microsoft.UI.Xaml.Controls.ContentDialogResult
     Microsoft.UI.Xaml.Controls.Control
     Microsoft.UI.Xaml.Controls.CoreWebView2InitializedEventArgs
+    Microsoft.UI.Xaml.Controls.DynamicOverflowItemsChangingEventArgs
     Microsoft.UI.Xaml.Controls.FocusDisengagedEventArgs
     Microsoft.UI.Xaml.Controls.FocusEngagedEventArgs
     Microsoft.UI.Xaml.Controls.Grid
     Microsoft.UI.Xaml.Controls.GroupStyle
     Microsoft.UI.Xaml.Controls.HyperlinkButton
+    Microsoft.UI.Xaml.Controls.ICommandBarElement
     Microsoft.UI.Xaml.Controls.IconElement
     Microsoft.UI.Xaml.Controls.Image
     Microsoft.UI.Xaml.Controls.ImageIcon
@@ -117,6 +125,7 @@
     Microsoft.UI.Xaml.Controls.MediaPlayerElement
     Microsoft.UI.Xaml.Controls.MenuBar
     Microsoft.UI.Xaml.Controls.MenuBarItem
+    Microsoft.UI.Xaml.Controls.MenuFlyout
     Microsoft.UI.Xaml.Controls.MenuFlyoutItem
     Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
     Microsoft.UI.Xaml.Controls.MenuFlyoutSeparator
@@ -171,6 +180,8 @@
     Microsoft.UI.Xaml.Controls.XamlControlsResources
 
     Microsoft.UI.Xaml.Controls.Primitives.ButtonBase
+    Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase
+    Microsoft.UI.Xaml.Controls.Primitives.FlyoutBaseClosingEventArgs
     Microsoft.UI.Xaml.Controls.Primitives.RangeBase
     Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs
     Microsoft.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventHandler

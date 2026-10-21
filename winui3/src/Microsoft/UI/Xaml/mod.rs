@@ -1167,6 +1167,22 @@ impl FrameworkElement {
             (windows_core::Interface::vtable(this).PointerCaptures)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub fn ContextFlyout(&self) -> windows_core::Result<Controls::Primitives::FlyoutBase> {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ContextFlyout)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub fn SetContextFlyout<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Controls::Primitives::FlyoutBase>,
+    {
+        let this = &windows_core::Interface::cast::<IUIElement>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetContextFlyout)(windows_core::Interface::as_raw(this), value.param().abi()).ok() }
+    }
     #[cfg(feature = "UI_Xaml_Media")]
     pub fn Lights(&self) -> windows_core::Result<windows_collections::IVector<Media::XamlLight>> {
         let this = &windows_core::Interface::cast::<IUIElement>(self)?;
@@ -3652,7 +3668,7 @@ impl windows_core::RuntimeType for IUIElement {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.IUIElement");
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Input", feature = "UI_Xaml_Input", feature = "UI_Xaml_Media"))]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Input", feature = "UI_Xaml_Controls_Primitives", feature = "UI_Xaml_Input", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IUIElement {
     const NAME: &'static str = "Microsoft.UI.Xaml.IUIElement";
 }
@@ -3714,7 +3730,13 @@ pub struct IUIElement_Vtbl {
     pub PointerCaptures: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Xaml_Input"))]
     PointerCaptures: usize,
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub ContextFlyout: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Controls_Primitives"))]
     ContextFlyout: usize,
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub SetContextFlyout: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Xaml_Controls_Primitives"))]
     SetContextFlyout: usize,
     CompositeMode: usize,
     SetCompositeMode: usize,
@@ -5591,6 +5613,20 @@ impl UIElement {
             let mut result__ = core::mem::zeroed();
             (windows_core::Interface::vtable(self).PointerCaptures)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
+    }
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub fn ContextFlyout(&self) -> windows_core::Result<Controls::Primitives::FlyoutBase> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).ContextFlyout)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Controls_Primitives")]
+    pub fn SetContextFlyout<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<Controls::Primitives::FlyoutBase>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetContextFlyout)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
     }
     #[cfg(feature = "UI_Xaml_Media")]
     pub fn Lights(&self) -> windows_core::Result<windows_collections::IVector<Media::XamlLight>> {
