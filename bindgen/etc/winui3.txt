@@ -147,6 +147,8 @@
     Microsoft.UI.Xaml.Controls.SelectionChangedEventHandler
     Microsoft.UI.Xaml.Controls.SelectionMode
     Microsoft.UI.Xaml.Controls.Slider
+    Microsoft.UI.Xaml.Controls.SplitButton
+    Microsoft.UI.Xaml.Controls.SplitButtonClickEventArgs
     Microsoft.UI.Xaml.Controls.StackPanel
     Microsoft.UI.Xaml.Controls.SwapChainPanel
     Microsoft.UI.Xaml.Controls.TabView
