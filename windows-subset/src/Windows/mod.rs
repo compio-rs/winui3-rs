@@ -4,6 +4,8 @@ pub mod ApplicationModel;
 pub mod Devices;
 #[cfg(feature = "Foundation")]
 pub mod Foundation;
+#[cfg(feature = "Globalization")]
+pub mod Globalization;
 #[cfg(feature = "Graphics")]
 pub mod Graphics;
 #[cfg(feature = "Media")]

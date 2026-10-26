@@ -36,7 +36,7 @@ const FEATURE_PATCHES: &[(&str, &[&str])] = &[
     ("UI_Text",                        &["UI", "windows/Storage_Streams", "windows/UI_Text"]),
     ("UI_Windowing",                   &["UI", "windows/Graphics"]),
     ("UI_Xaml",                        &["UI", "UI_Xaml_Interop", "windows/ApplicationModel_Activation", "windows/ApplicationModel_DataTransfer_DragDrop", "windows/Graphics_Imaging", "windows/UI_Core", "windows/Win32_Foundation"]),
-    ("UI_Xaml_Controls",               &["UI_Text", "UI_Xaml", "windows/Media_Casting", "windows/Media_Playback"]),
+    ("UI_Xaml_Controls",               &["UI_Text", "UI_Xaml", "windows/Globalization_NumberFormatting", "windows/Media_Casting", "windows/Media_Playback"]),
     ("UI_Xaml_Documents",              &["UI_Text", "UI_Xaml"]),
     ("UI_Xaml_Input",                  &["UI_Input", "UI_Xaml"]),
     ("UI_Xaml_Interop",                &["windows/UI_Xaml_Interop"]),

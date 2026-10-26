@@ -1,6 +1,6 @@
 [package]
 name = "winio-windows-subset"
-version = "0.3.0-alpha.1"
+version = "0.3.0-alpha.2"
 edition = "2024"
 description = "Windows API bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -45,6 +45,8 @@ ApplicationModel_DataTransfer_DragDrop_Core = ["ApplicationModel_DataTransfer_Dr
 Devices = ["Foundation"]
 Devices_Input = ["Devices"]
 Foundation = []
+Globalization = ["Foundation"]
+Globalization_NumberFormatting = ["Globalization"]
 Graphics = ["Foundation"]
 Graphics_Imaging = ["Graphics"]
 Media = ["Foundation"]

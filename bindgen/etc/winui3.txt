@@ -130,6 +130,9 @@
     Microsoft.UI.Xaml.Controls.MenuFlyoutItemBase
     Microsoft.UI.Xaml.Controls.MenuFlyoutSeparator
     Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem
+    Microsoft.UI.Xaml.Controls.NumberBox
+    Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode
+    Microsoft.UI.Xaml.Controls.NumberBoxValueChangedEventArgs
     Microsoft.UI.Xaml.Controls.Orientation
     Microsoft.UI.Xaml.Controls.Panel
     Microsoft.UI.Xaml.Controls.PasswordBox

@@ -31,6 +31,8 @@
     Windows.Foundation.TypedEventHandler
     Windows.Foundation.Uri
 
+    Windows.Globalization.NumberFormatting.INumberFormatter2
+
     Windows.Graphics.PointInt32
     Windows.Graphics.RectInt32
     Windows.Graphics.SizeInt32

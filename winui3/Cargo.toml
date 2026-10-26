@@ -1,6 +1,6 @@
 [package]
 name = "winio-winui3"
-version = "0.7.0-alpha.6"
+version = "0.7.0-alpha.7"
 edition = "2024"
 description = "WinUI3 bindings (subset) for Rust"
 categories = ["os::windows-apis", "gui"]
@@ -45,30 +45,13 @@ UI_Composition = ["UI", "windows/UI_Composition"]
 UI_Composition_SystemBackdrops = ["UI_Composition", "windows/UI_Core"]
 UI_Dispatching = ["UI"]
 UI_Input = ["UI", "windows/Graphics", "windows/System", "windows/UI_Core"]
-UI_Input_DragDrop = [
-    "UI_Input",
-    "windows/ApplicationModel_DataTransfer",
-    "windows/Graphics_Imaging",
-]
+UI_Input_DragDrop = ["UI_Input", "windows/ApplicationModel_DataTransfer", "windows/Graphics_Imaging"]
 UI_Input_Experimental = ["UI_Input"]
 UI_Input_Interop = ["UI_Input", "windows/Devices_Input"]
 UI_Text = ["UI", "windows/Storage_Streams", "windows/UI_Text"]
 UI_Windowing = ["UI", "windows/Graphics"]
-UI_Xaml = [
-    "UI",
-    "UI_Xaml_Interop",
-    "windows/ApplicationModel_Activation",
-    "windows/ApplicationModel_DataTransfer_DragDrop",
-    "windows/Graphics_Imaging",
-    "windows/UI_Core",
-    "windows/Win32_Foundation",
-]
-UI_Xaml_Controls = [
-    "UI_Text",
-    "UI_Xaml",
-    "windows/Media_Casting",
-    "windows/Media_Playback",
-]
+UI_Xaml = ["UI", "UI_Xaml_Interop", "windows/ApplicationModel_Activation", "windows/ApplicationModel_DataTransfer_DragDrop", "windows/Graphics_Imaging", "windows/UI_Core", "windows/Win32_Foundation"]
+UI_Xaml_Controls = ["UI_Text", "UI_Xaml", "windows/Globalization_NumberFormatting", "windows/Media_Casting", "windows/Media_Playback"]
 UI_Xaml_Controls_Primitives = ["UI_Xaml_Controls"]
 UI_Xaml_Data = ["UI_Xaml"]
 UI_Xaml_Documents = ["UI_Text", "UI_Xaml"]
@@ -82,9 +65,4 @@ UI_Xaml_Shapes = ["UI_Xaml"]
 UI_Xaml_XamlTypeInfo = ["UI_Xaml"]
 Web = ["Foundation"]
 Web_WebView2 = ["Web"]
-Web_WebView2_Core = [
-    "Web_WebView2",
-    "windows/ApplicationModel_DataTransfer_DragDrop_Core",
-    "windows/Security_Cryptography_Certificates",
-    "windows/Storage_Streams",
-]
+Web_WebView2_Core = ["Web_WebView2", "windows/ApplicationModel_DataTransfer_DragDrop_Core", "windows/Security_Cryptography_Certificates", "windows/Storage_Streams"]
