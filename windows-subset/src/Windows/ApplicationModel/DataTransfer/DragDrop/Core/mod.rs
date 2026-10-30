@@ -9,6 +9,12 @@ impl CoreDragInfo {
             (windows_core::Interface::vtable(self).Data)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
     }
+    pub fn Modifiers(&self) -> windows_core::Result<super::DragDropModifiers> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Modifiers)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
     pub fn Position(&self) -> windows_core::Result<super::super::super::super::Foundation::Point> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -114,12 +120,67 @@ impl windows_core::RuntimeType for ICoreDragInfo {
 impl windows_core::RuntimeName for ICoreDragInfo {
     const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo";
 }
+pub trait ICoreDragInfo_Impl: windows_core::IUnknownImpl {
+    fn Data(&self) -> windows_core::Result<super::super::DataPackageView>;
+    fn Modifiers(&self) -> windows_core::Result<super::DragDropModifiers>;
+    fn Position(&self) -> windows_core::Result<super::super::super::super::Foundation::Point>;
+}
+impl ICoreDragInfo_Vtbl {
+    pub const fn new<Identity: ICoreDragInfo_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Data<Identity: ICoreDragInfo_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreDragInfo_Impl::Data(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Modifiers<Identity: ICoreDragInfo_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::DragDropModifiers) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreDragInfo_Impl::Modifiers(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Position<Identity: ICoreDragInfo_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::super::super::super::Foundation::Point) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreDragInfo_Impl::Position(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ICoreDragInfo, OFFSET>(),
+            Data: Data::<Identity, OFFSET>,
+            Modifiers: Modifiers::<Identity, OFFSET>,
+            Position: Position::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreDragInfo as windows_core::Interface>::IID
+    }
+}
 #[repr(C)]
 #[doc(hidden)]
 pub struct ICoreDragInfo_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     pub Data: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
-    Modifiers: usize,
+    pub Modifiers: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::DragDropModifiers) -> windows_core::HRESULT,
     pub Position: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::super::super::super::Foundation::Point) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(ICoreDragInfo2, ICoreDragInfo2_Vtbl, 0xc54691e5_e6fb_4d74_b4b1_8a3c17f25e9e);
@@ -129,6 +190,29 @@ impl windows_core::RuntimeType for ICoreDragInfo2 {
 }
 impl windows_core::RuntimeName for ICoreDragInfo2 {
     const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragInfo2";
+}
+pub trait ICoreDragInfo2_Impl: ICoreDragInfo_Impl {
+    fn AllowedOperations(&self) -> windows_core::Result<super::super::DataPackageOperation>;
+}
+impl ICoreDragInfo2_Vtbl {
+    pub const fn new<Identity: ICoreDragInfo2_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn AllowedOperations<Identity: ICoreDragInfo2_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut super::super::DataPackageOperation) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ICoreDragInfo2_Impl::AllowedOperations(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, ICoreDragInfo2, OFFSET>(), AllowedOperations: AllowedOperations::<Identity, OFFSET> }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ICoreDragInfo2 as windows_core::Interface>::IID
+    }
 }
 #[repr(C)]
 #[doc(hidden)]

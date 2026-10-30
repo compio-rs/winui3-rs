@@ -8,6 +8,8 @@ pub mod Memory;
 pub mod Ole;
 #[cfg(feature = "Win32_System_Registry")]
 pub mod Registry;
+#[cfg(feature = "Win32_System_SystemServices")]
+pub mod SystemServices;
 #[cfg(feature = "Win32_System_Variant")]
 pub mod Variant;
 #[cfg(feature = "Win32_System_WinRT")]

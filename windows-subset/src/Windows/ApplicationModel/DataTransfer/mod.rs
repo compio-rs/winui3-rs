@@ -1,5 +1,190 @@
 #[cfg(feature = "ApplicationModel_DataTransfer_DragDrop")]
 pub mod DragDrop;
+pub struct Clipboard;
+impl Clipboard {
+    pub fn GetContent() -> windows_core::Result<DataPackageView> {
+        Self::IClipboardStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetContent)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn SetContent<P0>(content: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<DataPackage>,
+    {
+        Self::IClipboardStatics(|this| unsafe { (windows_core::Interface::vtable(this).SetContent)(windows_core::Interface::as_raw(this), content.param().abi()).ok() })
+    }
+    pub fn Flush() -> windows_core::Result<()> {
+        Self::IClipboardStatics(|this| unsafe { (windows_core::Interface::vtable(this).Flush)(windows_core::Interface::as_raw(this)).ok() })
+    }
+    pub fn Clear() -> windows_core::Result<()> {
+        Self::IClipboardStatics(|this| unsafe { (windows_core::Interface::vtable(this).Clear)(windows_core::Interface::as_raw(this)).ok() })
+    }
+    pub fn ContentChanged<F>(handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::super::Foundation::EventHandler<windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        Self::IClipboardStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).ContentChanged)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveContentChanged))
+        })
+    }
+    pub fn GetHistoryItemsAsync() -> windows_core::Result<windows_future::IAsyncOperation<ClipboardHistoryItemsResult>> {
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).GetHistoryItemsAsync)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    pub fn ClearHistory() -> windows_core::Result<bool> {
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).ClearHistory)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    pub fn DeleteItemFromHistory<P0>(item: P0) -> windows_core::Result<bool>
+    where
+        P0: windows_core::Param<ClipboardHistoryItem>,
+    {
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DeleteItemFromHistory)(windows_core::Interface::as_raw(this), item.param().abi(), &mut result__).map(|| result__)
+        })
+    }
+    pub fn IsHistoryEnabled() -> windows_core::Result<bool> {
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsHistoryEnabled)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    pub fn IsRoamingEnabled() -> windows_core::Result<bool> {
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).IsRoamingEnabled)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        })
+    }
+    pub fn HistoryChanged<F>(handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<ClipboardHistoryChangedEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::super::Foundation::EventHandler<ClipboardHistoryChangedEventArgs>>::new(move |a0, a1| handler(a0, a1));
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).HistoryChanged)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveHistoryChanged))
+        })
+    }
+    pub fn RoamingEnabledChanged<F>(handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::super::Foundation::EventHandler<windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).RoamingEnabledChanged)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveRoamingEnabledChanged))
+        })
+    }
+    pub fn HistoryEnabledChanged<F>(handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<windows_core::IInspectable>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::super::Foundation::EventHandler<windows_core::IInspectable>>::new(move |a0, a1| handler(a0, a1));
+        Self::IClipboardStatics2(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).HistoryEnabledChanged)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveHistoryEnabledChanged))
+        })
+    }
+    fn IClipboardStatics<R, F: FnOnce(&IClipboardStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Clipboard, IClipboardStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn IClipboardStatics2<R, F: FnOnce(&IClipboardStatics2) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<Clipboard, IClipboardStatics2> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+impl windows_core::RuntimeName for Clipboard {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.Clipboard";
+}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ClipboardHistoryChangedEventArgs(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(ClipboardHistoryChangedEventArgs, windows_core::IUnknown, windows_core::IInspectable);
+impl windows_core::RuntimeType for ClipboardHistoryChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IClipboardHistoryChangedEventArgs>();
+}
+unsafe impl windows_core::Interface for ClipboardHistoryChangedEventArgs {
+    type Vtable = <IClipboardHistoryChangedEventArgs as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IClipboardHistoryChangedEventArgs as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ClipboardHistoryChangedEventArgs {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.ClipboardHistoryChangedEventArgs";
+}
+unsafe impl Send for ClipboardHistoryChangedEventArgs {}
+unsafe impl Sync for ClipboardHistoryChangedEventArgs {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ClipboardHistoryItem(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(ClipboardHistoryItem, windows_core::IUnknown, windows_core::IInspectable);
+impl ClipboardHistoryItem {
+    pub fn Id(&self) -> windows_core::Result<windows_core::HSTRING> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Id)(windows_core::Interface::as_raw(self), &mut result__).map(|| core::mem::transmute(result__))
+        }
+    }
+    pub fn Timestamp(&self) -> windows_core::Result<windows_time::DateTime> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Timestamp)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn Content(&self) -> windows_core::Result<DataPackageView> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Content)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeType for ClipboardHistoryItem {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IClipboardHistoryItem>();
+}
+unsafe impl windows_core::Interface for ClipboardHistoryItem {
+    type Vtable = <IClipboardHistoryItem as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IClipboardHistoryItem as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ClipboardHistoryItem {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem";
+}
+unsafe impl Send for ClipboardHistoryItem {}
+unsafe impl Sync for ClipboardHistoryItem {}
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ClipboardHistoryItemsResult(windows_core::IUnknown);
+windows_core::imp::interface_hierarchy!(ClipboardHistoryItemsResult, windows_core::IUnknown, windows_core::IInspectable);
+impl ClipboardHistoryItemsResult {
+    pub fn Items(&self) -> windows_core::Result<windows_collections::IVectorView<ClipboardHistoryItem>> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Items)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+}
+impl windows_core::RuntimeType for ClipboardHistoryItemsResult {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, IClipboardHistoryItemsResult>();
+}
+unsafe impl windows_core::Interface for ClipboardHistoryItemsResult {
+    type Vtable = <IClipboardHistoryItemsResult as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <IClipboardHistoryItemsResult as windows_core::Interface>::IID;
+}
+impl windows_core::RuntimeName for ClipboardHistoryItemsResult {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult";
+}
+unsafe impl Send for ClipboardHistoryItemsResult {}
+unsafe impl Sync for ClipboardHistoryItemsResult {}
 #[repr(transparent)]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct DataPackage(windows_core::IUnknown);
@@ -338,6 +523,233 @@ impl windows_core::RuntimeName for DataPackageView {
 }
 unsafe impl Send for DataPackageView {}
 unsafe impl Sync for DataPackageView {}
+windows_core::imp::define_interface!(IClipboardHistoryChangedEventArgs, IClipboardHistoryChangedEventArgs_Vtbl, 0xc0be453f_8ea2_53ce_9aba_8d2212573452);
+impl windows_core::RuntimeType for IClipboardHistoryChangedEventArgs {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.ApplicationModel.DataTransfer.IClipboardHistoryChangedEventArgs");
+}
+impl windows_core::RuntimeName for IClipboardHistoryChangedEventArgs {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.IClipboardHistoryChangedEventArgs";
+}
+pub trait IClipboardHistoryChangedEventArgs_Impl: windows_core::IUnknownImpl {}
+impl IClipboardHistoryChangedEventArgs_Vtbl {
+    pub const fn new<Identity: IClipboardHistoryChangedEventArgs_Impl, const OFFSET: isize>() -> Self {
+        Self { base__: windows_core::IInspectable_Vtbl::new::<Identity, IClipboardHistoryChangedEventArgs, OFFSET>() }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IClipboardHistoryChangedEventArgs as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClipboardHistoryChangedEventArgs_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
+windows_core::imp::define_interface!(IClipboardHistoryItem, IClipboardHistoryItem_Vtbl, 0x0173bd8a_afff_5c50_ab92_3d19f481ec58);
+impl windows_core::RuntimeType for IClipboardHistoryItem {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem");
+}
+impl windows_core::RuntimeName for IClipboardHistoryItem {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.IClipboardHistoryItem";
+}
+pub trait IClipboardHistoryItem_Impl: windows_core::IUnknownImpl {
+    fn Id(&self) -> windows_core::Result<windows_core::HSTRING>;
+    fn Timestamp(&self) -> windows_core::Result<windows_time::DateTime>;
+    fn Content(&self) -> windows_core::Result<DataPackageView>;
+}
+impl IClipboardHistoryItem_Vtbl {
+    pub const fn new<Identity: IClipboardHistoryItem_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Id<Identity: IClipboardHistoryItem_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClipboardHistoryItem_Impl::Id(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Timestamp<Identity: IClipboardHistoryItem_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows_time::DateTime) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClipboardHistoryItem_Impl::Timestamp(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn Content<Identity: IClipboardHistoryItem_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClipboardHistoryItem_Impl::Content(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IClipboardHistoryItem, OFFSET>(),
+            Id: Id::<Identity, OFFSET>,
+            Timestamp: Timestamp::<Identity, OFFSET>,
+            Content: Content::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IClipboardHistoryItem as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClipboardHistoryItem_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Id: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Timestamp: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows_time::DateTime) -> windows_core::HRESULT,
+    pub Content: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IClipboardHistoryItemsResult, IClipboardHistoryItemsResult_Vtbl, 0xe6dfdee6_0ee2_52e3_852b_f295db65939a);
+impl windows_core::RuntimeType for IClipboardHistoryItemsResult {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.ApplicationModel.DataTransfer.IClipboardHistoryItemsResult");
+}
+impl windows_core::RuntimeName for IClipboardHistoryItemsResult {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.IClipboardHistoryItemsResult";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClipboardHistoryItemsResult_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    Status: usize,
+    pub Items: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IClipboardStatics, IClipboardStatics_Vtbl, 0xc627e291_34e2_4963_8eed_93cbb0ea3d70);
+impl windows_core::RuntimeType for IClipboardStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.ApplicationModel.DataTransfer.IClipboardStatics");
+}
+impl windows_core::RuntimeName for IClipboardStatics {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.IClipboardStatics";
+}
+pub trait IClipboardStatics_Impl: windows_core::IUnknownImpl {
+    fn GetContent(&self) -> windows_core::Result<DataPackageView>;
+    fn SetContent(&self, content: windows_core::Ref<DataPackage>) -> windows_core::Result<()>;
+    fn Flush(&self) -> windows_core::Result<()>;
+    fn Clear(&self) -> windows_core::Result<()>;
+    fn ContentChanged(&self, handler: windows_core::Ref<super::super::Foundation::EventHandler<windows_core::IInspectable>>) -> windows_core::Result<i64>;
+    fn RemoveContentChanged(&self, token: i64) -> windows_core::Result<()>;
+}
+impl IClipboardStatics_Vtbl {
+    pub const fn new<Identity: IClipboardStatics_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn GetContent<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClipboardStatics_Impl::GetContent(this) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetContent<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, content: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClipboardStatics_Impl::SetContent(this, core::mem::transmute_copy(&content)).into()
+            }
+        }
+        unsafe extern "system" fn Flush<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClipboardStatics_Impl::Flush(this).into()
+            }
+        }
+        unsafe extern "system" fn Clear<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClipboardStatics_Impl::Clear(this).into()
+            }
+        }
+        unsafe extern "system" fn ContentChanged<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, handler: *mut core::ffi::c_void, result__: *mut i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match IClipboardStatics_Impl::ContentChanged(this, core::mem::transmute_copy(&handler)) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn RemoveContentChanged<Identity: IClipboardStatics_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, token: i64) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IClipboardStatics_Impl::RemoveContentChanged(this, token).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IClipboardStatics, OFFSET>(),
+            GetContent: GetContent::<Identity, OFFSET>,
+            SetContent: SetContent::<Identity, OFFSET>,
+            Flush: Flush::<Identity, OFFSET>,
+            Clear: Clear::<Identity, OFFSET>,
+            ContentChanged: ContentChanged::<Identity, OFFSET>,
+            RemoveContentChanged: RemoveContentChanged::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IClipboardStatics as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClipboardStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetContent: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub SetContent: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Flush: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub Clear: unsafe extern "system" fn(*mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ContentChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveContentChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(IClipboardStatics2, IClipboardStatics2_Vtbl, 0xd2ac1b6a_d29f_554b_b303_f0452345fe02);
+impl windows_core::RuntimeType for IClipboardStatics2 {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Windows.ApplicationModel.DataTransfer.IClipboardStatics2");
+}
+impl windows_core::RuntimeName for IClipboardStatics2 {
+    const NAME: &'static str = "Windows.ApplicationModel.DataTransfer.IClipboardStatics2";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct IClipboardStatics2_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub GetHistoryItemsAsync: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub ClearHistory: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub DeleteItemFromHistory: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    SetHistoryItemAsContent: usize,
+    pub IsHistoryEnabled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    pub IsRoamingEnabled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
+    SetContentWithOptions: usize,
+    pub HistoryChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveHistoryChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub RoamingEnabledChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveRoamingEnabledChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+    pub HistoryEnabledChanged: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
+    pub RemoveHistoryEnabledChanged: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
+}
 windows_core::imp::define_interface!(IDataPackage, IDataPackage_Vtbl, 0x61ebf5c7_efea_4346_9554_981d7e198ffe);
 impl windows_core::RuntimeType for IDataPackage {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();

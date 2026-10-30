@@ -656,6 +656,34 @@ impl AppBar {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -1813,6 +1841,54 @@ impl AppBar {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -3018,6 +3094,34 @@ impl AppBarButton {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -4173,6 +4277,54 @@ impl AppBarButton {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -5240,6 +5392,34 @@ impl AppBarSeparator {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -6397,6 +6577,54 @@ impl AppBarSeparator {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -7587,6 +7815,34 @@ impl AppBarToggleButton {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -8808,6 +9064,54 @@ impl AppBarToggleButton {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -9954,6 +10258,34 @@ impl Button {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -11110,6 +11442,54 @@ impl Button {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -12915,6 +13295,54 @@ impl Canvas {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -14035,6 +14463,34 @@ impl CheckBox {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -15254,6 +15710,54 @@ impl CheckBox {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -16631,6 +17135,34 @@ impl ComboBox {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -18026,6 +18558,54 @@ impl ComboBox {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -19090,6 +19670,34 @@ impl ComboBoxItem {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -20257,6 +20865,54 @@ impl ComboBoxItem {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -21504,6 +22160,34 @@ impl CommandBar {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -22661,6 +23345,54 @@ impl CommandBar {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -23754,6 +24486,34 @@ impl ContentControl {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -24911,6 +25671,54 @@ impl ContentControl {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -26242,6 +27050,34 @@ impl ContentDialog {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -27399,6 +28235,54 @@ impl ContentDialog {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -28577,6 +29461,34 @@ impl Control {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -29765,6 +30677,54 @@ impl Control {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -31742,6 +32702,54 @@ impl Grid {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -32928,6 +33936,34 @@ impl HyperlinkButton {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -34113,6 +35149,54 @@ impl HyperlinkButton {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -36969,10 +38053,272 @@ impl IControlOverrides {
     {
         unsafe { (windows_core::Interface::vtable(self).OnCharacterReceived)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDragEnter)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDragLeave)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDragOver)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).OnDrop)(windows_core::Interface::as_raw(self), e.param().abi()).ok() }
+    }
 }
 #[cfg(feature = "UI_Xaml_Input")]
 impl windows_core::RuntimeName for IControlOverrides {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IControlOverrides";
+}
+#[cfg(feature = "UI_Xaml_Input")]
+pub trait IControlOverrides_Impl: windows_core::IUnknownImpl {
+    fn OnPointerEntered(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerPressed(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerMoved(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerReleased(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerExited(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerCaptureLost(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerCanceled(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPointerWheelChanged(&self, e: windows_core::Ref<super::Input::PointerRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnTapped(&self, e: windows_core::Ref<super::Input::TappedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnDoubleTapped(&self, e: windows_core::Ref<super::Input::DoubleTappedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnHolding(&self, e: windows_core::Ref<super::Input::HoldingRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnRightTapped(&self, e: windows_core::Ref<super::Input::RightTappedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnManipulationStarting(&self, e: windows_core::Ref<super::Input::ManipulationStartingRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnManipulationInertiaStarting(&self, e: windows_core::Ref<super::Input::ManipulationInertiaStartingRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnManipulationStarted(&self, e: windows_core::Ref<super::Input::ManipulationStartedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnManipulationDelta(&self, e: windows_core::Ref<super::Input::ManipulationDeltaRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnManipulationCompleted(&self, e: windows_core::Ref<super::Input::ManipulationCompletedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnKeyUp(&self, e: windows_core::Ref<super::Input::KeyRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnKeyDown(&self, e: windows_core::Ref<super::Input::KeyRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPreviewKeyDown(&self, e: windows_core::Ref<super::Input::KeyRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnPreviewKeyUp(&self, e: windows_core::Ref<super::Input::KeyRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnGotFocus(&self, e: windows_core::Ref<super::RoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnLostFocus(&self, e: windows_core::Ref<super::RoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnCharacterReceived(&self, e: windows_core::Ref<super::Input::CharacterReceivedRoutedEventArgs>) -> windows_core::Result<()>;
+    fn OnDragEnter(&self, e: windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()>;
+    fn OnDragLeave(&self, e: windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()>;
+    fn OnDragOver(&self, e: windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()>;
+    fn OnDrop(&self, e: windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()>;
+}
+#[cfg(feature = "UI_Xaml_Input")]
+impl IControlOverrides_Vtbl {
+    pub const fn new<Identity: IControlOverrides_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn OnPointerEntered<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerEntered(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerPressed<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerPressed(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerMoved<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerMoved(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerReleased<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerReleased(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerExited<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerExited(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerCaptureLost<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerCaptureLost(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerCanceled<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerCanceled(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPointerWheelChanged<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPointerWheelChanged(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnTapped<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnTapped(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnDoubleTapped<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnDoubleTapped(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnHolding<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnHolding(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnRightTapped<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnRightTapped(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnManipulationStarting<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnManipulationStarting(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnManipulationInertiaStarting<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnManipulationInertiaStarting(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnManipulationStarted<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnManipulationStarted(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnManipulationDelta<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnManipulationDelta(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnManipulationCompleted<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnManipulationCompleted(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnKeyUp<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnKeyUp(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnKeyDown<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnKeyDown(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPreviewKeyDown<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPreviewKeyDown(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnPreviewKeyUp<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnPreviewKeyUp(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnGotFocus<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnGotFocus(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnLostFocus<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnLostFocus(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnCharacterReceived<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnCharacterReceived(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnDragEnter<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnDragEnter(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnDragLeave<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnDragLeave(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnDragOver<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnDragOver(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        unsafe extern "system" fn OnDrop<Identity: IControlOverrides_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, e: *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                IControlOverrides_Impl::OnDrop(this, core::mem::transmute_copy(&e)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, IControlOverrides, OFFSET>(),
+            OnPointerEntered: OnPointerEntered::<Identity, OFFSET>,
+            OnPointerPressed: OnPointerPressed::<Identity, OFFSET>,
+            OnPointerMoved: OnPointerMoved::<Identity, OFFSET>,
+            OnPointerReleased: OnPointerReleased::<Identity, OFFSET>,
+            OnPointerExited: OnPointerExited::<Identity, OFFSET>,
+            OnPointerCaptureLost: OnPointerCaptureLost::<Identity, OFFSET>,
+            OnPointerCanceled: OnPointerCanceled::<Identity, OFFSET>,
+            OnPointerWheelChanged: OnPointerWheelChanged::<Identity, OFFSET>,
+            OnTapped: OnTapped::<Identity, OFFSET>,
+            OnDoubleTapped: OnDoubleTapped::<Identity, OFFSET>,
+            OnHolding: OnHolding::<Identity, OFFSET>,
+            OnRightTapped: OnRightTapped::<Identity, OFFSET>,
+            OnManipulationStarting: OnManipulationStarting::<Identity, OFFSET>,
+            OnManipulationInertiaStarting: OnManipulationInertiaStarting::<Identity, OFFSET>,
+            OnManipulationStarted: OnManipulationStarted::<Identity, OFFSET>,
+            OnManipulationDelta: OnManipulationDelta::<Identity, OFFSET>,
+            OnManipulationCompleted: OnManipulationCompleted::<Identity, OFFSET>,
+            OnKeyUp: OnKeyUp::<Identity, OFFSET>,
+            OnKeyDown: OnKeyDown::<Identity, OFFSET>,
+            OnPreviewKeyDown: OnPreviewKeyDown::<Identity, OFFSET>,
+            OnPreviewKeyUp: OnPreviewKeyUp::<Identity, OFFSET>,
+            OnGotFocus: OnGotFocus::<Identity, OFFSET>,
+            OnLostFocus: OnLostFocus::<Identity, OFFSET>,
+            OnCharacterReceived: OnCharacterReceived::<Identity, OFFSET>,
+            OnDragEnter: OnDragEnter::<Identity, OFFSET>,
+            OnDragLeave: OnDragLeave::<Identity, OFFSET>,
+            OnDragOver: OnDragOver::<Identity, OFFSET>,
+            OnDrop: OnDrop::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<IControlOverrides as windows_core::Interface>::IID
+    }
 }
 #[repr(C)]
 #[doc(hidden)]
@@ -37068,6 +38414,10 @@ pub struct IControlOverrides_Vtbl {
     pub OnCharacterReceived: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Xaml_Input"))]
     OnCharacterReceived: usize,
+    pub OnDragEnter: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub OnDragLeave: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub OnDragOver: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    pub OnDrop: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(IControlProtected, IControlProtected_Vtbl, 0x5c750339_1789_5095_a214_dd9d0564e579);
 impl windows_core::RuntimeType for IControlProtected {
@@ -39342,7 +40692,7 @@ impl windows_core::RuntimeType for INumberBox {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.INumberBox");
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives"))]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for INumberBox {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.INumberBox";
 }
@@ -39376,7 +40726,13 @@ pub struct INumberBox_Vtbl {
     pub SetSelectionFlyout: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
     #[cfg(not(feature = "UI_Xaml_Controls_Primitives"))]
     SetSelectionFlyout: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SelectionHighlightColor: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetSelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetSelectionHighlightColor: usize,
     TextReadingOrder: usize,
     SetTextReadingOrder: usize,
@@ -39601,7 +40957,7 @@ impl windows_core::RuntimeType for IPasswordBox {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
     const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Controls.IPasswordBox");
 }
-#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives", feature = "UI_Xaml_Input"))]
+#[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Controls_Primitives", feature = "UI_Xaml_Input", feature = "UI_Xaml_Media"))]
 impl windows_core::RuntimeName for IPasswordBox {
     const NAME: &'static str = "Microsoft.UI.Xaml.Controls.IPasswordBox";
 }
@@ -39623,7 +40979,13 @@ pub struct IPasswordBox_Vtbl {
     SetHeaderTemplate: usize,
     pub PlaceholderText: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub SetPlaceholderText: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SelectionHighlightColor: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetSelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetSelectionHighlightColor: usize,
     pub PreventKeyboardDisplayOnProgrammaticFocus: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetPreventKeyboardDisplayOnProgrammaticFocus: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
@@ -41293,9 +42655,9 @@ pub struct ITabView_Vtbl {
     #[cfg(not(feature = "UI_Composition"))]
     TabDragCompleted: usize,
     pub RemoveTabDragCompleted: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
-    TabStripDragOver: usize,
+    pub TabStripDragOver: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
     pub RemoveTabStripDragOver: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
-    TabStripDrop: usize,
+    pub TabStripDrop: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut i64) -> windows_core::HRESULT,
     pub RemoveTabStripDrop: unsafe extern "system" fn(*mut core::ffi::c_void, i64) -> windows_core::HRESULT,
 }
 windows_core::imp::define_interface!(ITabView2, ITabView2_Vtbl, 0xdeaa552e_4e6c_5239_ac75_d9419a2309da);
@@ -42335,7 +43697,13 @@ pub struct ITextBlock_Vtbl {
     SelectionStart: usize,
     SelectionEnd: usize,
     pub BaselineOffset: unsafe extern "system" fn(*mut core::ffi::c_void, *mut f64) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SelectionHighlightColor: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetSelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetSelectionHighlightColor: usize,
     pub MaxLines: unsafe extern "system" fn(*mut core::ffi::c_void, *mut i32) -> windows_core::HRESULT,
     pub SetMaxLines: unsafe extern "system" fn(*mut core::ffi::c_void, i32) -> windows_core::HRESULT,
@@ -42442,13 +43810,25 @@ pub struct ITextBox_Vtbl {
     SetHeaderTemplate: usize,
     pub PlaceholderText: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
     pub SetPlaceholderText: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SelectionHighlightColor: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetSelectionHighlightColor: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetSelectionHighlightColor: usize,
     pub PreventKeyboardDisplayOnProgrammaticFocus: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetPreventKeyboardDisplayOnProgrammaticFocus: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
     pub IsColorFontEnabled: unsafe extern "system" fn(*mut core::ffi::c_void, *mut bool) -> windows_core::HRESULT,
     pub SetIsColorFontEnabled: unsafe extern "system" fn(*mut core::ffi::c_void, bool) -> windows_core::HRESULT,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SelectionHighlightColorWhenNotFocused: unsafe extern "system" fn(*mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SelectionHighlightColorWhenNotFocused: usize,
+    #[cfg(all(feature = "UI_Composition", feature = "UI_Xaml_Media"))]
+    pub SetSelectionHighlightColorWhenNotFocused: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "UI_Composition", feature = "UI_Xaml_Media")))]
     SetSelectionHighlightColorWhenNotFocused: usize,
     pub HorizontalTextAlignment: unsafe extern "system" fn(*mut core::ffi::c_void, *mut super::TextAlignment) -> windows_core::HRESULT,
     pub SetHorizontalTextAlignment: unsafe extern "system" fn(*mut core::ffi::c_void, super::TextAlignment) -> windows_core::HRESULT,
@@ -45182,6 +46562,54 @@ impl IconElement {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -46922,6 +48350,54 @@ impl Image {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -48652,6 +50128,54 @@ impl ImageIcon {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -49811,6 +51335,34 @@ impl ItemsControl {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -51159,6 +52711,54 @@ impl ItemsControl {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -52176,6 +53776,34 @@ impl ListBox {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -53622,6 +55250,54 @@ impl ListBox {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -54669,6 +56345,34 @@ impl ListBoxItem {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -55853,6 +57557,54 @@ impl ListBoxItem {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -56898,6 +58650,34 @@ impl ListViewItem {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -58084,6 +59864,54 @@ impl ListViewItem {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -59097,6 +60925,34 @@ impl MediaPlayerElement {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -60351,6 +62207,54 @@ impl MediaPlayerElement {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -61368,6 +63272,34 @@ impl MenuBar {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -62552,6 +64484,54 @@ impl MenuBar {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -63569,6 +65549,34 @@ impl MenuBarItem {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -64760,6 +66768,54 @@ impl MenuBarItem {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -66076,6 +68132,34 @@ impl MenuFlyoutItem {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -67320,6 +69404,54 @@ impl MenuFlyoutItem {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -68337,6 +70469,34 @@ impl MenuFlyoutItemBase {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -69497,6 +71657,54 @@ impl MenuFlyoutItemBase {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -70506,6 +72714,34 @@ impl MenuFlyoutSeparator {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -71684,6 +73920,54 @@ impl MenuFlyoutSeparator {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -72704,6 +74988,34 @@ impl MenuFlyoutSubItem {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -73891,6 +76203,54 @@ impl MenuFlyoutSubItem {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -74905,6 +77265,34 @@ impl NumberBox {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -75448,6 +77836,20 @@ impl NumberBox {
         P0: windows_core::Param<Primitives::FlyoutBase>,
     {
         unsafe { (windows_core::Interface::vtable(self).SetSelectionFlyout)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SelectionHighlightColor(&self) -> windows_core::Result<super::Media::SolidColorBrush> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SelectionHighlightColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSelectionHighlightColor<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::SolidColorBrush>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSelectionHighlightColor)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
     }
     pub fn PreventKeyboardDisplayOnProgrammaticFocus(&self) -> windows_core::Result<bool> {
         unsafe {
@@ -76240,6 +78642,54 @@ impl NumberBox {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -78031,6 +80481,54 @@ impl Panel {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -79056,6 +81554,34 @@ impl PasswordBox {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -79567,6 +82093,20 @@ impl PasswordBox {
     }
     pub fn SetPlaceholderText(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).SetPlaceholderText)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(value)).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SelectionHighlightColor(&self) -> windows_core::Result<super::Media::SolidColorBrush> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SelectionHighlightColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSelectionHighlightColor<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::SolidColorBrush>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSelectionHighlightColor)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
     }
     pub fn PreventKeyboardDisplayOnProgrammaticFocus(&self) -> windows_core::Result<bool> {
         unsafe {
@@ -80353,6 +82893,54 @@ impl PasswordBox {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -81392,6 +83980,34 @@ impl ProgressBar {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -82674,6 +85290,54 @@ impl ProgressBar {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -83776,6 +86440,34 @@ impl RadioButton {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -85024,6 +87716,54 @@ impl RadioButton {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -86041,6 +88781,34 @@ impl RadioMenuFlyoutItem {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -87330,6 +90098,54 @@ impl RadioMenuFlyoutItem {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -88584,6 +91400,34 @@ impl ScrollViewer {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -90291,6 +93135,54 @@ impl ScrollViewer {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -91480,6 +94372,34 @@ impl Slider {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -92810,6 +95730,54 @@ impl Slider {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -93856,6 +96824,34 @@ impl SplitButton {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -95083,6 +98079,54 @@ impl SplitButton {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -96943,6 +99987,54 @@ impl StackPanel {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -98792,6 +101884,54 @@ impl SwapChainPanel {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -99810,6 +102950,34 @@ impl TabView {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -100480,6 +103648,28 @@ impl TabView {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(self).TabDragCompleted)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveTabDragCompleted))
+        }
+    }
+    pub fn TabStripDragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).TabStripDragOver)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveTabStripDragOver))
+        }
+    }
+    pub fn TabStripDrop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(self).TabStripDrop)(windows_core::Interface::as_raw(self), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(self.clone(), token__, windows_core::Interface::vtable(self).RemoveTabStripDrop))
         }
     }
     pub fn CanTearOutTabs(&self) -> windows_core::Result<bool> {
@@ -101261,6 +104451,54 @@ impl TabView {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -102396,6 +105634,34 @@ impl TabViewItem {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -103613,6 +106879,54 @@ impl TabViewItem {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -104965,6 +108279,20 @@ impl TextBlock {
             (windows_core::Interface::vtable(self).BaselineOffset)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
         }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SelectionHighlightColor(&self) -> windows_core::Result<super::Media::SolidColorBrush> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SelectionHighlightColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSelectionHighlightColor<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::SolidColorBrush>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSelectionHighlightColor)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
     pub fn MaxLines(&self) -> windows_core::Result<i32> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -105767,6 +109095,54 @@ impl TextBlock {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -106783,6 +110159,34 @@ impl TextBox {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -107372,6 +110776,20 @@ impl TextBox {
     pub fn SetPlaceholderText(&self, value: &windows_core::HSTRING) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).SetPlaceholderText)(windows_core::Interface::as_raw(self), core::mem::transmute_copy(value)).ok() }
     }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SelectionHighlightColor(&self) -> windows_core::Result<super::Media::SolidColorBrush> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SelectionHighlightColor)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSelectionHighlightColor<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::SolidColorBrush>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSelectionHighlightColor)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
+    }
     pub fn PreventKeyboardDisplayOnProgrammaticFocus(&self) -> windows_core::Result<bool> {
         unsafe {
             let mut result__ = core::mem::zeroed();
@@ -107389,6 +110807,20 @@ impl TextBox {
     }
     pub fn SetIsColorFontEnabled(&self, value: bool) -> windows_core::Result<()> {
         unsafe { (windows_core::Interface::vtable(self).SetIsColorFontEnabled)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SelectionHighlightColorWhenNotFocused(&self) -> windows_core::Result<super::Media::SolidColorBrush> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).SelectionHighlightColorWhenNotFocused)(windows_core::Interface::as_raw(self), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Xaml_Media")]
+    pub fn SetSelectionHighlightColorWhenNotFocused<P0>(&self, value: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::Media::SolidColorBrush>,
+    {
+        unsafe { (windows_core::Interface::vtable(self).SetSelectionHighlightColorWhenNotFocused)(windows_core::Interface::as_raw(self), value.param().abi()).ok() }
     }
     pub fn HorizontalTextAlignment(&self) -> windows_core::Result<super::TextAlignment> {
         unsafe {
@@ -108341,6 +111773,54 @@ impl TextBox {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -109667,6 +113147,34 @@ impl ToggleMenuFlyoutItem {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -110931,6 +114439,54 @@ impl ToggleMenuFlyoutItem {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -111977,6 +115533,34 @@ impl ToolTip {
     {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
@@ -113226,6 +116810,54 @@ impl ToolTip {
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
         }
     }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
+        }
+    }
     #[cfg(feature = "UI_Xaml_Input")]
     pub fn PointerPressed<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
     where
@@ -114418,6 +118050,34 @@ impl UserControl {
         let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
         unsafe { (windows_core::Interface::vtable(this).OnCharacterReceived)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
     }
+    pub fn OnDragEnter<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragEnter)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragLeave<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragLeave)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDragOver<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDragOver)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
+    pub fn OnDrop<P0>(&self, e: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::DragEventArgs>,
+    {
+        let this = &windows_core::Interface::cast::<IControlOverrides>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).OnDrop)(windows_core::Interface::as_raw(this), e.param().abi()).ok() }
+    }
     pub fn DefaultStyleKey(&self) -> windows_core::Result<windows_core::IInspectable> {
         let this = &windows_core::Interface::cast::<IControlProtected>(self)?;
         unsafe {
@@ -115575,6 +119235,54 @@ impl UserControl {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]
@@ -117291,6 +120999,54 @@ impl WebView2 {
             let mut result__ = core::mem::zeroed();
             let token__ = (windows_core::Interface::vtable(this).CharacterReceived)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
             Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveCharacterReceived))
+        }
+    }
+    pub fn DragEnter<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragEnter)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragEnter))
+        }
+    }
+    pub fn DragLeave<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragLeave)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragLeave))
+        }
+    }
+    pub fn DragOver<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).DragOver)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDragOver))
+        }
+    }
+    pub fn Drop<F>(&self, handler: F) -> windows_core::Result<windows_core::EventRevoker>
+    where
+        F: Fn(windows_core::Ref<windows_core::IInspectable>, windows_core::Ref<super::DragEventArgs>) -> windows_core::Result<()> + Send + 'static,
+    {
+        let this = &windows_core::Interface::cast::<super::IUIElement>(self)?;
+        let handler = <super::DragEventHandler>::new(move |a0, a1| handler(a0, a1));
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            let token__ = (windows_core::Interface::vtable(this).Drop)(windows_core::Interface::as_raw(this), windows_core::Interface::as_raw(&handler), &mut result__).map(|| result__)?;
+            Ok(windows_core::EventRevoker::new(this.clone(), token__, windows_core::Interface::vtable(this).RemoveDrop))
         }
     }
     #[cfg(feature = "UI_Xaml_Input")]

@@ -287,6 +287,9 @@ pub struct IMediaSourceStatics_Vtbl {
     CreateFromMediaStreamSource: usize,
     CreateFromMseStreamSource: usize,
     CreateFromIMediaSource: usize,
+    #[cfg(all(feature = "Media_Playback", feature = "Storage_Streams"))]
+    pub CreateFromStorageFile: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(all(feature = "Media_Playback", feature = "Storage_Streams")))]
     CreateFromStorageFile: usize,
     #[cfg(all(feature = "Media_Playback", feature = "Storage_Streams"))]
     pub CreateFromStream: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void, *mut core::ffi::c_void, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -810,6 +813,16 @@ impl MediaSource {
             let mut result__ = core::mem::zeroed();
             (windows_core::Interface::vtable(this).OpenAsync)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
         }
+    }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn CreateFromStorageFile<P0>(file: P0) -> windows_core::Result<Self>
+    where
+        P0: windows_core::Param<super::super::Storage::IStorageFile>,
+    {
+        Self::IMediaSourceStatics(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateFromStorageFile)(windows_core::Interface::as_raw(this), file.param().abi(), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
     }
     #[cfg(feature = "Storage_Streams")]
     pub fn CreateFromStream<P0>(stream: P0, contenttype: &windows_core::HSTRING) -> windows_core::Result<Self>

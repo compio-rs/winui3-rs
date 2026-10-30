@@ -283,6 +283,9 @@ pub struct IMediaPlayerSource_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
     ProtectionManager: usize,
     SetProtectionManager: usize,
+    #[cfg(feature = "Storage_Streams")]
+    pub SetFileSource: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "Storage_Streams"))]
     SetFileSource: usize,
     #[cfg(feature = "Storage_Streams")]
     pub SetStreamSource: unsafe extern "system" fn(*mut core::ffi::c_void, *mut core::ffi::c_void) -> windows_core::HRESULT,
@@ -690,6 +693,14 @@ impl MediaPlayer {
     pub fn RemoveAllEffects(&self) -> windows_core::Result<()> {
         let this = &windows_core::Interface::cast::<IMediaPlayerEffects>(self)?;
         unsafe { (windows_core::Interface::vtable(this).RemoveAllEffects)(windows_core::Interface::as_raw(this)).ok() }
+    }
+    #[cfg(feature = "Storage_Streams")]
+    pub fn SetFileSource<P0>(&self, file: P0) -> windows_core::Result<()>
+    where
+        P0: windows_core::Param<super::super::Storage::IStorageFile>,
+    {
+        let this = &windows_core::Interface::cast::<IMediaPlayerSource>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetFileSource)(windows_core::Interface::as_raw(this), file.param().abi()).ok() }
     }
     #[cfg(feature = "Storage_Streams")]
     pub fn SetStreamSource<P0>(&self, stream: P0) -> windows_core::Result<()>

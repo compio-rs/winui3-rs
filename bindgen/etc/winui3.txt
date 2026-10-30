@@ -48,6 +48,7 @@
     Microsoft.UI.Xaml.DependencyObject
     Microsoft.UI.Xaml.DispatcherShutdownMode
     Microsoft.UI.Xaml.DragStartingEventArgs
+    Microsoft.UI.Xaml.DragEventHandler
     Microsoft.UI.Xaml.DropCompletedEventArgs
     Microsoft.UI.Xaml.EffectiveViewportChangedEventArgs
     Microsoft.UI.Xaml.FrameworkElement
@@ -218,6 +219,7 @@
     Microsoft.UI.Xaml.Media.PathSegment
     Microsoft.UI.Xaml.Media.PathSegmentCollection
     Microsoft.UI.Xaml.Media.RectangleGeometry
+    Microsoft.UI.Xaml.Media.SolidColorBrush
     Microsoft.UI.Xaml.Media.Stretch
     Microsoft.UI.Xaml.Media.SweepDirection
     Microsoft.UI.Xaml.Media.SystemBackdrop

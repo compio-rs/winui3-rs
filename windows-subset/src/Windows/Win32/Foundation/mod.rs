@@ -62,11 +62,18 @@ pub const E_NOTIMPL: windows_core::HRESULT = windows_core::HRESULT(0x80004001_u3
 pub const E_POINTER: windows_core::HRESULT = windows_core::HRESULT(0x80004003_u32 as _);
 pub type FARPROC = Option<unsafe extern "system" fn() -> isize>;
 pub type HANDLE = *mut core::ffi::c_void;
+pub type HGLOBAL = *mut core::ffi::c_void;
 pub type HMODULE = *mut core::ffi::c_void;
 pub type HWND = *mut core::ffi::c_void;
 #[repr(C)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct POINT {
+    pub x: i32,
+    pub y: i32,
+}
+#[repr(C)]
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+pub struct POINTL {
     pub x: i32,
     pub y: i32,
 }

@@ -1342,6 +1342,115 @@ impl windows_core::RuntimeName for IRectangleGeometryStatics {
 pub struct IRectangleGeometryStatics_Vtbl {
     pub base__: windows_core::IInspectable_Vtbl,
 }
+windows_core::imp::define_interface!(ISolidColorBrush, ISolidColorBrush_Vtbl, 0xb3865c31_37c8_55c1_8a72_d41c67642e2a);
+impl windows_core::RuntimeType for ISolidColorBrush {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ISolidColorBrush");
+}
+impl windows_core::RuntimeName for ISolidColorBrush {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISolidColorBrush";
+}
+pub trait ISolidColorBrush_Impl: windows_core::IUnknownImpl {
+    fn Color(&self) -> windows_core::Result<windows::UI::Color>;
+    fn SetColor(&self, value: &windows::UI::Color) -> windows_core::Result<()>;
+}
+impl ISolidColorBrush_Vtbl {
+    pub const fn new<Identity: ISolidColorBrush_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn Color<Identity: ISolidColorBrush_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, result__: *mut windows::UI::Color) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ISolidColorBrush_Impl::Color(this) {
+                    Ok(ok__) => {
+                        result__.write(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        unsafe extern "system" fn SetColor<Identity: ISolidColorBrush_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, value: windows::UI::Color) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                ISolidColorBrush_Impl::SetColor(this, core::mem::transmute(&value)).into()
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ISolidColorBrush, OFFSET>(),
+            Color: Color::<Identity, OFFSET>,
+            SetColor: SetColor::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ISolidColorBrush as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ISolidColorBrush_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    pub Color: unsafe extern "system" fn(*mut core::ffi::c_void, *mut windows::UI::Color) -> windows_core::HRESULT,
+    pub SetColor: unsafe extern "system" fn(*mut core::ffi::c_void, windows::UI::Color) -> windows_core::HRESULT,
+}
+windows_core::imp::define_interface!(ISolidColorBrushFactory, ISolidColorBrushFactory_Vtbl, 0x7b559384_4daa_54f4_91ef_33a23fd816ca);
+impl windows_core::RuntimeType for ISolidColorBrushFactory {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ISolidColorBrushFactory");
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for ISolidColorBrushFactory {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISolidColorBrushFactory";
+}
+#[cfg(feature = "UI_Composition")]
+pub trait ISolidColorBrushFactory_Impl: windows_core::IUnknownImpl {
+    fn CreateInstanceWithColor(&self, color: &windows::UI::Color) -> windows_core::Result<SolidColorBrush>;
+}
+#[cfg(feature = "UI_Composition")]
+impl ISolidColorBrushFactory_Vtbl {
+    pub const fn new<Identity: ISolidColorBrushFactory_Impl, const OFFSET: isize>() -> Self {
+        unsafe extern "system" fn CreateInstanceWithColor<Identity: ISolidColorBrushFactory_Impl, const OFFSET: isize>(this: *mut core::ffi::c_void, color: windows::UI::Color, result__: *mut *mut core::ffi::c_void) -> windows_core::HRESULT {
+            unsafe {
+                let this: &Identity = &*((this as *const *const ()).offset(OFFSET) as *const Identity);
+                match ISolidColorBrushFactory_Impl::CreateInstanceWithColor(this, core::mem::transmute(&color)) {
+                    Ok(ok__) => {
+                        result__.write(core::mem::transmute_copy(&ok__));
+                        core::mem::forget(ok__);
+                        windows_core::HRESULT(0)
+                    }
+                    Err(err) => err.into(),
+                }
+            }
+        }
+        Self {
+            base__: windows_core::IInspectable_Vtbl::new::<Identity, ISolidColorBrushFactory, OFFSET>(),
+            CreateInstanceWithColor: CreateInstanceWithColor::<Identity, OFFSET>,
+        }
+    }
+    pub fn matches(iid: &windows_core::GUID) -> bool {
+        iid == &<ISolidColorBrushFactory as windows_core::Interface>::IID
+    }
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ISolidColorBrushFactory_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+    #[cfg(feature = "UI_Composition")]
+    pub CreateInstanceWithColor: unsafe extern "system" fn(*mut core::ffi::c_void, windows::UI::Color, *mut *mut core::ffi::c_void) -> windows_core::HRESULT,
+    #[cfg(not(feature = "UI_Composition"))]
+    CreateInstanceWithColor: usize,
+}
+windows_core::imp::define_interface!(ISolidColorBrushStatics, ISolidColorBrushStatics_Vtbl, 0x6bc16da0_c4e6_59b8_995b_b31e48424c07);
+impl windows_core::RuntimeType for ISolidColorBrushStatics {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
+    const NAME: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::from_slice(b"Microsoft.UI.Xaml.Media.ISolidColorBrushStatics");
+}
+impl windows_core::RuntimeName for ISolidColorBrushStatics {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.ISolidColorBrushStatics";
+}
+#[repr(C)]
+#[doc(hidden)]
+pub struct ISolidColorBrushStatics_Vtbl {
+    pub base__: windows_core::IInspectable_Vtbl,
+}
 windows_core::imp::define_interface!(ISystemBackdrop, ISystemBackdrop_Vtbl, 0x5aeed5c4_37ac_5852_b73f_1b76ebc3205f);
 impl windows_core::RuntimeType for ISystemBackdrop {
     const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_interface::<Self>();
@@ -2417,6 +2526,90 @@ impl windows_core::RuntimeName for RectangleGeometry {
 }
 unsafe impl Send for RectangleGeometry {}
 unsafe impl Sync for RectangleGeometry {}
+#[cfg(feature = "UI_Composition")]
+#[repr(transparent)]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct SolidColorBrush(windows_core::IUnknown);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::interface_hierarchy!(SolidColorBrush, windows_core::IUnknown, windows_core::IInspectable);
+#[cfg(feature = "UI_Composition")]
+windows_core::imp::required_hierarchy!(SolidColorBrush, super::super::Composition::IAnimationObject, Brush, super::DependencyObject);
+#[cfg(feature = "UI_Composition")]
+impl SolidColorBrush {
+    pub fn new() -> windows_core::Result<Self> {
+        Self::IActivationFactory(|f| f.ActivateInstance::<Self>())
+    }
+    fn IActivationFactory<R, F: FnOnce(&windows_core::imp::IGenericFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<SolidColorBrush, windows_core::imp::IGenericFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    pub fn Opacity(&self) -> windows_core::Result<f64> {
+        let this = &windows_core::Interface::cast::<IBrush>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Opacity)(windows_core::Interface::as_raw(this), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetOpacity(&self, value: f64) -> windows_core::Result<()> {
+        let this = &windows_core::Interface::cast::<IBrush>(self)?;
+        unsafe { (windows_core::Interface::vtable(this).SetOpacity)(windows_core::Interface::as_raw(this), value).ok() }
+    }
+    pub fn Dispatcher(&self) -> windows_core::Result<windows::UI::Core::CoreDispatcher> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).Dispatcher)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    #[cfg(feature = "UI_Dispatching")]
+    pub fn DispatcherQueue(&self) -> windows_core::Result<super::super::Dispatching::DispatcherQueue> {
+        let this = &windows_core::Interface::cast::<super::IDependencyObject>(self)?;
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).DispatcherQueue)(windows_core::Interface::as_raw(this), &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        }
+    }
+    pub fn Color(&self) -> windows_core::Result<windows::UI::Color> {
+        unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(self).Color)(windows_core::Interface::as_raw(self), &mut result__).map(|| result__)
+        }
+    }
+    pub fn SetColor(&self, value: windows::UI::Color) -> windows_core::Result<()> {
+        unsafe { (windows_core::Interface::vtable(self).SetColor)(windows_core::Interface::as_raw(self), value).ok() }
+    }
+    pub fn CreateInstanceWithColor(color: windows::UI::Color) -> windows_core::Result<Self> {
+        Self::ISolidColorBrushFactory(|this| unsafe {
+            let mut result__ = core::mem::zeroed();
+            (windows_core::Interface::vtable(this).CreateInstanceWithColor)(windows_core::Interface::as_raw(this), color, &mut result__).and_then(|| windows_core::imp::Type::from_abi(result__))
+        })
+    }
+    fn ISolidColorBrushFactory<R, F: FnOnce(&ISolidColorBrushFactory) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<SolidColorBrush, ISolidColorBrushFactory> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+    fn ISolidColorBrushStatics<R, F: FnOnce(&ISolidColorBrushStatics) -> windows_core::Result<R>>(callback: F) -> windows_core::Result<R> {
+        static SHARED: windows_core::imp::FactoryCache<SolidColorBrush, ISolidColorBrushStatics> = windows_core::imp::FactoryCache::new();
+        SHARED.call(callback)
+    }
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeType for SolidColorBrush {
+    const SIGNATURE: windows_core::imp::ConstBuffer = windows_core::imp::ConstBuffer::for_class::<Self, ISolidColorBrush>();
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl windows_core::Interface for SolidColorBrush {
+    type Vtable = <ISolidColorBrush as windows_core::Interface>::Vtable;
+    const IID: windows_core::GUID = <ISolidColorBrush as windows_core::Interface>::IID;
+}
+#[cfg(feature = "UI_Composition")]
+impl windows_core::RuntimeName for SolidColorBrush {
+    const NAME: &'static str = "Microsoft.UI.Xaml.Media.SolidColorBrush";
+}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Send for SolidColorBrush {}
+#[cfg(feature = "UI_Composition")]
+unsafe impl Sync for SolidColorBrush {}
 #[repr(transparent)]
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub struct Stretch(pub i32);
